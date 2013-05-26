@@ -216,7 +216,9 @@
     
     totalTimeLabel.text = [NSString stringWithFormat:@"/ %@", [Utils getTimeStr:self.mediaEntry.duration]];
     
-    self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"ipadnew"];
+    //self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"ipadnew"];
+    self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"widevine"];
+    
 
     if ([self.bitrates count] > 0) {
         

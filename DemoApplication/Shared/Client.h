@@ -29,6 +29,8 @@
     int currentChunk;
     int uploadTryCount;
     
+    NSString *path;
+    NSURL *mwurl;
     NSString *uploadFileTokenId;
     NSString *uploadFilePath;
     
@@ -57,6 +59,9 @@
 - (NSArray *)getBitratesList:(KalturaMediaEntry *)mediaEntry withFilter:(NSString *)filter;
 - (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId;
 
+
+- (NSDictionary*) initializeDictionary;
+
 @property (nonatomic, retain) KalturaClient *client;
 @property (nonatomic, retain) NSMutableArray *categories;
 @property (nonatomic, retain) NSMutableArray *media;
@@ -64,5 +69,7 @@
 
 @property (nonatomic, retain) NSString *uploadFileTokenId;
 @property (nonatomic, retain) NSString *uploadFilePath;
+@property (nonatomic, retain) NSString *path;
+@property (nonatomic, retain) NSURL *mwurl;
 
 @end

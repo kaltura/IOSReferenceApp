@@ -66,59 +66,58 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaAuditTrailAction : NSObject
-+ (NSString*)CREATED;
-+ (NSString*)COPIED;
 + (NSString*)CHANGED;
-+ (NSString*)DELETED;
-+ (NSString*)VIEWED;
 + (NSString*)CONTENT_VIEWED;
++ (NSString*)COPIED;
++ (NSString*)CREATED;
++ (NSString*)DELETED;
 + (NSString*)FILE_SYNC_CREATED;
 + (NSString*)RELATION_ADDED;
 + (NSString*)RELATION_REMOVED;
++ (NSString*)VIEWED;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaAuditTrailObjectType : NSObject
-+ (NSString*)ACCESS_CONTROL;
-+ (NSString*)ADMIN_KUSER;
 + (NSString*)BATCH_JOB;
++ (NSString*)EMAIL_INGESTION_PROFILE;
++ (NSString*)FILE_SYNC;
++ (NSString*)KSHOW_KUSER;
++ (NSString*)METADATA;
++ (NSString*)METADATA_PROFILE;
++ (NSString*)PARTNER;
++ (NSString*)PERMISSION;
++ (NSString*)UPLOAD_TOKEN;
++ (NSString*)USER_LOGIN_DATA;
++ (NSString*)USER_ROLE;
++ (NSString*)ACCESS_CONTROL;
 + (NSString*)CATEGORY;
 + (NSString*)CONVERSION_PROFILE_2;
-+ (NSString*)EMAIL_INGESTION_PROFILE;
 + (NSString*)ENTRY;
-+ (NSString*)FILE_SYNC;
 + (NSString*)FLAVOR_ASSET;
-+ (NSString*)THUMBNAIL_ASSET;
 + (NSString*)FLAVOR_PARAMS;
-+ (NSString*)THUMBNAIL_PARAMS;
 + (NSString*)FLAVOR_PARAMS_CONVERSION_PROFILE;
 + (NSString*)FLAVOR_PARAMS_OUTPUT;
-+ (NSString*)THUMBNAIL_PARAMS_OUTPUT;
 + (NSString*)KSHOW;
-+ (NSString*)KSHOW_KUSER;
 + (NSString*)KUSER;
 + (NSString*)MEDIA_INFO;
 + (NSString*)MODERATION;
-+ (NSString*)PARTNER;
 + (NSString*)ROUGHCUT;
 + (NSString*)SYNDICATION;
++ (NSString*)THUMBNAIL_ASSET;
++ (NSString*)THUMBNAIL_PARAMS;
++ (NSString*)THUMBNAIL_PARAMS_OUTPUT;
 + (NSString*)UI_CONF;
-+ (NSString*)UPLOAD_TOKEN;
 + (NSString*)WIDGET;
-+ (NSString*)METADATA;
-+ (NSString*)METADATA_PROFILE;
-+ (NSString*)USER_LOGIN_DATA;
-+ (NSString*)USER_ROLE;
-+ (NSString*)PERMISSION;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaAuditTrailOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)PARSED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)PARSED_AT_DESC;
 @end
 

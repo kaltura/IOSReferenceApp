@@ -52,15 +52,15 @@
 // @subpackage Kaltura
 @interface KalturaFileSyncOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
-+ (NSString*)UPDATED_AT_ASC;
-+ (NSString*)UPDATED_AT_DESC;
-+ (NSString*)READY_AT_ASC;
-+ (NSString*)READY_AT_DESC;
-+ (NSString*)SYNC_TIME_ASC;
-+ (NSString*)SYNC_TIME_DESC;
 + (NSString*)FILE_SIZE_ASC;
++ (NSString*)READY_AT_ASC;
++ (NSString*)SYNC_TIME_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)FILE_SIZE_DESC;
++ (NSString*)READY_AT_DESC;
++ (NSString*)SYNC_TIME_DESC;
++ (NSString*)UPDATED_AT_DESC;
 @end
 
 ///////////////////////// classes /////////////////////////

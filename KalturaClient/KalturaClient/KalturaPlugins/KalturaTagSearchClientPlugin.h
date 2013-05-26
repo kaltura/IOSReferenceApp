@@ -87,6 +87,8 @@
 @interface KalturaTagService : KalturaServiceBase
 - (KalturaTagListResponse*)searchWithTagFilter:(KalturaTagFilter*)aTagFilter withPager:(KalturaFilterPager*)aPager;
 - (KalturaTagListResponse*)searchWithTagFilter:(KalturaTagFilter*)aTagFilter;
+// Action goes over all tags with instanceCount==0 and checks whether they need to be removed from the DB. Returns number of removed tags.
+- (int)deletePending;
 @end
 
 @interface KalturaTagSearchClientPlugin : KalturaClientPlugin

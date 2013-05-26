@@ -46,6 +46,7 @@
 @synthesize bandwidth = _bandwidth;
 @synthesize totalStorage = _totalStorage;
 @synthesize storage = _storage;
+@synthesize deletedStorage = _deletedStorage;
 @synthesize peakStorage = _peakStorage;
 @synthesize avgStorage = _avgStorage;
 @synthesize combinedStorageBandwidth = _combinedStorageBandwidth;
@@ -71,6 +72,7 @@
     self->_bandwidth = KALTURA_UNDEF_FLOAT;
     self->_totalStorage = KALTURA_UNDEF_FLOAT;
     self->_storage = KALTURA_UNDEF_FLOAT;
+    self->_deletedStorage = KALTURA_UNDEF_FLOAT;
     self->_peakStorage = KALTURA_UNDEF_FLOAT;
     self->_avgStorage = KALTURA_UNDEF_FLOAT;
     self->_combinedStorageBandwidth = KALTURA_UNDEF_FLOAT;
@@ -153,6 +155,11 @@
 }
 
 - (KalturaFieldType)getTypeOfStorage
+{
+    return KFT_Float;
+}
+
+- (KalturaFieldType)getTypeOfDeletedStorage
 {
     return KFT_Float;
 }
@@ -252,6 +259,11 @@
     self.storage = [KalturaSimpleTypeParser parseFloat:aPropVal];
 }
 
+- (void)setDeletedStorageFromString:(NSString*)aPropVal
+{
+    self.deletedStorage = [KalturaSimpleTypeParser parseFloat:aPropVal];
+}
+
 - (void)setPeakStorageFromString:(NSString*)aPropVal
 {
     self.peakStorage = [KalturaSimpleTypeParser parseFloat:aPropVal];
@@ -288,6 +300,7 @@
     [aParams addIfDefinedKey:@"bandwidth" withFloat:self.bandwidth];
     [aParams addIfDefinedKey:@"totalStorage" withFloat:self.totalStorage];
     [aParams addIfDefinedKey:@"storage" withFloat:self.storage];
+    [aParams addIfDefinedKey:@"deletedStorage" withFloat:self.deletedStorage];
     [aParams addIfDefinedKey:@"peakStorage" withFloat:self.peakStorage];
     [aParams addIfDefinedKey:@"avgStorage" withFloat:self.avgStorage];
     [aParams addIfDefinedKey:@"combinedStorageBandwidth" withFloat:self.combinedStorageBandwidth];

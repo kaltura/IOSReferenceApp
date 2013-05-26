@@ -29,59 +29,62 @@
 
 ///////////////////////// enums /////////////////////////
 @implementation KalturaAnnotationOrderBy
-+ (NSString*)END_TIME_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+endTime";
-}
-+ (NSString*)END_TIME_DESC
-{
-    return @"-endTime";
+    return @"+createdAt";
 }
 + (NSString*)DURATION_ASC
 {
     return @"+duration";
 }
-+ (NSString*)DURATION_DESC
++ (NSString*)END_TIME_ASC
 {
-    return @"-duration";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)START_TIME_ASC
-{
-    return @"+startTime";
-}
-+ (NSString*)START_TIME_DESC
-{
-    return @"-startTime";
+    return @"+endTime";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
++ (NSString*)START_TIME_ASC
+{
+    return @"+startTime";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DURATION_DESC
+{
+    return @"-duration";
+}
++ (NSString*)END_TIME_DESC
+{
+    return @"-endTime";
+}
 + (NSString*)PARTNER_SORT_VALUE_DESC
 {
     return @"-partnerSortValue";
+}
++ (NSString*)START_TIME_DESC
+{
+    return @"-startTime";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 
 ///////////////////////// classes /////////////////////////
 @interface KalturaAnnotation()
 @property (nonatomic,assign) int duration;
+@property (nonatomic,assign) int depth;
+@property (nonatomic,assign) int childrenCount;
+@property (nonatomic,assign) int directChildrenCount;
 @end
 
 @implementation KalturaAnnotation
@@ -89,6 +92,9 @@
 @synthesize text = _text;
 @synthesize endTime = _endTime;
 @synthesize duration = _duration;
+@synthesize depth = _depth;
+@synthesize childrenCount = _childrenCount;
+@synthesize directChildrenCount = _directChildrenCount;
 
 - (id)init
 {
@@ -97,6 +103,9 @@
         return nil;
     self->_endTime = KALTURA_UNDEF_INT;
     self->_duration = KALTURA_UNDEF_INT;
+    self->_depth = KALTURA_UNDEF_INT;
+    self->_childrenCount = KALTURA_UNDEF_INT;
+    self->_directChildrenCount = KALTURA_UNDEF_INT;
     return self;
 }
 
@@ -120,6 +129,21 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfDepth
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfChildrenCount
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDirectChildrenCount
+{
+    return KFT_Int;
+}
+
 - (void)setEndTimeFromString:(NSString*)aPropVal
 {
     self.endTime = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -128,6 +152,21 @@
 - (void)setDurationFromString:(NSString*)aPropVal
 {
     self.duration = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDepthFromString:(NSString*)aPropVal
+{
+    self.depth = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setChildrenCountFromString:(NSString*)aPropVal
+{
+    self.childrenCount = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDirectChildrenCountFromString:(NSString*)aPropVal
+{
+    self.directChildrenCount = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper

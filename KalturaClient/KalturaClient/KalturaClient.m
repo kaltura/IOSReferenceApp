@@ -229,6 +229,10 @@
 {
     return 3;
 }
++ (int)NONE
+{
+    return 4;
+}
 @end
 
 @implementation KalturaCategoryUserStatus
@@ -247,13 +251,13 @@
 @end
 
 @implementation KalturaCommercialUseType
-+ (int)COMMERCIAL_USE
-{
-    return 1;
-}
 + (int)NON_COMMERCIAL_USE
 {
     return 0;
+}
++ (int)COMMERCIAL_USE
+{
+    return 1;
 }
 @end
 
@@ -311,18 +315,6 @@
 @end
 
 @implementation KalturaControlPanelCommandType
-+ (int)STOP
-{
-    return 1;
-}
-+ (int)START
-{
-    return 2;
-}
-+ (int)CONFIG
-{
-    return 3;
-}
 + (int)KILL
 {
     return 4;
@@ -335,6 +327,17 @@
     return 0;
 }
 + (int)ALLOW_COUNTRY_LIST
+{
+    return 1;
+}
+@end
+
+@implementation KalturaDVRStatus
++ (int)DISABLED
+{
+    return 0;
+}
++ (int)ENABLED
 {
     return 1;
 }
@@ -417,12 +420,32 @@
 {
     return 5;
 }
++ (int)USER
+{
+    return 6;
+}
 @end
 
 @implementation KalturaFlavorAssetStatus
++ (int)ERROR
+{
+    return -1;
+}
++ (int)QUEUED
+{
+    return 0;
+}
 + (int)CONVERTING
 {
     return 1;
+}
++ (int)READY
+{
+    return 2;
+}
++ (int)DELETED
+{
+    return 3;
 }
 + (int)NOT_APPLICABLE
 {
@@ -436,29 +459,13 @@
 {
     return 6;
 }
-+ (int)VALIDATING
-{
-    return 8;
-}
-+ (int)ERROR
-{
-    return -1;
-}
-+ (int)QUEUED
-{
-    return 0;
-}
-+ (int)READY
-{
-    return 2;
-}
-+ (int)DELETED
-{
-    return 3;
-}
 + (int)IMPORTING
 {
     return 7;
+}
++ (int)VALIDATING
+{
+    return 8;
 }
 + (int)EXPORTING
 {
@@ -471,6 +478,10 @@
 {
     return 0;
 }
++ (int)INHERIT_FLAVOR_PARAMS
+{
+    return 0;
+}
 + (int)REQUIRED
 {
     return 1;
@@ -478,10 +489,6 @@
 + (int)OPTIONAL
 {
     return 2;
-}
-+ (int)INHERIT_FLAVOR_PARAMS
-{
-    return 0;
 }
 @end
 
@@ -593,6 +600,17 @@
 }
 @end
 
+@implementation KalturaLimitFlavorsRestrictionType
++ (int)RESTRICT_LIST
+{
+    return 0;
+}
++ (int)ALLOW_LIST
+{
+    return 1;
+}
+@end
+
 @implementation KalturaMailJobStatus
 + (int)PENDING
 {
@@ -643,17 +661,6 @@
 }
 @end
 
-@implementation KalturaModerationFlagStatus
-+ (int)PENDING
-{
-    return 1;
-}
-+ (int)MODERATED
-{
-    return 2;
-}
-@end
-
 @implementation KalturaModerationFlagType
 + (int)SEXUAL_CONTENT
 {
@@ -681,14 +688,14 @@
 }
 @end
 
-@implementation KalturaModerationObjectType
-+ (int)ENTRY
+@implementation KalturaMrssExtensionMode
++ (int)APPEND
+{
+    return 1;
+}
++ (int)REPLACE
 {
     return 2;
-}
-+ (int)USER
-{
-    return 3;
 }
 @end
 
@@ -912,13 +919,13 @@
 @end
 
 @implementation KalturaPlaylistType
-+ (int)DYNAMIC
-{
-    return 10;
-}
 + (int)STATIC_LIST
 {
     return 3;
+}
++ (int)DYNAMIC
+{
+    return 10;
 }
 + (int)EXTERNAL
 {
@@ -970,10 +977,6 @@
 {
     return 7;
 }
-+ (int)WIDGETS_STATS
-{
-    return 8;
-}
 + (int)USER_ENGAGEMENT
 {
     return 11;
@@ -1006,13 +1009,29 @@
 {
     return 18;
 }
-+ (int)PARTNER_USAGE
-{
-    return 201;
-}
 + (int)VAR_USAGE
 {
     return 19;
+}
++ (int)TOP_CREATORS
+{
+    return 20;
+}
++ (int)PLATFORMS
+{
+    return 21;
+}
++ (int)OPERATION_SYSTEM
+{
+    return 22;
+}
++ (int)BROWSERS
+{
+    return 23;
+}
++ (int)PARTNER_USAGE
+{
+    return 201;
 }
 @end
 
@@ -1307,14 +1326,6 @@
 {
     return 1012;
 }
-+ (int)CONTENT_DELETE_ITEM
-{
-    return 1058;
-}
-+ (int)CONTENT_DELETE_MIX
-{
-    return 1059;
-}
 + (int)CONTENT_EDIT_ENTRY
 {
     return 1013;
@@ -1358,18 +1369,6 @@
 + (int)CONTENT_ADMIN_KCW_UPLOAD
 {
     return 1023;
-}
-+ (int)CONTENT_CONTENT_GO_TO_PAGE
-{
-    return 1057;
-}
-+ (int)CONTENT_ENTRY_DRILLDOWN
-{
-    return 1088;
-}
-+ (int)CONTENT_OPEN_PREVIEW_AND_EMBED
-{
-    return 1089;
 }
 + (int)ACCOUNT_CHANGE_PARTNER_INFO
 {
@@ -1475,6 +1474,18 @@
 {
     return 1056;
 }
++ (int)CONTENT_CONTENT_GO_TO_PAGE
+{
+    return 1057;
+}
++ (int)CONTENT_DELETE_ITEM
+{
+    return 1058;
+}
++ (int)CONTENT_DELETE_MIX
+{
+    return 1059;
+}
 + (int)REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_TAB
 {
     return 1070;
@@ -1547,6 +1558,14 @@
 {
     return 1087;
 }
++ (int)CONTENT_ENTRY_DRILLDOWN
+{
+    return 1088;
+}
++ (int)CONTENT_OPEN_PREVIEW_AND_EMBED
+{
+    return 1089;
+}
 @end
 
 @implementation KalturaStorageProfileDeliveryStatus
@@ -1609,25 +1628,6 @@
 }
 @end
 
-@implementation KalturaStorageServePriority
-+ (int)KALTURA_ONLY
-{
-    return 1;
-}
-+ (int)KALTURA_FIRST
-{
-    return 2;
-}
-+ (int)EXTERNAL_FIRST
-{
-    return 3;
-}
-+ (int)EXTERNAL_ONLY
-{
-    return 4;
-}
-@end
-
 @implementation KalturaSyndicationFeedStatus
 + (int)DELETED
 {
@@ -1667,10 +1667,6 @@
 @end
 
 @implementation KalturaThumbAssetStatus
-+ (int)CAPTURING
-{
-    return 1;
-}
 + (int)ERROR
 {
     return -1;
@@ -1678,6 +1674,10 @@
 + (int)QUEUED
 {
     return 0;
+}
++ (int)CAPTURING
+{
+    return 1;
 }
 + (int)READY
 {
@@ -1803,6 +1803,14 @@
 + (int)CLIPPER
 {
     return 18;
+}
++ (int)KSR
+{
+    return 19;
+}
++ (int)KUPLOAD
+{
+    return 20;
 }
 @end
 
@@ -1935,6 +1943,10 @@
 {
     return @"2";
 }
++ (NSString*)LIMIT_FLAVORS
+{
+    return @"3";
+}
 @end
 
 @implementation KalturaAccessControlContextType
@@ -1949,6 +1961,10 @@
 + (NSString*)THUMBNAIL
 {
     return @"3";
+}
++ (NSString*)METADATA
+{
+    return @"4";
 }
 @end
 
@@ -1968,13 +1984,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -1983,44 +1999,93 @@
 @end
 
 @implementation KalturaAdminUserOrderBy
-+ (NSString*)ID_ASC
-{
-    return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
 }
++ (NSString*)ID_ASC
+{
+    return @"+id";
+}
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
+}
++ (NSString*)ID_DESC
+{
+    return @"-id";
 }
 @end
 
-@implementation KalturaApiActionPermissionItemOrderBy
-+ (NSString*)ID_ASC
+@implementation KalturaAkamaiUniversalStreamType
++ (NSString*)HD_IPHONE_IPAD_LIVE
 {
-    return @"+id";
+    return @"HD iPhone/iPad Live";
 }
-+ (NSString*)ID_DESC
++ (NSString*)UNIVERSAL_STREAMING_LIVE
 {
-    return @"-id";
+    return @"Universal Streaming Live";
 }
+@end
+
+@implementation KalturaAmazonS3StorageProfileFilesPermissionLevel
++ (NSString*)ACL_AUTHENTICATED_READ
+{
+    return @"authenticated-read";
+}
++ (NSString*)ACL_PRIVATE
+{
+    return @"private";
+}
++ (NSString*)ACL_PUBLIC_READ
+{
+    return @"public-read";
+}
++ (NSString*)ACL_PUBLIC_READ_WRITE
+{
+    return @"public-read-write";
+}
+@end
+
+@implementation KalturaAmazonS3StorageProfileOrderBy
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
+@end
+
+@implementation KalturaApiActionPermissionItemOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
++ (NSString*)ID_ASC
+{
+    return @"+id";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)ID_DESC
+{
+    return @"-id";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -2029,6 +2094,14 @@
 @end
 
 @implementation KalturaApiParameterPermissionItemAction
++ (NSString*)USAGE
+{
+    return @"all";
+}
++ (NSString*)INSERT
+{
+    return @"insert";
+}
 + (NSString*)READ
 {
     return @"read";
@@ -2037,36 +2110,28 @@
 {
     return @"update";
 }
-+ (NSString*)INSERT
-{
-    return @"insert";
-}
-+ (NSString*)USAGE
-{
-    return @"all";
-}
 @end
 
 @implementation KalturaApiParameterPermissionItemOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
 }
-+ (NSString*)ID_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-id";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -2075,37 +2140,37 @@
 @end
 
 @implementation KalturaAssetOrderBy
-+ (NSString*)SIZE_ASC
-{
-    return @"+size";
-}
-+ (NSString*)SIZE_DESC
-{
-    return @"-size";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
 }
 + (NSString*)DELETED_AT_ASC
 {
     return @"+deletedAt";
 }
++ (NSString*)SIZE_ASC
+{
+    return @"+size";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
 + (NSString*)DELETED_AT_DESC
 {
     return @"-deletedAt";
+}
++ (NSString*)SIZE_DESC
+{
+    return @"-size";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 
@@ -2116,6 +2181,34 @@
 @end
 
 @implementation KalturaAssetType
++ (NSString*)ATTACHMENT
+{
+    return @"attachment.Attachment";
+}
++ (NSString*)CAPTION
+{
+    return @"caption.Caption";
+}
++ (NSString*)DOCUMENT
+{
+    return @"document.Document";
+}
++ (NSString*)IMAGE
+{
+    return @"document.Image";
+}
++ (NSString*)PDF
+{
+    return @"document.PDF";
+}
++ (NSString*)SWF
+{
+    return @"document.SWF";
+}
++ (NSString*)WIDEVINE_FLAVOR
+{
+    return @"widevine.WidevineFlavor";
+}
 + (NSString*)FLAVOR
 {
     return @"1";
@@ -2124,30 +2217,6 @@
 {
     return @"2";
 }
-+ (NSString*)DOCUMENT
-{
-    return @"document.Document";
-}
-+ (NSString*)SWF
-{
-    return @"document.SWF";
-}
-+ (NSString*)PDF
-{
-    return @"document.PDF";
-}
-+ (NSString*)IMAGE
-{
-    return @"document.Image";
-}
-+ (NSString*)CAPTION
-{
-    return @"caption.Caption";
-}
-+ (NSString*)ATTACHMENT
-{
-    return @"attachment.Attachment";
-}
 @end
 
 @implementation KalturaAudioCodec
@@ -2155,13 +2224,37 @@
 {
     return @"";
 }
++ (NSString*)AAC
+{
+    return @"aac";
+}
++ (NSString*)AACHE
+{
+    return @"aache";
+}
++ (NSString*)AC3
+{
+    return @"ac3";
+}
++ (NSString*)AMRNB
+{
+    return @"amrnb";
+}
++ (NSString*)COPY
+{
+    return @"copy";
+}
 + (NSString*)MP3
 {
     return @"mp3";
 }
-+ (NSString*)AAC
++ (NSString*)MPEG2
 {
-    return @"aac";
+    return @"mpeg2";
+}
++ (NSString*)PCM
+{
+    return @"pcm";
 }
 + (NSString*)VORBIS
 {
@@ -2175,108 +2268,92 @@
 {
     return @"wmapro";
 }
-+ (NSString*)AMRNB
-{
-    return @"amrnb";
-}
-+ (NSString*)MPEG2
-{
-    return @"mpeg2";
-}
-+ (NSString*)AC3
-{
-    return @"ac3";
-}
-+ (NSString*)COPY
-{
-    return @"copy";
-}
 @end
 
 @implementation KalturaBaseEntryOrderBy
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
-}
-+ (NSString*)MODERATION_COUNT_ASC
-{
-    return @"+moderationCount";
-}
-+ (NSString*)MODERATION_COUNT_DESC
-{
-    return @"-moderationCount";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
 }
 + (NSString*)END_DATE_ASC
 {
     return @"+endDate";
 }
-+ (NSString*)END_DATE_DESC
++ (NSString*)MODERATION_COUNT_ASC
 {
-    return @"-endDate";
+    return @"+moderationCount";
+}
++ (NSString*)NAME_ASC
+{
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)RANK_ASC
 {
-    return @"-partnerSortValue";
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -2284,85 +2361,42 @@
 }
 @end
 
-@implementation KalturaBaseJobOrderBy
+@implementation KalturaBaseSyndicationFeedOrderBy
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)PROCESSOR_EXPIRATION_ASC
-{
-    return @"+processorExpiration";
-}
-+ (NSString*)PROCESSOR_EXPIRATION_DESC
-{
-    return @"-processorExpiration";
-}
-+ (NSString*)EXECUTION_ATTEMPTS_ASC
-{
-    return @"+executionAttempts";
-}
-+ (NSString*)EXECUTION_ATTEMPTS_DESC
-{
-    return @"-executionAttempts";
-}
-+ (NSString*)LOCK_VERSION_ASC
-{
-    return @"+lockVersion";
-}
-+ (NSString*)LOCK_VERSION_DESC
-{
-    return @"-lockVersion";
-}
-@end
-
-@implementation KalturaBaseSyndicationFeedOrderBy
-+ (NSString*)PLAYLIST_ID_ASC
-{
-    return @"+playlistId";
-}
-+ (NSString*)PLAYLIST_ID_DESC
-{
-    return @"-playlistId";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)PLAYLIST_ID_ASC
 {
-    return @"-name";
+    return @"+playlistId";
 }
 + (NSString*)TYPE_ASC
 {
     return @"+type";
 }
-+ (NSString*)TYPE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-type";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-name";
+}
++ (NSString*)PLAYLIST_ID_DESC
+{
+    return @"-playlistId";
+}
++ (NSString*)TYPE_DESC
+{
+    return @"-type";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -2371,116 +2405,152 @@
 @end
 
 @implementation KalturaBatchJobOrderBy
-+ (NSString*)STATUS_ASC
-{
-    return @"+status";
-}
-+ (NSString*)STATUS_DESC
-{
-    return @"-status";
-}
 + (NSString*)CHECK_AGAIN_TIMEOUT_ASC
 {
     return @"+checkAgainTimeout";
-}
-+ (NSString*)CHECK_AGAIN_TIMEOUT_DESC
-{
-    return @"-checkAgainTimeout";
-}
-+ (NSString*)PROGRESS_ASC
-{
-    return @"+progress";
-}
-+ (NSString*)PROGRESS_DESC
-{
-    return @"-progress";
-}
-+ (NSString*)UPDATES_COUNT_ASC
-{
-    return @"+updatesCount";
-}
-+ (NSString*)UPDATES_COUNT_DESC
-{
-    return @"-updatesCount";
-}
-+ (NSString*)PRIORITY_ASC
-{
-    return @"+priority";
-}
-+ (NSString*)PRIORITY_DESC
-{
-    return @"-priority";
-}
-+ (NSString*)QUEUE_TIME_ASC
-{
-    return @"+queueTime";
-}
-+ (NSString*)QUEUE_TIME_DESC
-{
-    return @"-queueTime";
-}
-+ (NSString*)FINISH_TIME_ASC
-{
-    return @"+finishTime";
-}
-+ (NSString*)FINISH_TIME_DESC
-{
-    return @"-finishTime";
-}
-+ (NSString*)FILE_SIZE_ASC
-{
-    return @"+fileSize";
-}
-+ (NSString*)FILE_SIZE_DESC
-{
-    return @"-fileSize";
 }
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
++ (NSString*)ESTIMATED_EFFORT_ASC
 {
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)PROCESSOR_EXPIRATION_ASC
-{
-    return @"+processorExpiration";
-}
-+ (NSString*)PROCESSOR_EXPIRATION_DESC
-{
-    return @"-processorExpiration";
+    return @"+estimatedEffort";
 }
 + (NSString*)EXECUTION_ATTEMPTS_ASC
 {
     return @"+executionAttempts";
 }
-+ (NSString*)EXECUTION_ATTEMPTS_DESC
++ (NSString*)FINISH_TIME_ASC
 {
-    return @"-executionAttempts";
+    return @"+finishTime";
+}
++ (NSString*)LOCK_EXPIRATION_ASC
+{
+    return @"+lockExpiration";
 }
 + (NSString*)LOCK_VERSION_ASC
 {
     return @"+lockVersion";
 }
++ (NSString*)PRIORITY_ASC
+{
+    return @"+priority";
+}
++ (NSString*)QUEUE_TIME_ASC
+{
+    return @"+queueTime";
+}
++ (NSString*)STATUS_ASC
+{
+    return @"+status";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CHECK_AGAIN_TIMEOUT_DESC
+{
+    return @"-checkAgainTimeout";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)ESTIMATED_EFFORT_DESC
+{
+    return @"-estimatedEffort";
+}
++ (NSString*)EXECUTION_ATTEMPTS_DESC
+{
+    return @"-executionAttempts";
+}
++ (NSString*)FINISH_TIME_DESC
+{
+    return @"-finishTime";
+}
++ (NSString*)LOCK_EXPIRATION_DESC
+{
+    return @"-lockExpiration";
+}
 + (NSString*)LOCK_VERSION_DESC
 {
     return @"-lockVersion";
 }
++ (NSString*)PRIORITY_DESC
+{
+    return @"-priority";
+}
++ (NSString*)QUEUE_TIME_DESC
+{
+    return @"-queueTime";
+}
++ (NSString*)STATUS_DESC
+{
+    return @"-status";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
 @end
 
 @implementation KalturaBatchJobType
++ (NSString*)PARSE_CAPTION_ASSET
+{
+    return @"captionSearch.parseCaptionAsset";
+}
++ (NSString*)DISTRIBUTION_DELETE
+{
+    return @"contentDistribution.DistributionDelete";
+}
++ (NSString*)DISTRIBUTION_DISABLE
+{
+    return @"contentDistribution.DistributionDisable";
+}
++ (NSString*)DISTRIBUTION_ENABLE
+{
+    return @"contentDistribution.DistributionEnable";
+}
++ (NSString*)DISTRIBUTION_FETCH_REPORT
+{
+    return @"contentDistribution.DistributionFetchReport";
+}
++ (NSString*)DISTRIBUTION_SUBMIT
+{
+    return @"contentDistribution.DistributionSubmit";
+}
++ (NSString*)DISTRIBUTION_SYNC
+{
+    return @"contentDistribution.DistributionSync";
+}
++ (NSString*)DISTRIBUTION_UPDATE
+{
+    return @"contentDistribution.DistributionUpdate";
+}
++ (NSString*)DROP_FOLDER_CONTENT_PROCESSOR
+{
+    return @"dropFolder.DropFolderContentProcessor";
+}
 + (NSString*)CONVERT
 {
     return @"0";
+}
++ (NSString*)DROP_FOLDER_WATCHER
+{
+    return @"dropFolder.DropFolderWatcher";
+}
++ (NSString*)EVENT_NOTIFICATION_HANDLER
+{
+    return @"eventNotification.EventNotificationHandler";
+}
++ (NSString*)TAG_RESOLVE
+{
+    return @"tagSearch.TagResolve";
+}
++ (NSString*)VIRUS_SCAN
+{
+    return @"virusScan.VirusScan";
 }
 + (NSString*)IMPORT
 {
@@ -2602,54 +2672,6 @@
 {
     return @"34";
 }
-+ (NSString*)VIRUS_SCAN
-{
-    return @"virusScan.VirusScan";
-}
-+ (NSString*)DISTRIBUTION_SUBMIT
-{
-    return @"contentDistribution.DistributionSubmit";
-}
-+ (NSString*)DISTRIBUTION_UPDATE
-{
-    return @"contentDistribution.DistributionUpdate";
-}
-+ (NSString*)DISTRIBUTION_DELETE
-{
-    return @"contentDistribution.DistributionDelete";
-}
-+ (NSString*)DISTRIBUTION_FETCH_REPORT
-{
-    return @"contentDistribution.DistributionFetchReport";
-}
-+ (NSString*)DISTRIBUTION_ENABLE
-{
-    return @"contentDistribution.DistributionEnable";
-}
-+ (NSString*)DISTRIBUTION_DISABLE
-{
-    return @"contentDistribution.DistributionDisable";
-}
-+ (NSString*)DISTRIBUTION_SYNC
-{
-    return @"contentDistribution.DistributionSync";
-}
-+ (NSString*)DROP_FOLDER_WATCHER
-{
-    return @"dropFolder.DropFolderWatcher";
-}
-+ (NSString*)DROP_FOLDER_HANDLER
-{
-    return @"dropFolder.DropFolderHandler";
-}
-+ (NSString*)PARSE_CAPTION_ASSET
-{
-    return @"captionSearch.parseCaptionAsset";
-}
-+ (NSString*)EVENT_NOTIFICATION_HANDLER
-{
-    return @"eventNotification.EventNotificationHandler";
-}
 @end
 
 @implementation KalturaBulkUploadAction
@@ -2761,86 +2783,101 @@
 }
 @end
 
+@implementation KalturaCategoryIdentifierField
++ (NSString*)FULL_NAME
+{
+    return @"fullName";
+}
++ (NSString*)ID
+{
+    return @"id";
+}
++ (NSString*)REFERENCE_ID
+{
+    return @"referenceId";
+}
+@end
+
 @implementation KalturaCategoryOrderBy
-+ (NSString*)DEPTH_ASC
-{
-    return @"+depth";
-}
-+ (NSString*)DEPTH_DESC
-{
-    return @"-depth";
-}
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
-}
-+ (NSString*)FULL_NAME_ASC
-{
-    return @"+fullName";
-}
-+ (NSString*)FULL_NAME_DESC
-{
-    return @"-fullName";
-}
-+ (NSString*)ENTRIES_COUNT_ASC
-{
-    return @"+entriesCount";
-}
-+ (NSString*)ENTRIES_COUNT_DESC
-{
-    return @"-entriesCount";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
++ (NSString*)DEPTH_ASC
 {
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
+    return @"+depth";
 }
 + (NSString*)DIRECT_ENTRIES_COUNT_ASC
 {
     return @"+directEntriesCount";
 }
-+ (NSString*)DIRECT_ENTRIES_COUNT_DESC
++ (NSString*)DIRECT_SUB_CATEGORIES_COUNT_ASC
 {
-    return @"-directEntriesCount";
+    return @"+directSubCategoriesCount";
+}
++ (NSString*)ENTRIES_COUNT_ASC
+{
+    return @"+entriesCount";
+}
++ (NSString*)FULL_NAME_ASC
+{
+    return @"+fullName";
 }
 + (NSString*)MEMBERS_COUNT_ASC
 {
     return @"+membersCount";
 }
-+ (NSString*)MEMBERS_COUNT_DESC
++ (NSString*)NAME_ASC
 {
-    return @"-membersCount";
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-partnerSortValue";
+    return @"+updatedAt";
 }
-+ (NSString*)DIRECT_SUB_CATEGORIES_COUNT_ASC
++ (NSString*)CREATED_AT_DESC
 {
-    return @"+directSubCategoriesCount";
+    return @"-createdAt";
+}
++ (NSString*)DEPTH_DESC
+{
+    return @"-depth";
+}
++ (NSString*)DIRECT_ENTRIES_COUNT_DESC
+{
+    return @"-directEntriesCount";
 }
 + (NSString*)DIRECT_SUB_CATEGORIES_COUNT_DESC
 {
     return @"-directSubCategoriesCount";
+}
++ (NSString*)ENTRIES_COUNT_DESC
+{
+    return @"-entriesCount";
+}
++ (NSString*)FULL_NAME_DESC
+{
+    return @"-fullName";
+}
++ (NSString*)MEMBERS_COUNT_DESC
+{
+    return @"-membersCount";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 
@@ -2849,13 +2886,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -2864,6 +2901,14 @@
 @end
 
 @implementation KalturaConditionType
++ (NSString*)METADATA_FIELD_COMPARE
+{
+    return @"metadata.FieldCompare";
+}
++ (NSString*)METADATA_FIELD_MATCH
+{
+    return @"metadata.FieldMatch";
+}
 + (NSString*)AUTHENTICATED
 {
     return @"1";
@@ -2892,28 +2937,48 @@
 {
     return @"7";
 }
-+ (NSString*)METADATA_FIELD_MATCH
++ (NSString*)ASSET_PROPERTIES_COMPARE
 {
-    return @"metadata.FieldMatch";
-}
-+ (NSString*)METADATA_FIELD_COMPARE
-{
-    return @"metadata.FieldCompare";
+    return @"8";
 }
 @end
 
 @implementation KalturaContainerFormat
-+ (NSString*)FLV
++ (NSString*)_3GP
 {
-    return @"flv";
+    return @"3gp";
 }
-+ (NSString*)MP4
++ (NSString*)APPLEHTTP
 {
-    return @"mp4";
+    return @"applehttp";
 }
 + (NSString*)AVI
 {
     return @"avi";
+}
++ (NSString*)BMP
+{
+    return @"bmp";
+}
++ (NSString*)COPY
+{
+    return @"copy";
+}
++ (NSString*)FLV
+{
+    return @"flv";
+}
++ (NSString*)ISMV
+{
+    return @"ismv";
+}
++ (NSString*)JPG
+{
+    return @"jpg";
+}
++ (NSString*)MKV
+{
+    return @"mkv";
 }
 + (NSString*)MOV
 {
@@ -2923,33 +2988,9 @@
 {
     return @"mp3";
 }
-+ (NSString*)_3GP
++ (NSString*)MP4
 {
-    return @"3gp";
-}
-+ (NSString*)OGG
-{
-    return @"ogg";
-}
-+ (NSString*)WMV
-{
-    return @"wmv";
-}
-+ (NSString*)WMA
-{
-    return @"wma";
-}
-+ (NSString*)ISMV
-{
-    return @"ismv";
-}
-+ (NSString*)MKV
-{
-    return @"mkv";
-}
-+ (NSString*)WEBM
-{
-    return @"webm";
+    return @"mp4";
 }
 + (NSString*)MPEG
 {
@@ -2959,29 +3000,45 @@
 {
     return @"mpegts";
 }
-+ (NSString*)APPLEHTTP
++ (NSString*)OGG
 {
-    return @"applehttp";
+    return @"ogg";
 }
-+ (NSString*)SWF
++ (NSString*)OGV
 {
-    return @"swf";
+    return @"ogv";
 }
 + (NSString*)PDF
 {
     return @"pdf";
 }
-+ (NSString*)BMP
-{
-    return @"bmp";
-}
 + (NSString*)PNG
 {
     return @"png";
 }
-+ (NSString*)JPG
++ (NSString*)SWF
 {
-    return @"jpg";
+    return @"swf";
+}
++ (NSString*)WAV
+{
+    return @"wav";
+}
++ (NSString*)WEBM
+{
+    return @"webm";
+}
++ (NSString*)WMA
+{
+    return @"wma";
+}
++ (NSString*)WMV
+{
+    return @"wmv";
+}
++ (NSString*)WVM
+{
+    return @"wvm";
 }
 @end
 
@@ -2990,13 +3047,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -3034,89 +3091,89 @@
 @end
 
 @implementation KalturaDataEntryOrderBy
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
-}
-+ (NSString*)MODERATION_COUNT_ASC
-{
-    return @"+moderationCount";
-}
-+ (NSString*)MODERATION_COUNT_DESC
-{
-    return @"-moderationCount";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
 }
 + (NSString*)END_DATE_ASC
 {
     return @"+endDate";
 }
-+ (NSString*)END_DATE_DESC
++ (NSString*)MODERATION_COUNT_ASC
 {
-    return @"-endDate";
+    return @"+moderationCount";
+}
++ (NSString*)NAME_ASC
+{
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)RANK_ASC
 {
-    return @"-partnerSortValue";
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -3125,6 +3182,14 @@
 @end
 
 @implementation KalturaDurationType
++ (NSString*)LONG
+{
+    return @"long";
+}
++ (NSString*)MEDIUM
+{
+    return @"medium";
+}
 + (NSString*)NOT_AVAILABLE
 {
     return @"notavailable";
@@ -3133,17 +3198,20 @@
 {
     return @"short";
 }
-+ (NSString*)MEDIUM
-{
-    return @"medium";
-}
-+ (NSString*)LONG
-{
-    return @"long";
-}
 @end
 
 @implementation KalturaDynamicEnum
+@end
+
+@implementation KalturaEntryIdentifierField
++ (NSString*)ID
+{
+    return @"id";
+}
++ (NSString*)REFERENCE_ID
+{
+    return @"referenceId";
+}
 @end
 
 @implementation KalturaEntryReplacementStatus
@@ -3174,9 +3242,17 @@
 {
     return @"-1";
 }
++ (NSString*)SCAN_FAILURE
+{
+    return @"virusScan.ScanFailure";
+}
 + (NSString*)IMPORT
 {
     return @"0";
+}
++ (NSString*)INFECTED
+{
+    return @"virusScan.Infected";
 }
 + (NSString*)PRECONVERT
 {
@@ -3206,20 +3282,16 @@
 {
     return @"7";
 }
-+ (NSString*)INFECTED
-{
-    return @"virusScan.Infected";
-}
-+ (NSString*)SCAN_FAILURE
-{
-    return @"virusScan.ScanFailure";
-}
 @end
 
 @implementation KalturaEntryType
 + (NSString*)AUTOMATIC
 {
     return @"-1";
+}
++ (NSString*)EXTERNAL_MEDIA
+{
+    return @"externalMedia.externalMedia";
 }
 + (NSString*)MEDIA_CLIP
 {
@@ -3248,6 +3320,22 @@
 @end
 
 @implementation KalturaFileSyncObjectType
++ (NSString*)DISTRIBUTION_PROFILE
+{
+    return @"contentDistribution.DistributionProfile";
+}
++ (NSString*)ENTRY_DISTRIBUTION
+{
+    return @"contentDistribution.EntryDistribution";
+}
++ (NSString*)GENERIC_DISTRIBUTION_ACTION
+{
+    return @"contentDistribution.GenericDistributionAction";
+}
++ (NSString*)EMAIL_NOTIFICATION_TEMPLATE
+{
+    return @"emailNotification.EmailNotificationTemplate";
+}
 + (NSString*)ENTRY
 {
     return @"1";
@@ -3259,6 +3347,10 @@
 + (NSString*)BATCHJOB
 {
     return @"3";
+}
++ (NSString*)FLAVOR_ASSET
+{
+    return @"4";
 }
 + (NSString*)ASSET
 {
@@ -3280,60 +3372,40 @@
 {
     return @"8";
 }
-+ (NSString*)FLAVOR_ASSET
-{
-    return @"4";
-}
-+ (NSString*)GENERIC_DISTRIBUTION_ACTION
-{
-    return @"contentDistribution.GenericDistributionAction";
-}
-+ (NSString*)ENTRY_DISTRIBUTION
-{
-    return @"contentDistribution.EntryDistribution";
-}
-+ (NSString*)DISTRIBUTION_PROFILE
-{
-    return @"contentDistribution.DistributionProfile";
-}
-+ (NSString*)EMAIL_NOTIFICATION_TEMPLATE
-{
-    return @"emailNotification.EmailNotificationTemplate";
-}
 @end
 
 @implementation KalturaFlavorAssetOrderBy
-+ (NSString*)SIZE_ASC
-{
-    return @"+size";
-}
-+ (NSString*)SIZE_DESC
-{
-    return @"-size";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
 }
 + (NSString*)DELETED_AT_ASC
 {
     return @"+deletedAt";
 }
++ (NSString*)SIZE_ASC
+{
+    return @"+size";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
 + (NSString*)DELETED_AT_DESC
 {
     return @"-deletedAt";
+}
++ (NSString*)SIZE_DESC
+{
+    return @"-size";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 
@@ -3344,41 +3416,41 @@
 @end
 
 @implementation KalturaGenericSyndicationFeedOrderBy
-+ (NSString*)PLAYLIST_ID_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+playlistId";
-}
-+ (NSString*)PLAYLIST_ID_DESC
-{
-    return @"-playlistId";
+    return @"+createdAt";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)PLAYLIST_ID_ASC
 {
-    return @"-name";
+    return @"+playlistId";
 }
 + (NSString*)TYPE_ASC
 {
     return @"+type";
 }
-+ (NSString*)TYPE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-type";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-name";
+}
++ (NSString*)PLAYLIST_ID_DESC
+{
+    return @"-playlistId";
+}
++ (NSString*)TYPE_DESC
+{
+    return @"-type";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -3387,41 +3459,41 @@
 @end
 
 @implementation KalturaGenericXsltSyndicationFeedOrderBy
-+ (NSString*)PLAYLIST_ID_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+playlistId";
-}
-+ (NSString*)PLAYLIST_ID_DESC
-{
-    return @"-playlistId";
+    return @"+createdAt";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)PLAYLIST_ID_ASC
 {
-    return @"-name";
+    return @"+playlistId";
 }
 + (NSString*)TYPE_ASC
 {
     return @"+type";
 }
-+ (NSString*)TYPE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-type";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-name";
+}
++ (NSString*)PLAYLIST_ID_DESC
+{
+    return @"-playlistId";
+}
++ (NSString*)TYPE_DESC
+{
+    return @"-type";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -3437,52 +3509,52 @@
 @end
 
 @implementation KalturaGoogleSyndicationFeedAdultValues
-+ (NSString*)YES_
-{
-    return @"Yes";
-}
 + (NSString*)NO_
 {
     return @"No";
 }
++ (NSString*)YES_
+{
+    return @"Yes";
+}
 @end
 
 @implementation KalturaGoogleVideoSyndicationFeedOrderBy
-+ (NSString*)PLAYLIST_ID_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+playlistId";
-}
-+ (NSString*)PLAYLIST_ID_DESC
-{
-    return @"-playlistId";
+    return @"+createdAt";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)PLAYLIST_ID_ASC
 {
-    return @"-name";
+    return @"+playlistId";
 }
 + (NSString*)TYPE_ASC
 {
     return @"+type";
 }
-+ (NSString*)TYPE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-type";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-name";
+}
++ (NSString*)PLAYLIST_ID_DESC
+{
+    return @"-playlistId";
+}
++ (NSString*)TYPE_DESC
+{
+    return @"-type";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -3491,17 +3563,17 @@
 @end
 
 @implementation KalturaITunesSyndicationFeedAdultValues
-+ (NSString*)YES_
++ (NSString*)CLEAN
 {
-    return @"yes";
+    return @"clean";
 }
 + (NSString*)NO_
 {
     return @"no";
 }
-+ (NSString*)CLEAN
++ (NSString*)YES_
 {
-    return @"clean";
+    return @"yes";
 }
 @end
 
@@ -3750,6 +3822,10 @@
 {
     return @"Sports &amp; Recreation/Professional";
 }
++ (NSString*)TV_FILM
+{
+    return @"TV &amp; Film";
+}
 + (NSString*)TECHNOLOGY
 {
     return @"Technology";
@@ -3757,10 +3833,6 @@
 + (NSString*)TECHNOLOGY_GADGETS
 {
     return @"Technology/Gadgets";
-}
-+ (NSString*)TECHNOLOGY_TECH_NEWS
-{
-    return @"Technology/Tech News";
 }
 + (NSString*)TECHNOLOGY_PODCASTING
 {
@@ -3770,48 +3842,48 @@
 {
     return @"Technology/Software How-To";
 }
-+ (NSString*)TV_FILM
++ (NSString*)TECHNOLOGY_TECH_NEWS
 {
-    return @"TV &amp; Film";
+    return @"Technology/Tech News";
 }
 @end
 
 @implementation KalturaITunesSyndicationFeedOrderBy
-+ (NSString*)PLAYLIST_ID_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+playlistId";
-}
-+ (NSString*)PLAYLIST_ID_DESC
-{
-    return @"-playlistId";
+    return @"+createdAt";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)PLAYLIST_ID_ASC
 {
-    return @"-name";
+    return @"+playlistId";
 }
 + (NSString*)TYPE_ASC
 {
     return @"+type";
 }
-+ (NSString*)TYPE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-type";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-name";
+}
++ (NSString*)PLAYLIST_ID_DESC
+{
+    return @"-playlistId";
+}
++ (NSString*)TYPE_DESC
+{
+    return @"-type";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -3968,17 +4040,17 @@
 {
     return @"Frisian";
 }
-+ (NSString*)GL
++ (NSString*)GV
 {
-    return @"Galician";
+    return @"Gaelic (Manx)";
 }
 + (NSString*)GD
 {
     return @"Gaelic (Scottish)";
 }
-+ (NSString*)GV
++ (NSString*)GL
 {
-    return @"Gaelic (Manx)";
+    return @"Galician";
 }
 + (NSString*)KA
 {
@@ -4008,11 +4080,11 @@
 {
     return @"Hausa";
 }
-+ (NSString*)HE
++ (NSString*)IW
 {
     return @"Hebrew";
 }
-+ (NSString*)IW
++ (NSString*)HE
 {
     return @"Hebrew";
 }
@@ -4028,11 +4100,11 @@
 {
     return @"Icelandic";
 }
-+ (NSString*)ID
++ (NSString*)IN
 {
     return @"Indonesian";
 }
-+ (NSString*)IN
++ (NSString*)ID
 {
     return @"Indonesian";
 }
@@ -4395,21 +4467,17 @@
 @end
 
 @implementation KalturaLanguageCode
-+ (NSString*)AB
-{
-    return @"ab";
-}
 + (NSString*)AA
 {
     return @"aa";
 }
++ (NSString*)AB
+{
+    return @"ab";
+}
 + (NSString*)AF
 {
     return @"af";
-}
-+ (NSString*)SQ
-{
-    return @"sq";
 }
 + (NSString*)AM
 {
@@ -4418,10 +4486,6 @@
 + (NSString*)AR
 {
     return @"ar";
-}
-+ (NSString*)HY
-{
-    return @"hy";
 }
 + (NSString*)AS_
 {
@@ -4439,17 +4503,13 @@
 {
     return @"ba";
 }
-+ (NSString*)EU
++ (NSString*)BE
 {
-    return @"eu";
+    return @"be";
 }
-+ (NSString*)BN
++ (NSString*)BG
 {
-    return @"bn";
-}
-+ (NSString*)DZ
-{
-    return @"dz";
+    return @"bg";
 }
 + (NSString*)BH
 {
@@ -4459,53 +4519,49 @@
 {
     return @"bi";
 }
++ (NSString*)BN
+{
+    return @"bn";
+}
++ (NSString*)BO
+{
+    return @"bo";
+}
 + (NSString*)BR
 {
     return @"br";
-}
-+ (NSString*)BG
-{
-    return @"bg";
-}
-+ (NSString*)MY
-{
-    return @"my";
-}
-+ (NSString*)BE
-{
-    return @"be";
-}
-+ (NSString*)KM
-{
-    return @"km";
 }
 + (NSString*)CA
 {
     return @"ca";
 }
-+ (NSString*)ZH
-{
-    return @"zh";
-}
 + (NSString*)CO
 {
     return @"co";
-}
-+ (NSString*)HR
-{
-    return @"hr";
 }
 + (NSString*)CS
 {
     return @"cs";
 }
++ (NSString*)CY
+{
+    return @"cy";
+}
 + (NSString*)DA
 {
     return @"da";
 }
-+ (NSString*)NL
++ (NSString*)DE
 {
-    return @"nl";
+    return @"de";
+}
++ (NSString*)DZ
+{
+    return @"dz";
+}
++ (NSString*)EL
+{
+    return @"el";
 }
 + (NSString*)EN
 {
@@ -4515,25 +4571,33 @@
 {
     return @"eo";
 }
++ (NSString*)ES
+{
+    return @"es";
+}
 + (NSString*)ET
 {
     return @"et";
 }
-+ (NSString*)FO
++ (NSString*)EU
 {
-    return @"fo";
+    return @"eu";
 }
 + (NSString*)FA
 {
     return @"fa";
 }
++ (NSString*)FI
+{
+    return @"fi";
+}
 + (NSString*)FJ
 {
     return @"fj";
 }
-+ (NSString*)FI
++ (NSString*)FO
 {
-    return @"fi";
+    return @"fo";
 }
 + (NSString*)FR
 {
@@ -4543,33 +4607,17 @@
 {
     return @"fy";
 }
-+ (NSString*)GL
++ (NSString*)GA
 {
-    return @"gl";
+    return @"ga";
 }
 + (NSString*)GD
 {
     return @"gd";
 }
-+ (NSString*)GV
++ (NSString*)GL
 {
-    return @"gv";
-}
-+ (NSString*)KA
-{
-    return @"ka";
-}
-+ (NSString*)DE
-{
-    return @"de";
-}
-+ (NSString*)EL
-{
-    return @"el";
-}
-+ (NSString*)KL
-{
-    return @"kl";
+    return @"gl";
 }
 + (NSString*)GN
 {
@@ -4579,6 +4627,10 @@
 {
     return @"gu";
 }
++ (NSString*)GV
+{
+    return @"gv";
+}
 + (NSString*)HA
 {
     return @"ha";
@@ -4587,105 +4639,109 @@
 {
     return @"he";
 }
-+ (NSString*)IW
-{
-    return @"iw";
-}
 + (NSString*)HI
 {
     return @"hi";
+}
++ (NSString*)HR
+{
+    return @"hr";
 }
 + (NSString*)HU
 {
     return @"hu";
 }
-+ (NSString*)IS
++ (NSString*)HY
 {
-    return @"is";
-}
-+ (NSString*)ID
-{
-    return @"id";
-}
-+ (NSString*)IN
-{
-    return @"in";
+    return @"hy";
 }
 + (NSString*)IA
 {
     return @"ia";
 }
++ (NSString*)ID
+{
+    return @"id";
+}
 + (NSString*)IE
 {
     return @"ie";
-}
-+ (NSString*)IU
-{
-    return @"iu";
 }
 + (NSString*)IK
 {
     return @"ik";
 }
-+ (NSString*)GA
++ (NSString*)IN
 {
-    return @"ga";
+    return @"in";
+}
++ (NSString*)IS
+{
+    return @"is";
 }
 + (NSString*)IT
 {
     return @"it";
 }
++ (NSString*)IU
+{
+    return @"iu";
+}
++ (NSString*)IW
+{
+    return @"iw";
+}
 + (NSString*)JA
 {
     return @"ja";
+}
++ (NSString*)JI
+{
+    return @"ji";
 }
 + (NSString*)JV
 {
     return @"jv";
 }
-+ (NSString*)KN
++ (NSString*)KA
 {
-    return @"kn";
-}
-+ (NSString*)KS
-{
-    return @"ks";
+    return @"ka";
 }
 + (NSString*)KK
 {
     return @"kk";
 }
-+ (NSString*)RW
++ (NSString*)KL
 {
-    return @"rw";
+    return @"kl";
 }
-+ (NSString*)KY
++ (NSString*)KM
 {
-    return @"ky";
+    return @"km";
 }
-+ (NSString*)RN
++ (NSString*)KN
 {
-    return @"rn";
+    return @"kn";
 }
 + (NSString*)KO
 {
     return @"ko";
 }
++ (NSString*)KS
+{
+    return @"ks";
+}
 + (NSString*)KU
 {
     return @"ku";
 }
-+ (NSString*)LO
++ (NSString*)KY
 {
-    return @"lo";
+    return @"ky";
 }
 + (NSString*)LA
 {
     return @"la";
-}
-+ (NSString*)LV
-{
-    return @"lv";
 }
 + (NSString*)LI
 {
@@ -4695,45 +4751,57 @@
 {
     return @"ln";
 }
++ (NSString*)LO
+{
+    return @"lo";
+}
 + (NSString*)LT
 {
     return @"lt";
 }
-+ (NSString*)MK
++ (NSString*)LV
 {
-    return @"mk";
+    return @"lv";
 }
 + (NSString*)MG
 {
     return @"mg";
 }
-+ (NSString*)MS
++ (NSString*)MI
 {
-    return @"ms";
+    return @"mi";
+}
++ (NSString*)MK
+{
+    return @"mk";
 }
 + (NSString*)ML
 {
     return @"ml";
 }
-+ (NSString*)MT
++ (NSString*)MN
 {
-    return @"mt";
-}
-+ (NSString*)MI
-{
-    return @"mi";
-}
-+ (NSString*)MR
-{
-    return @"mr";
+    return @"mn";
 }
 + (NSString*)MO
 {
     return @"mo";
 }
-+ (NSString*)MN
++ (NSString*)MR
 {
-    return @"mn";
+    return @"mr";
+}
++ (NSString*)MS
+{
+    return @"ms";
+}
++ (NSString*)MT
+{
+    return @"mt";
+}
++ (NSString*)MY
+{
+    return @"my";
 }
 + (NSString*)NA
 {
@@ -4743,6 +4811,10 @@
 {
     return @"ne";
 }
++ (NSString*)NL
+{
+    return @"nl";
+}
 + (NSString*)NO_
 {
     return @"no";
@@ -4751,29 +4823,29 @@
 {
     return @"oc";
 }
-+ (NSString*)OR_
-{
-    return @"or";
-}
 + (NSString*)OM
 {
     return @"om";
 }
-+ (NSString*)PS
++ (NSString*)OR_
 {
-    return @"ps";
+    return @"or";
+}
++ (NSString*)PA
+{
+    return @"pa";
 }
 + (NSString*)PL
 {
     return @"pl";
 }
++ (NSString*)PS
+{
+    return @"ps";
+}
 + (NSString*)PT
 {
     return @"pt";
-}
-+ (NSString*)PA
-{
-    return @"pa";
 }
 + (NSString*)QU
 {
@@ -4783,6 +4855,10 @@
 {
     return @"rm";
 }
++ (NSString*)RN
+{
+    return @"rn";
+}
 + (NSString*)RO
 {
     return @"ro";
@@ -4791,49 +4867,29 @@
 {
     return @"ru";
 }
-+ (NSString*)SM
++ (NSString*)RW
 {
-    return @"sm";
-}
-+ (NSString*)SG
-{
-    return @"sg";
+    return @"rw";
 }
 + (NSString*)SA
 {
     return @"sa";
 }
-+ (NSString*)SR
++ (NSString*)SD
 {
-    return @"sr";
+    return @"sd";
+}
++ (NSString*)SG
+{
+    return @"sg";
 }
 + (NSString*)SH
 {
     return @"sh";
 }
-+ (NSString*)ST
-{
-    return @"st";
-}
-+ (NSString*)TN
-{
-    return @"tn";
-}
-+ (NSString*)SN
-{
-    return @"sn";
-}
-+ (NSString*)SD
-{
-    return @"sd";
-}
 + (NSString*)SI
 {
     return @"si";
-}
-+ (NSString*)SS
-{
-    return @"ss";
 }
 + (NSString*)SK
 {
@@ -4843,73 +4899,93 @@
 {
     return @"sl";
 }
++ (NSString*)SM
+{
+    return @"sm";
+}
++ (NSString*)SN
+{
+    return @"sn";
+}
 + (NSString*)SO
 {
     return @"so";
 }
-+ (NSString*)ES
++ (NSString*)SQ
 {
-    return @"es";
+    return @"sq";
+}
++ (NSString*)SR
+{
+    return @"sr";
+}
++ (NSString*)SS
+{
+    return @"ss";
+}
++ (NSString*)ST
+{
+    return @"st";
 }
 + (NSString*)SU
 {
     return @"su";
 }
-+ (NSString*)SW
-{
-    return @"sw";
-}
 + (NSString*)SV
 {
     return @"sv";
 }
-+ (NSString*)TL
++ (NSString*)SW
 {
-    return @"tl";
-}
-+ (NSString*)TG
-{
-    return @"tg";
+    return @"sw";
 }
 + (NSString*)TA
 {
     return @"ta";
 }
-+ (NSString*)TT
-{
-    return @"tt";
-}
 + (NSString*)TE
 {
     return @"te";
+}
++ (NSString*)TG
+{
+    return @"tg";
 }
 + (NSString*)TH
 {
     return @"th";
 }
-+ (NSString*)BO
-{
-    return @"bo";
-}
 + (NSString*)TI
 {
     return @"ti";
+}
++ (NSString*)TK
+{
+    return @"tk";
+}
++ (NSString*)TL
+{
+    return @"tl";
+}
++ (NSString*)TN
+{
+    return @"tn";
 }
 + (NSString*)TO
 {
     return @"to";
 }
-+ (NSString*)TS
-{
-    return @"ts";
-}
 + (NSString*)TR
 {
     return @"tr";
 }
-+ (NSString*)TK
++ (NSString*)TS
 {
-    return @"tk";
+    return @"ts";
+}
++ (NSString*)TT
+{
+    return @"tt";
 }
 + (NSString*)TW
 {
@@ -4939,10 +5015,6 @@
 {
     return @"vo";
 }
-+ (NSString*)CY
-{
-    return @"cy";
-}
 + (NSString*)WO
 {
     return @"wo";
@@ -4955,13 +5027,13 @@
 {
     return @"yi";
 }
-+ (NSString*)JI
-{
-    return @"ji";
-}
 + (NSString*)YO
 {
     return @"yo";
+}
++ (NSString*)ZH
+{
+    return @"zh";
 }
 + (NSString*)ZU
 {
@@ -4970,129 +5042,129 @@
 @end
 
 @implementation KalturaLiveStreamAdminEntryOrderBy
-+ (NSString*)MEDIA_TYPE_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+mediaType";
-}
-+ (NSString*)MEDIA_TYPE_DESC
-{
-    return @"-mediaType";
-}
-+ (NSString*)PLAYS_ASC
-{
-    return @"+plays";
-}
-+ (NSString*)PLAYS_DESC
-{
-    return @"-plays";
-}
-+ (NSString*)VIEWS_ASC
-{
-    return @"+views";
-}
-+ (NSString*)VIEWS_DESC
-{
-    return @"-views";
+    return @"+createdAt";
 }
 + (NSString*)DURATION_ASC
 {
     return @"+duration";
 }
-+ (NSString*)DURATION_DESC
++ (NSString*)END_DATE_ASC
 {
-    return @"-duration";
+    return @"+endDate";
 }
-+ (NSString*)MS_DURATION_ASC
++ (NSString*)MEDIA_TYPE_ASC
 {
-    return @"+msDuration";
-}
-+ (NSString*)MS_DURATION_DESC
-{
-    return @"-msDuration";
-}
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
+    return @"+mediaType";
 }
 + (NSString*)MODERATION_COUNT_ASC
 {
     return @"+moderationCount";
 }
-+ (NSString*)MODERATION_COUNT_DESC
++ (NSString*)MS_DURATION_ASC
 {
-    return @"-moderationCount";
+    return @"+msDuration";
 }
-+ (NSString*)CREATED_AT_ASC
++ (NSString*)NAME_ASC
 {
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
-}
-+ (NSString*)END_DATE_ASC
-{
-    return @"+endDate";
-}
-+ (NSString*)END_DATE_DESC
-{
-    return @"-endDate";
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)PLAYS_ASC
 {
-    return @"-partnerSortValue";
+    return @"+plays";
+}
++ (NSString*)RANK_ASC
+{
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)VIEWS_ASC
+{
+    return @"+views";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DURATION_DESC
+{
+    return @"-duration";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MEDIA_TYPE_DESC
+{
+    return @"-mediaType";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)MS_DURATION_DESC
+{
+    return @"-msDuration";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)PLAYS_DESC
+{
+    return @"-plays";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
++ (NSString*)VIEWS_DESC
+{
+    return @"-views";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -5101,176 +5173,133 @@
 @end
 
 @implementation KalturaLiveStreamEntryOrderBy
-+ (NSString*)MEDIA_TYPE_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+mediaType";
-}
-+ (NSString*)MEDIA_TYPE_DESC
-{
-    return @"-mediaType";
-}
-+ (NSString*)PLAYS_ASC
-{
-    return @"+plays";
-}
-+ (NSString*)PLAYS_DESC
-{
-    return @"-plays";
-}
-+ (NSString*)VIEWS_ASC
-{
-    return @"+views";
-}
-+ (NSString*)VIEWS_DESC
-{
-    return @"-views";
+    return @"+createdAt";
 }
 + (NSString*)DURATION_ASC
 {
     return @"+duration";
 }
-+ (NSString*)DURATION_DESC
++ (NSString*)END_DATE_ASC
 {
-    return @"-duration";
+    return @"+endDate";
 }
-+ (NSString*)MS_DURATION_ASC
++ (NSString*)MEDIA_TYPE_ASC
 {
-    return @"+msDuration";
-}
-+ (NSString*)MS_DURATION_DESC
-{
-    return @"-msDuration";
-}
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
+    return @"+mediaType";
 }
 + (NSString*)MODERATION_COUNT_ASC
 {
     return @"+moderationCount";
 }
-+ (NSString*)MODERATION_COUNT_DESC
++ (NSString*)MS_DURATION_ASC
 {
-    return @"-moderationCount";
+    return @"+msDuration";
 }
-+ (NSString*)CREATED_AT_ASC
++ (NSString*)NAME_ASC
 {
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
-}
-+ (NSString*)END_DATE_ASC
-{
-    return @"+endDate";
-}
-+ (NSString*)END_DATE_DESC
-{
-    return @"-endDate";
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)PLAYS_ASC
 {
-    return @"-partnerSortValue";
+    return @"+plays";
+}
++ (NSString*)RANK_ASC
+{
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
 }
-+ (NSString*)WEIGHT_ASC
++ (NSString*)TOTAL_RANK_ASC
 {
-    return @"+weight";
-}
-+ (NSString*)WEIGHT_DESC
-{
-    return @"-weight";
-}
-@end
-
-@implementation KalturaMailJobOrderBy
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
+    return @"+totalRank";
 }
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
 }
++ (NSString*)VIEWS_ASC
+{
+    return @"+views";
+}
++ (NSString*)WEIGHT_ASC
+{
+    return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DURATION_DESC
+{
+    return @"-duration";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MEDIA_TYPE_DESC
+{
+    return @"-mediaType";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)MS_DURATION_DESC
+{
+    return @"-msDuration";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)PLAYS_DESC
+{
+    return @"-plays";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
 + (NSString*)UPDATED_AT_DESC
 {
     return @"-updatedAt";
 }
-+ (NSString*)PROCESSOR_EXPIRATION_ASC
++ (NSString*)VIEWS_DESC
 {
-    return @"+processorExpiration";
+    return @"-views";
 }
-+ (NSString*)PROCESSOR_EXPIRATION_DESC
++ (NSString*)WEIGHT_DESC
 {
-    return @"-processorExpiration";
-}
-+ (NSString*)EXECUTION_ATTEMPTS_ASC
-{
-    return @"+executionAttempts";
-}
-+ (NSString*)EXECUTION_ATTEMPTS_DESC
-{
-    return @"-executionAttempts";
-}
-+ (NSString*)LOCK_VERSION_ASC
-{
-    return @"+lockVersion";
-}
-+ (NSString*)LOCK_VERSION_DESC
-{
-    return @"-lockVersion";
+    return @"-weight";
 }
 @end
 
@@ -5434,129 +5463,129 @@
 @end
 
 @implementation KalturaMediaEntryOrderBy
-+ (NSString*)MEDIA_TYPE_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+mediaType";
-}
-+ (NSString*)MEDIA_TYPE_DESC
-{
-    return @"-mediaType";
-}
-+ (NSString*)PLAYS_ASC
-{
-    return @"+plays";
-}
-+ (NSString*)PLAYS_DESC
-{
-    return @"-plays";
-}
-+ (NSString*)VIEWS_ASC
-{
-    return @"+views";
-}
-+ (NSString*)VIEWS_DESC
-{
-    return @"-views";
+    return @"+createdAt";
 }
 + (NSString*)DURATION_ASC
 {
     return @"+duration";
 }
-+ (NSString*)DURATION_DESC
++ (NSString*)END_DATE_ASC
 {
-    return @"-duration";
+    return @"+endDate";
 }
-+ (NSString*)MS_DURATION_ASC
++ (NSString*)MEDIA_TYPE_ASC
 {
-    return @"+msDuration";
-}
-+ (NSString*)MS_DURATION_DESC
-{
-    return @"-msDuration";
-}
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
+    return @"+mediaType";
 }
 + (NSString*)MODERATION_COUNT_ASC
 {
     return @"+moderationCount";
 }
-+ (NSString*)MODERATION_COUNT_DESC
++ (NSString*)MS_DURATION_ASC
 {
-    return @"-moderationCount";
+    return @"+msDuration";
 }
-+ (NSString*)CREATED_AT_ASC
++ (NSString*)NAME_ASC
 {
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
-}
-+ (NSString*)END_DATE_ASC
-{
-    return @"+endDate";
-}
-+ (NSString*)END_DATE_DESC
-{
-    return @"-endDate";
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)PLAYS_ASC
 {
-    return @"-partnerSortValue";
+    return @"+plays";
+}
++ (NSString*)RANK_ASC
+{
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)VIEWS_ASC
+{
+    return @"+views";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DURATION_DESC
+{
+    return @"-duration";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MEDIA_TYPE_DESC
+{
+    return @"-mediaType";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)MS_DURATION_DESC
+{
+    return @"-msDuration";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)PLAYS_DESC
+{
+    return @"-plays";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
++ (NSString*)VIEWS_DESC
+{
+    return @"-views";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -5582,128 +5611,124 @@
 {
     return @"1";
 }
-+ (NSString*)REMOTE_MEDIAINFO
-{
-    return @"remoteMediaInfo.RemoteMediaInfo";
-}
 @end
 
 @implementation KalturaMixEntryOrderBy
-+ (NSString*)PLAYS_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+plays";
-}
-+ (NSString*)PLAYS_DESC
-{
-    return @"-plays";
-}
-+ (NSString*)VIEWS_ASC
-{
-    return @"+views";
-}
-+ (NSString*)VIEWS_DESC
-{
-    return @"-views";
+    return @"+createdAt";
 }
 + (NSString*)DURATION_ASC
 {
     return @"+duration";
 }
-+ (NSString*)DURATION_DESC
++ (NSString*)END_DATE_ASC
 {
-    return @"-duration";
-}
-+ (NSString*)MS_DURATION_ASC
-{
-    return @"+msDuration";
-}
-+ (NSString*)MS_DURATION_DESC
-{
-    return @"-msDuration";
-}
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
+    return @"+endDate";
 }
 + (NSString*)MODERATION_COUNT_ASC
 {
     return @"+moderationCount";
 }
-+ (NSString*)MODERATION_COUNT_DESC
++ (NSString*)MS_DURATION_ASC
 {
-    return @"-moderationCount";
+    return @"+msDuration";
 }
-+ (NSString*)CREATED_AT_ASC
++ (NSString*)NAME_ASC
 {
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
-}
-+ (NSString*)END_DATE_ASC
-{
-    return @"+endDate";
-}
-+ (NSString*)END_DATE_DESC
-{
-    return @"-endDate";
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)PLAYS_ASC
 {
-    return @"-partnerSortValue";
+    return @"+plays";
+}
++ (NSString*)RANK_ASC
+{
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)VIEWS_ASC
+{
+    return @"+views";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DURATION_DESC
+{
+    return @"-duration";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)MS_DURATION_DESC
+{
+    return @"-msDuration";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)PLAYS_DESC
+{
+    return @"-plays";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
++ (NSString*)VIEWS_DESC
+{
+    return @"-views";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -5711,128 +5736,107 @@
 }
 @end
 
-@implementation KalturaNotificationOrderBy
-+ (NSString*)CREATED_AT_ASC
+@implementation KalturaModerationFlagStatus
++ (NSString*)PENDING
 {
-    return @"+createdAt";
+    return @"1";
 }
-+ (NSString*)CREATED_AT_DESC
++ (NSString*)MODERATED
 {
-    return @"-createdAt";
+    return @"2";
 }
-+ (NSString*)UPDATED_AT_ASC
+@end
+
+@implementation KalturaModerationObjectType
++ (NSString*)ENTRY
 {
-    return @"+updatedAt";
+    return @"2";
 }
-+ (NSString*)UPDATED_AT_DESC
++ (NSString*)USER
 {
-    return @"-updatedAt";
-}
-+ (NSString*)PROCESSOR_EXPIRATION_ASC
-{
-    return @"+processorExpiration";
-}
-+ (NSString*)PROCESSOR_EXPIRATION_DESC
-{
-    return @"-processorExpiration";
-}
-+ (NSString*)EXECUTION_ATTEMPTS_ASC
-{
-    return @"+executionAttempts";
-}
-+ (NSString*)EXECUTION_ATTEMPTS_DESC
-{
-    return @"-executionAttempts";
-}
-+ (NSString*)LOCK_VERSION_ASC
-{
-    return @"+lockVersion";
-}
-+ (NSString*)LOCK_VERSION_DESC
-{
-    return @"-lockVersion";
+    return @"3";
 }
 @end
 
 @implementation KalturaPartnerOrderBy
-+ (NSString*)ID_ASC
++ (NSString*)ADMIN_EMAIL_ASC
 {
-    return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
-}
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
-}
-+ (NSString*)WEBSITE_ASC
-{
-    return @"+website";
-}
-+ (NSString*)WEBSITE_DESC
-{
-    return @"-website";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
+    return @"+adminEmail";
 }
 + (NSString*)ADMIN_NAME_ASC
 {
     return @"+adminName";
 }
-+ (NSString*)ADMIN_NAME_DESC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"-adminName";
+    return @"+createdAt";
 }
-+ (NSString*)ADMIN_EMAIL_ASC
++ (NSString*)ID_ASC
 {
-    return @"+adminEmail";
+    return @"+id";
 }
-+ (NSString*)ADMIN_EMAIL_DESC
++ (NSString*)NAME_ASC
 {
-    return @"-adminEmail";
+    return @"+name";
 }
 + (NSString*)STATUS_ASC
 {
     return @"+status";
 }
-+ (NSString*)STATUS_DESC
++ (NSString*)WEBSITE_ASC
 {
-    return @"-status";
+    return @"+website";
 }
-@end
-
-@implementation KalturaPermissionItemOrderBy
-+ (NSString*)ID_ASC
++ (NSString*)ADMIN_EMAIL_DESC
 {
-    return @"+id";
+    return @"-adminEmail";
 }
-+ (NSString*)ID_DESC
++ (NSString*)ADMIN_NAME_DESC
 {
-    return @"-id";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"-adminName";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
++ (NSString*)ID_DESC
+{
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)STATUS_DESC
+{
+    return @"-status";
+}
++ (NSString*)WEBSITE_DESC
+{
+    return @"-website";
+}
+@end
+
+@implementation KalturaPermissionItemOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
++ (NSString*)ID_ASC
+{
+    return @"+id";
+}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)ID_DESC
+{
+    return @"-id";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -5852,33 +5856,33 @@
 @end
 
 @implementation KalturaPermissionOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -5887,121 +5891,121 @@
 @end
 
 @implementation KalturaPlayableEntryOrderBy
-+ (NSString*)PLAYS_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+plays";
-}
-+ (NSString*)PLAYS_DESC
-{
-    return @"-plays";
-}
-+ (NSString*)VIEWS_ASC
-{
-    return @"+views";
-}
-+ (NSString*)VIEWS_DESC
-{
-    return @"-views";
+    return @"+createdAt";
 }
 + (NSString*)DURATION_ASC
 {
     return @"+duration";
 }
-+ (NSString*)DURATION_DESC
++ (NSString*)END_DATE_ASC
 {
-    return @"-duration";
-}
-+ (NSString*)MS_DURATION_ASC
-{
-    return @"+msDuration";
-}
-+ (NSString*)MS_DURATION_DESC
-{
-    return @"-msDuration";
-}
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
+    return @"+endDate";
 }
 + (NSString*)MODERATION_COUNT_ASC
 {
     return @"+moderationCount";
 }
-+ (NSString*)MODERATION_COUNT_DESC
++ (NSString*)MS_DURATION_ASC
 {
-    return @"-moderationCount";
+    return @"+msDuration";
 }
-+ (NSString*)CREATED_AT_ASC
++ (NSString*)NAME_ASC
 {
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
-}
-+ (NSString*)END_DATE_ASC
-{
-    return @"+endDate";
-}
-+ (NSString*)END_DATE_DESC
-{
-    return @"-endDate";
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)PLAYS_ASC
 {
-    return @"-partnerSortValue";
+    return @"+plays";
+}
++ (NSString*)RANK_ASC
+{
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)VIEWS_ASC
+{
+    return @"+views";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DURATION_DESC
+{
+    return @"-duration";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)MS_DURATION_DESC
+{
+    return @"-msDuration";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)PLAYS_DESC
+{
+    return @"-plays";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
++ (NSString*)VIEWS_DESC
+{
+    return @"-views";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -6009,90 +6013,133 @@
 }
 @end
 
+@implementation KalturaPlaybackProtocol
++ (NSString*)APPLE_HTTP
+{
+    return @"applehttp";
+}
++ (NSString*)AUTO
+{
+    return @"auto";
+}
++ (NSString*)AKAMAI_HD
+{
+    return @"hdnetwork";
+}
++ (NSString*)AKAMAI_HDS
+{
+    return @"hdnetworkmanifest";
+}
++ (NSString*)HDS
+{
+    return @"hds";
+}
++ (NSString*)HLS
+{
+    return @"hls";
+}
++ (NSString*)HTTP
+{
+    return @"http";
+}
++ (NSString*)RTMP
+{
+    return @"rtmp";
+}
++ (NSString*)RTSP
+{
+    return @"rtsp";
+}
++ (NSString*)SILVER_LIGHT
+{
+    return @"sl";
+}
+@end
+
 @implementation KalturaPlaylistOrderBy
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
-}
-+ (NSString*)MODERATION_COUNT_ASC
-{
-    return @"+moderationCount";
-}
-+ (NSString*)MODERATION_COUNT_DESC
-{
-    return @"-moderationCount";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
 }
 + (NSString*)END_DATE_ASC
 {
     return @"+endDate";
 }
-+ (NSString*)END_DATE_DESC
++ (NSString*)MODERATION_COUNT_ASC
 {
-    return @"-endDate";
+    return @"+moderationCount";
+}
++ (NSString*)NAME_ASC
+{
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)RANK_ASC
 {
-    return @"-partnerSortValue";
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -6101,13 +6148,13 @@
 @end
 
 @implementation KalturaReportInterval
-+ (NSString*)MONTHS
-{
-    return @"months";
-}
 + (NSString*)DAYS
 {
     return @"days";
+}
++ (NSString*)MONTHS
+{
+    return @"months";
 }
 @end
 
@@ -6123,29 +6170,29 @@
 @end
 
 @implementation KalturaSchemaType
-+ (NSString*)SYNDICATION
++ (NSString*)BULK_UPLOAD_RESULT_XML
 {
-    return @"syndication";
+    return @"bulkUploadXml.bulkUploadResultXML";
 }
 + (NSString*)BULK_UPLOAD_XML
 {
     return @"bulkUploadXml.bulkUploadXML";
 }
-+ (NSString*)BULK_UPLOAD_RESULT_XML
++ (NSString*)INGEST_API
 {
-    return @"bulkUploadXml.bulkUploadResultXML";
-}
-+ (NSString*)DROP_FOLDER_XML
-{
-    return @"dropFolderXmlBulkUpload.dropFolderXml";
+    return @"cuePoint.ingestAPI";
 }
 + (NSString*)SERVE_API
 {
     return @"cuePoint.serveAPI";
 }
-+ (NSString*)INGEST_API
++ (NSString*)DROP_FOLDER_XML
 {
-    return @"cuePoint.ingestAPI";
+    return @"dropFolderXmlBulkUpload.dropFolderXml";
+}
++ (NSString*)SYNDICATION
+{
+    return @"syndication";
 }
 @end
 
@@ -6154,9 +6201,17 @@
 {
     return @"1";
 }
++ (NSString*)EQUEL
+{
+    return @"1";
+}
 + (NSString*)GREATER_THAN
 {
     return @"2";
+}
++ (NSString*)GREATER_THAN_OR_EQUEL
+{
+    return @"3";
 }
 + (NSString*)GREATER_THAN_OR_EQUAL
 {
@@ -6166,25 +6221,21 @@
 {
     return @"4";
 }
-+ (NSString*)LESS_THAN_OR_EQUAL
++ (NSString*)LESS_THAN_OR_EQUEL
 {
     return @"5";
 }
-+ (NSString*)EQUEL
-{
-    return @"1";
-}
-+ (NSString*)GREATER_THAN_OR_EQUEL
-{
-    return @"3";
-}
-+ (NSString*)LESS_THAN_OR_EQUEL
++ (NSString*)LESS_THAN_OR_EQUAL
 {
     return @"5";
 }
 @end
 
 @implementation KalturaSourceType
++ (NSString*)LIMELIGHT_LIVE
+{
+    return @"limeLight.LIVE_STREAM";
+}
 + (NSString*)FILE
 {
     return @"1";
@@ -6209,9 +6260,9 @@
 {
     return @"30";
 }
-+ (NSString*)LIMELIGHT_LIVE
++ (NSString*)AKAMAI_UNIVERSAL_LIVE
 {
-    return @"limeLight.LIVE_STREAM";
+    return @"31";
 }
 @end
 
@@ -6220,13 +6271,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -6257,37 +6308,37 @@
 @end
 
 @implementation KalturaThumbAssetOrderBy
-+ (NSString*)SIZE_ASC
-{
-    return @"+size";
-}
-+ (NSString*)SIZE_DESC
-{
-    return @"-size";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
 }
 + (NSString*)DELETED_AT_ASC
 {
     return @"+deletedAt";
 }
++ (NSString*)SIZE_ASC
+{
+    return @"+size";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
 + (NSString*)DELETED_AT_DESC
 {
     return @"-deletedAt";
+}
++ (NSString*)SIZE_DESC
+{
+    return @"-size";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 
@@ -6298,17 +6349,37 @@
 @end
 
 @implementation KalturaTubeMogulSyndicationFeedCategories
++ (NSString*)ANIMALS_AND_PETS
+{
+    return @"Animals &amp; Pets";
+}
 + (NSString*)ARTS_AND_ANIMATION
 {
     return @"Arts &amp; Animation";
+}
++ (NSString*)AUTOS
+{
+    return @"Autos";
 }
 + (NSString*)COMEDY
 {
     return @"Comedy";
 }
++ (NSString*)COMMERCIALS_PROMOTIONAL
+{
+    return @"Commercials/Promotional";
+}
 + (NSString*)ENTERTAINMENT
 {
     return @"Entertainment";
+}
++ (NSString*)FAMILY_AND_KIDS
+{
+    return @"Family &amp; Kids";
+}
++ (NSString*)HOW_TO_INSTRUCTIONAL_DIY
+{
+    return @"How To/Instructional/DIY";
 }
 + (NSString*)MUSIC
 {
@@ -6334,68 +6405,48 @@
 {
     return @"Video Games";
 }
-+ (NSString*)ANIMALS_AND_PETS
-{
-    return @"Animals &amp; Pets";
-}
-+ (NSString*)AUTOS
-{
-    return @"Autos";
-}
 + (NSString*)VLOGS_PEOPLE
 {
     return @"Vlogs &amp; People";
 }
-+ (NSString*)HOW_TO_INSTRUCTIONAL_DIY
-{
-    return @"How To/Instructional/DIY";
-}
-+ (NSString*)COMMERCIALS_PROMOTIONAL
-{
-    return @"Commercials/Promotional";
-}
-+ (NSString*)FAMILY_AND_KIDS
-{
-    return @"Family &amp; Kids";
-}
 @end
 
 @implementation KalturaTubeMogulSyndicationFeedOrderBy
-+ (NSString*)PLAYLIST_ID_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+playlistId";
-}
-+ (NSString*)PLAYLIST_ID_DESC
-{
-    return @"-playlistId";
+    return @"+createdAt";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)PLAYLIST_ID_ASC
 {
-    return @"-name";
+    return @"+playlistId";
 }
 + (NSString*)TYPE_ASC
 {
     return @"+type";
 }
-+ (NSString*)TYPE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-type";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-name";
+}
++ (NSString*)PLAYLIST_ID_DESC
+{
+    return @"-playlistId";
+}
++ (NSString*)TYPE_DESC
+{
+    return @"-type";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -6408,13 +6459,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -6437,52 +6488,52 @@
 @end
 
 @implementation KalturaUserOrderBy
-+ (NSString*)ID_ASC
-{
-    return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
+}
++ (NSString*)ID_ASC
+{
+    return @"+id";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-@end
-
-@implementation KalturaUserRoleOrderBy
-+ (NSString*)ID_ASC
-{
-    return @"+id";
-}
 + (NSString*)ID_DESC
 {
     return @"-id";
+}
+@end
+
+@implementation KalturaUserRoleOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
++ (NSString*)ID_ASC
+{
+    return @"+id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -6495,9 +6546,37 @@
 {
     return @"";
 }
-+ (NSString*)VP6
++ (NSString*)APCH
 {
-    return @"vp6";
+    return @"apch";
+}
++ (NSString*)APCN
+{
+    return @"apcn";
+}
++ (NSString*)APCO
+{
+    return @"apco";
+}
++ (NSString*)APCS
+{
+    return @"apcs";
+}
++ (NSString*)COPY
+{
+    return @"copy";
+}
++ (NSString*)DNXHD
+{
+    return @"dnxhd";
+}
++ (NSString*)DV
+{
+    return @"dv";
+}
++ (NSString*)FLV
+{
+    return @"flv";
 }
 + (NSString*)H263
 {
@@ -6511,17 +6590,17 @@
 {
     return @"h264b";
 }
-+ (NSString*)H264M
-{
-    return @"h264m";
-}
 + (NSString*)H264H
 {
     return @"h264h";
 }
-+ (NSString*)FLV
++ (NSString*)H264M
 {
-    return @"flv";
+    return @"h264m";
+}
++ (NSString*)MPEG2
+{
+    return @"mpeg2";
 }
 + (NSString*)MPEG4
 {
@@ -6530,6 +6609,14 @@
 + (NSString*)THEORA
 {
     return @"theora";
+}
++ (NSString*)VP6
+{
+    return @"vp6";
+}
++ (NSString*)VP8
+{
+    return @"vp8";
 }
 + (NSString*)WMV2
 {
@@ -6542,18 +6629,6 @@
 + (NSString*)WVC1A
 {
     return @"wvc1a";
-}
-+ (NSString*)VP8
-{
-    return @"vp8";
-}
-+ (NSString*)MPEG2
-{
-    return @"mpeg2";
-}
-+ (NSString*)COPY
-{
-    return @"copy";
 }
 @end
 
@@ -6584,77 +6659,77 @@
 {
     return @"Action";
 }
-+ (NSString*)ART_AND_ANIMATION
-{
-    return @"Art &amp; Animation";
-}
-+ (NSString*)ENTERTAINMENT_AND_TV
-{
-    return @"Entertainment &amp; TV";
-}
-+ (NSString*)FOOD
-{
-    return @"Food";
-}
-+ (NSString*)GAMES
-{
-    return @"Games";
-}
-+ (NSString*)HOW_TO
-{
-    return @"How-To";
-}
-+ (NSString*)MUSIC
-{
-    return @"Music";
-}
-+ (NSString*)PEOPLE_AND_VLOGS
-{
-    return @"People &amp; Vlogs";
-}
-+ (NSString*)SCIENCE_AND_ENVIRONMENT
-{
-    return @"Science &amp; Environment";
-}
-+ (NSString*)TRANSPORTATION
-{
-    return @"Transportation";
-}
 + (NSString*)ANIMALS
 {
     return @"Animals";
+}
++ (NSString*)ART_AND_ANIMATION
+{
+    return @"Art &amp; Animation";
 }
 + (NSString*)COMMERCIALS
 {
     return @"Commercials";
 }
++ (NSString*)ENTERTAINMENT_AND_TV
+{
+    return @"Entertainment &amp; TV";
+}
 + (NSString*)FAMILY
 {
     return @"Family";
+}
++ (NSString*)FOOD
+{
+    return @"Food";
 }
 + (NSString*)FUNNY_VIDEOS
 {
     return @"Funny Videos";
 }
++ (NSString*)GAMES
+{
+    return @"Games";
+}
 + (NSString*)HEALTH_AND_BEAUTY
 {
     return @"Health &amp; Beauty";
+}
++ (NSString*)HOW_TO
+{
+    return @"How-To";
 }
 + (NSString*)MOVIES_AND_SHORTS
 {
     return @"Movies &amp; Shorts";
 }
++ (NSString*)MUSIC
+{
+    return @"Music";
+}
 + (NSString*)NEWS_AND_POLITICS
 {
     return @"News &amp; Politics";
+}
++ (NSString*)PEOPLE_AND_VLOGS
+{
+    return @"People &amp; Vlogs";
 }
 + (NSString*)PRODUCTS_AND_TECH
 {
     return @"Products &amp; Tech.";
 }
++ (NSString*)SCIENCE_AND_ENVIRONMENT
+{
+    return @"Science &amp; Environment";
+}
 + (NSString*)SPORTS
 {
     return @"Sports";
+}
++ (NSString*)TRANSPORTATION
+{
+    return @"Transportation";
 }
 + (NSString*)TRAVEL
 {
@@ -6663,41 +6738,41 @@
 @end
 
 @implementation KalturaYahooSyndicationFeedOrderBy
-+ (NSString*)PLAYLIST_ID_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+playlistId";
-}
-+ (NSString*)PLAYLIST_ID_DESC
-{
-    return @"-playlistId";
+    return @"+createdAt";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)PLAYLIST_ID_ASC
 {
-    return @"-name";
+    return @"+playlistId";
 }
 + (NSString*)TYPE_ASC
 {
     return @"+type";
 }
-+ (NSString*)TYPE_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-type";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-name";
+}
++ (NSString*)PLAYLIST_ID_DESC
+{
+    return @"-playlistId";
+}
++ (NSString*)TYPE_DESC
+{
+    return @"-type";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -7263,6 +7338,38 @@
 
 @end
 
+@implementation KalturaKeyValue
+@synthesize key = _key;
+@synthesize value = _value;
+
+- (KalturaFieldType)getTypeOfKey
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfValue
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaKeyValue"];
+    [aParams addIfDefinedKey:@"key" withString:self.key];
+    [aParams addIfDefinedKey:@"value" withString:self.value];
+}
+
+- (void)dealloc
+{
+    [self->_key release];
+    [self->_value release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaAccessControlScope
 @synthesize referrer = _referrer;
 @synthesize ip = _ip;
@@ -7270,6 +7377,7 @@
 @synthesize userAgent = _userAgent;
 @synthesize time = _time;
 @synthesize contexts = _contexts;
+@synthesize hashes = _hashes;
 
 - (id)init
 {
@@ -7315,6 +7423,16 @@
     return @"KalturaAccessControlContextTypeHolder";
 }
 
+- (KalturaFieldType)getTypeOfHashes
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfHashes
+{
+    return @"KalturaKeyValue";
+}
+
 - (void)setTimeFromString:(NSString*)aPropVal
 {
     self.time = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -7331,6 +7449,7 @@
     [aParams addIfDefinedKey:@"userAgent" withString:self.userAgent];
     [aParams addIfDefinedKey:@"time" withInt:self.time];
     [aParams addIfDefinedKey:@"contexts" withArray:self.contexts];
+    [aParams addIfDefinedKey:@"hashes" withArray:self.hashes];
 }
 
 - (void)dealloc
@@ -7340,6 +7459,7 @@
     [self->_ks release];
     [self->_userAgent release];
     [self->_contexts release];
+    [self->_hashes release];
     [super dealloc];
 }
 
@@ -9757,6 +9877,7 @@
 @synthesize updatedAt = _updatedAt;
 @synthesize updateMethod = _updateMethod;
 @synthesize categoryFullIds = _categoryFullIds;
+@synthesize permissionNames = _permissionNames;
 
 - (id)init
 {
@@ -9818,6 +9939,11 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfPermissionNames
+{
+    return KFT_String;
+}
+
 - (void)setCategoryIdFromString:(NSString*)aPropVal
 {
     self.categoryId = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -9862,12 +9988,14 @@
     [aParams addIfDefinedKey:@"userId" withString:self.userId];
     [aParams addIfDefinedKey:@"permissionLevel" withInt:self.permissionLevel];
     [aParams addIfDefinedKey:@"updateMethod" withInt:self.updateMethod];
+    [aParams addIfDefinedKey:@"permissionNames" withString:self.permissionNames];
 }
 
 - (void)dealloc
 {
     [self->_userId release];
     [self->_categoryFullIds release];
+    [self->_permissionNames release];
     [super dealloc];
 }
 
@@ -9954,6 +10082,16 @@
     [self->_url release];
     [self->_data release];
     [super dealloc];
+}
+
+@end
+
+@implementation KalturaContext
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaContext"];
 }
 
 @end
@@ -10892,6 +11030,187 @@
 
 @end
 
+@implementation KalturaValue
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaValue"];
+}
+
+@end
+
+@implementation KalturaStringValue
+@synthesize value = _value;
+
+- (KalturaFieldType)getTypeOfValue
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaStringValue"];
+    [aParams addIfDefinedKey:@"value" withString:self.value];
+}
+
+- (void)dealloc
+{
+    [self->_value release];
+    [super dealloc];
+}
+
+@end
+
+@interface KalturaFlavorAsset()
+@property (nonatomic,assign) int width;
+@property (nonatomic,assign) int height;
+@property (nonatomic,assign) int bitrate;
+@property (nonatomic,assign) double frameRate;
+@property (nonatomic,assign) BOOL isOriginal;
+@property (nonatomic,assign) BOOL isWeb;
+@property (nonatomic,copy) NSString* containerFormat;
+@property (nonatomic,copy) NSString* videoCodecId;
+@property (nonatomic,assign) int status;
+@end
+
+@implementation KalturaFlavorAsset
+@synthesize flavorParamsId = _flavorParamsId;
+@synthesize width = _width;
+@synthesize height = _height;
+@synthesize bitrate = _bitrate;
+@synthesize frameRate = _frameRate;
+@synthesize isOriginal = _isOriginal;
+@synthesize isWeb = _isWeb;
+@synthesize containerFormat = _containerFormat;
+@synthesize videoCodecId = _videoCodecId;
+@synthesize status = _status;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_flavorParamsId = KALTURA_UNDEF_INT;
+    self->_width = KALTURA_UNDEF_INT;
+    self->_height = KALTURA_UNDEF_INT;
+    self->_bitrate = KALTURA_UNDEF_INT;
+    self->_frameRate = KALTURA_UNDEF_FLOAT;
+    self->_isOriginal = KALTURA_UNDEF_BOOL;
+    self->_isWeb = KALTURA_UNDEF_BOOL;
+    self->_status = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfFlavorParamsId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfWidth
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfHeight
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfBitrate
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfFrameRate
+{
+    return KFT_Float;
+}
+
+- (KalturaFieldType)getTypeOfIsOriginal
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfIsWeb
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfContainerFormat
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfVideoCodecId
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfStatus
+{
+    return KFT_Int;
+}
+
+- (void)setFlavorParamsIdFromString:(NSString*)aPropVal
+{
+    self.flavorParamsId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setWidthFromString:(NSString*)aPropVal
+{
+    self.width = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setHeightFromString:(NSString*)aPropVal
+{
+    self.height = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setBitrateFromString:(NSString*)aPropVal
+{
+    self.bitrate = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setFrameRateFromString:(NSString*)aPropVal
+{
+    self.frameRate = [KalturaSimpleTypeParser parseFloat:aPropVal];
+}
+
+- (void)setIsOriginalFromString:(NSString*)aPropVal
+{
+    self.isOriginal = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)setIsWebFromString:(NSString*)aPropVal
+{
+    self.isWeb = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)setStatusFromString:(NSString*)aPropVal
+{
+    self.status = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaFlavorAsset"];
+    [aParams addIfDefinedKey:@"flavorParamsId" withInt:self.flavorParamsId];
+}
+
+- (void)dealloc
+{
+    [self->_containerFormat release];
+    [self->_videoCodecId release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaEntryContextDataResult
 @synthesize isSiteRestricted = _isSiteRestricted;
 @synthesize isCountryRestricted = _isCountryRestricted;
@@ -10906,6 +11225,7 @@
 @synthesize storageProfilesXML = _storageProfilesXML;
 @synthesize accessControlMessages = _accessControlMessages;
 @synthesize accessControlActions = _accessControlActions;
+@synthesize flavorAssets = _flavorAssets;
 
 - (id)init
 {
@@ -10998,6 +11318,16 @@
     return @"KalturaAccessControlAction";
 }
 
+- (KalturaFieldType)getTypeOfFlavorAssets
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfFlavorAssets
+{
+    return @"KalturaFlavorAsset";
+}
+
 - (void)setIsSiteRestrictedFromString:(NSString*)aPropVal
 {
     self.isSiteRestricted = [KalturaSimpleTypeParser parseBool:aPropVal];
@@ -11056,6 +11386,7 @@
     [aParams addIfDefinedKey:@"storageProfilesXML" withString:self.storageProfilesXML];
     [aParams addIfDefinedKey:@"accessControlMessages" withArray:self.accessControlMessages];
     [aParams addIfDefinedKey:@"accessControlActions" withArray:self.accessControlActions];
+    [aParams addIfDefinedKey:@"flavorAssets" withArray:self.flavorAssets];
 }
 
 - (void)dealloc
@@ -11065,6 +11396,324 @@
     [self->_storageProfilesXML release];
     [self->_accessControlMessages release];
     [self->_accessControlActions release];
+    [self->_flavorAssets release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaObjectIdentifier
+@synthesize extendedFeatures = _extendedFeatures;
+
+- (KalturaFieldType)getTypeOfExtendedFeatures
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaObjectIdentifier"];
+    [aParams addIfDefinedKey:@"extendedFeatures" withString:self.extendedFeatures];
+}
+
+- (void)dealloc
+{
+    [self->_extendedFeatures release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaExtendingItemMrssParameter
+@synthesize xpath = _xpath;
+@synthesize identifier = _identifier;
+@synthesize extensionMode = _extensionMode;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_extensionMode = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfXpath
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfIdentifier
+{
+    return KFT_Object;
+}
+
+- (NSString*)getObjectTypeOfIdentifier
+{
+    return @"KalturaObjectIdentifier";
+}
+
+- (KalturaFieldType)getTypeOfExtensionMode
+{
+    return KFT_Int;
+}
+
+- (void)setExtensionModeFromString:(NSString*)aPropVal
+{
+    self.extensionMode = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaExtendingItemMrssParameter"];
+    [aParams addIfDefinedKey:@"xpath" withString:self.xpath];
+    [aParams addIfDefinedKey:@"identifier" withObject:self.identifier];
+    [aParams addIfDefinedKey:@"extensionMode" withInt:self.extensionMode];
+}
+
+- (void)dealloc
+{
+    [self->_xpath release];
+    [self->_identifier release];
+    [super dealloc];
+}
+
+@end
+
+@interface KalturaPlayableEntry()
+@property (nonatomic,assign) int plays;
+@property (nonatomic,assign) int views;
+@property (nonatomic,assign) int width;
+@property (nonatomic,assign) int height;
+@property (nonatomic,assign) int duration;
+@property (nonatomic,copy) NSString* durationType;
+@end
+
+@implementation KalturaPlayableEntry
+@synthesize plays = _plays;
+@synthesize views = _views;
+@synthesize width = _width;
+@synthesize height = _height;
+@synthesize duration = _duration;
+@synthesize msDuration = _msDuration;
+@synthesize durationType = _durationType;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_plays = KALTURA_UNDEF_INT;
+    self->_views = KALTURA_UNDEF_INT;
+    self->_width = KALTURA_UNDEF_INT;
+    self->_height = KALTURA_UNDEF_INT;
+    self->_duration = KALTURA_UNDEF_INT;
+    self->_msDuration = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfPlays
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfViews
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfWidth
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfHeight
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDuration
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfMsDuration
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDurationType
+{
+    return KFT_String;
+}
+
+- (void)setPlaysFromString:(NSString*)aPropVal
+{
+    self.plays = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setViewsFromString:(NSString*)aPropVal
+{
+    self.views = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setWidthFromString:(NSString*)aPropVal
+{
+    self.width = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setHeightFromString:(NSString*)aPropVal
+{
+    self.height = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDurationFromString:(NSString*)aPropVal
+{
+    self.duration = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setMsDurationFromString:(NSString*)aPropVal
+{
+    self.msDuration = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaPlayableEntry"];
+    [aParams addIfDefinedKey:@"msDuration" withInt:self.msDuration];
+}
+
+- (void)dealloc
+{
+    [self->_durationType release];
+    [super dealloc];
+}
+
+@end
+
+@interface KalturaMediaEntry()
+@property (nonatomic,assign) int mediaDate;
+@property (nonatomic,copy) NSString* dataUrl;
+@property (nonatomic,copy) NSString* flavorParamsIds;
+@end
+
+@implementation KalturaMediaEntry
+@synthesize mediaType = _mediaType;
+@synthesize conversionQuality = _conversionQuality;
+@synthesize sourceType = _sourceType;
+@synthesize searchProviderType = _searchProviderType;
+@synthesize searchProviderId = _searchProviderId;
+@synthesize creditUserName = _creditUserName;
+@synthesize creditUrl = _creditUrl;
+@synthesize mediaDate = _mediaDate;
+@synthesize dataUrl = _dataUrl;
+@synthesize flavorParamsIds = _flavorParamsIds;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_mediaType = KALTURA_UNDEF_INT;
+    self->_searchProviderType = KALTURA_UNDEF_INT;
+    self->_mediaDate = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfMediaType
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfConversionQuality
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSourceType
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSearchProviderType
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfSearchProviderId
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfCreditUserName
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfCreditUrl
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfMediaDate
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDataUrl
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfFlavorParamsIds
+{
+    return KFT_String;
+}
+
+- (void)setMediaTypeFromString:(NSString*)aPropVal
+{
+    self.mediaType = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setSearchProviderTypeFromString:(NSString*)aPropVal
+{
+    self.searchProviderType = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setMediaDateFromString:(NSString*)aPropVal
+{
+    self.mediaDate = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaMediaEntry"];
+    [aParams addIfDefinedKey:@"mediaType" withInt:self.mediaType];
+    [aParams addIfDefinedKey:@"conversionQuality" withString:self.conversionQuality];
+    [aParams addIfDefinedKey:@"sourceType" withString:self.sourceType];
+    [aParams addIfDefinedKey:@"searchProviderType" withInt:self.searchProviderType];
+    [aParams addIfDefinedKey:@"searchProviderId" withString:self.searchProviderId];
+    [aParams addIfDefinedKey:@"creditUserName" withString:self.creditUserName];
+    [aParams addIfDefinedKey:@"creditUrl" withString:self.creditUrl];
+}
+
+- (void)dealloc
+{
+    [self->_conversionQuality release];
+    [self->_sourceType release];
+    [self->_searchProviderId release];
+    [self->_creditUserName release];
+    [self->_creditUrl release];
+    [self->_dataUrl release];
+    [self->_flavorParamsIds release];
     [super dealloc];
 }
 
@@ -11260,153 +11909,6 @@
 
 @end
 
-@interface KalturaFlavorAsset()
-@property (nonatomic,assign) int width;
-@property (nonatomic,assign) int height;
-@property (nonatomic,assign) int bitrate;
-@property (nonatomic,assign) double frameRate;
-@property (nonatomic,assign) BOOL isOriginal;
-@property (nonatomic,assign) BOOL isWeb;
-@property (nonatomic,copy) NSString* containerFormat;
-@property (nonatomic,copy) NSString* videoCodecId;
-@property (nonatomic,assign) int status;
-@end
-
-@implementation KalturaFlavorAsset
-@synthesize flavorParamsId = _flavorParamsId;
-@synthesize width = _width;
-@synthesize height = _height;
-@synthesize bitrate = _bitrate;
-@synthesize frameRate = _frameRate;
-@synthesize isOriginal = _isOriginal;
-@synthesize isWeb = _isWeb;
-@synthesize containerFormat = _containerFormat;
-@synthesize videoCodecId = _videoCodecId;
-@synthesize status = _status;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_flavorParamsId = KALTURA_UNDEF_INT;
-    self->_width = KALTURA_UNDEF_INT;
-    self->_height = KALTURA_UNDEF_INT;
-    self->_bitrate = KALTURA_UNDEF_INT;
-    self->_frameRate = KALTURA_UNDEF_FLOAT;
-    self->_isOriginal = KALTURA_UNDEF_BOOL;
-    self->_isWeb = KALTURA_UNDEF_BOOL;
-    self->_status = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfFlavorParamsId
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfWidth
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfHeight
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfBitrate
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfFrameRate
-{
-    return KFT_Float;
-}
-
-- (KalturaFieldType)getTypeOfIsOriginal
-{
-    return KFT_Bool;
-}
-
-- (KalturaFieldType)getTypeOfIsWeb
-{
-    return KFT_Bool;
-}
-
-- (KalturaFieldType)getTypeOfContainerFormat
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfVideoCodecId
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfStatus
-{
-    return KFT_Int;
-}
-
-- (void)setFlavorParamsIdFromString:(NSString*)aPropVal
-{
-    self.flavorParamsId = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setWidthFromString:(NSString*)aPropVal
-{
-    self.width = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setHeightFromString:(NSString*)aPropVal
-{
-    self.height = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setBitrateFromString:(NSString*)aPropVal
-{
-    self.bitrate = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setFrameRateFromString:(NSString*)aPropVal
-{
-    self.frameRate = [KalturaSimpleTypeParser parseFloat:aPropVal];
-}
-
-- (void)setIsOriginalFromString:(NSString*)aPropVal
-{
-    self.isOriginal = [KalturaSimpleTypeParser parseBool:aPropVal];
-}
-
-- (void)setIsWebFromString:(NSString*)aPropVal
-{
-    self.isWeb = [KalturaSimpleTypeParser parseBool:aPropVal];
-}
-
-- (void)setStatusFromString:(NSString*)aPropVal
-{
-    self.status = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaFlavorAsset"];
-    [aParams addIfDefinedKey:@"flavorParamsId" withInt:self.flavorParamsId];
-}
-
-- (void)dealloc
-{
-    [self->_containerFormat release];
-    [self->_videoCodecId release];
-    [super dealloc];
-}
-
-@end
-
 @interface KalturaFlavorAssetListResponse()
 @property (nonatomic,retain) NSMutableArray* objects;
 @property (nonatomic,assign) int totalCount;
@@ -11482,6 +11984,12 @@
 @synthesize aspectRatioProcessingMode = _aspectRatioProcessingMode;
 @synthesize forceFrameToMultiplication16 = _forceFrameToMultiplication16;
 @synthesize isGopInSec = _isGopInSec;
+@synthesize isAvoidVideoShrinkFramesizeToSource = _isAvoidVideoShrinkFramesizeToSource;
+@synthesize isAvoidVideoShrinkBitrateToSource = _isAvoidVideoShrinkBitrateToSource;
+@synthesize isVideoFrameRateForLowBrAppleHls = _isVideoFrameRateForLowBrAppleHls;
+@synthesize anamorphicPixels = _anamorphicPixels;
+@synthesize isAvoidForcedKeyFrames = _isAvoidForcedKeyFrames;
+@synthesize maxFrameRate = _maxFrameRate;
 @synthesize videoConstantBitrate = _videoConstantBitrate;
 @synthesize videoBitrateTolerance = _videoBitrateTolerance;
 @synthesize clipOffset = _clipOffset;
@@ -11507,6 +12015,12 @@
     self->_aspectRatioProcessingMode = KALTURA_UNDEF_INT;
     self->_forceFrameToMultiplication16 = KALTURA_UNDEF_INT;
     self->_isGopInSec = KALTURA_UNDEF_INT;
+    self->_isAvoidVideoShrinkFramesizeToSource = KALTURA_UNDEF_INT;
+    self->_isAvoidVideoShrinkBitrateToSource = KALTURA_UNDEF_INT;
+    self->_isVideoFrameRateForLowBrAppleHls = KALTURA_UNDEF_INT;
+    self->_anamorphicPixels = KALTURA_UNDEF_FLOAT;
+    self->_isAvoidForcedKeyFrames = KALTURA_UNDEF_INT;
+    self->_maxFrameRate = KALTURA_UNDEF_INT;
     self->_videoConstantBitrate = KALTURA_UNDEF_INT;
     self->_videoBitrateTolerance = KALTURA_UNDEF_INT;
     self->_clipOffset = KALTURA_UNDEF_INT;
@@ -11619,6 +12133,36 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfIsAvoidVideoShrinkFramesizeToSource
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfIsAvoidVideoShrinkBitrateToSource
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfIsVideoFrameRateForLowBrAppleHls
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfAnamorphicPixels
+{
+    return KFT_Float;
+}
+
+- (KalturaFieldType)getTypeOfIsAvoidForcedKeyFrames
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfMaxFrameRate
+{
+    return KFT_Int;
+}
+
 - (KalturaFieldType)getTypeOfVideoConstantBitrate
 {
     return KFT_Int;
@@ -11714,6 +12258,36 @@
     self.isGopInSec = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setIsAvoidVideoShrinkFramesizeToSourceFromString:(NSString*)aPropVal
+{
+    self.isAvoidVideoShrinkFramesizeToSource = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setIsAvoidVideoShrinkBitrateToSourceFromString:(NSString*)aPropVal
+{
+    self.isAvoidVideoShrinkBitrateToSource = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setIsVideoFrameRateForLowBrAppleHlsFromString:(NSString*)aPropVal
+{
+    self.isVideoFrameRateForLowBrAppleHls = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setAnamorphicPixelsFromString:(NSString*)aPropVal
+{
+    self.anamorphicPixels = [KalturaSimpleTypeParser parseFloat:aPropVal];
+}
+
+- (void)setIsAvoidForcedKeyFramesFromString:(NSString*)aPropVal
+{
+    self.isAvoidForcedKeyFrames = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setMaxFrameRateFromString:(NSString*)aPropVal
+{
+    self.maxFrameRate = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)setVideoConstantBitrateFromString:(NSString*)aPropVal
 {
     self.videoConstantBitrate = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -11760,6 +12334,12 @@
     [aParams addIfDefinedKey:@"aspectRatioProcessingMode" withInt:self.aspectRatioProcessingMode];
     [aParams addIfDefinedKey:@"forceFrameToMultiplication16" withInt:self.forceFrameToMultiplication16];
     [aParams addIfDefinedKey:@"isGopInSec" withInt:self.isGopInSec];
+    [aParams addIfDefinedKey:@"isAvoidVideoShrinkFramesizeToSource" withInt:self.isAvoidVideoShrinkFramesizeToSource];
+    [aParams addIfDefinedKey:@"isAvoidVideoShrinkBitrateToSource" withInt:self.isAvoidVideoShrinkBitrateToSource];
+    [aParams addIfDefinedKey:@"isVideoFrameRateForLowBrAppleHls" withInt:self.isVideoFrameRateForLowBrAppleHls];
+    [aParams addIfDefinedKey:@"anamorphicPixels" withFloat:self.anamorphicPixels];
+    [aParams addIfDefinedKey:@"isAvoidForcedKeyFrames" withInt:self.isAvoidForcedKeyFrames];
+    [aParams addIfDefinedKey:@"maxFrameRate" withInt:self.maxFrameRate];
     [aParams addIfDefinedKey:@"videoConstantBitrate" withInt:self.videoConstantBitrate];
     [aParams addIfDefinedKey:@"videoBitrateTolerance" withInt:self.videoBitrateTolerance];
     [aParams addIfDefinedKey:@"clipOffset" withInt:self.clipOffset];
@@ -12027,38 +12607,6 @@
 
 @end
 
-@implementation KalturaKeyValue
-@synthesize key = _key;
-@synthesize value = _value;
-
-- (KalturaFieldType)getTypeOfKey
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfValue
-{
-    return KFT_String;
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaKeyValue"];
-    [aParams addIfDefinedKey:@"key" withString:self.key];
-    [aParams addIfDefinedKey:@"value" withString:self.value];
-}
-
-- (void)dealloc
-{
-    [self->_key release];
-    [self->_value release];
-    [super dealloc];
-}
-
-@end
-
 @implementation KalturaLiveStreamBitrate
 @synthesize bitrate = _bitrate;
 @synthesize width = _width;
@@ -12117,236 +12665,33 @@
 
 @end
 
-@interface KalturaPlayableEntry()
-@property (nonatomic,assign) int plays;
-@property (nonatomic,assign) int views;
-@property (nonatomic,assign) int width;
-@property (nonatomic,assign) int height;
-@property (nonatomic,assign) int duration;
-@property (nonatomic,copy) NSString* durationType;
-@end
+@implementation KalturaLiveStreamConfiguration
+@synthesize protocol = _protocol;
+@synthesize url = _url;
 
-@implementation KalturaPlayableEntry
-@synthesize plays = _plays;
-@synthesize views = _views;
-@synthesize width = _width;
-@synthesize height = _height;
-@synthesize duration = _duration;
-@synthesize msDuration = _msDuration;
-@synthesize durationType = _durationType;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_plays = KALTURA_UNDEF_INT;
-    self->_views = KALTURA_UNDEF_INT;
-    self->_width = KALTURA_UNDEF_INT;
-    self->_height = KALTURA_UNDEF_INT;
-    self->_duration = KALTURA_UNDEF_INT;
-    self->_msDuration = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfPlays
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfViews
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfWidth
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfHeight
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfDuration
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfMsDuration
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfDurationType
+- (KalturaFieldType)getTypeOfProtocol
 {
     return KFT_String;
 }
 
-- (void)setPlaysFromString:(NSString*)aPropVal
+- (KalturaFieldType)getTypeOfUrl
 {
-    self.plays = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setViewsFromString:(NSString*)aPropVal
-{
-    self.views = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setWidthFromString:(NSString*)aPropVal
-{
-    self.width = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setHeightFromString:(NSString*)aPropVal
-{
-    self.height = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setDurationFromString:(NSString*)aPropVal
-{
-    self.duration = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setMsDurationFromString:(NSString*)aPropVal
-{
-    self.msDuration = [KalturaSimpleTypeParser parseInt:aPropVal];
+    return KFT_String;
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaPlayableEntry"];
-    [aParams addIfDefinedKey:@"msDuration" withInt:self.msDuration];
+        [aParams putKey:@"objectType" withString:@"KalturaLiveStreamConfiguration"];
+    [aParams addIfDefinedKey:@"protocol" withString:self.protocol];
+    [aParams addIfDefinedKey:@"url" withString:self.url];
 }
 
 - (void)dealloc
 {
-    [self->_durationType release];
-    [super dealloc];
-}
-
-@end
-
-@interface KalturaMediaEntry()
-@property (nonatomic,assign) int mediaDate;
-@property (nonatomic,copy) NSString* dataUrl;
-@property (nonatomic,copy) NSString* flavorParamsIds;
-@end
-
-@implementation KalturaMediaEntry
-@synthesize mediaType = _mediaType;
-@synthesize conversionQuality = _conversionQuality;
-@synthesize sourceType = _sourceType;
-@synthesize searchProviderType = _searchProviderType;
-@synthesize searchProviderId = _searchProviderId;
-@synthesize creditUserName = _creditUserName;
-@synthesize creditUrl = _creditUrl;
-@synthesize mediaDate = _mediaDate;
-@synthesize dataUrl = _dataUrl;
-@synthesize flavorParamsIds = _flavorParamsIds;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_mediaType = KALTURA_UNDEF_INT;
-    self->_searchProviderType = KALTURA_UNDEF_INT;
-    self->_mediaDate = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfMediaType
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfConversionQuality
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfSourceType
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfSearchProviderType
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfSearchProviderId
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfCreditUserName
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfCreditUrl
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfMediaDate
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfDataUrl
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfFlavorParamsIds
-{
-    return KFT_String;
-}
-
-- (void)setMediaTypeFromString:(NSString*)aPropVal
-{
-    self.mediaType = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setSearchProviderTypeFromString:(NSString*)aPropVal
-{
-    self.searchProviderType = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setMediaDateFromString:(NSString*)aPropVal
-{
-    self.mediaDate = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaMediaEntry"];
-    [aParams addIfDefinedKey:@"mediaType" withInt:self.mediaType];
-    [aParams addIfDefinedKey:@"conversionQuality" withString:self.conversionQuality];
-    [aParams addIfDefinedKey:@"sourceType" withString:self.sourceType];
-    [aParams addIfDefinedKey:@"searchProviderType" withInt:self.searchProviderType];
-    [aParams addIfDefinedKey:@"searchProviderId" withString:self.searchProviderId];
-    [aParams addIfDefinedKey:@"creditUserName" withString:self.creditUserName];
-    [aParams addIfDefinedKey:@"creditUrl" withString:self.creditUrl];
-}
-
-- (void)dealloc
-{
-    [self->_conversionQuality release];
-    [self->_sourceType release];
-    [self->_searchProviderId release];
-    [self->_creditUserName release];
-    [self->_creditUrl release];
-    [self->_dataUrl release];
-    [self->_flavorParamsIds release];
+    [self->_protocol release];
+    [self->_url release];
     [super dealloc];
 }
 
@@ -12366,6 +12711,21 @@
 @synthesize secondaryBroadcastingUrl = _secondaryBroadcastingUrl;
 @synthesize streamName = _streamName;
 @synthesize streamUrl = _streamUrl;
+@synthesize hlsStreamUrl = _hlsStreamUrl;
+@synthesize dvrStatus = _dvrStatus;
+@synthesize dvrWindow = _dvrWindow;
+@synthesize urlManager = _urlManager;
+@synthesize liveStreamConfigurations = _liveStreamConfigurations;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_dvrStatus = KALTURA_UNDEF_INT;
+    self->_dvrWindow = KALTURA_UNDEF_INT;
+    return self;
+}
 
 - (KalturaFieldType)getTypeOfOfflineMessage
 {
@@ -12412,6 +12772,46 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfHlsStreamUrl
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDvrStatus
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDvrWindow
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfUrlManager
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLiveStreamConfigurations
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfLiveStreamConfigurations
+{
+    return @"KalturaLiveStreamConfiguration";
+}
+
+- (void)setDvrStatusFromString:(NSString*)aPropVal
+{
+    self.dvrStatus = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDvrWindowFromString:(NSString*)aPropVal
+{
+    self.dvrWindow = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -12423,6 +12823,11 @@
     [aParams addIfDefinedKey:@"secondaryBroadcastingUrl" withString:self.secondaryBroadcastingUrl];
     [aParams addIfDefinedKey:@"streamName" withString:self.streamName];
     [aParams addIfDefinedKey:@"streamUrl" withString:self.streamUrl];
+    [aParams addIfDefinedKey:@"hlsStreamUrl" withString:self.hlsStreamUrl];
+    [aParams addIfDefinedKey:@"dvrStatus" withInt:self.dvrStatus];
+    [aParams addIfDefinedKey:@"dvrWindow" withInt:self.dvrWindow];
+    [aParams addIfDefinedKey:@"urlManager" withString:self.urlManager];
+    [aParams addIfDefinedKey:@"liveStreamConfigurations" withArray:self.liveStreamConfigurations];
 }
 
 - (void)dealloc
@@ -12435,6 +12840,9 @@
     [self->_secondaryBroadcastingUrl release];
     [self->_streamName release];
     [self->_streamUrl release];
+    [self->_hlsStreamUrl release];
+    [self->_urlManager release];
+    [self->_liveStreamConfigurations release];
     [super dealloc];
 }
 
@@ -14096,8 +14504,8 @@
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) int partnerId;
 @property (nonatomic,copy) NSString* userId;
-@property (nonatomic,assign) int moderationObjectType;
-@property (nonatomic,assign) int status;
+@property (nonatomic,copy) NSString* moderationObjectType;
+@property (nonatomic,copy) NSString* status;
 @property (nonatomic,assign) int createdAt;
 @property (nonatomic,assign) int updatedAt;
 @end
@@ -14122,8 +14530,6 @@
         return nil;
     self->_id = KALTURA_UNDEF_INT;
     self->_partnerId = KALTURA_UNDEF_INT;
-    self->_moderationObjectType = KALTURA_UNDEF_INT;
-    self->_status = KALTURA_UNDEF_INT;
     self->_flagType = KALTURA_UNDEF_INT;
     self->_createdAt = KALTURA_UNDEF_INT;
     self->_updatedAt = KALTURA_UNDEF_INT;
@@ -14147,7 +14553,7 @@
 
 - (KalturaFieldType)getTypeOfModerationObjectType
 {
-    return KFT_Int;
+    return KFT_String;
 }
 
 - (KalturaFieldType)getTypeOfFlaggedEntryId
@@ -14162,7 +14568,7 @@
 
 - (KalturaFieldType)getTypeOfStatus
 {
-    return KFT_Int;
+    return KFT_String;
 }
 
 - (KalturaFieldType)getTypeOfComments
@@ -14195,16 +14601,6 @@
     self.partnerId = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
-- (void)setModerationObjectTypeFromString:(NSString*)aPropVal
-{
-    self.moderationObjectType = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setStatusFromString:(NSString*)aPropVal
-{
-    self.status = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
 - (void)setFlagTypeFromString:(NSString*)aPropVal
 {
     self.flagType = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -14234,8 +14630,10 @@
 - (void)dealloc
 {
     [self->_userId release];
+    [self->_moderationObjectType release];
     [self->_flaggedEntryId release];
     [self->_flaggedUserId release];
+    [self->_status release];
     [self->_comments release];
     [super dealloc];
 }
@@ -14295,6 +14693,120 @@
 
 @end
 
+@implementation KalturaPlayerDeliveryType
+@synthesize id = _id;
+@synthesize label = _label;
+@synthesize flashvars = _flashvars;
+@synthesize minVersion = _minVersion;
+
+- (KalturaFieldType)getTypeOfId
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLabel
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfFlashvars
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfFlashvars
+{
+    return @"KalturaKeyValue";
+}
+
+- (KalturaFieldType)getTypeOfMinVersion
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaPlayerDeliveryType"];
+    [aParams addIfDefinedKey:@"id" withString:self.id];
+    [aParams addIfDefinedKey:@"label" withString:self.label];
+    [aParams addIfDefinedKey:@"flashvars" withArray:self.flashvars];
+    [aParams addIfDefinedKey:@"minVersion" withString:self.minVersion];
+}
+
+- (void)dealloc
+{
+    [self->_id release];
+    [self->_label release];
+    [self->_flashvars release];
+    [self->_minVersion release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaPlayerEmbedCodeType
+@synthesize id = _id;
+@synthesize label = _label;
+@synthesize entryOnly = _entryOnly;
+@synthesize minVersion = _minVersion;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_entryOnly = KALTURA_UNDEF_BOOL;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfId
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLabel
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfEntryOnly
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfMinVersion
+{
+    return KFT_String;
+}
+
+- (void)setEntryOnlyFromString:(NSString*)aPropVal
+{
+    self.entryOnly = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaPlayerEmbedCodeType"];
+    [aParams addIfDefinedKey:@"id" withString:self.id];
+    [aParams addIfDefinedKey:@"label" withString:self.label];
+    [aParams addIfDefinedKey:@"entryOnly" withBool:self.entryOnly];
+    [aParams addIfDefinedKey:@"minVersion" withString:self.minVersion];
+}
+
+- (void)dealloc
+{
+    [self->_id release];
+    [self->_label release];
+    [self->_minVersion release];
+    [super dealloc];
+}
+
+@end
+
 @interface KalturaPartner()
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) int createdAt;
@@ -14307,6 +14819,18 @@
 @property (nonatomic,assign) int publishersQuota;
 @property (nonatomic,assign) int partnerGroupType;
 @property (nonatomic,assign) BOOL defaultEntitlementEnforcement;
+@property (nonatomic,copy) NSString* defaultDeliveryType;
+@property (nonatomic,copy) NSString* defaultEmbedCodeType;
+@property (nonatomic,retain) NSMutableArray* deliveryTypes;
+@property (nonatomic,retain) NSMutableArray* embedCodeTypes;
+@property (nonatomic,assign) int templatePartnerId;
+@property (nonatomic,assign) BOOL ignoreSeoLinks;
+@property (nonatomic,copy) NSString* host;
+@property (nonatomic,copy) NSString* cdnHost;
+@property (nonatomic,copy) NSString* rtmpUrl;
+@property (nonatomic,copy) NSString* language;
+@property (nonatomic,assign) BOOL isFirstLogin;
+@property (nonatomic,copy) NSString* logoutUrl;
 @end
 
 @implementation KalturaPartner
@@ -14349,6 +14873,18 @@
 @synthesize publishersQuota = _publishersQuota;
 @synthesize partnerGroupType = _partnerGroupType;
 @synthesize defaultEntitlementEnforcement = _defaultEntitlementEnforcement;
+@synthesize defaultDeliveryType = _defaultDeliveryType;
+@synthesize defaultEmbedCodeType = _defaultEmbedCodeType;
+@synthesize deliveryTypes = _deliveryTypes;
+@synthesize embedCodeTypes = _embedCodeTypes;
+@synthesize templatePartnerId = _templatePartnerId;
+@synthesize ignoreSeoLinks = _ignoreSeoLinks;
+@synthesize host = _host;
+@synthesize cdnHost = _cdnHost;
+@synthesize rtmpUrl = _rtmpUrl;
+@synthesize language = _language;
+@synthesize isFirstLogin = _isFirstLogin;
+@synthesize logoutUrl = _logoutUrl;
 
 - (id)init
 {
@@ -14372,6 +14908,9 @@
     self->_publishersQuota = KALTURA_UNDEF_INT;
     self->_partnerGroupType = KALTURA_UNDEF_INT;
     self->_defaultEntitlementEnforcement = KALTURA_UNDEF_BOOL;
+    self->_templatePartnerId = KALTURA_UNDEF_INT;
+    self->_ignoreSeoLinks = KALTURA_UNDEF_BOOL;
+    self->_isFirstLogin = KALTURA_UNDEF_BOOL;
     return self;
 }
 
@@ -14575,6 +15114,76 @@
     return KFT_Bool;
 }
 
+- (KalturaFieldType)getTypeOfDefaultDeliveryType
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDefaultEmbedCodeType
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDeliveryTypes
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfDeliveryTypes
+{
+    return @"KalturaPlayerDeliveryType";
+}
+
+- (KalturaFieldType)getTypeOfEmbedCodeTypes
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfEmbedCodeTypes
+{
+    return @"KalturaPlayerEmbedCodeType";
+}
+
+- (KalturaFieldType)getTypeOfTemplatePartnerId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfIgnoreSeoLinks
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfHost
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfCdnHost
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfRtmpUrl
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLanguage
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfIsFirstLogin
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfLogoutUrl
+{
+    return KFT_String;
+}
+
 - (void)setIdFromString:(NSString*)aPropVal
 {
     self.id = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -14660,6 +15269,21 @@
     self.defaultEntitlementEnforcement = [KalturaSimpleTypeParser parseBool:aPropVal];
 }
 
+- (void)setTemplatePartnerIdFromString:(NSString*)aPropVal
+{
+    self.templatePartnerId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setIgnoreSeoLinksFromString:(NSString*)aPropVal
+{
+    self.ignoreSeoLinks = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)setIsFirstLoginFromString:(NSString*)aPropVal
+{
+    self.isFirstLogin = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -14719,6 +15343,15 @@
     [self->_country release];
     [self->_state release];
     [self->_additionalParams release];
+    [self->_defaultDeliveryType release];
+    [self->_defaultEmbedCodeType release];
+    [self->_deliveryTypes release];
+    [self->_embedCodeTypes release];
+    [self->_host release];
+    [self->_cdnHost release];
+    [self->_rtmpUrl release];
+    [self->_language release];
+    [self->_logoutUrl release];
     [super dealloc];
 }
 
@@ -15662,117 +16295,6 @@
 
 @end
 
-@interface KalturaReport()
-@property (nonatomic,assign) int id;
-@property (nonatomic,assign) int createdAt;
-@property (nonatomic,assign) int updatedAt;
-@end
-
-@implementation KalturaReport
-@synthesize id = _id;
-@synthesize partnerId = _partnerId;
-@synthesize name = _name;
-@synthesize systemName = _systemName;
-@synthesize description = _description;
-@synthesize query = _query;
-@synthesize createdAt = _createdAt;
-@synthesize updatedAt = _updatedAt;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_id = KALTURA_UNDEF_INT;
-    self->_partnerId = KALTURA_UNDEF_INT;
-    self->_createdAt = KALTURA_UNDEF_INT;
-    self->_updatedAt = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfId
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfPartnerId
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfName
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfSystemName
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfDescription
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfQuery
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfCreatedAt
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfUpdatedAt
-{
-    return KFT_Int;
-}
-
-- (void)setIdFromString:(NSString*)aPropVal
-{
-    self.id = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setPartnerIdFromString:(NSString*)aPropVal
-{
-    self.partnerId = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setCreatedAtFromString:(NSString*)aPropVal
-{
-    self.createdAt = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setUpdatedAtFromString:(NSString*)aPropVal
-{
-    self.updatedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaReport"];
-    [aParams addIfDefinedKey:@"partnerId" withInt:self.partnerId];
-    [aParams addIfDefinedKey:@"name" withString:self.name];
-    [aParams addIfDefinedKey:@"systemName" withString:self.systemName];
-    [aParams addIfDefinedKey:@"description" withString:self.description];
-    [aParams addIfDefinedKey:@"query" withString:self.query];
-}
-
-- (void)dealloc
-{
-    [self->_name release];
-    [self->_systemName release];
-    [self->_description release];
-    [self->_query release];
-    [super dealloc];
-}
-
-@end
-
 @implementation KalturaReportBaseTotal
 @synthesize id = _id;
 @synthesize data = _data;
@@ -15840,6 +16362,8 @@
 @implementation KalturaReportInputBaseFilter
 @synthesize fromDate = _fromDate;
 @synthesize toDate = _toDate;
+@synthesize fromDay = _fromDay;
+@synthesize toDay = _toDay;
 
 - (id)init
 {
@@ -15861,6 +16385,16 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfFromDay
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfToDay
+{
+    return KFT_String;
+}
+
 - (void)setFromDateFromString:(NSString*)aPropVal
 {
     self.fromDate = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -15878,58 +16412,14 @@
         [aParams putKey:@"objectType" withString:@"KalturaReportInputBaseFilter"];
     [aParams addIfDefinedKey:@"fromDate" withInt:self.fromDate];
     [aParams addIfDefinedKey:@"toDate" withInt:self.toDate];
-}
-
-@end
-
-@interface KalturaReportListResponse()
-@property (nonatomic,retain) NSMutableArray* objects;
-@property (nonatomic,assign) int totalCount;
-@end
-
-@implementation KalturaReportListResponse
-@synthesize objects = _objects;
-@synthesize totalCount = _totalCount;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_totalCount = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfObjects
-{
-    return KFT_Array;
-}
-
-- (NSString*)getObjectTypeOfObjects
-{
-    return @"KalturaReport";
-}
-
-- (KalturaFieldType)getTypeOfTotalCount
-{
-    return KFT_Int;
-}
-
-- (void)setTotalCountFromString:(NSString*)aPropVal
-{
-    self.totalCount = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaReportListResponse"];
+    [aParams addIfDefinedKey:@"fromDay" withString:self.fromDay];
+    [aParams addIfDefinedKey:@"toDay" withString:self.toDay];
 }
 
 - (void)dealloc
 {
-    [self->_objects release];
+    [self->_fromDay release];
+    [self->_toDay release];
     [super dealloc];
 }
 
@@ -16339,6 +16829,96 @@
 - (void)dealloc
 {
     [self->_objects release];
+    [super dealloc];
+}
+
+@end
+
+@interface KalturaSessionInfo()
+@property (nonatomic,copy) NSString* ks;
+@property (nonatomic,assign) int sessionType;
+@property (nonatomic,assign) int partnerId;
+@property (nonatomic,copy) NSString* userId;
+@property (nonatomic,assign) int expiry;
+@property (nonatomic,copy) NSString* privileges;
+@end
+
+@implementation KalturaSessionInfo
+@synthesize ks = _ks;
+@synthesize sessionType = _sessionType;
+@synthesize partnerId = _partnerId;
+@synthesize userId = _userId;
+@synthesize expiry = _expiry;
+@synthesize privileges = _privileges;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_sessionType = KALTURA_UNDEF_INT;
+    self->_partnerId = KALTURA_UNDEF_INT;
+    self->_expiry = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfKs
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSessionType
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfPartnerId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfUserId
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfExpiry
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfPrivileges
+{
+    return KFT_String;
+}
+
+- (void)setSessionTypeFromString:(NSString*)aPropVal
+{
+    self.sessionType = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setPartnerIdFromString:(NSString*)aPropVal
+{
+    self.partnerId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setExpiryFromString:(NSString*)aPropVal
+{
+    self.expiry = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaSessionInfo"];
+}
+
+- (void)dealloc
+{
+    [self->_ks release];
+    [self->_userId release];
+    [self->_privileges release];
     [super dealloc];
 }
 
@@ -16836,6 +17416,7 @@
 @synthesize deliveryStatus = _deliveryStatus;
 @synthesize rtmpPrefix = _rtmpPrefix;
 @synthesize readyBehavior = _readyBehavior;
+@synthesize allowAutoDelete = _allowAutoDelete;
 
 - (id)init
 {
@@ -16856,6 +17437,7 @@
     self->_deliveryPriority = KALTURA_UNDEF_INT;
     self->_deliveryStatus = KALTURA_UNDEF_INT;
     self->_readyBehavior = KALTURA_UNDEF_INT;
+    self->_allowAutoDelete = KALTURA_UNDEF_INT;
     return self;
 }
 
@@ -17019,6 +17601,11 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfAllowAutoDelete
+{
+    return KFT_Int;
+}
+
 - (void)setIdFromString:(NSString*)aPropVal
 {
     self.id = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -17089,6 +17676,11 @@
     self.readyBehavior = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setAllowAutoDeleteFromString:(NSString*)aPropVal
+{
+    self.allowAutoDelete = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -17120,6 +17712,7 @@
     [aParams addIfDefinedKey:@"deliveryStatus" withInt:self.deliveryStatus];
     [aParams addIfDefinedKey:@"rtmpPrefix" withString:self.rtmpPrefix];
     [aParams addIfDefinedKey:@"readyBehavior" withInt:self.readyBehavior];
+    [aParams addIfDefinedKey:@"allowAutoDelete" withInt:self.allowAutoDelete];
 }
 
 - (void)dealloc
@@ -17193,40 +17786,6 @@
 - (void)dealloc
 {
     [self->_objects release];
-    [super dealloc];
-}
-
-@end
-
-@implementation KalturaValue
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaValue"];
-}
-
-@end
-
-@implementation KalturaStringValue
-@synthesize value = _value;
-
-- (KalturaFieldType)getTypeOfValue
-{
-    return KFT_String;
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaStringValue"];
-    [aParams addIfDefinedKey:@"value" withString:self.value];
-}
-
-- (void)dealloc
-{
-    [self->_value release];
     [super dealloc];
 }
 
@@ -18856,91 +19415,6 @@
 
 @end
 
-@implementation KalturaUserLoginData
-@synthesize id = _id;
-@synthesize loginEmail = _loginEmail;
-
-- (KalturaFieldType)getTypeOfId
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfLoginEmail
-{
-    return KFT_String;
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaUserLoginData"];
-    [aParams addIfDefinedKey:@"id" withString:self.id];
-    [aParams addIfDefinedKey:@"loginEmail" withString:self.loginEmail];
-}
-
-- (void)dealloc
-{
-    [self->_id release];
-    [self->_loginEmail release];
-    [super dealloc];
-}
-
-@end
-
-@interface KalturaUserLoginDataListResponse()
-@property (nonatomic,retain) NSMutableArray* objects;
-@property (nonatomic,assign) int totalCount;
-@end
-
-@implementation KalturaUserLoginDataListResponse
-@synthesize objects = _objects;
-@synthesize totalCount = _totalCount;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_totalCount = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfObjects
-{
-    return KFT_Array;
-}
-
-- (NSString*)getObjectTypeOfObjects
-{
-    return @"KalturaUserLoginData";
-}
-
-- (KalturaFieldType)getTypeOfTotalCount
-{
-    return KFT_Int;
-}
-
-- (void)setTotalCountFromString:(NSString*)aPropVal
-{
-    self.totalCount = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaUserLoginDataListResponse"];
-}
-
-- (void)dealloc
-{
-    [self->_objects release];
-    [super dealloc];
-}
-
-@end
-
 @interface KalturaUserRole()
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) int partnerId;
@@ -18951,6 +19425,7 @@
 @implementation KalturaUserRole
 @synthesize id = _id;
 @synthesize name = _name;
+@synthesize systemName = _systemName;
 @synthesize description = _description;
 @synthesize status = _status;
 @synthesize partnerId = _partnerId;
@@ -18978,6 +19453,11 @@
 }
 
 - (KalturaFieldType)getTypeOfName
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSystemName
 {
     return KFT_String;
 }
@@ -19048,6 +19528,7 @@
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaUserRole"];
     [aParams addIfDefinedKey:@"name" withString:self.name];
+    [aParams addIfDefinedKey:@"systemName" withString:self.systemName];
     [aParams addIfDefinedKey:@"description" withString:self.description];
     [aParams addIfDefinedKey:@"status" withInt:self.status];
     [aParams addIfDefinedKey:@"permissionNames" withString:self.permissionNames];
@@ -19057,6 +19538,7 @@
 - (void)dealloc
 {
     [self->_name release];
+    [self->_systemName release];
     [self->_description release];
     [self->_permissionNames release];
     [self->_tags release];
@@ -19142,6 +19624,7 @@
 @synthesize widgetHTML = _widgetHTML;
 @synthesize enforceEntitlement = _enforceEntitlement;
 @synthesize privacyContext = _privacyContext;
+@synthesize addEmbedHtml5Support = _addEmbedHtml5Support;
 
 - (id)init
 {
@@ -19155,6 +19638,7 @@
     self->_createdAt = KALTURA_UNDEF_INT;
     self->_updatedAt = KALTURA_UNDEF_INT;
     self->_enforceEntitlement = KALTURA_UNDEF_BOOL;
+    self->_addEmbedHtml5Support = KALTURA_UNDEF_BOOL;
     return self;
 }
 
@@ -19228,6 +19712,11 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfAddEmbedHtml5Support
+{
+    return KFT_Bool;
+}
+
 - (void)setPartnerIdFromString:(NSString*)aPropVal
 {
     self.partnerId = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -19263,6 +19752,11 @@
     self.enforceEntitlement = [KalturaSimpleTypeParser parseBool:aPropVal];
 }
 
+- (void)setAddEmbedHtml5SupportFromString:(NSString*)aPropVal
+{
+    self.addEmbedHtml5Support = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -19276,6 +19770,7 @@
     [aParams addIfDefinedKey:@"partnerData" withString:self.partnerData];
     [aParams addIfDefinedKey:@"enforceEntitlement" withBool:self.enforceEntitlement];
     [aParams addIfDefinedKey:@"privacyContext" withString:self.privacyContext];
+    [aParams addIfDefinedKey:@"addEmbedHtml5Support" withBool:self.addEmbedHtml5Support];
 }
 
 - (void)dealloc
@@ -19442,6 +19937,51 @@
 
 @end
 
+@implementation KalturaAccessControlLimitFlavorsAction
+@synthesize flavorParamsIds = _flavorParamsIds;
+@synthesize isBlockedList = _isBlockedList;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_isBlockedList = KALTURA_UNDEF_BOOL;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfFlavorParamsIds
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfIsBlockedList
+{
+    return KFT_Bool;
+}
+
+- (void)setIsBlockedListFromString:(NSString*)aPropVal
+{
+    self.isBlockedList = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAccessControlLimitFlavorsAction"];
+    [aParams addIfDefinedKey:@"flavorParamsIds" withString:self.flavorParamsIds];
+    [aParams addIfDefinedKey:@"isBlockedList" withBool:self.isBlockedList];
+}
+
+- (void)dealloc
+{
+    [self->_flavorParamsIds release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaAccessControlPreviewAction
 @synthesize limit = _limit;
 
@@ -19593,6 +20133,30 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaAdminUser"];
+}
+
+@end
+
+@implementation KalturaAmazonS3StorageProfile
+@synthesize filesPermissionInS3 = _filesPermissionInS3;
+
+- (KalturaFieldType)getTypeOfFilesPermissionInS3
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAmazonS3StorageProfile"];
+    [aParams addIfDefinedKey:@"filesPermissionInS3" withString:self.filesPermissionInS3];
+}
+
+- (void)dealloc
+{
+    [self->_filesPermissionInS3 release];
+    [super dealloc];
 }
 
 @end
@@ -20017,6 +20581,35 @@
 
 @end
 
+@implementation KalturaAssetPropertiesCompareCondition
+@synthesize properties = _properties;
+
+- (KalturaFieldType)getTypeOfProperties
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfProperties
+{
+    return @"KalturaKeyValue";
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAssetPropertiesCompareCondition"];
+    [aParams addIfDefinedKey:@"properties" withArray:self.properties];
+}
+
+- (void)dealloc
+{
+    [self->_properties release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaAssetsParamsResourceContainers
 @synthesize resources = _resources;
 
@@ -20075,7 +20668,17 @@
 
 @end
 
-@implementation KalturaBaseJobBaseFilter
+@implementation KalturaBaseSyndicationFeedBaseFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaBaseSyndicationFeedBaseFilter"];
+}
+
+@end
+
+@implementation KalturaBatchJobBaseFilter
 @synthesize idEqual = _idEqual;
 @synthesize idGreaterThanOrEqual = _idGreaterThanOrEqual;
 @synthesize partnerIdEqual = _partnerIdEqual;
@@ -20085,12 +20688,69 @@
 @synthesize createdAtLessThanOrEqual = _createdAtLessThanOrEqual;
 @synthesize updatedAtGreaterThanOrEqual = _updatedAtGreaterThanOrEqual;
 @synthesize updatedAtLessThanOrEqual = _updatedAtLessThanOrEqual;
-@synthesize processorExpirationGreaterThanOrEqual = _processorExpirationGreaterThanOrEqual;
-@synthesize processorExpirationLessThanOrEqual = _processorExpirationLessThanOrEqual;
+@synthesize lockExpirationGreaterThanOrEqual = _lockExpirationGreaterThanOrEqual;
+@synthesize lockExpirationLessThanOrEqual = _lockExpirationLessThanOrEqual;
 @synthesize executionAttemptsGreaterThanOrEqual = _executionAttemptsGreaterThanOrEqual;
 @synthesize executionAttemptsLessThanOrEqual = _executionAttemptsLessThanOrEqual;
 @synthesize lockVersionGreaterThanOrEqual = _lockVersionGreaterThanOrEqual;
 @synthesize lockVersionLessThanOrEqual = _lockVersionLessThanOrEqual;
+@synthesize entryIdEqual = _entryIdEqual;
+@synthesize jobTypeEqual = _jobTypeEqual;
+@synthesize jobTypeIn = _jobTypeIn;
+@synthesize jobTypeNotIn = _jobTypeNotIn;
+@synthesize jobSubTypeEqual = _jobSubTypeEqual;
+@synthesize jobSubTypeIn = _jobSubTypeIn;
+@synthesize jobSubTypeNotIn = _jobSubTypeNotIn;
+@synthesize statusEqual = _statusEqual;
+@synthesize statusIn = _statusIn;
+@synthesize statusNotIn = _statusNotIn;
+@synthesize abortEqual = _abortEqual;
+@synthesize checkAgainTimeoutGreaterThanOrEqual = _checkAgainTimeoutGreaterThanOrEqual;
+@synthesize checkAgainTimeoutLessThanOrEqual = _checkAgainTimeoutLessThanOrEqual;
+@synthesize priorityGreaterThanOrEqual = _priorityGreaterThanOrEqual;
+@synthesize priorityLessThanOrEqual = _priorityLessThanOrEqual;
+@synthesize priorityEqual = _priorityEqual;
+@synthesize priorityIn = _priorityIn;
+@synthesize priorityNotIn = _priorityNotIn;
+@synthesize bulkJobIdEqual = _bulkJobIdEqual;
+@synthesize bulkJobIdIn = _bulkJobIdIn;
+@synthesize bulkJobIdNotIn = _bulkJobIdNotIn;
+@synthesize parentJobIdEqual = _parentJobIdEqual;
+@synthesize parentJobIdIn = _parentJobIdIn;
+@synthesize parentJobIdNotIn = _parentJobIdNotIn;
+@synthesize rootJobIdEqual = _rootJobIdEqual;
+@synthesize rootJobIdIn = _rootJobIdIn;
+@synthesize rootJobIdNotIn = _rootJobIdNotIn;
+@synthesize queueTimeGreaterThanOrEqual = _queueTimeGreaterThanOrEqual;
+@synthesize queueTimeLessThanOrEqual = _queueTimeLessThanOrEqual;
+@synthesize finishTimeGreaterThanOrEqual = _finishTimeGreaterThanOrEqual;
+@synthesize finishTimeLessThanOrEqual = _finishTimeLessThanOrEqual;
+@synthesize errTypeEqual = _errTypeEqual;
+@synthesize errTypeIn = _errTypeIn;
+@synthesize errTypeNotIn = _errTypeNotIn;
+@synthesize errNumberEqual = _errNumberEqual;
+@synthesize errNumberIn = _errNumberIn;
+@synthesize errNumberNotIn = _errNumberNotIn;
+@synthesize estimatedEffortLessThan = _estimatedEffortLessThan;
+@synthesize estimatedEffortGreaterThan = _estimatedEffortGreaterThan;
+@synthesize schedulerIdEqual = _schedulerIdEqual;
+@synthesize schedulerIdIn = _schedulerIdIn;
+@synthesize schedulerIdNotIn = _schedulerIdNotIn;
+@synthesize workerIdEqual = _workerIdEqual;
+@synthesize workerIdIn = _workerIdIn;
+@synthesize workerIdNotIn = _workerIdNotIn;
+@synthesize batchIndexEqual = _batchIndexEqual;
+@synthesize batchIndexIn = _batchIndexIn;
+@synthesize batchIndexNotIn = _batchIndexNotIn;
+@synthesize lastSchedulerIdEqual = _lastSchedulerIdEqual;
+@synthesize lastSchedulerIdIn = _lastSchedulerIdIn;
+@synthesize lastSchedulerIdNotIn = _lastSchedulerIdNotIn;
+@synthesize lastWorkerIdEqual = _lastWorkerIdEqual;
+@synthesize lastWorkerIdIn = _lastWorkerIdIn;
+@synthesize lastWorkerIdNotIn = _lastWorkerIdNotIn;
+@synthesize dcEqual = _dcEqual;
+@synthesize dcIn = _dcIn;
+@synthesize dcNotIn = _dcNotIn;
 
 - (id)init
 {
@@ -20104,12 +20764,37 @@
     self->_createdAtLessThanOrEqual = KALTURA_UNDEF_INT;
     self->_updatedAtGreaterThanOrEqual = KALTURA_UNDEF_INT;
     self->_updatedAtLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_processorExpirationGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_processorExpirationLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_lockExpirationGreaterThanOrEqual = KALTURA_UNDEF_INT;
+    self->_lockExpirationLessThanOrEqual = KALTURA_UNDEF_INT;
     self->_executionAttemptsGreaterThanOrEqual = KALTURA_UNDEF_INT;
     self->_executionAttemptsLessThanOrEqual = KALTURA_UNDEF_INT;
     self->_lockVersionGreaterThanOrEqual = KALTURA_UNDEF_INT;
     self->_lockVersionLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_jobSubTypeEqual = KALTURA_UNDEF_INT;
+    self->_statusEqual = KALTURA_UNDEF_INT;
+    self->_abortEqual = KALTURA_UNDEF_INT;
+    self->_checkAgainTimeoutGreaterThanOrEqual = KALTURA_UNDEF_INT;
+    self->_checkAgainTimeoutLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_priorityGreaterThanOrEqual = KALTURA_UNDEF_INT;
+    self->_priorityLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_priorityEqual = KALTURA_UNDEF_INT;
+    self->_bulkJobIdEqual = KALTURA_UNDEF_INT;
+    self->_parentJobIdEqual = KALTURA_UNDEF_INT;
+    self->_rootJobIdEqual = KALTURA_UNDEF_INT;
+    self->_queueTimeGreaterThanOrEqual = KALTURA_UNDEF_INT;
+    self->_queueTimeLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_finishTimeGreaterThanOrEqual = KALTURA_UNDEF_INT;
+    self->_finishTimeLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_errTypeEqual = KALTURA_UNDEF_INT;
+    self->_errNumberEqual = KALTURA_UNDEF_INT;
+    self->_estimatedEffortLessThan = KALTURA_UNDEF_INT;
+    self->_estimatedEffortGreaterThan = KALTURA_UNDEF_INT;
+    self->_schedulerIdEqual = KALTURA_UNDEF_INT;
+    self->_workerIdEqual = KALTURA_UNDEF_INT;
+    self->_batchIndexEqual = KALTURA_UNDEF_INT;
+    self->_lastSchedulerIdEqual = KALTURA_UNDEF_INT;
+    self->_lastWorkerIdEqual = KALTURA_UNDEF_INT;
+    self->_dcEqual = KALTURA_UNDEF_INT;
     return self;
 }
 
@@ -20158,12 +20843,12 @@
     return KFT_Int;
 }
 
-- (KalturaFieldType)getTypeOfProcessorExpirationGreaterThanOrEqual
+- (KalturaFieldType)getTypeOfLockExpirationGreaterThanOrEqual
 {
     return KFT_Int;
 }
 
-- (KalturaFieldType)getTypeOfProcessorExpirationLessThanOrEqual
+- (KalturaFieldType)getTypeOfLockExpirationLessThanOrEqual
 {
     return KFT_Int;
 }
@@ -20186,6 +20871,291 @@
 - (KalturaFieldType)getTypeOfLockVersionLessThanOrEqual
 {
     return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfEntryIdEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfJobTypeEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfJobTypeIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfJobTypeNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfJobSubTypeEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfJobSubTypeIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfJobSubTypeNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfStatusEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfStatusIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfStatusNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfAbortEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfCheckAgainTimeoutGreaterThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfCheckAgainTimeoutLessThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfPriorityGreaterThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfPriorityLessThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfPriorityEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfPriorityIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfPriorityNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfBulkJobIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfBulkJobIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfBulkJobIdNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfParentJobIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfParentJobIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfParentJobIdNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfRootJobIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfRootJobIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfRootJobIdNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfQueueTimeGreaterThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfQueueTimeLessThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfFinishTimeGreaterThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfFinishTimeLessThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfErrTypeEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfErrTypeIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfErrTypeNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfErrNumberEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfErrNumberIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfErrNumberNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfEstimatedEffortLessThan
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfEstimatedEffortGreaterThan
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfSchedulerIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfSchedulerIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSchedulerIdNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfWorkerIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfWorkerIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfWorkerIdNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfBatchIndexEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfBatchIndexIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfBatchIndexNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLastSchedulerIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfLastSchedulerIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLastSchedulerIdNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLastWorkerIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfLastWorkerIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLastWorkerIdNotIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDcEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDcIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDcNotIn
+{
+    return KFT_String;
 }
 
 - (void)setIdEqualFromString:(NSString*)aPropVal
@@ -20223,14 +21193,14 @@
     self.updatedAtLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
-- (void)setProcessorExpirationGreaterThanOrEqualFromString:(NSString*)aPropVal
+- (void)setLockExpirationGreaterThanOrEqualFromString:(NSString*)aPropVal
 {
-    self.processorExpirationGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+    self.lockExpirationGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
-- (void)setProcessorExpirationLessThanOrEqualFromString:(NSString*)aPropVal
+- (void)setLockExpirationLessThanOrEqualFromString:(NSString*)aPropVal
 {
-    self.processorExpirationLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+    self.lockExpirationLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
 - (void)setExecutionAttemptsGreaterThanOrEqualFromString:(NSString*)aPropVal
@@ -20253,11 +21223,136 @@
     self.lockVersionLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setJobSubTypeEqualFromString:(NSString*)aPropVal
+{
+    self.jobSubTypeEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setStatusEqualFromString:(NSString*)aPropVal
+{
+    self.statusEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setAbortEqualFromString:(NSString*)aPropVal
+{
+    self.abortEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setCheckAgainTimeoutGreaterThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.checkAgainTimeoutGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setCheckAgainTimeoutLessThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.checkAgainTimeoutLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setPriorityGreaterThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.priorityGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setPriorityLessThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.priorityLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setPriorityEqualFromString:(NSString*)aPropVal
+{
+    self.priorityEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setBulkJobIdEqualFromString:(NSString*)aPropVal
+{
+    self.bulkJobIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setParentJobIdEqualFromString:(NSString*)aPropVal
+{
+    self.parentJobIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setRootJobIdEqualFromString:(NSString*)aPropVal
+{
+    self.rootJobIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setQueueTimeGreaterThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.queueTimeGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setQueueTimeLessThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.queueTimeLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setFinishTimeGreaterThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.finishTimeGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setFinishTimeLessThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.finishTimeLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setErrTypeEqualFromString:(NSString*)aPropVal
+{
+    self.errTypeEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setErrNumberEqualFromString:(NSString*)aPropVal
+{
+    self.errNumberEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setEstimatedEffortLessThanFromString:(NSString*)aPropVal
+{
+    self.estimatedEffortLessThan = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setEstimatedEffortGreaterThanFromString:(NSString*)aPropVal
+{
+    self.estimatedEffortGreaterThan = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setSchedulerIdEqualFromString:(NSString*)aPropVal
+{
+    self.schedulerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setWorkerIdEqualFromString:(NSString*)aPropVal
+{
+    self.workerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setBatchIndexEqualFromString:(NSString*)aPropVal
+{
+    self.batchIndexEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setLastSchedulerIdEqualFromString:(NSString*)aPropVal
+{
+    self.lastSchedulerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setLastWorkerIdEqualFromString:(NSString*)aPropVal
+{
+    self.lastWorkerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDcEqualFromString:(NSString*)aPropVal
+{
+    self.dcEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaBaseJobBaseFilter"];
+        [aParams putKey:@"objectType" withString:@"KalturaBatchJobBaseFilter"];
     [aParams addIfDefinedKey:@"idEqual" withInt:self.idEqual];
     [aParams addIfDefinedKey:@"idGreaterThanOrEqual" withInt:self.idGreaterThanOrEqual];
     [aParams addIfDefinedKey:@"partnerIdEqual" withInt:self.partnerIdEqual];
@@ -20267,29 +21362,108 @@
     [aParams addIfDefinedKey:@"createdAtLessThanOrEqual" withInt:self.createdAtLessThanOrEqual];
     [aParams addIfDefinedKey:@"updatedAtGreaterThanOrEqual" withInt:self.updatedAtGreaterThanOrEqual];
     [aParams addIfDefinedKey:@"updatedAtLessThanOrEqual" withInt:self.updatedAtLessThanOrEqual];
-    [aParams addIfDefinedKey:@"processorExpirationGreaterThanOrEqual" withInt:self.processorExpirationGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"processorExpirationLessThanOrEqual" withInt:self.processorExpirationLessThanOrEqual];
+    [aParams addIfDefinedKey:@"lockExpirationGreaterThanOrEqual" withInt:self.lockExpirationGreaterThanOrEqual];
+    [aParams addIfDefinedKey:@"lockExpirationLessThanOrEqual" withInt:self.lockExpirationLessThanOrEqual];
     [aParams addIfDefinedKey:@"executionAttemptsGreaterThanOrEqual" withInt:self.executionAttemptsGreaterThanOrEqual];
     [aParams addIfDefinedKey:@"executionAttemptsLessThanOrEqual" withInt:self.executionAttemptsLessThanOrEqual];
     [aParams addIfDefinedKey:@"lockVersionGreaterThanOrEqual" withInt:self.lockVersionGreaterThanOrEqual];
     [aParams addIfDefinedKey:@"lockVersionLessThanOrEqual" withInt:self.lockVersionLessThanOrEqual];
+    [aParams addIfDefinedKey:@"entryIdEqual" withString:self.entryIdEqual];
+    [aParams addIfDefinedKey:@"jobTypeEqual" withString:self.jobTypeEqual];
+    [aParams addIfDefinedKey:@"jobTypeIn" withString:self.jobTypeIn];
+    [aParams addIfDefinedKey:@"jobTypeNotIn" withString:self.jobTypeNotIn];
+    [aParams addIfDefinedKey:@"jobSubTypeEqual" withInt:self.jobSubTypeEqual];
+    [aParams addIfDefinedKey:@"jobSubTypeIn" withString:self.jobSubTypeIn];
+    [aParams addIfDefinedKey:@"jobSubTypeNotIn" withString:self.jobSubTypeNotIn];
+    [aParams addIfDefinedKey:@"statusEqual" withInt:self.statusEqual];
+    [aParams addIfDefinedKey:@"statusIn" withString:self.statusIn];
+    [aParams addIfDefinedKey:@"statusNotIn" withString:self.statusNotIn];
+    [aParams addIfDefinedKey:@"abortEqual" withInt:self.abortEqual];
+    [aParams addIfDefinedKey:@"checkAgainTimeoutGreaterThanOrEqual" withInt:self.checkAgainTimeoutGreaterThanOrEqual];
+    [aParams addIfDefinedKey:@"checkAgainTimeoutLessThanOrEqual" withInt:self.checkAgainTimeoutLessThanOrEqual];
+    [aParams addIfDefinedKey:@"priorityGreaterThanOrEqual" withInt:self.priorityGreaterThanOrEqual];
+    [aParams addIfDefinedKey:@"priorityLessThanOrEqual" withInt:self.priorityLessThanOrEqual];
+    [aParams addIfDefinedKey:@"priorityEqual" withInt:self.priorityEqual];
+    [aParams addIfDefinedKey:@"priorityIn" withString:self.priorityIn];
+    [aParams addIfDefinedKey:@"priorityNotIn" withString:self.priorityNotIn];
+    [aParams addIfDefinedKey:@"bulkJobIdEqual" withInt:self.bulkJobIdEqual];
+    [aParams addIfDefinedKey:@"bulkJobIdIn" withString:self.bulkJobIdIn];
+    [aParams addIfDefinedKey:@"bulkJobIdNotIn" withString:self.bulkJobIdNotIn];
+    [aParams addIfDefinedKey:@"parentJobIdEqual" withInt:self.parentJobIdEqual];
+    [aParams addIfDefinedKey:@"parentJobIdIn" withString:self.parentJobIdIn];
+    [aParams addIfDefinedKey:@"parentJobIdNotIn" withString:self.parentJobIdNotIn];
+    [aParams addIfDefinedKey:@"rootJobIdEqual" withInt:self.rootJobIdEqual];
+    [aParams addIfDefinedKey:@"rootJobIdIn" withString:self.rootJobIdIn];
+    [aParams addIfDefinedKey:@"rootJobIdNotIn" withString:self.rootJobIdNotIn];
+    [aParams addIfDefinedKey:@"queueTimeGreaterThanOrEqual" withInt:self.queueTimeGreaterThanOrEqual];
+    [aParams addIfDefinedKey:@"queueTimeLessThanOrEqual" withInt:self.queueTimeLessThanOrEqual];
+    [aParams addIfDefinedKey:@"finishTimeGreaterThanOrEqual" withInt:self.finishTimeGreaterThanOrEqual];
+    [aParams addIfDefinedKey:@"finishTimeLessThanOrEqual" withInt:self.finishTimeLessThanOrEqual];
+    [aParams addIfDefinedKey:@"errTypeEqual" withInt:self.errTypeEqual];
+    [aParams addIfDefinedKey:@"errTypeIn" withString:self.errTypeIn];
+    [aParams addIfDefinedKey:@"errTypeNotIn" withString:self.errTypeNotIn];
+    [aParams addIfDefinedKey:@"errNumberEqual" withInt:self.errNumberEqual];
+    [aParams addIfDefinedKey:@"errNumberIn" withString:self.errNumberIn];
+    [aParams addIfDefinedKey:@"errNumberNotIn" withString:self.errNumberNotIn];
+    [aParams addIfDefinedKey:@"estimatedEffortLessThan" withInt:self.estimatedEffortLessThan];
+    [aParams addIfDefinedKey:@"estimatedEffortGreaterThan" withInt:self.estimatedEffortGreaterThan];
+    [aParams addIfDefinedKey:@"schedulerIdEqual" withInt:self.schedulerIdEqual];
+    [aParams addIfDefinedKey:@"schedulerIdIn" withString:self.schedulerIdIn];
+    [aParams addIfDefinedKey:@"schedulerIdNotIn" withString:self.schedulerIdNotIn];
+    [aParams addIfDefinedKey:@"workerIdEqual" withInt:self.workerIdEqual];
+    [aParams addIfDefinedKey:@"workerIdIn" withString:self.workerIdIn];
+    [aParams addIfDefinedKey:@"workerIdNotIn" withString:self.workerIdNotIn];
+    [aParams addIfDefinedKey:@"batchIndexEqual" withInt:self.batchIndexEqual];
+    [aParams addIfDefinedKey:@"batchIndexIn" withString:self.batchIndexIn];
+    [aParams addIfDefinedKey:@"batchIndexNotIn" withString:self.batchIndexNotIn];
+    [aParams addIfDefinedKey:@"lastSchedulerIdEqual" withInt:self.lastSchedulerIdEqual];
+    [aParams addIfDefinedKey:@"lastSchedulerIdIn" withString:self.lastSchedulerIdIn];
+    [aParams addIfDefinedKey:@"lastSchedulerIdNotIn" withString:self.lastSchedulerIdNotIn];
+    [aParams addIfDefinedKey:@"lastWorkerIdEqual" withInt:self.lastWorkerIdEqual];
+    [aParams addIfDefinedKey:@"lastWorkerIdIn" withString:self.lastWorkerIdIn];
+    [aParams addIfDefinedKey:@"lastWorkerIdNotIn" withString:self.lastWorkerIdNotIn];
+    [aParams addIfDefinedKey:@"dcEqual" withInt:self.dcEqual];
+    [aParams addIfDefinedKey:@"dcIn" withString:self.dcIn];
+    [aParams addIfDefinedKey:@"dcNotIn" withString:self.dcNotIn];
 }
 
 - (void)dealloc
 {
     [self->_partnerIdIn release];
     [self->_partnerIdNotIn release];
+    [self->_entryIdEqual release];
+    [self->_jobTypeEqual release];
+    [self->_jobTypeIn release];
+    [self->_jobTypeNotIn release];
+    [self->_jobSubTypeIn release];
+    [self->_jobSubTypeNotIn release];
+    [self->_statusIn release];
+    [self->_statusNotIn release];
+    [self->_priorityIn release];
+    [self->_priorityNotIn release];
+    [self->_bulkJobIdIn release];
+    [self->_bulkJobIdNotIn release];
+    [self->_parentJobIdIn release];
+    [self->_parentJobIdNotIn release];
+    [self->_rootJobIdIn release];
+    [self->_rootJobIdNotIn release];
+    [self->_errTypeIn release];
+    [self->_errTypeNotIn release];
+    [self->_errNumberIn release];
+    [self->_errNumberNotIn release];
+    [self->_schedulerIdIn release];
+    [self->_schedulerIdNotIn release];
+    [self->_workerIdIn release];
+    [self->_workerIdNotIn release];
+    [self->_batchIndexIn release];
+    [self->_batchIndexNotIn release];
+    [self->_lastSchedulerIdIn release];
+    [self->_lastSchedulerIdNotIn release];
+    [self->_lastWorkerIdIn release];
+    [self->_lastWorkerIdNotIn release];
+    [self->_dcIn release];
+    [self->_dcNotIn release];
     [super dealloc];
-}
-
-@end
-
-@implementation KalturaBaseSyndicationFeedBaseFilter
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaBaseSyndicationFeedBaseFilter"];
 }
 
 @end
@@ -21949,6 +23123,30 @@
 
 @end
 
+@implementation KalturaCategoryIdentifier
+@synthesize identifier = _identifier;
+
+- (KalturaFieldType)getTypeOfIdentifier
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaCategoryIdentifier"];
+    [aParams addIfDefinedKey:@"identifier" withString:self.identifier];
+}
+
+- (void)dealloc
+{
+    [self->_identifier release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaCategoryUserBaseFilter
 @synthesize categoryIdEqual = _categoryIdEqual;
 @synthesize categoryIdIn = _categoryIdIn;
@@ -21966,6 +23164,9 @@
 @synthesize updateMethodIn = _updateMethodIn;
 @synthesize categoryFullIdsStartsWith = _categoryFullIdsStartsWith;
 @synthesize categoryFullIdsEqual = _categoryFullIdsEqual;
+@synthesize permissionNamesMatchAnd = _permissionNamesMatchAnd;
+@synthesize permissionNamesMatchOr = _permissionNamesMatchOr;
+@synthesize permissionNamesNotContains = _permissionNamesNotContains;
 
 - (id)init
 {
@@ -22063,6 +23264,21 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfPermissionNamesMatchAnd
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfPermissionNamesMatchOr
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfPermissionNamesNotContains
+{
+    return KFT_String;
+}
+
 - (void)setCategoryIdEqualFromString:(NSString*)aPropVal
 {
     self.categoryIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -22124,6 +23340,9 @@
     [aParams addIfDefinedKey:@"updateMethodIn" withString:self.updateMethodIn];
     [aParams addIfDefinedKey:@"categoryFullIdsStartsWith" withString:self.categoryFullIdsStartsWith];
     [aParams addIfDefinedKey:@"categoryFullIdsEqual" withString:self.categoryFullIdsEqual];
+    [aParams addIfDefinedKey:@"permissionNamesMatchAnd" withString:self.permissionNamesMatchAnd];
+    [aParams addIfDefinedKey:@"permissionNamesMatchOr" withString:self.permissionNamesMatchOr];
+    [aParams addIfDefinedKey:@"permissionNamesNotContains" withString:self.permissionNamesNotContains];
 }
 
 - (void)dealloc
@@ -22136,6 +23355,9 @@
     [self->_updateMethodIn release];
     [self->_categoryFullIdsStartsWith release];
     [self->_categoryFullIdsEqual release];
+    [self->_permissionNamesMatchAnd release];
+    [self->_permissionNamesMatchOr release];
+    [self->_permissionNamesNotContains release];
     [super dealloc];
 }
 
@@ -22872,6 +24094,30 @@
 
 @end
 
+@implementation KalturaDeleteFileJobData
+@synthesize localFileSyncPath = _localFileSyncPath;
+
+- (KalturaFieldType)getTypeOfLocalFileSyncPath
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaDeleteFileJobData"];
+    [aParams addIfDefinedKey:@"localFileSyncPath" withString:self.localFileSyncPath];
+}
+
+- (void)dealloc
+{
+    [self->_localFileSyncPath release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaDeleteJobData
 @synthesize filter = _filter;
 
@@ -22933,12 +24179,357 @@
 
 @end
 
+@implementation KalturaCategoryUserFilter
+@synthesize categoryDirectMembers = _categoryDirectMembers;
+@synthesize freeText = _freeText;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_categoryDirectMembers = KALTURA_UNDEF_BOOL;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfCategoryDirectMembers
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfFreeText
+{
+    return KFT_String;
+}
+
+- (void)setCategoryDirectMembersFromString:(NSString*)aPropVal
+{
+    self.categoryDirectMembers = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaCategoryUserFilter"];
+    [aParams addIfDefinedKey:@"categoryDirectMembers" withBool:self.categoryDirectMembers];
+    [aParams addIfDefinedKey:@"freeText" withString:self.freeText];
+}
+
+- (void)dealloc
+{
+    [self->_freeText release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaUserBaseFilter
+@synthesize partnerIdEqual = _partnerIdEqual;
+@synthesize screenNameLike = _screenNameLike;
+@synthesize screenNameStartsWith = _screenNameStartsWith;
+@synthesize emailLike = _emailLike;
+@synthesize emailStartsWith = _emailStartsWith;
+@synthesize tagsMultiLikeOr = _tagsMultiLikeOr;
+@synthesize tagsMultiLikeAnd = _tagsMultiLikeAnd;
+@synthesize statusEqual = _statusEqual;
+@synthesize statusIn = _statusIn;
+@synthesize createdAtGreaterThanOrEqual = _createdAtGreaterThanOrEqual;
+@synthesize createdAtLessThanOrEqual = _createdAtLessThanOrEqual;
+@synthesize firstNameStartsWith = _firstNameStartsWith;
+@synthesize lastNameStartsWith = _lastNameStartsWith;
+@synthesize isAdminEqual = _isAdminEqual;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_partnerIdEqual = KALTURA_UNDEF_INT;
+    self->_statusEqual = KALTURA_UNDEF_INT;
+    self->_createdAtGreaterThanOrEqual = KALTURA_UNDEF_INT;
+    self->_createdAtLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_isAdminEqual = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfPartnerIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfScreenNameLike
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfScreenNameStartsWith
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfEmailLike
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfEmailStartsWith
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfTagsMultiLikeOr
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfTagsMultiLikeAnd
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfStatusEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfStatusIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfCreatedAtGreaterThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfCreatedAtLessThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfFirstNameStartsWith
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLastNameStartsWith
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfIsAdminEqual
+{
+    return KFT_Int;
+}
+
+- (void)setPartnerIdEqualFromString:(NSString*)aPropVal
+{
+    self.partnerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setStatusEqualFromString:(NSString*)aPropVal
+{
+    self.statusEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setCreatedAtGreaterThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.createdAtGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setCreatedAtLessThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.createdAtLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setIsAdminEqualFromString:(NSString*)aPropVal
+{
+    self.isAdminEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaUserBaseFilter"];
+    [aParams addIfDefinedKey:@"partnerIdEqual" withInt:self.partnerIdEqual];
+    [aParams addIfDefinedKey:@"screenNameLike" withString:self.screenNameLike];
+    [aParams addIfDefinedKey:@"screenNameStartsWith" withString:self.screenNameStartsWith];
+    [aParams addIfDefinedKey:@"emailLike" withString:self.emailLike];
+    [aParams addIfDefinedKey:@"emailStartsWith" withString:self.emailStartsWith];
+    [aParams addIfDefinedKey:@"tagsMultiLikeOr" withString:self.tagsMultiLikeOr];
+    [aParams addIfDefinedKey:@"tagsMultiLikeAnd" withString:self.tagsMultiLikeAnd];
+    [aParams addIfDefinedKey:@"statusEqual" withInt:self.statusEqual];
+    [aParams addIfDefinedKey:@"statusIn" withString:self.statusIn];
+    [aParams addIfDefinedKey:@"createdAtGreaterThanOrEqual" withInt:self.createdAtGreaterThanOrEqual];
+    [aParams addIfDefinedKey:@"createdAtLessThanOrEqual" withInt:self.createdAtLessThanOrEqual];
+    [aParams addIfDefinedKey:@"firstNameStartsWith" withString:self.firstNameStartsWith];
+    [aParams addIfDefinedKey:@"lastNameStartsWith" withString:self.lastNameStartsWith];
+    [aParams addIfDefinedKey:@"isAdminEqual" withInt:self.isAdminEqual];
+}
+
+- (void)dealloc
+{
+    [self->_screenNameLike release];
+    [self->_screenNameStartsWith release];
+    [self->_emailLike release];
+    [self->_emailStartsWith release];
+    [self->_tagsMultiLikeOr release];
+    [self->_tagsMultiLikeAnd release];
+    [self->_statusIn release];
+    [self->_firstNameStartsWith release];
+    [self->_lastNameStartsWith release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaUserFilter
+@synthesize idOrScreenNameStartsWith = _idOrScreenNameStartsWith;
+@synthesize idEqual = _idEqual;
+@synthesize idIn = _idIn;
+@synthesize loginEnabledEqual = _loginEnabledEqual;
+@synthesize roleIdEqual = _roleIdEqual;
+@synthesize roleIdsEqual = _roleIdsEqual;
+@synthesize roleIdsIn = _roleIdsIn;
+@synthesize firstNameOrLastNameStartsWith = _firstNameOrLastNameStartsWith;
+@synthesize permissionNamesMultiLikeOr = _permissionNamesMultiLikeOr;
+@synthesize permissionNamesMultiLikeAnd = _permissionNamesMultiLikeAnd;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_loginEnabledEqual = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfIdOrScreenNameStartsWith
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfIdEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfLoginEnabledEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfRoleIdEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfRoleIdsEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfRoleIdsIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfFirstNameOrLastNameStartsWith
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfPermissionNamesMultiLikeOr
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfPermissionNamesMultiLikeAnd
+{
+    return KFT_String;
+}
+
+- (void)setLoginEnabledEqualFromString:(NSString*)aPropVal
+{
+    self.loginEnabledEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaUserFilter"];
+    [aParams addIfDefinedKey:@"idOrScreenNameStartsWith" withString:self.idOrScreenNameStartsWith];
+    [aParams addIfDefinedKey:@"idEqual" withString:self.idEqual];
+    [aParams addIfDefinedKey:@"idIn" withString:self.idIn];
+    [aParams addIfDefinedKey:@"loginEnabledEqual" withInt:self.loginEnabledEqual];
+    [aParams addIfDefinedKey:@"roleIdEqual" withString:self.roleIdEqual];
+    [aParams addIfDefinedKey:@"roleIdsEqual" withString:self.roleIdsEqual];
+    [aParams addIfDefinedKey:@"roleIdsIn" withString:self.roleIdsIn];
+    [aParams addIfDefinedKey:@"firstNameOrLastNameStartsWith" withString:self.firstNameOrLastNameStartsWith];
+    [aParams addIfDefinedKey:@"permissionNamesMultiLikeOr" withString:self.permissionNamesMultiLikeOr];
+    [aParams addIfDefinedKey:@"permissionNamesMultiLikeAnd" withString:self.permissionNamesMultiLikeAnd];
+}
+
+- (void)dealloc
+{
+    [self->_idOrScreenNameStartsWith release];
+    [self->_idEqual release];
+    [self->_idIn release];
+    [self->_roleIdEqual release];
+    [self->_roleIdsEqual release];
+    [self->_roleIdsIn release];
+    [self->_firstNameOrLastNameStartsWith release];
+    [self->_permissionNamesMultiLikeOr release];
+    [self->_permissionNamesMultiLikeAnd release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaEntryContext
+@synthesize entryId = _entryId;
+
+- (KalturaFieldType)getTypeOfEntryId
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaEntryContext"];
+    [aParams addIfDefinedKey:@"entryId" withString:self.entryId];
+}
+
+- (void)dealloc
+{
+    [self->_entryId release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaEntryContextDataParams
 @synthesize flavorAssetId = _flavorAssetId;
+@synthesize flavorTags = _flavorTags;
 @synthesize streamerType = _streamerType;
 @synthesize mediaProtocol = _mediaProtocol;
 
 - (KalturaFieldType)getTypeOfFlavorAssetId
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfFlavorTags
 {
     return KFT_String;
 }
@@ -22959,6 +24550,7 @@
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaEntryContextDataParams"];
     [aParams addIfDefinedKey:@"flavorAssetId" withString:self.flavorAssetId];
+    [aParams addIfDefinedKey:@"flavorTags" withString:self.flavorTags];
     [aParams addIfDefinedKey:@"streamerType" withString:self.streamerType];
     [aParams addIfDefinedKey:@"mediaProtocol" withString:self.mediaProtocol];
 }
@@ -22966,9 +24558,44 @@
 - (void)dealloc
 {
     [self->_flavorAssetId release];
+    [self->_flavorTags release];
     [self->_streamerType release];
     [self->_mediaProtocol release];
     [super dealloc];
+}
+
+@end
+
+@implementation KalturaEntryIdentifier
+@synthesize identifier = _identifier;
+
+- (KalturaFieldType)getTypeOfIdentifier
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaEntryIdentifier"];
+    [aParams addIfDefinedKey:@"identifier" withString:self.identifier];
+}
+
+- (void)dealloc
+{
+    [self->_identifier release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaBooleanField
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaBooleanField"];
 }
 
 @end
@@ -23134,6 +24761,16 @@
 @synthesize srcFileUrl = _srcFileUrl;
 @synthesize destFileLocalPath = _destFileLocalPath;
 @synthesize flavorAssetId = _flavorAssetId;
+@synthesize fileSize = _fileSize;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_fileSize = KALTURA_UNDEF_INT;
+    return self;
+}
 
 - (KalturaFieldType)getTypeOfSrcFileUrl
 {
@@ -23150,6 +24787,16 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfFileSize
+{
+    return KFT_Int;
+}
+
+- (void)setFileSizeFromString:(NSString*)aPropVal
+{
+    self.fileSize = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -23158,6 +24805,7 @@
     [aParams addIfDefinedKey:@"srcFileUrl" withString:self.srcFileUrl];
     [aParams addIfDefinedKey:@"destFileLocalPath" withString:self.destFileLocalPath];
     [aParams addIfDefinedKey:@"flavorAssetId" withString:self.flavorAssetId];
+    [aParams addIfDefinedKey:@"fileSize" withInt:self.fileSize];
 }
 
 - (void)dealloc
@@ -23273,6 +24921,51 @@
 - (void)dealloc
 {
     [self->_ipAddressList release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaLimitFlavorsRestriction
+@synthesize limitFlavorsRestrictionType = _limitFlavorsRestrictionType;
+@synthesize flavorParamsIds = _flavorParamsIds;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_limitFlavorsRestrictionType = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfLimitFlavorsRestrictionType
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfFlavorParamsIds
+{
+    return KFT_String;
+}
+
+- (void)setLimitFlavorsRestrictionTypeFromString:(NSString*)aPropVal
+{
+    self.limitFlavorsRestrictionType = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaLimitFlavorsRestriction"];
+    [aParams addIfDefinedKey:@"limitFlavorsRestrictionType" withInt:self.limitFlavorsRestrictionType];
+    [aParams addIfDefinedKey:@"flavorParamsIds" withString:self.flavorParamsIds];
+}
+
+- (void)dealloc
+{
+    [self->_flavorParamsIds release];
     [super dealloc];
 }
 
@@ -25293,167 +26986,6 @@
 
 @end
 
-@implementation KalturaUserBaseFilter
-@synthesize partnerIdEqual = _partnerIdEqual;
-@synthesize screenNameLike = _screenNameLike;
-@synthesize screenNameStartsWith = _screenNameStartsWith;
-@synthesize emailLike = _emailLike;
-@synthesize emailStartsWith = _emailStartsWith;
-@synthesize tagsMultiLikeOr = _tagsMultiLikeOr;
-@synthesize tagsMultiLikeAnd = _tagsMultiLikeAnd;
-@synthesize statusEqual = _statusEqual;
-@synthesize statusIn = _statusIn;
-@synthesize createdAtGreaterThanOrEqual = _createdAtGreaterThanOrEqual;
-@synthesize createdAtLessThanOrEqual = _createdAtLessThanOrEqual;
-@synthesize firstNameStartsWith = _firstNameStartsWith;
-@synthesize lastNameStartsWith = _lastNameStartsWith;
-@synthesize isAdminEqual = _isAdminEqual;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_partnerIdEqual = KALTURA_UNDEF_INT;
-    self->_statusEqual = KALTURA_UNDEF_INT;
-    self->_createdAtGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_createdAtLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_isAdminEqual = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfPartnerIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfScreenNameLike
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfScreenNameStartsWith
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfEmailLike
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfEmailStartsWith
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfTagsMultiLikeOr
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfTagsMultiLikeAnd
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfStatusEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfStatusIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfCreatedAtGreaterThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfCreatedAtLessThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfFirstNameStartsWith
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfLastNameStartsWith
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfIsAdminEqual
-{
-    return KFT_Int;
-}
-
-- (void)setPartnerIdEqualFromString:(NSString*)aPropVal
-{
-    self.partnerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setStatusEqualFromString:(NSString*)aPropVal
-{
-    self.statusEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setCreatedAtGreaterThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.createdAtGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setCreatedAtLessThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.createdAtLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setIsAdminEqualFromString:(NSString*)aPropVal
-{
-    self.isAdminEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaUserBaseFilter"];
-    [aParams addIfDefinedKey:@"partnerIdEqual" withInt:self.partnerIdEqual];
-    [aParams addIfDefinedKey:@"screenNameLike" withString:self.screenNameLike];
-    [aParams addIfDefinedKey:@"screenNameStartsWith" withString:self.screenNameStartsWith];
-    [aParams addIfDefinedKey:@"emailLike" withString:self.emailLike];
-    [aParams addIfDefinedKey:@"emailStartsWith" withString:self.emailStartsWith];
-    [aParams addIfDefinedKey:@"tagsMultiLikeOr" withString:self.tagsMultiLikeOr];
-    [aParams addIfDefinedKey:@"tagsMultiLikeAnd" withString:self.tagsMultiLikeAnd];
-    [aParams addIfDefinedKey:@"statusEqual" withInt:self.statusEqual];
-    [aParams addIfDefinedKey:@"statusIn" withString:self.statusIn];
-    [aParams addIfDefinedKey:@"createdAtGreaterThanOrEqual" withInt:self.createdAtGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"createdAtLessThanOrEqual" withInt:self.createdAtLessThanOrEqual];
-    [aParams addIfDefinedKey:@"firstNameStartsWith" withString:self.firstNameStartsWith];
-    [aParams addIfDefinedKey:@"lastNameStartsWith" withString:self.lastNameStartsWith];
-    [aParams addIfDefinedKey:@"isAdminEqual" withInt:self.isAdminEqual];
-}
-
-- (void)dealloc
-{
-    [self->_screenNameLike release];
-    [self->_screenNameStartsWith release];
-    [self->_emailLike release];
-    [self->_emailStartsWith release];
-    [self->_tagsMultiLikeOr release];
-    [self->_tagsMultiLikeAnd release];
-    [self->_statusIn release];
-    [self->_firstNameStartsWith release];
-    [self->_lastNameStartsWith release];
-    [super dealloc];
-}
-
-@end
-
 @implementation KalturaUserLoginDataBaseFilter
 @synthesize loginEmailEqual = _loginEmailEqual;
 
@@ -25483,6 +27015,8 @@
 @synthesize idIn = _idIn;
 @synthesize nameEqual = _nameEqual;
 @synthesize nameIn = _nameIn;
+@synthesize systemNameEqual = _systemNameEqual;
+@synthesize systemNameIn = _systemNameIn;
 @synthesize descriptionLike = _descriptionLike;
 @synthesize statusEqual = _statusEqual;
 @synthesize statusIn = _statusIn;
@@ -25526,6 +27060,16 @@
 }
 
 - (KalturaFieldType)getTypeOfNameIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSystemNameEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSystemNameIn
 {
     return KFT_String;
 }
@@ -25629,6 +27173,8 @@
     [aParams addIfDefinedKey:@"idIn" withString:self.idIn];
     [aParams addIfDefinedKey:@"nameEqual" withString:self.nameEqual];
     [aParams addIfDefinedKey:@"nameIn" withString:self.nameIn];
+    [aParams addIfDefinedKey:@"systemNameEqual" withString:self.systemNameEqual];
+    [aParams addIfDefinedKey:@"systemNameIn" withString:self.systemNameIn];
     [aParams addIfDefinedKey:@"descriptionLike" withString:self.descriptionLike];
     [aParams addIfDefinedKey:@"statusEqual" withInt:self.statusEqual];
     [aParams addIfDefinedKey:@"statusIn" withString:self.statusIn];
@@ -25647,6 +27193,8 @@
     [self->_idIn release];
     [self->_nameEqual release];
     [self->_nameIn release];
+    [self->_systemNameEqual release];
+    [self->_systemNameIn release];
     [self->_descriptionLike release];
     [self->_statusIn release];
     [self->_partnerIdIn release];
@@ -25942,6 +27490,125 @@
 
 @end
 
+@implementation KalturaAkamaiUniversalProvisionJobData
+@synthesize streamId = _streamId;
+@synthesize systemUserName = _systemUserName;
+@synthesize systemPassword = _systemPassword;
+@synthesize domainName = _domainName;
+@synthesize dvrEnabled = _dvrEnabled;
+@synthesize dvrWindow = _dvrWindow;
+@synthesize primaryContact = _primaryContact;
+@synthesize secondaryContact = _secondaryContact;
+@synthesize streamType = _streamType;
+@synthesize notificationEmail = _notificationEmail;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_streamId = KALTURA_UNDEF_INT;
+    self->_dvrEnabled = KALTURA_UNDEF_INT;
+    self->_dvrWindow = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfStreamId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfSystemUserName
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSystemPassword
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDomainName
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDvrEnabled
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDvrWindow
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfPrimaryContact
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSecondaryContact
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfStreamType
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfNotificationEmail
+{
+    return KFT_String;
+}
+
+- (void)setStreamIdFromString:(NSString*)aPropVal
+{
+    self.streamId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDvrEnabledFromString:(NSString*)aPropVal
+{
+    self.dvrEnabled = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDvrWindowFromString:(NSString*)aPropVal
+{
+    self.dvrWindow = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAkamaiUniversalProvisionJobData"];
+    [aParams addIfDefinedKey:@"streamId" withInt:self.streamId];
+    [aParams addIfDefinedKey:@"systemUserName" withString:self.systemUserName];
+    [aParams addIfDefinedKey:@"systemPassword" withString:self.systemPassword];
+    [aParams addIfDefinedKey:@"domainName" withString:self.domainName];
+    [aParams addIfDefinedKey:@"dvrEnabled" withInt:self.dvrEnabled];
+    [aParams addIfDefinedKey:@"dvrWindow" withInt:self.dvrWindow];
+    [aParams addIfDefinedKey:@"primaryContact" withString:self.primaryContact];
+    [aParams addIfDefinedKey:@"secondaryContact" withString:self.secondaryContact];
+    [aParams addIfDefinedKey:@"streamType" withString:self.streamType];
+    [aParams addIfDefinedKey:@"notificationEmail" withString:self.notificationEmail];
+}
+
+- (void)dealloc
+{
+    [self->_systemUserName release];
+    [self->_systemPassword release];
+    [self->_domainName release];
+    [self->_primaryContact release];
+    [self->_secondaryContact release];
+    [self->_streamType release];
+    [self->_notificationEmail release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaAssetFilter
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
@@ -25986,16 +27653,6 @@
 
 @end
 
-@implementation KalturaBaseJobFilter
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaBaseJobFilter"];
-}
-
-@end
-
 @implementation KalturaBaseSyndicationFeedFilter
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
@@ -26006,12 +27663,12 @@
 
 @end
 
-@implementation KalturaBooleanField
+@implementation KalturaBatchJobFilter
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaBooleanField"];
+        [aParams putKey:@"objectType" withString:@"KalturaBatchJobFilter"];
 }
 
 @end
@@ -26135,51 +27792,6 @@
     [self->_memberEqual release];
     [self->_fullNameStartsWithIn release];
     [self->_ancestorIdIn release];
-    [super dealloc];
-}
-
-@end
-
-@implementation KalturaCategoryUserFilter
-@synthesize categoryDirectMembers = _categoryDirectMembers;
-@synthesize freeText = _freeText;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_categoryDirectMembers = KALTURA_UNDEF_BOOL;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfCategoryDirectMembers
-{
-    return KFT_Bool;
-}
-
-- (KalturaFieldType)getTypeOfFreeText
-{
-    return KFT_String;
-}
-
-- (void)setCategoryDirectMembersFromString:(NSString*)aPropVal
-{
-    self.categoryDirectMembers = [KalturaSimpleTypeParser parseBool:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaCategoryUserFilter"];
-    [aParams addIfDefinedKey:@"categoryDirectMembers" withBool:self.categoryDirectMembers];
-    [aParams addIfDefinedKey:@"freeText" withString:self.freeText];
-}
-
-- (void)dealloc
-{
-    [self->_freeText release];
     [super dealloc];
 }
 
@@ -27226,83 +28838,6 @@
 
 @end
 
-@implementation KalturaUserFilter
-@synthesize idOrScreenNameStartsWith = _idOrScreenNameStartsWith;
-@synthesize idEqual = _idEqual;
-@synthesize idIn = _idIn;
-@synthesize loginEnabledEqual = _loginEnabledEqual;
-@synthesize roleIdEqual = _roleIdEqual;
-@synthesize firstNameOrLastNameStartsWith = _firstNameOrLastNameStartsWith;
-
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_loginEnabledEqual = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfIdOrScreenNameStartsWith
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfIdEqual
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfLoginEnabledEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfRoleIdEqual
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfFirstNameOrLastNameStartsWith
-{
-    return KFT_String;
-}
-
-- (void)setLoginEnabledEqualFromString:(NSString*)aPropVal
-{
-    self.loginEnabledEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaUserFilter"];
-    [aParams addIfDefinedKey:@"idOrScreenNameStartsWith" withString:self.idOrScreenNameStartsWith];
-    [aParams addIfDefinedKey:@"idEqual" withString:self.idEqual];
-    [aParams addIfDefinedKey:@"idIn" withString:self.idIn];
-    [aParams addIfDefinedKey:@"loginEnabledEqual" withInt:self.loginEnabledEqual];
-    [aParams addIfDefinedKey:@"roleIdEqual" withString:self.roleIdEqual];
-    [aParams addIfDefinedKey:@"firstNameOrLastNameStartsWith" withString:self.firstNameOrLastNameStartsWith];
-}
-
-- (void)dealloc
-{
-    [self->_idOrScreenNameStartsWith release];
-    [self->_idEqual release];
-    [self->_idIn release];
-    [self->_roleIdEqual release];
-    [self->_firstNameOrLastNameStartsWith release];
-    [super dealloc];
-}
-
-@end
-
 @implementation KalturaUserLoginDataFilter
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
@@ -27339,6 +28874,40 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaAdminUserBaseFilter"];
+}
+
+@end
+
+@implementation KalturaAmazonS3StorageExportJobData
+@synthesize filesPermissionInS3 = _filesPermissionInS3;
+
+- (KalturaFieldType)getTypeOfFilesPermissionInS3
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAmazonS3StorageExportJobData"];
+    [aParams addIfDefinedKey:@"filesPermissionInS3" withString:self.filesPermissionInS3];
+}
+
+- (void)dealloc
+{
+    [self->_filesPermissionInS3 release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaAmazonS3StorageProfileBaseFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAmazonS3StorageProfileBaseFilter"];
 }
 
 @end
@@ -27432,729 +29001,25 @@
 
 @end
 
-@implementation KalturaBatchJobBaseFilter
-@synthesize entryIdEqual = _entryIdEqual;
-@synthesize jobTypeEqual = _jobTypeEqual;
-@synthesize jobTypeIn = _jobTypeIn;
-@synthesize jobTypeNotIn = _jobTypeNotIn;
-@synthesize jobSubTypeEqual = _jobSubTypeEqual;
-@synthesize jobSubTypeIn = _jobSubTypeIn;
-@synthesize jobSubTypeNotIn = _jobSubTypeNotIn;
-@synthesize onStressDivertToEqual = _onStressDivertToEqual;
-@synthesize onStressDivertToIn = _onStressDivertToIn;
-@synthesize onStressDivertToNotIn = _onStressDivertToNotIn;
-@synthesize statusEqual = _statusEqual;
-@synthesize statusIn = _statusIn;
-@synthesize statusNotIn = _statusNotIn;
-@synthesize abortEqual = _abortEqual;
-@synthesize checkAgainTimeoutGreaterThanOrEqual = _checkAgainTimeoutGreaterThanOrEqual;
-@synthesize checkAgainTimeoutLessThanOrEqual = _checkAgainTimeoutLessThanOrEqual;
-@synthesize progressGreaterThanOrEqual = _progressGreaterThanOrEqual;
-@synthesize progressLessThanOrEqual = _progressLessThanOrEqual;
-@synthesize updatesCountGreaterThanOrEqual = _updatesCountGreaterThanOrEqual;
-@synthesize updatesCountLessThanOrEqual = _updatesCountLessThanOrEqual;
-@synthesize priorityGreaterThanOrEqual = _priorityGreaterThanOrEqual;
-@synthesize priorityLessThanOrEqual = _priorityLessThanOrEqual;
-@synthesize priorityEqual = _priorityEqual;
-@synthesize priorityIn = _priorityIn;
-@synthesize priorityNotIn = _priorityNotIn;
-@synthesize twinJobIdEqual = _twinJobIdEqual;
-@synthesize twinJobIdIn = _twinJobIdIn;
-@synthesize twinJobIdNotIn = _twinJobIdNotIn;
-@synthesize bulkJobIdEqual = _bulkJobIdEqual;
-@synthesize bulkJobIdIn = _bulkJobIdIn;
-@synthesize bulkJobIdNotIn = _bulkJobIdNotIn;
-@synthesize parentJobIdEqual = _parentJobIdEqual;
-@synthesize parentJobIdIn = _parentJobIdIn;
-@synthesize parentJobIdNotIn = _parentJobIdNotIn;
-@synthesize rootJobIdEqual = _rootJobIdEqual;
-@synthesize rootJobIdIn = _rootJobIdIn;
-@synthesize rootJobIdNotIn = _rootJobIdNotIn;
-@synthesize queueTimeGreaterThanOrEqual = _queueTimeGreaterThanOrEqual;
-@synthesize queueTimeLessThanOrEqual = _queueTimeLessThanOrEqual;
-@synthesize finishTimeGreaterThanOrEqual = _finishTimeGreaterThanOrEqual;
-@synthesize finishTimeLessThanOrEqual = _finishTimeLessThanOrEqual;
-@synthesize errTypeEqual = _errTypeEqual;
-@synthesize errTypeIn = _errTypeIn;
-@synthesize errTypeNotIn = _errTypeNotIn;
-@synthesize errNumberEqual = _errNumberEqual;
-@synthesize errNumberIn = _errNumberIn;
-@synthesize errNumberNotIn = _errNumberNotIn;
-@synthesize fileSizeLessThan = _fileSizeLessThan;
-@synthesize fileSizeGreaterThan = _fileSizeGreaterThan;
-@synthesize lastWorkerRemoteEqual = _lastWorkerRemoteEqual;
-@synthesize schedulerIdEqual = _schedulerIdEqual;
-@synthesize schedulerIdIn = _schedulerIdIn;
-@synthesize schedulerIdNotIn = _schedulerIdNotIn;
-@synthesize workerIdEqual = _workerIdEqual;
-@synthesize workerIdIn = _workerIdIn;
-@synthesize workerIdNotIn = _workerIdNotIn;
-@synthesize batchIndexEqual = _batchIndexEqual;
-@synthesize batchIndexIn = _batchIndexIn;
-@synthesize batchIndexNotIn = _batchIndexNotIn;
-@synthesize lastSchedulerIdEqual = _lastSchedulerIdEqual;
-@synthesize lastSchedulerIdIn = _lastSchedulerIdIn;
-@synthesize lastSchedulerIdNotIn = _lastSchedulerIdNotIn;
-@synthesize lastWorkerIdEqual = _lastWorkerIdEqual;
-@synthesize lastWorkerIdIn = _lastWorkerIdIn;
-@synthesize lastWorkerIdNotIn = _lastWorkerIdNotIn;
-@synthesize dcEqual = _dcEqual;
-@synthesize dcIn = _dcIn;
-@synthesize dcNotIn = _dcNotIn;
+@implementation KalturaBatchJobFilterExt
+@synthesize jobTypeAndSubTypeIn = _jobTypeAndSubTypeIn;
 
-- (id)init
-{
-    self = [super init];
-    if (self == nil)
-        return nil;
-    self->_jobSubTypeEqual = KALTURA_UNDEF_INT;
-    self->_onStressDivertToEqual = KALTURA_UNDEF_INT;
-    self->_statusEqual = KALTURA_UNDEF_INT;
-    self->_abortEqual = KALTURA_UNDEF_INT;
-    self->_checkAgainTimeoutGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_checkAgainTimeoutLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_progressGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_progressLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_updatesCountGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_updatesCountLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_priorityGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_priorityLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_priorityEqual = KALTURA_UNDEF_INT;
-    self->_twinJobIdEqual = KALTURA_UNDEF_INT;
-    self->_bulkJobIdEqual = KALTURA_UNDEF_INT;
-    self->_parentJobIdEqual = KALTURA_UNDEF_INT;
-    self->_rootJobIdEqual = KALTURA_UNDEF_INT;
-    self->_queueTimeGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_queueTimeLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_finishTimeGreaterThanOrEqual = KALTURA_UNDEF_INT;
-    self->_finishTimeLessThanOrEqual = KALTURA_UNDEF_INT;
-    self->_errTypeEqual = KALTURA_UNDEF_INT;
-    self->_errNumberEqual = KALTURA_UNDEF_INT;
-    self->_fileSizeLessThan = KALTURA_UNDEF_INT;
-    self->_fileSizeGreaterThan = KALTURA_UNDEF_INT;
-    self->_lastWorkerRemoteEqual = KALTURA_UNDEF_INT;
-    self->_schedulerIdEqual = KALTURA_UNDEF_INT;
-    self->_workerIdEqual = KALTURA_UNDEF_INT;
-    self->_batchIndexEqual = KALTURA_UNDEF_INT;
-    self->_lastSchedulerIdEqual = KALTURA_UNDEF_INT;
-    self->_lastWorkerIdEqual = KALTURA_UNDEF_INT;
-    self->_dcEqual = KALTURA_UNDEF_INT;
-    return self;
-}
-
-- (KalturaFieldType)getTypeOfEntryIdEqual
+- (KalturaFieldType)getTypeOfJobTypeAndSubTypeIn
 {
     return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfJobTypeEqual
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfJobTypeIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfJobTypeNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfJobSubTypeEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfJobSubTypeIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfJobSubTypeNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfOnStressDivertToEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfOnStressDivertToIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfOnStressDivertToNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfStatusEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfStatusIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfStatusNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfAbortEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfCheckAgainTimeoutGreaterThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfCheckAgainTimeoutLessThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfProgressGreaterThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfProgressLessThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfUpdatesCountGreaterThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfUpdatesCountLessThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfPriorityGreaterThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfPriorityLessThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfPriorityEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfPriorityIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfPriorityNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfTwinJobIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfTwinJobIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfTwinJobIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfBulkJobIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfBulkJobIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfBulkJobIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfParentJobIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfParentJobIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfParentJobIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfRootJobIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfRootJobIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfRootJobIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfQueueTimeGreaterThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfQueueTimeLessThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfFinishTimeGreaterThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfFinishTimeLessThanOrEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfErrTypeEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfErrTypeIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfErrTypeNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfErrNumberEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfErrNumberIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfErrNumberNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfFileSizeLessThan
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfFileSizeGreaterThan
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfLastWorkerRemoteEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfSchedulerIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfSchedulerIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfSchedulerIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfWorkerIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfWorkerIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfWorkerIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfBatchIndexEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfBatchIndexIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfBatchIndexNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfLastSchedulerIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfLastSchedulerIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfLastSchedulerIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfLastWorkerIdEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfLastWorkerIdIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfLastWorkerIdNotIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfDcEqual
-{
-    return KFT_Int;
-}
-
-- (KalturaFieldType)getTypeOfDcIn
-{
-    return KFT_String;
-}
-
-- (KalturaFieldType)getTypeOfDcNotIn
-{
-    return KFT_String;
-}
-
-- (void)setJobSubTypeEqualFromString:(NSString*)aPropVal
-{
-    self.jobSubTypeEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setOnStressDivertToEqualFromString:(NSString*)aPropVal
-{
-    self.onStressDivertToEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setStatusEqualFromString:(NSString*)aPropVal
-{
-    self.statusEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setAbortEqualFromString:(NSString*)aPropVal
-{
-    self.abortEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setCheckAgainTimeoutGreaterThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.checkAgainTimeoutGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setCheckAgainTimeoutLessThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.checkAgainTimeoutLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setProgressGreaterThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.progressGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setProgressLessThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.progressLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setUpdatesCountGreaterThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.updatesCountGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setUpdatesCountLessThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.updatesCountLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setPriorityGreaterThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.priorityGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setPriorityLessThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.priorityLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setPriorityEqualFromString:(NSString*)aPropVal
-{
-    self.priorityEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setTwinJobIdEqualFromString:(NSString*)aPropVal
-{
-    self.twinJobIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setBulkJobIdEqualFromString:(NSString*)aPropVal
-{
-    self.bulkJobIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setParentJobIdEqualFromString:(NSString*)aPropVal
-{
-    self.parentJobIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setRootJobIdEqualFromString:(NSString*)aPropVal
-{
-    self.rootJobIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setQueueTimeGreaterThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.queueTimeGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setQueueTimeLessThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.queueTimeLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setFinishTimeGreaterThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.finishTimeGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setFinishTimeLessThanOrEqualFromString:(NSString*)aPropVal
-{
-    self.finishTimeLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setErrTypeEqualFromString:(NSString*)aPropVal
-{
-    self.errTypeEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setErrNumberEqualFromString:(NSString*)aPropVal
-{
-    self.errNumberEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setFileSizeLessThanFromString:(NSString*)aPropVal
-{
-    self.fileSizeLessThan = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setFileSizeGreaterThanFromString:(NSString*)aPropVal
-{
-    self.fileSizeGreaterThan = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setLastWorkerRemoteEqualFromString:(NSString*)aPropVal
-{
-    self.lastWorkerRemoteEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setSchedulerIdEqualFromString:(NSString*)aPropVal
-{
-    self.schedulerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setWorkerIdEqualFromString:(NSString*)aPropVal
-{
-    self.workerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setBatchIndexEqualFromString:(NSString*)aPropVal
-{
-    self.batchIndexEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setLastSchedulerIdEqualFromString:(NSString*)aPropVal
-{
-    self.lastSchedulerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setLastWorkerIdEqualFromString:(NSString*)aPropVal
-{
-    self.lastWorkerIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
-}
-
-- (void)setDcEqualFromString:(NSString*)aPropVal
-{
-    self.dcEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaBatchJobBaseFilter"];
-    [aParams addIfDefinedKey:@"entryIdEqual" withString:self.entryIdEqual];
-    [aParams addIfDefinedKey:@"jobTypeEqual" withString:self.jobTypeEqual];
-    [aParams addIfDefinedKey:@"jobTypeIn" withString:self.jobTypeIn];
-    [aParams addIfDefinedKey:@"jobTypeNotIn" withString:self.jobTypeNotIn];
-    [aParams addIfDefinedKey:@"jobSubTypeEqual" withInt:self.jobSubTypeEqual];
-    [aParams addIfDefinedKey:@"jobSubTypeIn" withString:self.jobSubTypeIn];
-    [aParams addIfDefinedKey:@"jobSubTypeNotIn" withString:self.jobSubTypeNotIn];
-    [aParams addIfDefinedKey:@"onStressDivertToEqual" withInt:self.onStressDivertToEqual];
-    [aParams addIfDefinedKey:@"onStressDivertToIn" withString:self.onStressDivertToIn];
-    [aParams addIfDefinedKey:@"onStressDivertToNotIn" withString:self.onStressDivertToNotIn];
-    [aParams addIfDefinedKey:@"statusEqual" withInt:self.statusEqual];
-    [aParams addIfDefinedKey:@"statusIn" withString:self.statusIn];
-    [aParams addIfDefinedKey:@"statusNotIn" withString:self.statusNotIn];
-    [aParams addIfDefinedKey:@"abortEqual" withInt:self.abortEqual];
-    [aParams addIfDefinedKey:@"checkAgainTimeoutGreaterThanOrEqual" withInt:self.checkAgainTimeoutGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"checkAgainTimeoutLessThanOrEqual" withInt:self.checkAgainTimeoutLessThanOrEqual];
-    [aParams addIfDefinedKey:@"progressGreaterThanOrEqual" withInt:self.progressGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"progressLessThanOrEqual" withInt:self.progressLessThanOrEqual];
-    [aParams addIfDefinedKey:@"updatesCountGreaterThanOrEqual" withInt:self.updatesCountGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"updatesCountLessThanOrEqual" withInt:self.updatesCountLessThanOrEqual];
-    [aParams addIfDefinedKey:@"priorityGreaterThanOrEqual" withInt:self.priorityGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"priorityLessThanOrEqual" withInt:self.priorityLessThanOrEqual];
-    [aParams addIfDefinedKey:@"priorityEqual" withInt:self.priorityEqual];
-    [aParams addIfDefinedKey:@"priorityIn" withString:self.priorityIn];
-    [aParams addIfDefinedKey:@"priorityNotIn" withString:self.priorityNotIn];
-    [aParams addIfDefinedKey:@"twinJobIdEqual" withInt:self.twinJobIdEqual];
-    [aParams addIfDefinedKey:@"twinJobIdIn" withString:self.twinJobIdIn];
-    [aParams addIfDefinedKey:@"twinJobIdNotIn" withString:self.twinJobIdNotIn];
-    [aParams addIfDefinedKey:@"bulkJobIdEqual" withInt:self.bulkJobIdEqual];
-    [aParams addIfDefinedKey:@"bulkJobIdIn" withString:self.bulkJobIdIn];
-    [aParams addIfDefinedKey:@"bulkJobIdNotIn" withString:self.bulkJobIdNotIn];
-    [aParams addIfDefinedKey:@"parentJobIdEqual" withInt:self.parentJobIdEqual];
-    [aParams addIfDefinedKey:@"parentJobIdIn" withString:self.parentJobIdIn];
-    [aParams addIfDefinedKey:@"parentJobIdNotIn" withString:self.parentJobIdNotIn];
-    [aParams addIfDefinedKey:@"rootJobIdEqual" withInt:self.rootJobIdEqual];
-    [aParams addIfDefinedKey:@"rootJobIdIn" withString:self.rootJobIdIn];
-    [aParams addIfDefinedKey:@"rootJobIdNotIn" withString:self.rootJobIdNotIn];
-    [aParams addIfDefinedKey:@"queueTimeGreaterThanOrEqual" withInt:self.queueTimeGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"queueTimeLessThanOrEqual" withInt:self.queueTimeLessThanOrEqual];
-    [aParams addIfDefinedKey:@"finishTimeGreaterThanOrEqual" withInt:self.finishTimeGreaterThanOrEqual];
-    [aParams addIfDefinedKey:@"finishTimeLessThanOrEqual" withInt:self.finishTimeLessThanOrEqual];
-    [aParams addIfDefinedKey:@"errTypeEqual" withInt:self.errTypeEqual];
-    [aParams addIfDefinedKey:@"errTypeIn" withString:self.errTypeIn];
-    [aParams addIfDefinedKey:@"errTypeNotIn" withString:self.errTypeNotIn];
-    [aParams addIfDefinedKey:@"errNumberEqual" withInt:self.errNumberEqual];
-    [aParams addIfDefinedKey:@"errNumberIn" withString:self.errNumberIn];
-    [aParams addIfDefinedKey:@"errNumberNotIn" withString:self.errNumberNotIn];
-    [aParams addIfDefinedKey:@"fileSizeLessThan" withInt:self.fileSizeLessThan];
-    [aParams addIfDefinedKey:@"fileSizeGreaterThan" withInt:self.fileSizeGreaterThan];
-    [aParams addIfDefinedKey:@"lastWorkerRemoteEqual" withInt:self.lastWorkerRemoteEqual];
-    [aParams addIfDefinedKey:@"schedulerIdEqual" withInt:self.schedulerIdEqual];
-    [aParams addIfDefinedKey:@"schedulerIdIn" withString:self.schedulerIdIn];
-    [aParams addIfDefinedKey:@"schedulerIdNotIn" withString:self.schedulerIdNotIn];
-    [aParams addIfDefinedKey:@"workerIdEqual" withInt:self.workerIdEqual];
-    [aParams addIfDefinedKey:@"workerIdIn" withString:self.workerIdIn];
-    [aParams addIfDefinedKey:@"workerIdNotIn" withString:self.workerIdNotIn];
-    [aParams addIfDefinedKey:@"batchIndexEqual" withInt:self.batchIndexEqual];
-    [aParams addIfDefinedKey:@"batchIndexIn" withString:self.batchIndexIn];
-    [aParams addIfDefinedKey:@"batchIndexNotIn" withString:self.batchIndexNotIn];
-    [aParams addIfDefinedKey:@"lastSchedulerIdEqual" withInt:self.lastSchedulerIdEqual];
-    [aParams addIfDefinedKey:@"lastSchedulerIdIn" withString:self.lastSchedulerIdIn];
-    [aParams addIfDefinedKey:@"lastSchedulerIdNotIn" withString:self.lastSchedulerIdNotIn];
-    [aParams addIfDefinedKey:@"lastWorkerIdEqual" withInt:self.lastWorkerIdEqual];
-    [aParams addIfDefinedKey:@"lastWorkerIdIn" withString:self.lastWorkerIdIn];
-    [aParams addIfDefinedKey:@"lastWorkerIdNotIn" withString:self.lastWorkerIdNotIn];
-    [aParams addIfDefinedKey:@"dcEqual" withInt:self.dcEqual];
-    [aParams addIfDefinedKey:@"dcIn" withString:self.dcIn];
-    [aParams addIfDefinedKey:@"dcNotIn" withString:self.dcNotIn];
+        [aParams putKey:@"objectType" withString:@"KalturaBatchJobFilterExt"];
+    [aParams addIfDefinedKey:@"jobTypeAndSubTypeIn" withString:self.jobTypeAndSubTypeIn];
 }
 
 - (void)dealloc
 {
-    [self->_entryIdEqual release];
-    [self->_jobTypeEqual release];
-    [self->_jobTypeIn release];
-    [self->_jobTypeNotIn release];
-    [self->_jobSubTypeIn release];
-    [self->_jobSubTypeNotIn release];
-    [self->_onStressDivertToIn release];
-    [self->_onStressDivertToNotIn release];
-    [self->_statusIn release];
-    [self->_statusNotIn release];
-    [self->_priorityIn release];
-    [self->_priorityNotIn release];
-    [self->_twinJobIdIn release];
-    [self->_twinJobIdNotIn release];
-    [self->_bulkJobIdIn release];
-    [self->_bulkJobIdNotIn release];
-    [self->_parentJobIdIn release];
-    [self->_parentJobIdNotIn release];
-    [self->_rootJobIdIn release];
-    [self->_rootJobIdNotIn release];
-    [self->_errTypeIn release];
-    [self->_errTypeNotIn release];
-    [self->_errNumberIn release];
-    [self->_errNumberNotIn release];
-    [self->_schedulerIdIn release];
-    [self->_schedulerIdNotIn release];
-    [self->_workerIdIn release];
-    [self->_workerIdNotIn release];
-    [self->_batchIndexIn release];
-    [self->_batchIndexNotIn release];
-    [self->_lastSchedulerIdIn release];
-    [self->_lastSchedulerIdNotIn release];
-    [self->_lastWorkerIdIn release];
-    [self->_lastWorkerIdNotIn release];
-    [self->_dcIn release];
-    [self->_dcNotIn release];
+    [self->_jobTypeAndSubTypeIn release];
     [super dealloc];
 }
 
@@ -28380,16 +29245,6 @@
 
 @end
 
-@implementation KalturaMailJobBaseFilter
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaMailJobBaseFilter"];
-}
-
-@end
-
 @implementation KalturaMediaFlavorParamsOutput
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
@@ -28400,12 +29255,12 @@
 
 @end
 
-@implementation KalturaNotificationBaseFilter
+@implementation KalturaObjectIdField
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaNotificationBaseFilter"];
+        [aParams putKey:@"objectType" withString:@"KalturaObjectIdField"];
 }
 
 @end
@@ -28722,6 +29577,16 @@
 
 @end
 
+@implementation KalturaAmazonS3StorageProfileFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAmazonS3StorageProfileFilter"];
+}
+
+@end
+
 @implementation KalturaApiActionPermissionItemFilter
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
@@ -28748,16 +29613,6 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaAssetParamsOutputFilter"];
-}
-
-@end
-
-@implementation KalturaBatchJobFilter
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaBatchJobFilter"];
 }
 
 @end
@@ -28873,26 +29728,6 @@
 
 @end
 
-@implementation KalturaMailJobFilter
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaMailJobFilter"];
-}
-
-@end
-
-@implementation KalturaNotificationFilter
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaNotificationFilter"];
-}
-
-@end
-
 @implementation KalturaPlaylistFilter
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
@@ -28939,30 +29774,6 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaYahooSyndicationFeedFilter"];
-}
-
-@end
-
-@implementation KalturaBatchJobFilterExt
-@synthesize jobTypeAndSubTypeIn = _jobTypeAndSubTypeIn;
-
-- (KalturaFieldType)getTypeOfJobTypeAndSubTypeIn
-{
-    return KFT_String;
-}
-
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaBatchJobFilterExt"];
-    [aParams addIfDefinedKey:@"jobTypeAndSubTypeIn" withString:self.jobTypeAndSubTypeIn];
-}
-
-- (void)dealloc
-{
-    [self->_jobTypeAndSubTypeIn release];
-    [super dealloc];
 }
 
 @end
@@ -30159,11 +30970,17 @@
     return [self.client queueArrayService:@"flavorasset" withAction:@"getWebPlayableByEntryId" withExpectedType:@"KalturaFlavorAsset"];
 }
 
-- (void)convertWithEntryId:(NSString*)aEntryId withFlavorParamsId:(int)aFlavorParamsId
+- (void)convertWithEntryId:(NSString*)aEntryId withFlavorParamsId:(int)aFlavorParamsId withPriority:(int)aPriority
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"flavorParamsId" withInt:aFlavorParamsId];
+    [self.client.params addIfDefinedKey:@"priority" withInt:aPriority];
     [self.client queueVoidService:@"flavorasset" withAction:@"convert"];
+}
+
+- (void)convertWithEntryId:(NSString*)aEntryId withFlavorParamsId:(int)aFlavorParamsId
+{
+    [self convertWithEntryId:aEntryId withFlavorParamsId:aFlavorParamsId withPriority:KALTURA_UNDEF_INT];
 }
 
 - (void)reconvertWithId:(NSString*)aId
@@ -30369,6 +31186,13 @@
     return [self.client queueObjectService:@"livestream" withAction:@"updateOfflineThumbnailFromUrl" withExpectedType:@"KalturaLiveStreamEntry"];
 }
 
+- (BOOL)isLiveWithId:(NSString*)aId withProtocol:(NSString*)aProtocol
+{
+    [self.client.params addIfDefinedKey:@"id" withString:aId];
+    [self.client.params addIfDefinedKey:@"protocol" withString:aProtocol];
+    return [self.client queueBoolService:@"livestream" withAction:@"isLive"];
+}
+
 @end
 
 @implementation KalturaMediaInfoService
@@ -30508,10 +31332,16 @@
     return [self getWithEntryId:aEntryId withVersion:KALTURA_UNDEF_INT];
 }
 
-- (NSString*)getMrssWithEntryId:(NSString*)aEntryId
+- (NSString*)getMrssWithEntryId:(NSString*)aEntryId withExtendingItemsArray:(NSArray*)aExtendingItemsArray
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
+    [self.client.params addIfDefinedKey:@"extendingItemsArray" withArray:aExtendingItemsArray];
     return [self.client queueStringService:@"media" withAction:@"getMrss"];
+}
+
+- (NSString*)getMrssWithEntryId:(NSString*)aEntryId
+{
+    return [self getMrssWithEntryId:aEntryId withExtendingItemsArray:nil];
 }
 
 - (KalturaMediaEntry*)updateWithEntryId:(NSString*)aEntryId withMediaEntry:(KalturaMediaEntry*)aMediaEntry
@@ -30764,19 +31594,6 @@
     return [self.client queueObjectService:@"mixing" withAction:@"appendMediaEntry" withExpectedType:@"KalturaMixEntry"];
 }
 
-- (int)requestFlatteningWithEntryId:(NSString*)aEntryId withFileFormat:(NSString*)aFileFormat withVersion:(int)aVersion
-{
-    [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
-    [self.client.params addIfDefinedKey:@"fileFormat" withString:aFileFormat];
-    [self.client.params addIfDefinedKey:@"version" withInt:aVersion];
-    return [self.client queueIntService:@"mixing" withAction:@"requestFlattening"];
-}
-
-- (int)requestFlatteningWithEntryId:(NSString*)aEntryId withFileFormat:(NSString*)aFileFormat
-{
-    return [self requestFlatteningWithEntryId:aEntryId withFileFormat:aFileFormat withVersion:KALTURA_UNDEF_INT];
-}
-
 - (NSMutableArray*)getMixesByMediaIdWithMediaEntryId:(NSString*)aMediaEntryId
 {
     [self.client.params addIfDefinedKey:@"mediaEntryId" withString:aMediaEntryId];
@@ -30815,12 +31632,18 @@
 @end
 
 @implementation KalturaPartnerService
-- (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId
+- (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId withSilent:(BOOL)aSilent
 {
     [self.client.params addIfDefinedKey:@"partner" withObject:aPartner];
     [self.client.params addIfDefinedKey:@"cmsPassword" withString:aCmsPassword];
     [self.client.params addIfDefinedKey:@"templatePartnerId" withInt:aTemplatePartnerId];
+    [self.client.params addIfDefinedKey:@"silent" withBool:aSilent];
     return [self.client queueObjectService:@"partner" withAction:@"register" withExpectedType:@"KalturaPartner"];
+}
+
+- (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId
+{
+    return [self registerWithPartner:aPartner withCmsPassword:aCmsPassword withTemplatePartnerId:aTemplatePartnerId withSilent:KALTURA_UNDEF_BOOL];
 }
 
 - (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword
@@ -31117,11 +31940,23 @@
     return [self listWithFilter:nil];
 }
 
-- (NSMutableArray*)executeWithId:(NSString*)aId withDetailed:(NSString*)aDetailed
+- (NSMutableArray*)executeWithId:(NSString*)aId withDetailed:(NSString*)aDetailed withPlaylistContext:(KalturaContext*)aPlaylistContext withFilter:(KalturaMediaEntryFilterForPlaylist*)aFilter
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"detailed" withString:aDetailed];
+    [self.client.params addIfDefinedKey:@"playlistContext" withObject:aPlaylistContext];
+    [self.client.params addIfDefinedKey:@"filter" withObject:aFilter];
     return [self.client queueArrayService:@"playlist" withAction:@"execute" withExpectedType:@"KalturaBaseEntry"];
+}
+
+- (NSMutableArray*)executeWithId:(NSString*)aId withDetailed:(NSString*)aDetailed withPlaylistContext:(KalturaContext*)aPlaylistContext
+{
+    return [self executeWithId:aId withDetailed:aDetailed withPlaylistContext:aPlaylistContext withFilter:nil];
+}
+
+- (NSMutableArray*)executeWithId:(NSString*)aId withDetailed:(NSString*)aDetailed
+{
+    return [self executeWithId:aId withDetailed:aDetailed withPlaylistContext:nil];
 }
 
 - (NSMutableArray*)executeWithId:(NSString*)aId
@@ -31426,6 +32261,41 @@
     return [self impersonateWithSecret:aSecret withImpersonatedPartnerId:aImpersonatedPartnerId withUserId:nil];
 }
 
+- (KalturaSessionInfo*)impersonateByKsWithSession:(NSString*)aSession withType:(int)aType withExpiry:(int)aExpiry withPrivileges:(NSString*)aPrivileges
+{
+    [self.client.params addIfDefinedKey:@"session" withString:aSession];
+    [self.client.params addIfDefinedKey:@"type" withInt:aType];
+    [self.client.params addIfDefinedKey:@"expiry" withInt:aExpiry];
+    [self.client.params addIfDefinedKey:@"privileges" withString:aPrivileges];
+    return [self.client queueObjectService:@"session" withAction:@"impersonateByKs" withExpectedType:@"KalturaSessionInfo"];
+}
+
+- (KalturaSessionInfo*)impersonateByKsWithSession:(NSString*)aSession withType:(int)aType withExpiry:(int)aExpiry
+{
+    return [self impersonateByKsWithSession:aSession withType:aType withExpiry:aExpiry withPrivileges:nil];
+}
+
+- (KalturaSessionInfo*)impersonateByKsWithSession:(NSString*)aSession withType:(int)aType
+{
+    return [self impersonateByKsWithSession:aSession withType:aType withExpiry:KALTURA_UNDEF_INT];
+}
+
+- (KalturaSessionInfo*)impersonateByKsWithSession:(NSString*)aSession
+{
+    return [self impersonateByKsWithSession:aSession withType:KALTURA_UNDEF_INT];
+}
+
+- (KalturaSessionInfo*)getWithSession:(NSString*)aSession
+{
+    [self.client.params addIfDefinedKey:@"session" withString:aSession];
+    return [self.client queueObjectService:@"session" withAction:@"get" withExpectedType:@"KalturaSessionInfo"];
+}
+
+- (KalturaSessionInfo*)get
+{
+    return [self getWithSession:nil];
+}
+
 - (KalturaStartWidgetSessionResponse*)startWidgetSessionWithWidgetId:(NSString*)aWidgetId withExpiry:(int)aExpiry
 {
     [self.client.params addIfDefinedKey:@"widgetId" withString:aWidgetId];
@@ -31441,10 +32311,10 @@
 @end
 
 @implementation KalturaStatsService
-- (void)collectWithEvent:(KalturaStatsEvent*)aEvent
+- (BOOL)collectWithEvent:(KalturaStatsEvent*)aEvent
 {
     [self.client.params addIfDefinedKey:@"event" withObject:aEvent];
-    [self.client queueVoidService:@"stats" withAction:@"collect"];
+    return [self.client queueBoolService:@"stats" withAction:@"collect"];
 }
 
 - (void)kmcCollectWithKmcEvent:(KalturaStatsKmcEvent*)aKmcEvent
@@ -31577,6 +32447,11 @@
     return [self.client queueBoolService:@"system" withAction:@"ping"];
 }
 
+- (int)getTime
+{
+    return [self.client queueIntService:@"system" withAction:@"getTime"];
+}
+
 @end
 
 @implementation KalturaThumbAssetService
@@ -31613,11 +32488,17 @@
     return [self serveByEntryIdWithEntryId:aEntryId withThumbParamId:KALTURA_UNDEF_INT];
 }
 
-- (NSString*)serveWithThumbAssetId:(NSString*)aThumbAssetId withVersion:(int)aVersion
+- (NSString*)serveWithThumbAssetId:(NSString*)aThumbAssetId withVersion:(int)aVersion withThumbParams:(KalturaThumbParams*)aThumbParams
 {
     [self.client.params addIfDefinedKey:@"thumbAssetId" withString:aThumbAssetId];
     [self.client.params addIfDefinedKey:@"version" withInt:aVersion];
+    [self.client.params addIfDefinedKey:@"thumbParams" withObject:aThumbParams];
     return [self.client queueServeService:@"thumbasset" withAction:@"serve"];
+}
+
+- (NSString*)serveWithThumbAssetId:(NSString*)aThumbAssetId withVersion:(int)aVersion
+{
+    return [self serveWithThumbAssetId:aThumbAssetId withVersion:aVersion withThumbParams:nil];
 }
 
 - (NSString*)serveWithThumbAssetId:(NSString*)aThumbAssetId
@@ -31706,11 +32587,17 @@
     [self.client queueVoidService:@"thumbasset" withAction:@"delete"];
 }
 
-- (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId
+- (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId withThumbParams:(KalturaThumbParams*)aThumbParams
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"storageId" withInt:aStorageId];
+    [self.client.params addIfDefinedKey:@"thumbParams" withObject:aThumbParams];
     return [self.client queueStringService:@"thumbasset" withAction:@"getUrl"];
+}
+
+- (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId
+{
+    return [self getUrlWithId:aId withStorageId:aStorageId withThumbParams:nil];
 }
 
 - (NSString*)getUrlWithId:(NSString*)aId
@@ -32187,6 +33074,18 @@
 - (KalturaUser*)disableLogin
 {
     return [self disableLoginWithUserId:nil];
+}
+
+- (NSString*)indexWithId:(NSString*)aId withShouldUpdate:(BOOL)aShouldUpdate
+{
+    [self.client.params addIfDefinedKey:@"id" withString:aId];
+    [self.client.params addIfDefinedKey:@"shouldUpdate" withBool:aShouldUpdate];
+    return [self.client queueStringService:@"user" withAction:@"index"];
+}
+
+- (NSString*)indexWithId:(NSString*)aId
+{
+    return [self indexWithId:aId withShouldUpdate:KALTURA_UNDEF_BOOL];
 }
 
 - (KalturaBulkUpload*)addFromBulkUploadWithFileData:(NSString*)aFileData withBulkUploadData:(KalturaBulkUploadJobData*)aBulkUploadData withBulkUploadUserData:(KalturaBulkUploadUserData*)aBulkUploadUserData

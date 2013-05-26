@@ -44,44 +44,44 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
++ (NSString*)PARTNER_SORT_VALUE_ASC
 {
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
+    return @"+partnerSortValue";
 }
 + (NSString*)START_TIME_ASC
 {
     return @"+startTime";
 }
-+ (NSString*)START_TIME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-startTime";
+    return @"+updatedAt";
 }
-+ (NSString*)PARTNER_SORT_VALUE_ASC
++ (NSString*)CREATED_AT_DESC
 {
-    return @"+partnerSortValue";
+    return @"-createdAt";
 }
 + (NSString*)PARTNER_SORT_VALUE_DESC
 {
     return @"-partnerSortValue";
 }
++ (NSString*)START_TIME_DESC
+{
+    return @"-startTime";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
 @end
 
 @implementation KalturaCuePointType
-+ (NSString*)ANNOTATION
-{
-    return @"annotation.Annotation";
-}
 + (NSString*)AD
 {
     return @"adCuePoint.Ad";
+}
++ (NSString*)ANNOTATION
+{
+    return @"annotation.Annotation";
 }
 + (NSString*)CODE
 {

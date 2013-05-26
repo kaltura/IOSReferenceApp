@@ -7,6 +7,7 @@
 //
 
 #import "Client.h"
+#import "WViPhoneAPI.h"
 
 @implementation Client
 
@@ -17,6 +18,8 @@
 
 @synthesize uploadFileTokenId;
 @synthesize uploadFilePath;
+
+@synthesize path, mwurl;
 
 + (Client *)instance {
 	static Client *sharedSingleton = nil;
@@ -280,7 +283,7 @@
         
         uploadedSize = currentChunk * CHUNK_SIZE;
         
-        token = [client.uploadToken uploadWithUploadTokenId:self.uploadFileTokenId withFileData:[Utils getDocPath:@"buffer.tmp"] withResume:(uploadedSize >= CHUNK_SIZE) withFinalChunk:(fileSize - uploadedSize <= CHUNK_SIZE)];
+        token = [client.uploadToken uploadWithUploadTokenId:self.uploadFileTokenId withFileData:[Utils getDocPath:@"buffer.tmp"] withResume:(uploadedSize >= CHUNK_SIZE) withFinalChunk:(fileSize - uploadedSize <= CHUNK_SIZE) withResumeAt: uploadedSize];
     }
     
 }
@@ -296,7 +299,7 @@
         
         [Utils createBuffer:uploadFilePath offset:uploadedSize];
         
-        token = [client.uploadToken uploadWithUploadTokenId:self.uploadFileTokenId withFileData:[Utils getDocPath:@"buffer.tmp"] withResume:YES withFinalChunk:(fileSize - uploadedSize <= CHUNK_SIZE)];
+        token = [client.uploadToken uploadWithUploadTokenId:self.uploadFileTokenId withFileData:[Utils getDocPath:@"buffer.tmp"] withResume:YES withFinalChunk:(fileSize - uploadedSize <= CHUNK_SIZE) withResumeAt: uploadedSize];
         
         return;
     }
@@ -424,10 +427,110 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
 }
 
 - (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId {
+    [self initializeDictionary];
+    //NSString *urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/playManifest/entryId/%@/flavorIds/%@/format/applehttp/protocol/http/a.wvm", partnerId, partnerId, mediaEntry.id, flavorId];
+    NSString *urlString = @"http://cdnbakmi.kaltura.com/p/524241/sp/52424100/serveFlavor/entryId/0_z7u06112/v/2/flavorId/0_ykl4ww48/name/a.wvm";
+    [self playMovieFromUrl:urlString];
     
-    return [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/playManifest/entryId/%@/flavorIds/%@/format/applehttp/protocol/http/a.mp4", partnerId, partnerId, mediaEntry.id, flavorId];
+    return [mwurl absoluteString];
     
 }
 
 
+
+#pragma widevine test
+
+- (void)playMovieFromUrl:(NSString *)path2 {
+    [path release];
+    path = [path2 retain];
+//    if ( self.mMoviePlayer ) {
+//        [self.mMoviePlayer stop];
+//        [self.mMoviePlayer.view removeFromSuperview]; }
+//    [mTextView setText:@"Loading"];
+//    [mBitrates removeAllSegments];
+//    [mSnapshots makeObjectsPerformSelector:NSSelectorFromString(@"removeFromSuperview") ];
+//    [mSnapshots removeAllObjects];
+//    [mSnapshotTimes removeAllObjects]; mDetailDescriptionLabel.text = path;
+    //[[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(playMovieFromUrlLater) userInfo:nil repeats:NO] forMode:NSDefaultRunLoopMode];
+    [self playMovieFromUrlLater];
+}
+
+- (void)playMovieFromUrlLater {
+   //NSString *urlString = [NSString stringWithFormat:@"http://%@",[path substringFromIndex:9]];
+    NSMutableString *responseUrl = [NSMutableString string];
+    WViOsApiStatus status = WV_Play( path, responseUrl, 0 );
+    if (status != WViOsApiStatus_OK) {
+       // mwurl = [NSURL URLWithString:responseUrl];
+    }
+     mwurl = [NSURL URLWithString:responseUrl];
+}
+
+- (NSDictionary*) initializeDictionary{
+		NSString* hostName;
+        hostName= [[NSString alloc] initWithString: @"http://www.kaltura.com"];
+    NSString* portalId, *drmServer;
+        portalId = [[NSString alloc] initWithString: @"kaltura"];
+
+        //emm
+		drmServer = [[NSString alloc] initWithFormat: @"%@/api_v3/index.php?service=widevine_widevinedrm&action=getLicense", hostName];
+		[hostName release];
+
+	//}
+    NSDictionary* dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                drmServer, WVDRMServerKey,
+                                @"sess4321", WVSessionIdKey,
+                                // @"streamabcd", WVStreamIdKey,
+                                @"cli0123", WVClientIdKey,
+                                portalId, WVPortalKey,
+                                @"XXXuser-dataXXX", WVCAUserDataKey,
+                                @"XXXclientipXXX", WVClientIPKey,
+                                //@"IDM", WVStorefrontKey,
+								//@"http://staging.shibboleth.tv/widevine/cypherpc/cgi-bin/Heartbeat.cgi", //WVHeartbeatUrlKey,
+								//@"5", WVHeartbeatPeriodKey,
+                             //   ((nativeAdapting == YES)?@"1":@"0"), WVPlayerDrivenAdaptationKey,
+                                NULL];
+    
+    WV_Initialize(callback, dictionary);
+    NSDictionary* dictionary2 = [NSDictionary dictionaryWithObjectsAndKeys:
+								WV_GetDeviceId(), WVDeviceIdKey,
+								@"1", WVPlayerDrivenAdaptationKey,
+								nil];
+    WViOsApiStatus w = WV_SetCredentials(dictionary2);
+    
+    [portalId release];
+    [drmServer release];
+	return dictionary;
+	
+}
+
+WViOsApiStatus callback( WViOsApiEvent event, NSDictionary *attributes )
+{
+    NSLog( @"callback %d %@\n", event, NSStringFromWViOsApiEvent( event ) );
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; SEL selector = 0;
+    switch ( event ) {
+        case WViOsApiEvent_SetCurrentBitrate:
+            selector = NSSelectorFromString(@"HandleCurrentBitrate:");
+            break;
+        case WViOsApiEvent_Bitrates:
+            selector = NSSelectorFromString(@"HandleBitrates:");
+            break;
+        case WViOsApiEvent_ChapterTitle:
+            selector = NSSelectorFromString(@"HandleChapterTitle:");
+            break;
+        case WViOsApiEvent_ChapterImage:
+            selector = NSSelectorFromString(@"HandleChapterImage:");
+            break;
+        case WViOsApiEvent_ChapterSetup:
+            selector = NSSelectorFromString(@"HandleChapterSetup:");
+        break; }
+    if ( selector ) {
+        [attributes retain];
+//        [sDetailViewController performSelectorOnMainThread:selector
+//                                                withObject:attributes waitUntilDone:NO];
+    }
+    [pool release];
+    return WViOsApiStatus_OK;
+}
+
 @end
+

@@ -74,6 +74,18 @@
 @end
 
 @implementation KalturaMetadataObjectType
++ (NSString*)AD_CUE_POINT
+{
+    return @"adCuePoint.AdCuePoint";
+}
++ (NSString*)ANNOTATION
+{
+    return @"annotation.Annotation";
+}
++ (NSString*)CODE_CUE_POINT
+{
+    return @"codeCuePoint.CodeCuePoint";
+}
 + (NSString*)ENTRY
 {
     return @"1";
@@ -90,52 +102,40 @@
 {
     return @"4";
 }
-+ (NSString*)ANNOTATION
-{
-    return @"annotation.Annotation";
-}
-+ (NSString*)AD_CUE_POINT
-{
-    return @"adCuePoint.AdCuePoint";
-}
-+ (NSString*)CODE_CUE_POINT
-{
-    return @"codeCuePoint.CodeCuePoint";
-}
 @end
 
 @implementation KalturaMetadataOrderBy
-+ (NSString*)METADATA_PROFILE_VERSION_ASC
-{
-    return @"+metadataProfileVersion";
-}
-+ (NSString*)METADATA_PROFILE_VERSION_DESC
-{
-    return @"-metadataProfileVersion";
-}
-+ (NSString*)VERSION_ASC
-{
-    return @"+version";
-}
-+ (NSString*)VERSION_DESC
-{
-    return @"-version";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
++ (NSString*)METADATA_PROFILE_VERSION_ASC
 {
-    return @"-createdAt";
+    return @"+metadataProfileVersion";
 }
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
 }
++ (NSString*)VERSION_ASC
+{
+    return @"+version";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)METADATA_PROFILE_VERSION_DESC
+{
+    return @"-metadataProfileVersion";
+}
 + (NSString*)UPDATED_AT_DESC
 {
     return @"-updatedAt";
+}
++ (NSString*)VERSION_DESC
+{
+    return @"-version";
 }
 @end
 
@@ -144,13 +144,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -1554,6 +1554,13 @@
 {
     [self.client.params addIfDefinedKey:@"id" withInt:aId];
     return [self.client queueServeService:@"metadata_metadata" withAction:@"serve"];
+}
+
+- (KalturaMetadata*)updateFromXSLWithId:(int)aId withXslFile:(NSString*)aXslFile
+{
+    [self.client.params addIfDefinedKey:@"id" withInt:aId];
+    [self.client.params addIfDefinedKey:@"xslFile" withFileName:aXslFile];
+    return [self.client queueObjectService:@"metadata_metadata" withAction:@"updateFromXSL" withExpectedType:@"KalturaMetadata"];
 }
 
 @end

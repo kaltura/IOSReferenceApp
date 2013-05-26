@@ -57,34 +57,34 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaMetadataObjectType : NSObject
++ (NSString*)AD_CUE_POINT;
++ (NSString*)ANNOTATION;
++ (NSString*)CODE_CUE_POINT;
 + (NSString*)ENTRY;
 + (NSString*)CATEGORY;
 + (NSString*)USER;
 + (NSString*)PARTNER;
-+ (NSString*)ANNOTATION;
-+ (NSString*)AD_CUE_POINT;
-+ (NSString*)CODE_CUE_POINT;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaMetadataOrderBy : NSObject
-+ (NSString*)METADATA_PROFILE_VERSION_ASC;
-+ (NSString*)METADATA_PROFILE_VERSION_DESC;
-+ (NSString*)VERSION_ASC;
-+ (NSString*)VERSION_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)METADATA_PROFILE_VERSION_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)VERSION_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)METADATA_PROFILE_VERSION_DESC;
 + (NSString*)UPDATED_AT_DESC;
++ (NSString*)VERSION_DESC;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaMetadataProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -429,6 +429,8 @@
 - (void)invalidateWithId:(int)aId;
 // Serves metadata XML file
 - (NSString*)serveWithId:(int)aId;
+// Action transforms current metadata object XML using a provided XSL.
+- (KalturaMetadata*)updateFromXSLWithId:(int)aId withXslFile:(NSString*)aXslFile;
 @end
 
 // @package External

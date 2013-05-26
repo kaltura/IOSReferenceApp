@@ -64,8 +64,10 @@
 @property (nonatomic,assign) double bandwidth;
 // The total storage consumption (in MB)
 @property (nonatomic,assign) double totalStorage;
-// The change in storage consumption (new uploads) during the given date range (in MB)
+// The added storage consumption (new uploads) during the given date range (in MB)
 @property (nonatomic,assign) double storage;
+// The deleted storage consumption (new uploads) during the given date range (in MB)
+@property (nonatomic,assign) double deletedStorage;
 // The peak amount of storage consumption during the given date range for the specific publisher
 @property (nonatomic,assign) double peakStorage;
 // The average amount of storage consumption during the given date range for the specific publisher
@@ -90,6 +92,7 @@
 - (KalturaFieldType)getTypeOfBandwidth;
 - (KalturaFieldType)getTypeOfTotalStorage;
 - (KalturaFieldType)getTypeOfStorage;
+- (KalturaFieldType)getTypeOfDeletedStorage;
 - (KalturaFieldType)getTypeOfPeakStorage;
 - (KalturaFieldType)getTypeOfAvgStorage;
 - (KalturaFieldType)getTypeOfCombinedStorageBandwidth;
@@ -109,6 +112,7 @@
 - (void)setBandwidthFromString:(NSString*)aPropVal;
 - (void)setTotalStorageFromString:(NSString*)aPropVal;
 - (void)setStorageFromString:(NSString*)aPropVal;
+- (void)setDeletedStorageFromString:(NSString*)aPropVal;
 - (void)setPeakStorageFromString:(NSString*)aPropVal;
 - (void)setAvgStorageFromString:(NSString*)aPropVal;
 - (void)setCombinedStorageBandwidthFromString:(NSString*)aPropVal;

@@ -34,18 +34,18 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaAnnotationOrderBy : NSObject
-+ (NSString*)END_TIME_ASC;
-+ (NSString*)END_TIME_DESC;
-+ (NSString*)DURATION_ASC;
-+ (NSString*)DURATION_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
-+ (NSString*)UPDATED_AT_ASC;
-+ (NSString*)UPDATED_AT_DESC;
-+ (NSString*)START_TIME_ASC;
-+ (NSString*)START_TIME_DESC;
++ (NSString*)DURATION_ASC;
++ (NSString*)END_TIME_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
++ (NSString*)START_TIME_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)DURATION_DESC;
++ (NSString*)END_TIME_DESC;
 + (NSString*)PARTNER_SORT_VALUE_DESC;
++ (NSString*)START_TIME_DESC;
++ (NSString*)UPDATED_AT_DESC;
 @end
 
 ///////////////////////// classes /////////////////////////
@@ -58,12 +58,24 @@
 @property (nonatomic,assign) int endTime;
 // Duration in milliseconds
 @property (nonatomic,assign,readonly) int duration;
+// Depth in the tree
+@property (nonatomic,assign,readonly) int depth;
+// Number of all descendants
+@property (nonatomic,assign,readonly) int childrenCount;
+// Number of children, first generation only.
+@property (nonatomic,assign,readonly) int directChildrenCount;
 - (KalturaFieldType)getTypeOfParentId;
 - (KalturaFieldType)getTypeOfText;
 - (KalturaFieldType)getTypeOfEndTime;
 - (KalturaFieldType)getTypeOfDuration;
+- (KalturaFieldType)getTypeOfDepth;
+- (KalturaFieldType)getTypeOfChildrenCount;
+- (KalturaFieldType)getTypeOfDirectChildrenCount;
 - (void)setEndTimeFromString:(NSString*)aPropVal;
 - (void)setDurationFromString:(NSString*)aPropVal;
+- (void)setDepthFromString:(NSString*)aPropVal;
+- (void)setChildrenCountFromString:(NSString*)aPropVal;
+- (void)setDirectChildrenCountFromString:(NSString*)aPropVal;
 @end
 
 // @package External

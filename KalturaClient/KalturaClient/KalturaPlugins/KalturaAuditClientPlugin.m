@@ -93,29 +93,25 @@
 @end
 
 @implementation KalturaAuditTrailAction
-+ (NSString*)CREATED
++ (NSString*)CHANGED
 {
-    return @"CREATED";
+    return @"CHANGED";
+}
++ (NSString*)CONTENT_VIEWED
+{
+    return @"CONTENT_VIEWED";
 }
 + (NSString*)COPIED
 {
     return @"COPIED";
 }
-+ (NSString*)CHANGED
++ (NSString*)CREATED
 {
-    return @"CHANGED";
+    return @"CREATED";
 }
 + (NSString*)DELETED
 {
     return @"DELETED";
-}
-+ (NSString*)VIEWED
-{
-    return @"VIEWED";
-}
-+ (NSString*)CONTENT_VIEWED
-{
-    return @"CONTENT_VIEWED";
 }
 + (NSString*)FILE_SYNC_CREATED
 {
@@ -129,20 +125,60 @@
 {
     return @"RELATION_REMOVED";
 }
++ (NSString*)VIEWED
+{
+    return @"VIEWED";
+}
 @end
 
 @implementation KalturaAuditTrailObjectType
-+ (NSString*)ACCESS_CONTROL
-{
-    return @"accessControl";
-}
-+ (NSString*)ADMIN_KUSER
-{
-    return @"adminKuser";
-}
 + (NSString*)BATCH_JOB
 {
     return @"BatchJob";
+}
++ (NSString*)EMAIL_INGESTION_PROFILE
+{
+    return @"EmailIngestionProfile";
+}
++ (NSString*)FILE_SYNC
+{
+    return @"FileSync";
+}
++ (NSString*)KSHOW_KUSER
+{
+    return @"KshowKuser";
+}
++ (NSString*)METADATA
+{
+    return @"Metadata";
+}
++ (NSString*)METADATA_PROFILE
+{
+    return @"MetadataProfile";
+}
++ (NSString*)PARTNER
+{
+    return @"Partner";
+}
++ (NSString*)PERMISSION
+{
+    return @"Permission";
+}
++ (NSString*)UPLOAD_TOKEN
+{
+    return @"UploadToken";
+}
++ (NSString*)USER_LOGIN_DATA
+{
+    return @"UserLoginData";
+}
++ (NSString*)USER_ROLE
+{
+    return @"UserRole";
+}
++ (NSString*)ACCESS_CONTROL
+{
+    return @"accessControl";
 }
 + (NSString*)CATEGORY
 {
@@ -152,33 +188,17 @@
 {
     return @"conversionProfile2";
 }
-+ (NSString*)EMAIL_INGESTION_PROFILE
-{
-    return @"EmailIngestionProfile";
-}
 + (NSString*)ENTRY
 {
     return @"entry";
-}
-+ (NSString*)FILE_SYNC
-{
-    return @"FileSync";
 }
 + (NSString*)FLAVOR_ASSET
 {
     return @"flavorAsset";
 }
-+ (NSString*)THUMBNAIL_ASSET
-{
-    return @"thumbAsset";
-}
 + (NSString*)FLAVOR_PARAMS
 {
     return @"flavorParams";
-}
-+ (NSString*)THUMBNAIL_PARAMS
-{
-    return @"thumbParams";
 }
 + (NSString*)FLAVOR_PARAMS_CONVERSION_PROFILE
 {
@@ -188,17 +208,9 @@
 {
     return @"flavorParamsOutput";
 }
-+ (NSString*)THUMBNAIL_PARAMS_OUTPUT
-{
-    return @"thumbParamsOutput";
-}
 + (NSString*)KSHOW
 {
     return @"kshow";
-}
-+ (NSString*)KSHOW_KUSER
-{
-    return @"KshowKuser";
 }
 + (NSString*)KUSER
 {
@@ -212,10 +224,6 @@
 {
     return @"moderation";
 }
-+ (NSString*)PARTNER
-{
-    return @"Partner";
-}
 + (NSString*)ROUGHCUT
 {
     return @"roughcutEntry";
@@ -224,37 +232,25 @@
 {
     return @"syndicationFeed";
 }
++ (NSString*)THUMBNAIL_ASSET
+{
+    return @"thumbAsset";
+}
++ (NSString*)THUMBNAIL_PARAMS
+{
+    return @"thumbParams";
+}
++ (NSString*)THUMBNAIL_PARAMS_OUTPUT
+{
+    return @"thumbParamsOutput";
+}
 + (NSString*)UI_CONF
 {
     return @"uiConf";
 }
-+ (NSString*)UPLOAD_TOKEN
-{
-    return @"UploadToken";
-}
 + (NSString*)WIDGET
 {
     return @"widget";
-}
-+ (NSString*)METADATA
-{
-    return @"Metadata";
-}
-+ (NSString*)METADATA_PROFILE
-{
-    return @"MetadataProfile";
-}
-+ (NSString*)USER_LOGIN_DATA
-{
-    return @"UserLoginData";
-}
-+ (NSString*)USER_ROLE
-{
-    return @"UserRole";
-}
-+ (NSString*)PERMISSION
-{
-    return @"Permission";
 }
 @end
 
@@ -263,13 +259,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)PARSED_AT_ASC
 {
     return @"+parsedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)PARSED_AT_DESC
 {

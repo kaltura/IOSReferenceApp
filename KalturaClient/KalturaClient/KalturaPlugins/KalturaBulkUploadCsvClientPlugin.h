@@ -45,7 +45,11 @@
 @interface KalturaBulkUploadCsvJobData : KalturaBulkUploadJobData
 // The version of the csv file
 @property (nonatomic,assign,readonly) int csvVersion;	// enum KalturaBulkUploadCsvVersion
+// Array containing CSV headers
+@property (nonatomic,retain) NSMutableArray* columns;	// of KalturaString elements
 - (KalturaFieldType)getTypeOfCsvVersion;
+- (KalturaFieldType)getTypeOfColumns;
+- (NSString*)getObjectTypeOfColumns;
 - (void)setCsvVersionFromString:(NSString*)aPropVal;
 @end
 

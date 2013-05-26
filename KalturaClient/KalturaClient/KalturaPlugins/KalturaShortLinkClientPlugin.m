@@ -48,25 +48,25 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
++ (NSString*)EXPIRES_AT_ASC
 {
-    return @"-createdAt";
+    return @"+expiresAt";
 }
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
 }
-+ (NSString*)UPDATED_AT_DESC
++ (NSString*)CREATED_AT_DESC
 {
-    return @"-updatedAt";
-}
-+ (NSString*)EXPIRES_AT_ASC
-{
-    return @"+expiresAt";
+    return @"-createdAt";
 }
 + (NSString*)EXPIRES_AT_DESC
 {
     return @"-expiresAt";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 

@@ -42,11 +42,11 @@
 // @subpackage Kaltura
 @interface KalturaShortLinkOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
-+ (NSString*)UPDATED_AT_ASC;
-+ (NSString*)UPDATED_AT_DESC;
 + (NSString*)EXPIRES_AT_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)EXPIRES_AT_DESC;
++ (NSString*)UPDATED_AT_DESC;
 @end
 
 ///////////////////////// classes /////////////////////////

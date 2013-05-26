@@ -59,18 +59,18 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaVirusScanEngineType : NSObject
++ (NSString*)CLAMAV_SCAN_ENGINE;
++ (NSString*)SYMANTEC_SCAN_DIRECT_ENGINE;
 + (NSString*)SYMANTEC_SCAN_ENGINE;
 + (NSString*)SYMANTEC_SCAN_JAVA_ENGINE;
-+ (NSString*)SYMANTEC_SCAN_DIRECT_ENGINE;
-+ (NSString*)CLAMAV_SCAN_ENGINE;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaVirusScanProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
