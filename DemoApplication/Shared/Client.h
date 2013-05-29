@@ -34,6 +34,9 @@
     NSString *uploadFileTokenId;
     NSString *uploadFilePath;
     
+    UISegmentedControl *mBitrates;
+    bool mSettingBitRateButton;
+    
     UIViewController *uploadDelegateController;
 }
 
@@ -58,9 +61,11 @@
 - (void)uploadProcess:(NSDictionary *)data withDelegate:(UIViewController *)delegateController;
 - (NSArray *)getBitratesList:(KalturaMediaEntry *)mediaEntry withFilter:(NSString *)filter;
 - (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId;
+-(void)HandleCurrentBitrate:(NSDictionary *)attributes;
+-(void)HandleBitrates:(NSDictionary *)attributes;
 
 
-- (NSDictionary*) initializeDictionary;
+- (NSDictionary*) initializeDictionary: (NSString *)flavorId;
 
 @property (nonatomic, retain) KalturaClient *client;
 @property (nonatomic, retain) NSMutableArray *categories;
@@ -71,5 +76,6 @@
 @property (nonatomic, retain) NSString *uploadFilePath;
 @property (nonatomic, retain) NSString *path;
 @property (nonatomic, retain) NSURL *mwurl;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *mBitrates;
 
 @end

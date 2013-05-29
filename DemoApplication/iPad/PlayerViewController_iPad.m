@@ -37,7 +37,7 @@
     if (self.moviePlayerViewController.moviePlayer.loadState == 3) {
         
         [activity stopAnimating];
-
+        
     }
 }
 
@@ -72,37 +72,37 @@
 }
 
 - (void)deregisterFromNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:MPMoviePlayerLoadStateDidChangeNotification 
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerLoadStateDidChangeNotification
                                                   object:nil];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:MPMoviePlayerPlaybackStateDidChangeNotification 
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackStateDidChangeNotification
                                                   object:nil];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification 
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
                                                   object:nil];
     
 }
 
 
 - (void)registerForNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(MPMoviePlayerLoadStateDidChange:) 
-                                                 name:MPMoviePlayerLoadStateDidChangeNotification 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(MPMoviePlayerLoadStateDidChange:)
+                                                 name:MPMoviePlayerLoadStateDidChangeNotification
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(MPMoviePlayerPlaybackStateDidChange:) 
-                                                 name:MPMoviePlayerPlaybackStateDidChangeNotification 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(MPMoviePlayerPlaybackStateDidChange:)
+                                                 name:MPMoviePlayerPlaybackStateDidChangeNotification
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(MPMoviePlayerPlaybackDidFinish:) 
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(MPMoviePlayerPlaybackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:nil];
-
+    
     
 }
 
@@ -127,15 +127,20 @@
     
     [buttonBitrate setTitle:[Utils getStrBitrate:[dic objectForKey:@"bitrate"]] forState:UIControlStateNormal];
     
-    NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"]];
+    [[Client instance] initializeDictionary:[dic objectForKey:@"id"]];
     
-    NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
-    [self.moviePlayerViewController.moviePlayer stop];
-    [self.moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:strURL]];
-    [self.moviePlayerViewController.moviePlayer prepareToPlay];
-    self.moviePlayerViewController.moviePlayer.initialPlaybackTime = interval;
-    [self.moviePlayerViewController.moviePlayer play];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+        
+        NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"]];
+        //to callback - Itay
+        NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
+        [self.moviePlayerViewController.moviePlayer stop];
+        [self.moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:strURL]];
+        [self.moviePlayerViewController.moviePlayer prepareToPlay];
+        self.moviePlayerViewController.moviePlayer.initialPlaybackTime = interval;
+        [self.moviePlayerViewController.moviePlayer play];
+    });
 }
 
 - (void)bitrateButtonPressed:(UIButton *)button {
@@ -147,16 +152,16 @@
 }
 
 - (IBAction)sliderChanged:(UISlider *)slider {
-
+    
     activeTime = CFAbsoluteTimeGetCurrent();
     
     float time = self.mediaEntry.duration * slider.value;
     if (time < 0) time = 0;
     if (time > self.mediaEntry.duration) time = self.mediaEntry.duration;
     
-    self.moviePlayerViewController.moviePlayer.currentPlaybackTime = time;   
+    self.moviePlayerViewController.moviePlayer.currentPlaybackTime = time;
     currentTimeLabel.text = [Utils getTimeStr:self.moviePlayerViewController.moviePlayer.currentPlaybackTime];
-
+    
     [activity startAnimating];
 }
 
@@ -166,10 +171,10 @@
         
         viewBitrates.alpha = 0.0;
         
-        viewVolume.frame = CGRectMake(button.frame.origin.x - 110, 
-                                        button.frame.origin.y - viewVolume.frame.size.height + 55, 
-                                        viewVolume.frame.size.width, 
-                                        viewVolume.frame.size.height);
+        viewVolume.frame = CGRectMake(button.frame.origin.x - 110,
+                                      button.frame.origin.y - viewVolume.frame.size.height + 55,
+                                      viewVolume.frame.size.width,
+                                      viewVolume.frame.size.height);
         
         viewVolume.alpha = 1.0;
         
@@ -181,14 +186,14 @@
 }
 
 - (IBAction)bitratesPressed:(UIButton *)button {
-
+    
     if (viewBitrates.alpha == 0.0) {
-       
+        
         viewVolume.alpha = 0.0;
         
-        viewBitrates.frame = CGRectMake(button.frame.origin.x - 74, 
-                                        button.frame.origin.y - viewBitrates.frame.size.height + 55, 
-                                        viewBitrates.frame.size.width, 
+        viewBitrates.frame = CGRectMake(button.frame.origin.x - 74,
+                                        button.frame.origin.y - viewBitrates.frame.size.height + 55,
+                                        viewBitrates.frame.size.width,
                                         viewBitrates.frame.size.height);
         
         viewBitrates.alpha = 1.0;
@@ -202,8 +207,8 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	
-//	[self updateInterfaceOrientation:UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
-
+    //	[self updateInterfaceOrientation:UIInterfaceOrientationIsLandscape(toInterfaceOrientation)];
+    
     if (viewBitrates.alpha > 0.0) {
         viewBitrates.alpha = 0.0;
     }
@@ -219,7 +224,7 @@
     //self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"ipadnew"];
     self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"widevine"];
     
-
+    
     if ([self.bitrates count] > 0) {
         
         for (int i = 0; i < [self.bitrates count]; i++) {
@@ -244,19 +249,19 @@
         
         
         
-        viewBitratesMiddle.frame = CGRectMake(viewBitratesMiddle.frame.origin.x, 
-                                              viewBitratesMiddle.frame.origin.y, 
-                                              viewBitratesMiddle.frame.size.width, 
+        viewBitratesMiddle.frame = CGRectMake(viewBitratesMiddle.frame.origin.x,
+                                              viewBitratesMiddle.frame.origin.y,
+                                              viewBitratesMiddle.frame.size.width,
                                               32 * [self.bitrates count]);
         
-        viewBitratesBottom.frame = CGRectMake(viewBitratesBottom.frame.origin.x, 
-                                              viewBitratesMiddle.frame.origin.y + viewBitratesMiddle.frame.size.height, 
-                                              viewBitratesBottom.frame.size.width, 
+        viewBitratesBottom.frame = CGRectMake(viewBitratesBottom.frame.origin.x,
+                                              viewBitratesMiddle.frame.origin.y + viewBitratesMiddle.frame.size.height,
+                                              viewBitratesBottom.frame.size.width,
                                               viewBitratesBottom.frame.size.height);
         
-        viewBitrates.frame = CGRectMake(viewBitrates.frame.origin.x, 
-                                        viewBitrates.frame.origin.y, 
-                                        viewBitrates.frame.size.width, 
+        viewBitrates.frame = CGRectMake(viewBitrates.frame.origin.x,
+                                        viewBitrates.frame.origin.y,
+                                        viewBitrates.frame.size.width,
                                         viewBitratesBottom.frame.origin.y + viewBitratesBottom.frame.size.height);
         
         self.moviePlayerViewController = [[MPMoviePlayerViewController alloc] init];
@@ -271,7 +276,7 @@
         
         
         self.moviePlayerViewController.moviePlayer.view.frame = CGRectMake(0, 0, (isLandscape ? 480 : 320), (isLandscape ? 300 : 460));
-
+        
         [self.view insertSubview:self.moviePlayerViewController.moviePlayer.view atIndex:0];
         [self registerForNotifications];
         
@@ -284,7 +289,7 @@
     } else {
         toolbarView.hidden = YES;
         [activity stopAnimating];
-
+        
     }
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
@@ -296,11 +301,11 @@
 }
 
 - (void)updateCurrentTime {
-
+    
     //NSLog(@"%d %d", self.moviePlayerViewController.moviePlayer.playbackState, self.moviePlayerViewController.moviePlayer.loadState);
     
     if (self.moviePlayerViewController.moviePlayer.playbackState == MPMoviePlaybackStatePlaying) {
-     
+        
         if ([activity isAnimating] && self.moviePlayerViewController.moviePlayer.loadState == 3) {
             [activity stopAnimating];
         }
@@ -308,7 +313,7 @@
         currentTimeLabel.text = [Utils getTimeStr:self.moviePlayerViewController.moviePlayer.currentPlaybackTime];
         
         if (self.mediaEntry.duration > 0) {
-        
+            
             timeSlider.value = self.moviePlayerViewController.moviePlayer.currentPlaybackTime / self.mediaEntry.duration;
             
             
@@ -345,7 +350,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    
     activeTime = CFAbsoluteTimeGetCurrent();
     
     if (viewBitrates.alpha > 0.0 || viewVolume.alpha > 0.0) {
@@ -387,7 +392,7 @@
 - (IBAction)donePressed {
     
     if (self.moviePlayerViewController) {
-     
+        
         [self.moviePlayerViewController.moviePlayer stop];
         
     }
@@ -402,7 +407,7 @@
     [self.bitrates release];
     
     if (self.moviePlayerViewController) {
-    
+        
         [self.moviePlayerViewController release];
         
     }
@@ -432,7 +437,7 @@
     
     self.bitrates = [[NSMutableArray alloc] init];
     [self updateBitrates];
-
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -446,7 +451,7 @@
 	volumeView.showsRouteButton = NO;
 	[viewVolume addSubview:volumeView];
 	[volumeView release];
-
+    
     noVolume = (app.volumeLevel == 0);
     if (noVolume) {
         
