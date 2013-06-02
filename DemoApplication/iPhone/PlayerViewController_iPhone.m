@@ -14,6 +14,7 @@
 @synthesize mediaEntry;
 @synthesize bitrates;
 @synthesize moviePlayerViewController;
+@synthesize flavorType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -127,16 +128,57 @@
     NSDictionary *dic = [self.bitrates objectAtIndex:ind];
     
     [buttonBitrate setTitle:[Utils getStrBitrate:[dic objectForKey:@"bitrate"]] forState:UIControlStateNormal];
-    
-    NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"]];
+//    
+//    NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"]];
+//        
+//    NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
+//    [self.moviePlayerViewController.moviePlayer stop];
+//    [self.moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:strURL]];
+//    [self.moviePlayerViewController.moviePlayer prepareToPlay];
+//    self.moviePlayerViewController.moviePlayer.initialPlaybackTime = interval;
+//    [self.moviePlayerViewController.moviePlayer play];
+
+    if ([flavorType isEqual:@"wv"])
+    {
+        //wrong! -- shouldn't be constanstly reintializing singletons. Either simply I have to change dictionary of singleton or
+        // create a new instance each time.
+        [[Client instance] initializeWVDictionary:[dic objectForKey:@"id"]];
+        [Client instance].delegate = self;
         
+        NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
+        
+        [[Client instance] playMovieFromUrl:strURL];
+        
+    }
+    else
+    {
+        [self playVideo:dic];
+    }
+    
+}
+
+-(void) videoStop
+{
+    [self.moviePlayerViewController.moviePlayer stop];
+}
+
+-(void) videoPlay:(NSURL*) url
+{
+    [self.moviePlayerViewController.moviePlayer setContentURL:url];
+    [self.moviePlayerViewController.moviePlayer prepareToPlay];
+    [self.moviePlayerViewController.moviePlayer play];
+}
+
+-(void) playVideo:(NSDictionary*)dic
+{
+    NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
+    
     NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
     [self.moviePlayerViewController.moviePlayer stop];
     [self.moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:strURL]];
     [self.moviePlayerViewController.moviePlayer prepareToPlay];
     self.moviePlayerViewController.moviePlayer.initialPlaybackTime = interval;
     [self.moviePlayerViewController.moviePlayer play];
-    
 }
 
 - (void)bitrateButtonPressed:(UIButton *)button {
@@ -214,8 +256,18 @@
 - (void)updateBitrates {
 
     totalTimeLabel.text = [NSString stringWithFormat:@"/ %@", [Utils getTimeStr:self.mediaEntry.duration]];
+
+    self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"widevine"];
     
-    self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"iphonenew"];
+    if (self.bitrates.count < 1)
+    {
+        flavorType = @"ipadnew";
+        self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"iphonenew"];
+    }
+    else
+    {
+        flavorType = @"wv";
+    }
     
     if ([self.bitrates count] > 0) {
         
@@ -379,10 +431,13 @@
 
 - (IBAction)donePressed {
     
-    if (self.moviePlayerViewController) {
-     
+    if (self.moviePlayerViewController && [flavorType isEqualToString:@"wv"])
+    {
+        [[Client instance] donePlayingMovieWithWV];
+    }
+    else
+    {
         [self.moviePlayerViewController.moviePlayer stop];
-        
     }
     
     [self.navigationController popViewControllerAnimated:YES];

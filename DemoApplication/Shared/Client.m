@@ -23,6 +23,8 @@ static NSArray *sBitRates;
 
 @synthesize path, mwurl, mBitrates;
 
+@synthesize delegate = _delegate;
+
 + (Client *)instance {
 	static Client *sharedSingleton = nil;
 	
@@ -246,7 +248,6 @@ static NSArray *sBitRates;
 #pragma upload process
 
 - (void)endUploading {
-    
     [Utils deleteBufferFile];
     
     if (token) {
@@ -256,9 +257,7 @@ static NSArray *sBitRates;
     }
     
     client.delegate = nil;
-    client.uploadProgressDelegate = nil;
-    
-    
+    client.uploadProgressDelegate = nil; 
 }
 
 - (void)cancelUploading {
@@ -270,19 +269,19 @@ static NSArray *sBitRates;
 
 - (BOOL)uploadingInProgress {
     
-    return (uploadedSize > 0);
-    
+    return (uploadedSize > 0);  
 }
 
 - (void)uploadTry {
     
     uploadTryCount++;
     
-    if (fileSize < CHUNK_SIZE) {
+    if (fileSize < CHUNK_SIZE)
+    {
         uploadedSize = 0;
         token = [client.uploadToken uploadWithUploadTokenId:token.id withFileData:self.uploadFilePath];
-    } else {
-        
+    } else
+    {
         uploadedSize = currentChunk * CHUNK_SIZE;
         
         token = [client.uploadToken uploadWithUploadTokenId:self.uploadFileTokenId withFileData:[Utils getDocPath:@"buffer.tmp"] withResume:(uploadedSize >= CHUNK_SIZE) withFinalChunk:(fileSize - uploadedSize <= CHUNK_SIZE) withResumeAt: uploadedSize];
@@ -297,8 +296,8 @@ static NSArray *sBitRates;
     uploadedSize = currentChunk * CHUNK_SIZE;
     uploadTryCount = 0;
     
-    if (uploadedSize < fileSize) {
-        
+    if (uploadedSize < fileSize)
+    {      
         [Utils createBuffer:uploadFilePath offset:uploadedSize];
         
         token = [client.uploadToken uploadWithUploadTokenId:self.uploadFileTokenId withFileData:[Utils getDocPath:@"buffer.tmp"] withResume:YES withFinalChunk:(fileSize - uploadedSize <= CHUNK_SIZE) withResumeAt: uploadedSize];
@@ -311,28 +310,24 @@ static NSArray *sBitRates;
     [uploadDelegateController performSelector:@selector(uploadFinished)];
 }
 
-- (void)requestFailed:(KalturaClientBase*)aClient {
-    
+- (void)requestFailed:(KalturaClientBase*)aClient
+{
     if (uploadTryCount < 4) {
         
-        [self performSelector:@selector(uploadTry) withObject:nil afterDelay:2.0];
-        
-        
-    } else {
-        
+        [self performSelector:@selector(uploadTry) withObject:nil afterDelay:2.0]; 
+    }
+    else
+    {
         [self endUploading];
         
         [uploadDelegateController performSelector:@selector(uploadFailed)];
-        
     }
 }
 
 - (void)request:(ASIHTTPRequest *)request didSendBytes:(long long)bytes {
-    
     uploadedSize += bytes;
     
     [uploadDelegateController performSelector:@selector(updateProgress:) withObject:[NSNumber numberWithFloat:((float)(uploadedSize * 300 / fileSize) / 300.0)]];
-    
 }
 
 - (void)uploadProcess:(NSDictionary *)data withDelegate:(UIViewController *)delegateController {
@@ -372,15 +367,16 @@ static NSArray *sBitRates;
     
     self.uploadFileTokenId = token.id;
     
-    if (fileSize < CHUNK_SIZE) {
+    if (fileSize < CHUNK_SIZE)
+    {
         token = [client.uploadToken uploadWithUploadTokenId:token.id withFileData:self.uploadFilePath];
-    } else {
-        
+    }
+    else
+    {   
         [Utils createBuffer:[data objectForKey:@"path"] offset:0];
         
         token = [client.uploadToken uploadWithUploadTokenId:self.uploadFileTokenId withFileData:[Utils getDocPath:@"buffer.tmp"] withResume:NO withFinalChunk:NO];
     }
-    
 }
 
 NSInteger bitratesSort(id media1, id media2, void *reverse)
@@ -402,7 +398,6 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
     
     KalturaAssetFilter *_filter = [[KalturaAssetFilter alloc] init];
     _filter.entryIdEqual = mediaEntry.id;
-    
     KalturaFlavorAssetListResponse* _response = [client.flavorAsset listWithFilter:_filter];
     [_filter release];
     
@@ -418,9 +413,7 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
             
             [bitrates addObject:dictionary];
             [dictionary release];
-            
-        }
-        
+        } 
     }
     
     [bitrates sortUsingFunction:bitratesSort context:nil];
@@ -428,34 +421,42 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
     return bitrates;
 }
 
-- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId
+- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId forFlavorType: (NSString*)flavorType
 {
-    //NSString *urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/playManifest/entryId/%@/flavorIds/%@/format/applehttp/protocol/http/a.wvm", partnerId, partnerId, mediaEntry.id, flavorId];
-    //NSString *urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/serveFlavor/entryId/%@/v/2/flavorId/%@/name/a.wvm", partnerId, partnerId, mediaEntry.id, flavorId];
-       NSString *urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/serveFlavor/entryId/%@/v/2/flavorId/%@/name/a.wvm", partnerId, partnerId, mediaEntry.id, flavorId];
-
-    NSMutableString *responseUrl = [NSMutableString string];
-    //NSString *urlString = @"http://cdnbakmi.kaltura.com/p/1424501/sp/142450100/serveFlavor/entryId/0_30ejils6/v/2/flavorId/0_fs2in114/name/a.wvm";
-    WViOsApiStatus status = WV_Play(urlString, responseUrl, 0 );
+    NSString *urlString;
     
-    return responseUrl;
+    if([flavorType isEqual: @"wv"])
+    {
+        urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/serveFlavor/entryId/%@/v/2/flavorId/%@/name/a.wvm", partnerId, partnerId, mediaEntry.id, flavorId];
+    }
+    else
+    {
+        urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/playManifest/entryId/%@/flavorIds/%@/format/applehttp/protocol/http/a.mp4", partnerId, partnerId, mediaEntry.id, flavorId];
+    }
+    
+    return urlString;
 }
 
+#pragma widevine support methods
 
+- (void)donePlayingMovieWithWV
+{
+    [self.delegate videoStop];
+    WV_Stop();
+}
 
-#pragma widevine test
-
-- (void)playMovieFromUrl:(NSString *)path2 {
+- (void)playMovieFromUrl:(NSString *)videoUrlString
+{
     [path release];
-    path = [path2 retain];
-    [self playMovieFromUrlLater];
+    path = [videoUrlString retain];
     
-    //    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:0.1 target:self selector:@selector
-    //                                       (playMovieFromUrlLater) userInfo:nil repeats:NO] forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(playMovieFromUrlLater) userInfo:nil repeats:NO] forMode:NSDefaultRunLoopMode];
     
 }
 
-- (void)playMovieFromUrlLater {
+- (void)playMovieFromUrlLater
+{
+    
     NSMutableString *responseUrl = [NSMutableString string];
     WViOsApiStatus status = WV_Play(path, responseUrl, 0 );
     
@@ -467,26 +468,22 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
     mwurl = [NSURL URLWithString:responseUrl];
     NSLog(@"play later");
     
+    [self.delegate videoPlay:mwurl];
 }
 
-- (NSDictionary*) initializeDictionary:(NSString *)flavorId{
+- (NSDictionary*) initializeWVDictionary:(NSString *)flavorId{
     NSString* hostName;
     hostName= [[NSString alloc] initWithString: @"http://www.kaltura.com"];
     NSString* portalId, *drmServer;
     portalId = [[NSString alloc] initWithString: @"kaltura"];
     
-    //emm
-    NSLog(@"%@", self.client.ks);
-    drmServer = [[NSString alloc] initWithFormat: @"%@/api_v3/index.php?service=widevine_widevinedrm&action=getLicense&format=widevine&flavorAssetId=%@&ks=%@" , hostName, flavorId,  self.client.ks];
+    //EMM
+    drmServer = [[NSString alloc] initWithFormat: @"%@/api_v3/index.php?service=widevine_widevinedrm&action=getLicense&format=widevine&flavorAssetId=%@&ks=%@" , hostName, flavorId, self.client.ks];
     [hostName release];
     
     NSDictionary* dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                 drmServer, WVDRMServerKey,
-                                //                                @"sess4321", WVSessionIdKey,
-                                //                                @"cli0123", WVClientIdKey,
                                 portalId, WVPortalKey,
-                                //                                @"XXXuser-dataXXX", WVCAUserDataKey,
-                                //                                @"XXXclientipXXX", WVClientIPKey,
                                 NULL];
     
     WV_Initialize(callback, dictionary);
@@ -518,7 +515,6 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
         if ( [[sBitRates objectAtIndex:idx] longValue] >= curBitRate) {
             mBitrates.selectedSegmentIndex = idx;
             break;
-            
         }
     }
     

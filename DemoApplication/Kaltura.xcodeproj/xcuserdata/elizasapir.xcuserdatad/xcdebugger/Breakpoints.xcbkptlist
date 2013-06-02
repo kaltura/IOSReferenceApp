@@ -4,28 +4,15 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iPad/MoviesViewController_iPad.m"
-         timestampString = "391161394.2661"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "123"
-         endingLineNumber = "123"
-         landmarkName = "-playButtonPressed"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iPad/PlayerViewController_iPad.m"
-         timestampString = "391419246.051922"
+         timestampString = "391880882.933788"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "225"
-         endingLineNumber = "225"
+         startingLineNumber = "270"
+         endingLineNumber = "270"
          landmarkName = "-updateBitrates"
          landmarkType = "5">
       </FileBreakpoint>
@@ -33,12 +20,25 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iPad/PlayerViewController_iPad.m"
-         timestampString = "391419321.354191"
+         filePath = "Shared/Client.m"
+         timestampString = "391880882.933788"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
+         startingLineNumber = "426"
+         endingLineNumber = "426"
+         landmarkName = "-getVideoURL:forFlavor:forFlavorType:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPad/PlayerViewController_iPad.m"
+         timestampString = "391880882.933788"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "140"
+         endingLineNumber = "140"
          landmarkName = "-runWithBitrate:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,24 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iPad/PlayerViewController_iPad.m"
-         timestampString = "391419324.844133"
+         timestampString = "391855424.093698"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
-         landmarkName = "-runWithBitrate:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "iPad/PlayerViewController_iPad.m"
-         timestampString = "391419328.235779"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "126"
-         endingLineNumber = "126"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "-runWithBitrate:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,12 +60,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Shared/Client.m"
-         timestampString = "391429374.551536"
+         timestampString = "391880882.933788"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "441"
-         endingLineNumber = "441"
-         landmarkName = "-getVideoURL:forFlavor:"
+         startingLineNumber = "475"
+         endingLineNumber = "475"
+         landmarkName = "-initializeWVDictionary:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPad/PlayerViewController_iPad.m"
+         timestampString = "391880882.933788"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
+         landmarkName = "-videoStop"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPad/PlayerViewController_iPad.m"
+         timestampString = "391880882.933788"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "162"
+         endingLineNumber = "162"
+         landmarkName = "-videoPlay:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPad/PlayerViewController_iPad.m"
+         timestampString = "391880882.933788"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "261"
+         endingLineNumber = "261"
+         landmarkName = "-updateBitrates"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../KalturaClient/KalturaClient/KalturaClient.m"
+         timestampString = "391860873.842875"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "20406"
+         endingLineNumber = "20406"
+         landmarkName = "-toParams:isSuper:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -86,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Shared/Client.m"
-         timestampString = "391419396.601723"
+         timestampString = "391880882.933788"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "406"
-         endingLineNumber = "406"
+         startingLineNumber = "401"
+         endingLineNumber = "401"
          landmarkName = "-getBitratesList:withFilter:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -98,39 +137,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Shared/Client.m"
-         timestampString = "391429374.551536"
+         filePath = "iPad/PlayerViewController_iPad.m"
+         timestampString = "391880882.933788"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "480"
-         endingLineNumber = "480"
-         landmarkName = "-initializeDictionary:"
+         startingLineNumber = "187"
+         endingLineNumber = "187"
+         landmarkName = "-bitrateButtonPressed:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Shared/Client.m"
-         timestampString = "391429374.551536"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "492"
-         endingLineNumber = "492"
-         landmarkName = "-initializeDictionary:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "iPad/PlayerViewController_iPad.m"
-         timestampString = "391429691.461378"
+         timestampString = "391880882.933788"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "230"
-         endingLineNumber = "230"
-         landmarkName = "-updateBitrates"
+         startingLineNumber = "436"
+         endingLineNumber = "436"
+         landmarkName = "-donePressed"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

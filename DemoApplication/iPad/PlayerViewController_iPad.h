@@ -10,7 +10,7 @@
 
 @class AppDelegate_iPad;
 
-@interface PlayerViewController_iPad : UIViewController {
+@interface PlayerViewController_iPad : UIViewController<ClientDelegate> {
     
     AppDelegate_iPad *app;
     
@@ -47,6 +47,7 @@
     IBOutlet UIView *viewVolume;
 
     BOOL noVolume;
+    NSString *flavorType;
     
 }
 
@@ -59,5 +60,6 @@
 @property (nonatomic, retain) KalturaMediaEntry *mediaEntry;
 @property (nonatomic, retain) NSArray *bitrates;
 @property (nonatomic, retain) MPMoviePlayerViewController *moviePlayerViewController;
+@property (nonatomic, retain) NSString *flavorType;
 
 @end

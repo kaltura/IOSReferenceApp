@@ -13,6 +13,11 @@
 
 @class KalturaClient;
 
+@protocol ClientDelegate <NSObject>
+-(void) videoStop;
+-(void) videoPlay:(NSURL*) url;
+@end
+
 @interface Client : NSObject <KalturaClientDelegate, ASIProgressDelegate> {
     
     KalturaClient *client;
@@ -60,12 +65,14 @@
 - (BOOL)uploadingInProgress;
 - (void)uploadProcess:(NSDictionary *)data withDelegate:(UIViewController *)delegateController;
 - (NSArray *)getBitratesList:(KalturaMediaEntry *)mediaEntry withFilter:(NSString *)filter;
-- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId;
+- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId forFlavorType: (NSString*)flavorType;
 -(void)HandleCurrentBitrate:(NSDictionary *)attributes;
 -(void)HandleBitrates:(NSDictionary *)attributes;
 
+- (void)donePlayingMovieWithWV;
+- (void)playMovieFromUrl:(NSString *)path2;
 
-- (NSDictionary*) initializeDictionary: (NSString *)flavorId;
+- (NSDictionary*) initializeWVDictionary: (NSString *)flavorId;
 
 @property (nonatomic, retain) KalturaClient *client;
 @property (nonatomic, retain) NSMutableArray *categories;
@@ -77,5 +84,7 @@
 @property (nonatomic, retain) NSString *path;
 @property (nonatomic, retain) NSURL *mwurl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *mBitrates;
+
+@property (nonatomic, assign) id<ClientDelegate> delegate;
 
 @end
