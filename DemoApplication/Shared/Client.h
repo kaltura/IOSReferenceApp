@@ -12,17 +12,24 @@
 #define DEFAULT_SERVICE_URL     @"http://www.kaltura.com"
 
 @class KalturaClient;
+@class WVSettings;
 
 @protocol ClientDelegate <NSObject>
 -(void) videoStop;
 -(void) videoPlay:(NSURL*) url;
+-(void) loadWVBitratesList:(NSArray*)wvBitrates;
 @end
 
 @interface Client : NSObject <KalturaClientDelegate, ASIProgressDelegate> {
     
+    NSMutableArray* mutableArray;
+    NSDictionary* dict;
+    
     KalturaClient *client;
     NSMutableArray *categories;
     NSMutableArray *media;
+    
+    WVSettings* wvSettings;
     
     int partnerId;
     
@@ -35,7 +42,7 @@
     int uploadTryCount;
     
     NSString *path;
-    NSURL *mwurl;
+    NSURL *wvUrl;
     NSString *uploadFileTokenId;
     NSString *uploadFilePath;
     
@@ -72,7 +79,10 @@
 - (void)donePlayingMovieWithWV;
 - (void)playMovieFromUrl:(NSString *)path2;
 
-- (NSDictionary*) initializeWVDictionary: (NSString *)flavorId;
+- (void) initializeWVDictionary: (NSString *)flavorId;
+- (void) teminateWV;
+- (void)selectBitrate:(int)ind;
+
 
 @property (nonatomic, retain) KalturaClient *client;
 @property (nonatomic, retain) NSMutableArray *categories;
@@ -82,9 +92,12 @@
 @property (nonatomic, retain) NSString *uploadFileTokenId;
 @property (nonatomic, retain) NSString *uploadFilePath;
 @property (nonatomic, retain) NSString *path;
-@property (nonatomic, retain) NSURL *mwurl;
+@property (nonatomic, retain) NSURL *wvUrl;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *mBitrates;
 
 @property (nonatomic, assign) id<ClientDelegate> delegate;
+
+@property (nonatomic, assign)NSMutableArray* mutableArray;
+@property (nonatomic, assign)NSDictionary* dict;
 
 @end

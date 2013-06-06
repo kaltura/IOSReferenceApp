@@ -51,6 +51,8 @@
     
 }
 
++(NSString*) getFlavorID;
+
 - (IBAction)donePressed;
 - (IBAction)playPressed;
 - (IBAction)bitratesPressed:(UIButton *)button;

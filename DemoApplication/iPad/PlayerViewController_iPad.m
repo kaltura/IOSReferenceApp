@@ -16,6 +16,9 @@
 @synthesize moviePlayerViewController;
 @synthesize flavorType;
 
+static NSString* flavorID = @"";
++ (NSString*) getFlavorID { return flavorID; }
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,7 +42,6 @@
     if (self.moviePlayerViewController.moviePlayer.loadState == 3) {
         
         [activity stopAnimating];
-        
     }
 }
 
@@ -114,17 +116,13 @@
 
 - (void)runWithBitrate:(int)ind {
     
-    
     for (int i = 0; i < [self.bitrates count]; i++) {
-        
-        
         UIButton *button = (UIButton *)[viewBitrates viewWithTag:i + 100];
         button.enabled = (i != ind);
         
         if (i == ind) {
             imageBitrateCheck.center = CGPointMake(imageBitrateCheck.center.x, button.center.y);
         }
-        
     }
     
     [activity startAnimating];
@@ -135,15 +133,18 @@
     
     if ([flavorType isEqual:@"wv"])
     {
-        //wrong! -- shouldn't be constanstly reintializing singletons. Either simply I have to change dictionary of singleton or
-        // create a new instance each time.
-        [[Client instance] initializeWVDictionary:[dic objectForKey:@"id"]];
-        [Client instance].delegate = self;
+        //There will be initialize of WV only if the flavor id will be chenged
+        if([dic objectForKey:@"id"] != flavorID){
+            flavorID = [dic objectForKey:@"id"];
+            [[Client instance] initializeWVDictionary:[dic objectForKey:@"id"]];
+            [Client instance].delegate = self;
+        }
+        else{
+            [[Client instance] selectBitrate:ind];
+        }
         
         NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
-        
         [[Client instance] playMovieFromUrl:strURL];
-        
     }
     else
     {
@@ -152,15 +153,18 @@
     
 }
 
--(void) videoStop
-{
+-(void) videoStop{
+    
     [self.moviePlayerViewController.moviePlayer stop];
 }
 
--(void) videoPlay:(NSURL*) url
-{
+-(void) videoPlay:(NSURL*) url{
+    
+    NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
+    [self.moviePlayerViewController.moviePlayer stop];
     [self.moviePlayerViewController.moviePlayer setContentURL:url];
     [self.moviePlayerViewController.moviePlayer prepareToPlay];
+    self.moviePlayerViewController.moviePlayer.initialPlaybackTime = interval;
     [self.moviePlayerViewController.moviePlayer play];
 }
 
@@ -170,8 +174,8 @@
     [self performSelector:@selector(playVideo:) withObject:userInfo afterDelay:5];
 }
 
--(void) playVideo:(NSDictionary*)dic
-{
+-(void) playVideo:(NSDictionary*)dic{
+    
     NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
 
     NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
@@ -183,15 +187,14 @@
 }
 
 - (void)bitrateButtonPressed:(UIButton *)button {
-    
+
     [self runWithBitrate:button.tag - 100];
     
     viewBitrates.alpha = 0.0;
-    
 }
 
 - (IBAction)sliderChanged:(UISlider *)slider {
-    
+
     activeTime = CFAbsoluteTimeGetCurrent();
     
     float time = self.mediaEntry.duration * slider.value;
@@ -217,7 +220,8 @@
         
         viewVolume.alpha = 1.0;
         
-    } else {
+    }
+    else {
         
         viewVolume.alpha = 0.0;
         
@@ -237,7 +241,8 @@
         
         viewBitrates.alpha = 1.0;
         
-    } else {
+    }
+    else {
         
         viewBitrates.alpha = 0.0;
         
@@ -254,58 +259,33 @@
     }
 }
 
+-(void) loadWVBitratesList:(NSArray*)wvBitrates{
+    self.bitrates = wvBitrates;
+    NSLog(@"%@", self.bitrates);
+    [self crerateBitratesList];
+}
+
 - (void)updateBitrates {
     
     totalTimeLabel.text = [NSString stringWithFormat:@"/ %@", [Utils getTimeStr:self.mediaEntry.duration]];
 
     self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"widevine"];
     
-    if (self.bitrates.count < 1)
-    {
+    //Check if the video supports WV
+    if (self.bitrates.count < 1){
+        
         flavorType = @"ipadnew";
         self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"ipadnew"];
     }
-    else
-    {
+    else{
+        
         flavorType = @"wv";
-    }    
+        
+    }
     
-    if ([self.bitrates count] > 0)
-    {
+    if ([self.bitrates count] > 0){
         
-        for (int i = 0; i < [self.bitrates count]; i++) {
-            
-            NSArray *nib_objects = [[NSBundle mainBundle] loadNibNamed:@"Bitrates" owner:self options:nil];
-            
-            int index = i;
-            if (i > 0) index = 1;
-            if (i == [self.bitrates count] - 1) index = 2;
-            
-            UIButton *button = [nib_objects objectAtIndex:index];
-            
-            button.frame = CGRectMake(10, 6 + i * 32, button.frame.size.width, button.frame.size.height);
-            button.tag = i + 100;
-            NSMutableDictionary *dic = [self.bitrates objectAtIndex:i];
-            
-            [button setTitle:[Utils getStrBitrate:[dic objectForKey:@"bitrate"]] forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(bitrateButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
-            [viewBitrates insertSubview:button belowSubview:imageBitrateCheck]; 
-        }    
-        
-        viewBitratesMiddle.frame = CGRectMake(viewBitratesMiddle.frame.origin.x,
-                                              viewBitratesMiddle.frame.origin.y,
-                                              viewBitratesMiddle.frame.size.width,
-                                              32 * [self.bitrates count]);
-        
-        viewBitratesBottom.frame = CGRectMake(viewBitratesBottom.frame.origin.x,
-                                              viewBitratesMiddle.frame.origin.y + viewBitratesMiddle.frame.size.height,
-                                              viewBitratesBottom.frame.size.width,
-                                              viewBitratesBottom.frame.size.height);
-        
-        viewBitrates.frame = CGRectMake(viewBitrates.frame.origin.x,
-                                        viewBitrates.frame.origin.y,
-                                        viewBitrates.frame.size.width,
-                                        viewBitratesBottom.frame.origin.y + viewBitratesBottom.frame.size.height);
+        [self crerateBitratesList];
         
         self.moviePlayerViewController = [[MPMoviePlayerViewController alloc] init];
         self.moviePlayerViewController.moviePlayer.controlStyle = MPMovieControlStyleNone;
@@ -315,8 +295,6 @@
         UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         
         BOOL isLandscape = UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
-        
-        
         
         self.moviePlayerViewController.moviePlayer.view.frame = CGRectMake(0, 0, (isLandscape ? 480 : 320), (isLandscape ? 300 : 460));
         
@@ -330,17 +308,56 @@
         timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCurrentTime) userInfo:nil repeats:YES];
         
     } else {
+        
         toolbarView.hidden = YES;
         [activity stopAnimating];
         
     }
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     
     toolsView.alpha = 1.0;
     
-    [UIView commitAnimations];
+    [UIView commitAnimations];    
+}
+
+-(void) crerateBitratesList{
     
+    for (int i = 0; i < [self.bitrates count]; i++) {
+        
+        NSArray *nib_objects = [[NSBundle mainBundle] loadNibNamed:@"Bitrates" owner:self options:nil];
+        
+        int index = i;
+        if (i > 0) index = 1;
+        if (i == [self.bitrates count] - 1) index = 2;
+        
+        UIButton *button = [nib_objects objectAtIndex:index];
+        
+        button.frame = CGRectMake(10, 6 + i * 32, button.frame.size.width, button.frame.size.height);
+        button.tag = i + 100;
+        NSMutableDictionary *dic = [self.bitrates objectAtIndex:i];
+        
+        [button setTitle:[Utils getStrBitrate:[dic objectForKey:@"bitrate"]] forState:UIControlStateNormal];
+        
+        [button addTarget:self action:@selector(bitrateButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
+        [viewBitrates insertSubview:button belowSubview:imageBitrateCheck];
+    }
+    
+    viewBitratesMiddle.frame = CGRectMake(viewBitratesMiddle.frame.origin.x,
+                                          viewBitratesMiddle.frame.origin.y,
+                                          viewBitratesMiddle.frame.size.width,
+                                          32 * [self.bitrates count]);
+    
+    viewBitratesBottom.frame = CGRectMake(viewBitratesBottom.frame.origin.x,
+                                          viewBitratesMiddle.frame.origin.y + viewBitratesMiddle.frame.size.height,
+                                          viewBitratesBottom.frame.size.width,
+                                          viewBitratesBottom.frame.size.height);
+    
+    viewBitrates.frame = CGRectMake(viewBitrates.frame.origin.x,
+                                    viewBitrates.frame.origin.y,
+                                    viewBitrates.frame.size.width,
+                                    viewBitratesBottom.frame.origin.y + viewBitratesBottom.frame.size.height);
 }
 
 - (void)updateCurrentTime {
@@ -377,8 +394,7 @@
             
         }
         
-    }
-    
+    }    
     
     BOOL _noVolume = (app.volumeLevel == 0);
     if (_noVolume != noVolume) {

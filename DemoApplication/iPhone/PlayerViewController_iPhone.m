@@ -16,6 +16,9 @@
 @synthesize moviePlayerViewController;
 @synthesize flavorType;
 
+static NSString* flavorID = @"";
++ (NSString*) getFlavorID { return flavorID; }
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -128,27 +131,21 @@
     NSDictionary *dic = [self.bitrates objectAtIndex:ind];
     
     [buttonBitrate setTitle:[Utils getStrBitrate:[dic objectForKey:@"bitrate"]] forState:UIControlStateNormal];
-//    
-//    NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"]];
-//        
-//    NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
-//    [self.moviePlayerViewController.moviePlayer stop];
-//    [self.moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:strURL]];
-//    [self.moviePlayerViewController.moviePlayer prepareToPlay];
-//    self.moviePlayerViewController.moviePlayer.initialPlaybackTime = interval;
-//    [self.moviePlayerViewController.moviePlayer play];
 
     if ([flavorType isEqual:@"wv"])
     {
-        //wrong! -- shouldn't be constanstly reintializing singletons. Either simply I have to change dictionary of singleton or
-        // create a new instance each time.
-        [[Client instance] initializeWVDictionary:[dic objectForKey:@"id"]];
-        [Client instance].delegate = self;
+        //There will be initialize of WV only if the flavor id will be chenged
+        if([dic objectForKey:@"id"] != flavorID){
+            flavorID = [dic objectForKey:@"id"];
+            [[Client instance] initializeWVDictionary:[dic objectForKey:@"id"]];
+            [Client instance].delegate = self;
+        }
+        else{
+            [[Client instance] selectBitrate:ind];
+        }
         
         NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
-        
         [[Client instance] playMovieFromUrl:strURL];
-        
     }
     else
     {
@@ -164,9 +161,18 @@
 
 -(void) videoPlay:(NSURL*) url
 {
+    NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
+    [self.moviePlayerViewController.moviePlayer stop];
     [self.moviePlayerViewController.moviePlayer setContentURL:url];
     [self.moviePlayerViewController.moviePlayer prepareToPlay];
+    self.moviePlayerViewController.moviePlayer.initialPlaybackTime = interval;
     [self.moviePlayerViewController.moviePlayer play];
+}
+
+-(void) callbackWV:(NSNotification *)notification
+{
+    NSDictionary* userInfo = [notification userInfo];
+    [self performSelector:@selector(playVideo:) withObject:userInfo afterDelay:5];
 }
 
 -(void) playVideo:(NSDictionary*)dic
@@ -251,6 +257,12 @@
     if (viewVolume.alpha > 0.0) {
         viewVolume.alpha = 0.0;
     }
+}
+
+-(void) loadWVBitratesList:(NSArray*)wvBitrates{
+    self.bitrates = wvBitrates;
+    NSLog(@"%@", self.bitrates);
+    [self crerateBitratesList];
 }
 
 - (void)updateBitrates {
@@ -342,6 +354,44 @@
     
     [UIView commitAnimations];
     
+}
+
+-(void) crerateBitratesList{
+    
+    for (int i = 0; i < [self.bitrates count]; i++) {
+        
+        NSArray *nib_objects = [[NSBundle mainBundle] loadNibNamed:@"Bitrates" owner:self options:nil];
+        
+        int index = i;
+        if (i > 0) index = 1;
+        if (i == [self.bitrates count] - 1) index = 2;
+        
+        UIButton *button = [nib_objects objectAtIndex:index];
+        
+        button.frame = CGRectMake(10, 6 + i * 32, button.frame.size.width, button.frame.size.height);
+        button.tag = i + 100;
+        NSMutableDictionary *dic = [self.bitrates objectAtIndex:i];
+        
+        [button setTitle:[Utils getStrBitrate:[dic objectForKey:@"bitrate"]] forState:UIControlStateNormal];
+        
+        [button addTarget:self action:@selector(bitrateButtonPressed:)forControlEvents:UIControlEventTouchUpInside];
+        [viewBitrates insertSubview:button belowSubview:imageBitrateCheck];
+    }
+    
+    viewBitratesMiddle.frame = CGRectMake(viewBitratesMiddle.frame.origin.x,
+                                          viewBitratesMiddle.frame.origin.y,
+                                          viewBitratesMiddle.frame.size.width,
+                                          32 * [self.bitrates count]);
+    
+    viewBitratesBottom.frame = CGRectMake(viewBitratesBottom.frame.origin.x,
+                                          viewBitratesMiddle.frame.origin.y + viewBitratesMiddle.frame.size.height,
+                                          viewBitratesBottom.frame.size.width,
+                                          viewBitratesBottom.frame.size.height);
+    
+    viewBitrates.frame = CGRectMake(viewBitrates.frame.origin.x,
+                                    viewBitrates.frame.origin.y,
+                                    viewBitrates.frame.size.width,
+                                    viewBitratesBottom.frame.origin.y + viewBitratesBottom.frame.size.height);
 }
 
 - (void)updateCurrentTime {

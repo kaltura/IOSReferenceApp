@@ -152,6 +152,7 @@
 		84FFFDD015042F0600204032 /* bg_field_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FFFDCC15042F0600204032 /* bg_field_1@2x.png */; };
 		84FFFDD115042F0600204032 /* button_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FFFDCD15042F0600204032 /* button_login.png */; };
 		84FFFDD215042F0600204032 /* button_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FFFDCE15042F0600204032 /* button_login@2x.png */; };
+		BF7C4E59175DD1D300B48522 /* WVSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7C4E58175DD1D300B48522 /* WVSettings.m */; };
 		BF8D9BFD1752025D0096AA03 /* libWViPhoneAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D9BFB1752025D0096AA03 /* libWViPhoneAPI.a */; };
 		BF8D9C0017520D350096AA03 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D9BFF17520D350096AA03 /* libstdc++.dylib */; };
 /* End PBXBuildFile section */
@@ -339,6 +340,8 @@
 		84FFFDCD15042F0600204032 /* button_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_login.png; sourceTree = "<group>"; };
 		84FFFDCE15042F0600204032 /* button_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_login@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Kaltura-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Kaltura-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BF7C4E57175DD1D300B48522 /* WVSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WVSettings.h; sourceTree = "<group>"; };
+		BF7C4E58175DD1D300B48522 /* WVSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WVSettings.m; sourceTree = "<group>"; };
 		BF8D9BFB1752025D0096AA03 /* libWViPhoneAPI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWViPhoneAPI.a; sourceTree = "<group>"; };
 		BF8D9BFC1752025D0096AA03 /* WViPhoneAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WViPhoneAPI.h; sourceTree = "<group>"; };
 		BF8D9BFF17520D350096AA03 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -438,6 +441,8 @@
 		28EEBF621118D79A00187D67 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BF7C4E57175DD1D300B48522 /* WVSettings.h */,
+				BF7C4E58175DD1D300B48522 /* WVSettings.m */,
 				8D1107310486CEB800E47090 /* Kaltura-Info.plist */,
 				84C8D02414FCF47600C73BAF /* Client.h */,
 				84C8D02514FCF47600C73BAF /* Client.m */,
@@ -952,6 +957,7 @@
 				848E60D8151BCBA5003B1080 /* Utils.m in Sources */,
 				8417EE60151F60B300431BEB /* PlayerViewController_iPad.m in Sources */,
 				849EDFBC152900C2005A0112 /* KalturaThumbView.m in Sources */,
+				BF7C4E59175DD1D300B48522 /* WVSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

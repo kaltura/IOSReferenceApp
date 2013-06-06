@@ -8,6 +8,7 @@
 
 #import "Client.h"
 #import "WViPhoneAPI.h"
+#import "WVSettings.h"
 
 static NSArray *sBitRates;
 
@@ -21,9 +22,11 @@ static NSArray *sBitRates;
 @synthesize uploadFileTokenId;
 @synthesize uploadFilePath;
 
-@synthesize path, mwurl, mBitrates;
+@synthesize path, wvUrl, mBitrates;
 
 @synthesize delegate = _delegate;
+
+@synthesize mutableArray, dict;
 
 + (Client *)instance {
 	static Client *sharedSingleton = nil;
@@ -66,6 +69,8 @@ static NSArray *sBitRates;
     
     self.categories = [[NSMutableArray alloc] init];
     self.media = [[NSMutableArray alloc] init];
+    
+    wvSettings = [[WVSettings alloc] init];
     
     return self;
 }
@@ -121,7 +126,6 @@ static NSArray *sBitRates;
         
     }
     
-    
     return self.categories;
     
 }
@@ -151,6 +155,7 @@ static NSArray *sBitRates;
     return self.media;
     
 }
+
 - (NSString *)getThumbPath:(NSString *)fileName {
     
     NSError *error;
@@ -197,6 +202,7 @@ static NSArray *sBitRates;
     if ([[NSFileManager defaultManager] fileExistsAtPath:thumbPath]) {
         
         return YES;
+        
     }
     
     return NO;
@@ -442,7 +448,11 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
 - (void)donePlayingMovieWithWV
 {
     [self.delegate videoStop];
-    WV_Stop();
+    WViOsApiStatus* wvStopStatus = WV_Stop();
+    
+    if (wvStopStatus == WViOsApiStatus_OK ) {
+        NSLog(@"widevine was stopped");
+    }
 }
 
 - (void)playMovieFromUrl:(NSString *)videoUrlString
@@ -465,37 +475,74 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
         return;
     }
     
-    mwurl = [NSURL URLWithString:responseUrl];
+    wvUrl = [NSURL URLWithString:responseUrl];
+    [wvUrl retain];
     NSLog(@"play later");
     
-    [self.delegate videoPlay:mwurl];
+//    [self.delegate videoPlay:wvUrl];
 }
 
-- (NSDictionary*) initializeWVDictionary:(NSString *)flavorId{
-    NSString* hostName;
-    hostName= [[NSString alloc] initWithString: @"http://www.kaltura.com"];
-    NSString* portalId, *drmServer;
-    portalId = [[NSString alloc] initWithString: @"kaltura"];
+- (void) initializeWVDictionary:(NSString *)flavorId{
+    [self teminateWV];
+    WViOsApiStatus *wvInitStatus = WV_Initialize(WVCallback, [wvSettings initializeDictionary:flavorId andKS:self.client.ks]);
     
-    //EMM
-    drmServer = [[NSString alloc] initWithFormat: @"%@/api_v3/index.php?service=widevine_widevinedrm&action=getLicense&format=widevine&flavorAssetId=%@&ks=%@" , hostName, flavorId, self.client.ks];
-    [hostName release];
+    if (wvInitStatus == WViOsApiStatus_OK) {
+        NSLog(@"widevine was inited");
+    }
     
-    NSDictionary* dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                drmServer, WVDRMServerKey,
-                                portalId, WVPortalKey,
-                                NULL];
-    
-    WV_Initialize(callback, dictionary);
-    
-    [portalId release];
-    [drmServer release];
-	
-    return dictionary;
+//    mBitrates.enabled = ![wvSettings isNativeAdapting];
 }
 
--(void)HandleCurrentBitrate:(NSDictionary *)attributes
+- (void) teminateWV{
+    WViOsApiStatus *wvTerminateStatus = WV_Terminate();
+    
+    if (wvTerminateStatus == WViOsApiStatus_OK) {
+        NSLog(@"widevine was terminated");
+    }
+}
+
+WViOsApiStatus WVCallback( WViOsApiEvent event, NSDictionary *attributes ){
+    NSLog( @"callback %d %@\n", event, NSStringFromWViOsApiEvent( event ) );
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; SEL selector = 0;
+    switch ( event ) {
+        case WViOsApiEvent_SetCurrentBitrate:
+            selector = NSSelectorFromString(@"HandleCurrentBitrate:");
+            break;
+        case WViOsApiEvent_Bitrates:
+            selector = NSSelectorFromString(@"HandleBitrates:");
+            break;
+        case WViOsApiEvent_ChapterTitle:
+            selector = NSSelectorFromString(@"HandleChapterTitle:");
+            break;
+        case WViOsApiEvent_ChapterImage:
+            selector = NSSelectorFromString(@"HandleChapterImage:");
+            break;
+        case WViOsApiEvent_ChapterSetup:
+            selector = NSSelectorFromString(@"HandleChapterSetup:");
+            break;
+    }
+    
+    if ( selector ) {
+        [attributes retain];
+        [[Client instance] performSelectorOnMainThread:selector withObject:attributes waitUntilDone:NO];
+    }
+    
+    [pool release];
+    NSLog(@"widvine callback");
+    
+    return WViOsApiStatus_OK;
+}
+
+-(void)selectBitrate:(int)ind
 {
+    NSLog( @"Selecting track %d", ind );
+    if( WV_SelectBitrateTrack( ind ) == WViOsApiStatus_OK )
+    {
+        NSLog(@"WV_SelectBitrateTrack was ok");
+    }
+}
+
+-(void)HandleCurrentBitrate:(NSDictionary *)attributes{
     if (sBitRates == nil) {
 		[attributes release];
         return;
@@ -523,40 +570,7 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
     [attributes release];
 }
 
-WViOsApiStatus callback( WViOsApiEvent event, NSDictionary *attributes )
-{
-    NSLog( @"callback %d %@\n", event, NSStringFromWViOsApiEvent( event ) );
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; SEL selector = 0;
-    switch ( event ) {
-        case WViOsApiEvent_SetCurrentBitrate:
-            selector = NSSelectorFromString(@"HandleCurrentBitrate:");
-            break;
-        case WViOsApiEvent_Bitrates:
-            selector = NSSelectorFromString(@"HandleBitrates:");
-            break;
-        case WViOsApiEvent_ChapterTitle:
-            selector = NSSelectorFromString(@"HandleChapterTitle:");
-            break;
-        case WViOsApiEvent_ChapterImage:
-            selector = NSSelectorFromString(@"HandleChapterImage:");
-            break;
-        case WViOsApiEvent_ChapterSetup:
-            selector = NSSelectorFromString(@"HandleChapterSetup:");
-            break;
-    }
-    
-    if ( selector ) {
-        [attributes retain];
-    }
-    
-    [pool release];
-    NSLog(@"widvine callback");
-    
-    return WViOsApiStatus_OK;
-}
-
--(void)HandleBitrates:(NSDictionary *)attributes
-{
+-(void)HandleBitrates:(NSDictionary *)attributes{
     NSArray *bitrates = [attributes objectForKey:WVBitratesKey];
     [mBitrates removeAllSegments];
     if ( bitrates ) {
@@ -576,9 +590,21 @@ WViOsApiStatus callback( WViOsApiEvent event, NSDictionary *attributes )
 			}
             
 			[mBitrates insertSegmentWithTitle:label atIndex:count animated:NO];
-        }
-        
+        }        
     }
+    
+    self.mutableArray = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < sBitRates.count; i++) {
+        int value = [[NSString stringWithFormat:@"%@", [sBitRates objectAtIndex:i]] intValue];
+        self.dict = [[NSDictionary alloc] initWithObjectsAndKeys:@"58613", @"id", [NSString stringWithFormat:@"%d", (value * 8)/1024], @"bitrate", nil];
+        [mutableArray addObject:dict];
+    }
+    
+    [self.delegate loadWVBitratesList:mutableArray];
+
+    [self.delegate videoPlay:wvUrl];
+    
     [attributes release];
 }
 
