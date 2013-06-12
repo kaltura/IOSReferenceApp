@@ -968,6 +968,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -980,6 +981,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Kaltura;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -989,6 +991,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Kaltura_Prefix.pch;
@@ -999,6 +1002,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Kaltura;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1009,6 +1013,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1020,6 +1025,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
@@ -1030,6 +1036,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1042,6 +1049,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
