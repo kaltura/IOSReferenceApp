@@ -198,8 +198,14 @@ static NSString* flavorID = @"";
     activeTime = CFAbsoluteTimeGetCurrent();
     
     float time = self.mediaEntry.duration * slider.value;
-    if (time < 0) time = 0;
-    if (time > self.mediaEntry.duration) time = self.mediaEntry.duration;
+    if (time < 0) {
+        
+        time = 0;
+    }
+    if (time > self.mediaEntry.duration){
+        
+        time = self.mediaEntry.duration;
+    }
     
     self.moviePlayerViewController.moviePlayer.currentPlaybackTime = time;
     currentTimeLabel.text = [Utils getTimeStr:self.moviePlayerViewController.moviePlayer.currentPlaybackTime];
@@ -361,9 +367,11 @@ static NSString* flavorID = @"";
 }
 
 - (void)updateCurrentTime {
+    
     if (self.moviePlayerViewController.moviePlayer.playbackState == MPMoviePlaybackStatePlaying) {
         
         if ([activity isAnimating] && self.moviePlayerViewController.moviePlayer.loadState == 3) {
+            
             [activity stopAnimating];
         }
         
@@ -372,8 +380,6 @@ static NSString* flavorID = @"";
         if (self.mediaEntry.duration > 0) {
             
             timeSlider.value = self.moviePlayerViewController.moviePlayer.currentPlaybackTime / self.mediaEntry.duration;
-            
-            
         }
         
         if (CFAbsoluteTimeGetCurrent() - activeTime > 5.0 && toolsView.alpha == 1.0 &&
@@ -416,16 +422,20 @@ static NSString* flavorID = @"";
         return;
     }
     
+    //The animation for toolsView that fades it out or in 
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    
     if (toolsView.alpha == 0.0) {
         
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:1.0];
-        
-        toolsView.alpha = 1.0;
-        
-        [UIView commitAnimations];
-        
+        toolsView.alpha = 1.0;        
     }
+    else{
+        
+        toolsView.alpha = 0.0;
+    }
+    
+    [UIView commitAnimations];
     
 }
 
