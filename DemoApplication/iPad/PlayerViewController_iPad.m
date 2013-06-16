@@ -281,12 +281,15 @@ static NSString* flavorID = @"";
     if (self.bitrates.count < 1){
         
         flavorType = @"ipadnew";
+        buttonBitrate.enabled = YES;
+        
         self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"ipadnew"];
     }
     else{
         
         flavorType = @"wv";
-        
+        buttonBitrate.enabled = NO;
+        [buttonBitrate setTitle:@"auto" forState:UIControlStateDisabled];
     }
     
     if ([self.bitrates count] > 0){
@@ -522,13 +525,11 @@ static NSString* flavorID = @"";
 	[volumeView release];
     
     noVolume = (app.volumeLevel == 0);
+    
     if (noVolume) {
         
         [buttonVolume setImage:[UIImage imageNamed:@"no_volume_ico.png"] forState:UIControlStateNormal];
-        
     }
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
