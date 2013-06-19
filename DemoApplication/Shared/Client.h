@@ -12,7 +12,10 @@
 #define DEFAULT_SERVICE_URL     @"http://www.kaltura.com"
 
 @class KalturaClient;
+
+#ifdef widevine
 @class WVSettings;
+#endif
 
 @protocol ClientDelegate <NSObject>
 -(void) videoStop;
@@ -29,7 +32,9 @@
     NSMutableArray *categories;
     NSMutableArray *media;
     
+    #ifdef widevine
     WVSettings* wvSettings;
+    #endif
     
     int partnerId;
     
@@ -72,7 +77,7 @@
 - (BOOL)uploadingInProgress;
 - (void)uploadProcess:(NSDictionary *)data withDelegate:(UIViewController *)delegateController;
 - (NSArray *)getBitratesList:(KalturaMediaEntry *)mediaEntry withFilter:(NSString *)filter;
-- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId forFlavorType: (NSString*)flavorType;
+- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forMediaEntryDuration:(int)EntryDuration forFlavor:(NSString *)flavorId forFlavorType: (NSString*)flavorType;
 -(void)HandleCurrentBitrate:(NSDictionary *)attributes;
 -(void)HandleBitrates:(NSDictionary *)attributes;
 
@@ -80,7 +85,7 @@
 - (void)playMovieFromUrl:(NSString *)path2;
 
 - (void) initializeWVDictionary: (NSString *)flavorId;
-- (void) teminateWV;
+- (void) terminateWV;
 - (void)selectBitrate:(int)ind;
 
 

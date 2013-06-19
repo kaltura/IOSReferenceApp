@@ -144,7 +144,7 @@ static NSString* flavorID = @"";
             [[Client instance] selectBitrate:ind];
         }
         
-        NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
+        NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forMediaEntryDuration: self.mediaEntry.duration forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
         [[Client instance] playMovieFromUrl:strURL];
     }
     else
@@ -177,7 +177,7 @@ static NSString* flavorID = @"";
 
 -(void) playVideo:(NSDictionary*)dic
 {
-    NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
+    NSString *strURL = [[Client instance] getVideoURL:self.mediaEntry forMediaEntryDuration: self.mediaEntry.duration forFlavor:[dic objectForKey:@"id"] forFlavorType: flavorType];
     
     NSTimeInterval interval = self.moviePlayerViewController.moviePlayer.currentPlaybackTime;
     [self.moviePlayerViewController.moviePlayer stop];

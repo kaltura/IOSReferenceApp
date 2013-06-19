@@ -7,10 +7,13 @@
 //
 
 #import "Client.h"
+
+#ifdef widevine
 #import "WViPhoneAPI.h"
 #import "WVSettings.h"
 
 static NSArray *sBitRates;
+#endif
 
 @implementation Client
 
@@ -70,8 +73,9 @@ static NSArray *sBitRates;
     self.categories = [[NSMutableArray alloc] init];
     self.media = [[NSMutableArray alloc] init];
     
+    #ifdef widevine
     wvSettings = [[WVSettings alloc] init];
-    
+    #endif
     return self;
 }
 
@@ -427,16 +431,20 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
     return bitrates;
 }
 
-- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forFlavor:(NSString *)flavorId forFlavorType: (NSString*)flavorType
+- (NSString *)getVideoURL:(KalturaMediaEntry *)mediaEntry forMediaEntryDuration:(int)EntryDuration forFlavor:(NSString *)flavorId forFlavorType: (NSString*)flavorType;
 {
     NSString *urlString;
+    int minimumEntryDuration = 10;
     
-    if([flavorType isEqual: @"wv"])
-    {
+    if([flavorType isEqual: @"wv"]){
+        
         urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/serveFlavor/entryId/%@/v/2/flavorId/%@/name/a.wvm", partnerId, partnerId, mediaEntry.id, flavorId];
     }
-    else
-    {
+    else if(EntryDuration > minimumEntryDuration){
+        
+        urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/playManifest/entryId/%@/flavorIds/%@/format/applehttp/protocol/http/a.m3u8", partnerId, partnerId, mediaEntry.id, flavorId];
+    }
+    else{
         urlString = [NSString stringWithFormat:@"http://cdnbakmi.kaltura.com/p/%d/sp/%d00/playManifest/entryId/%@/flavorIds/%@/format/applehttp/protocol/http/a.mp4", partnerId, partnerId, mediaEntry.id, flavorId];
     }
     
@@ -445,6 +453,7 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
 
 #pragma widevine support methods
 
+#ifdef widevine
 - (void)donePlayingMovieWithWV
 {
     [self.delegate videoStop];
@@ -483,7 +492,7 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
 }
 
 - (void) initializeWVDictionary:(NSString *)flavorId{
-    [self teminateWV];
+    [self terminateWV];
     WViOsApiStatus *wvInitStatus = WV_Initialize(WVCallback, [wvSettings initializeDictionary:flavorId andKS:self.client.ks]);
     
     if (wvInitStatus == WViOsApiStatus_OK) {
@@ -493,7 +502,7 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
 //    mBitrates.enabled = ![wvSettings isNativeAdapting];
 }
 
-- (void) teminateWV{
+- (void) terminateWV{
     WViOsApiStatus *wvTerminateStatus = WV_Terminate();
     
     if (wvTerminateStatus == WViOsApiStatus_OK) {
@@ -607,6 +616,8 @@ WViOsApiStatus WVCallback( WViOsApiEvent event, NSDictionary *attributes ){
     
     [attributes release];
 }
+
+#endif
 
 @end
 
