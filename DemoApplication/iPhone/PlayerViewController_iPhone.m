@@ -274,11 +274,14 @@ static NSString* flavorID = @"";
     if (self.bitrates.count < 1)
     {
         flavorType = @"ipadnew";
+        buttonBitrate.enabled = YES;
         self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"iphonenew"];
     }
     else
     {
         flavorType = @"wv";
+        buttonBitrate.enabled = NO;
+        [buttonBitrate setTitle:@"auto" forState:UIControlStateDisabled];
     }
     
     if ([self.bitrates count] > 0) {
@@ -450,17 +453,20 @@ static NSString* flavorID = @"";
         return;
     }
     
+    //The animation for toolsView that fades it out or in
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    
     if (toolsView.alpha == 0.0) {
         
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:1.0];
+        toolsView.alpha = 1.0; 
+    }
+    else {
         
-        toolsView.alpha = 1.0;
-        
-        [UIView commitAnimations];
-        
+        toolsView.alpha = 0.0;
     }
     
+    [UIView commitAnimations];
 }
 
 - (IBAction)playPressed {

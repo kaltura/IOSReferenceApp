@@ -8,6 +8,7 @@
 
 #import "SettingsViewController_iPhone.h"
 #import "AppDelegate_iPhone.h"
+#import "HomeViewController_iPad.h"
 
 @implementation SettingsViewController_iPhone
 
@@ -54,6 +55,18 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
 
         if ([[Client instance] login]) {
+            
+            id rootController = [[self.navigationController viewControllers] objectAtIndex:0];
+          
+            if(![rootController isKindOfClass:[HomeViewController_iPad class]]){
+                //after login switch the rootviewcontroller to be HomeViewController_iPad and not SettingsViewController_iPad
+                NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
+                HomeViewController_iPad *homeController = [[HomeViewController_iPad alloc] initWithNibName:@"HomeViewController_iPad" bundle:nil];
+                [viewControllers replaceObjectAtIndex:0 withObject:homeController];
+                [app.navigation setViewControllers:viewControllers];
+                [homeController release];
+
+            }
         
             [app.navigation popToRootViewControllerAnimated:YES];
             
