@@ -96,19 +96,27 @@ xcuserdata
 # Workspace layout is quite spammy. For reference:
 #
 # /(root)/
-#   /(project-name).xcodeproj/
+#   /Kaltura.xcodeproj/
 #     project.pbxproj
 #     /project.xcworkspace/
 #       contents.xcworkspacedata
 #       /xcuserdata/
-#         /(your name)/xcuserdatad/
+#         /elizasapir/xcuserdatad/
 #           UserInterfaceState.xcuserstate
 #     /xcsshareddata/
 #       /xcschemes/
 #         (shared scheme name).xcscheme
 #     /xcuserdata/
-#       /(your name)/xcuserdatad/
-#         (private scheme).xcscheme
+#       /elizasapir/xcuserdatad/
+#         Kaltura.xcscheme
+#         xcschememanagement.plist
+#     /xcuserdata/
+#       /elizasapir/xcuserdatad/
+#         Kaltura widevine.xcscheme
+#         xcschememanagement.plist
+#     /xcuserdata/
+#       /elizasapir/xcuserdatad/
+#         KalturaClient.xcscheme
 #         xcschememanagement.plist
 #
 #
@@ -121,9 +129,13 @@ xcuserdata
 # We're using source-control, so this is a "feature" that we do not want!
  
 *.moved-aside
- 
+
+####
+# AppCode
+.idea/
  
 ####
 # UNKNOWN: recommended by others, but I can't discover what these files are
 #
 # ...none. Everything is now explained.
+DemoApplication/.DS_Store
