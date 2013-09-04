@@ -136,10 +136,10 @@ static NSArray *sBitRates;
 
 - (NSArray *)getMedia:(KalturaCategory *)category {
     
-    if ([self.media count] == 0) {
         
         KalturaMediaEntryFilter *filter = [[KalturaMediaEntryFilter alloc] init];
-        
+    
+    filter.categoriesIdsMatchAnd = category.fullIds;
         KalturaFilterPager *pager = [[KalturaFilterPager alloc] init];
         pager.pageSize = 0;
         
@@ -154,7 +154,6 @@ static NSArray *sBitRates;
         [filter release];
         [pager release];
         
-    }
     
     return self.media;
     
