@@ -283,6 +283,12 @@ static NSString* flavorID = @"";
         buttonBitrate.enabled = YES;
         
         self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"ipadnew"];
+        if (self.bitrates.count < 1){
+            flavorType = @"iphonenew";
+            buttonBitrate.enabled = YES;
+            
+            self.bitrates = [[Client instance] getBitratesList:mediaEntry withFilter:@"iphonenew"];
+        }
     }
     else{
         
