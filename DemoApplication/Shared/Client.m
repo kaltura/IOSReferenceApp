@@ -139,7 +139,8 @@ static NSArray *sBitRates;
         
         KalturaMediaEntryFilter *filter = [[KalturaMediaEntryFilter alloc] init];
     
-    filter.categoriesIdsMatchAnd = category.fullIds;
+        filter.categoriesIdsMatchAnd = category.fullIds;
+    
         KalturaFilterPager *pager = [[KalturaFilterPager alloc] init];
         pager.pageSize = 0;
         
