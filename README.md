@@ -63,3 +63,22 @@ Running the demo application with DRM support
 2. Open the Kaltura project under DemoApplication (File->Open)
 3. Choose the "Kaltura widevine" > Device (iPhone/iPad) scheme
 4. Hit play
+
+Adding Kaltura Player SDK to Kaltura iOS Reference App
+======================================================
+
+1. In AppDelegate_iPhone.m -> didFinishLaunchingWithOptions
+   Add "kalturaNativeCordovaPlayer" suffix to your user agent
+2. MediaInfoViewController_iPhone.h
+   Add: #import <PlayerSDK/PlayerViewController.h>
+        PlayerViewController* playerViewController;
+        - (void)stopAndRemovePlayer;
+        - (void)toggleFullscreen:(NSNotification *)note;
+3. MediaInfoViewController_iPhone.m
+   Add: [self drawPlayer];
+        -(void) orientationDidChange:(NSNotification *)notification
+        - (void)toggleFullscreen:(NSNotification *)note
+        in: - (void)viewWillDisappear:(BOOL)animated
+            Add: [self stopAndRemovePlayer];
+* You can see full implementation in this referenceApp
+
