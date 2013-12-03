@@ -87,7 +87,7 @@
 - (void) initializeWVDictionary: (NSString *)flavorId;
 - (void) terminateWV;
 - (void)selectBitrate:(int)ind;
-
+- (NSString *)getIframeURL:(KalturaMediaEntry *)mediaEntry;
 
 @property (nonatomic, retain) KalturaClient *client;
 @property (nonatomic, retain) NSMutableArray *categories;

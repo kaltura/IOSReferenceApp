@@ -42,7 +42,8 @@
 
 - (IBAction)playButtonPressed:(UIButton *)button {
     
-    [parentController playButtonPressed];
+    [self selectCellView:button];
+//    [parentController playButtonPressed];
     
 }
 

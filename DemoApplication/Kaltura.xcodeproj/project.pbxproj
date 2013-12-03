@@ -153,6 +153,9 @@
 		84FFFDD215042F0600204032 /* button_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FFFDCE15042F0600204032 /* button_login@2x.png */; };
 		BF17DF7A17FACF7000026F62 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF17DF7917FACF7000026F62 /* settings.plist */; };
 		BF17DF7B17FACF7000026F62 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF17DF7917FACF7000026F62 /* settings.plist */; };
+		BF35D065184B66BF00D4A391 /* libPlayerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF35D051184B49B300D4A391 /* libPlayerSDK.a */; };
+		BF35D068184B66C600D4A391 /* libPlayerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF35D051184B49B300D4A391 /* libPlayerSDK.a */; };
+		BF35D074184B68D500D4A391 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF35D073184B68D500D4A391 /* Default-568h@2x.png */; };
 		BF7C4E59175DD1D300B48522 /* WVSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7C4E58175DD1D300B48522 /* WVSettings.m */; };
 		BF8D9BFD1752025D0096AA03 /* libWViPhoneAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D9BFB1752025D0096AA03 /* libWViPhoneAPI.a */; };
 		BF8D9C0017520D350096AA03 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D9BFF17520D350096AA03 /* libstdc++.dylib */; };
@@ -315,6 +318,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = 29133452149646BB006D8A8C;
 			remoteInfo = KalturaClient;
+		};
+		BF35D050184B49B300D4A391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BFFFA727182F9E31005B3B24;
+			remoteInfo = PlayerSDK;
+		};
+		BF35D052184B49B300D4A391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BFFFA738182F9E31005B3B24;
+			remoteInfo = PlayerSDKTests;
+		};
+		BF35D069184B66FE00D4A391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BFFFA726182F9E31005B3B24;
+			remoteInfo = PlayerSDK;
+		};
+		BF35D06B184B670200D4A391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BFFFA726182F9E31005B3B24;
+			remoteInfo = PlayerSDK;
 		};
 		BFF0194317DFC33F00C32F72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -498,6 +529,8 @@
 		84FFFDCE15042F0600204032 /* button_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_login@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Kaltura-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Kaltura-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BF17DF7917FACF7000026F62 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerSDK.xcodeproj; path = "../../player-sdk-native-ios/PlayerSDK/PlayerSDK.xcodeproj"; sourceTree = "<group>"; };
+		BF35D073184B68D500D4A391 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BF7C4E57175DD1D300B48522 /* WVSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WVSettings.h; sourceTree = "<group>"; };
 		BF7C4E58175DD1D300B48522 /* WVSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WVSettings.m; sourceTree = "<group>"; };
 		BF8D9BFB1752025D0096AA03 /* libWViPhoneAPI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWViPhoneAPI.a; sourceTree = "<group>"; };
@@ -602,6 +635,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF35D068184B66C600D4A391 /* libPlayerSDK.a in Frameworks */,
 				BF8D9C0017520D350096AA03 /* libstdc++.dylib in Frameworks */,
 				84A5B4011548113F005A6AFD /* libKalturaClient.a in Frameworks */,
 				84B7DB921520E0E20087CB74 /* CoreMedia.framework in Frameworks */,
@@ -625,6 +659,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF35D065184B66BF00D4A391 /* libPlayerSDK.a in Frameworks */,
 				BF9A66A51770A0E300028D7D /* libstdc++.dylib in Frameworks */,
 				BF9A66A61770A0E300028D7D /* libKalturaClient.a in Frameworks */,
 				BF9A66A71770A0E300028D7D /* CoreMedia.framework in Frameworks */,
@@ -733,11 +768,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				BF35D073184B68D500D4A391 /* Default-568h@2x.png */,
 				BFF018E517DFC33F00C32F72 /* KalturaClient */,
 				BF9A7CD717CF976700220EFD /* icon_ipad.png */,
 				BF9A7CD517CF973F00220EFD /* Icon.png */,
 				BF9A7CD317CF973000220EFD /* Icon@2x.png */,
 				BF8D9BFF17520D350096AA03 /* libstdc++.dylib */,
+				BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */,
 				843B4E9515480F17003AF28D /* KalturaClient.xcodeproj */,
 				840E2EA0150387E900107E7E /* Graphics */,
 				840E2E97150387DF00107E7E /* Fonts */,
@@ -1030,6 +1067,15 @@
 			path = iPhone/Graphics/Login;
 			sourceTree = SOURCE_ROOT;
 		};
+		BF35D04C184B49B300D4A391 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF35D051184B49B300D4A391 /* libPlayerSDK.a */,
+				BF35D053184B49B300D4A391 /* PlayerSDKTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BFF018E517DFC33F00C32F72 /* KalturaClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -1171,6 +1217,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BF35D06C184B670200D4A391 /* PBXTargetDependency */,
 			);
 			name = Kaltura;
 			productName = Kaltura;
@@ -1188,6 +1235,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BF35D06A184B66FE00D4A391 /* PBXTargetDependency */,
 			);
 			name = "Kaltura widevine";
 			productName = Kaltura;
@@ -1199,6 +1247,13 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				TargetAttributes = {
+					BF9A661D1770A0E300028D7D = {
+						DevelopmentTeam = BT5J4WV2RB;
+					};
+				};
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Kaltura" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -1220,6 +1275,10 @@
 					ProductGroup = 843B4E9615480F17003AF28D /* Products */;
 					ProjectRef = 843B4E9515480F17003AF28D /* KalturaClient.xcodeproj */;
 				},
+				{
+					ProductGroup = BF35D04C184B49B300D4A391 /* Products */;
+					ProjectRef = BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1235,6 +1294,20 @@
 			fileType = archive.ar;
 			path = libKalturaClient.a;
 			remoteRef = 843B4E9C15480F17003AF28D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF35D051184B49B300D4A391 /* libPlayerSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPlayerSDK.a;
+			remoteRef = BF35D050184B49B300D4A391 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF35D053184B49B300D4A391 /* PlayerSDKTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PlayerSDKTests.octest;
+			remoteRef = BF35D052184B49B300D4A391 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		BFF0194417DFC33F00C32F72 /* libKalturaClient.a */ = {
@@ -1473,6 +1546,7 @@
 				BF9A7CD617CF973F00220EFD /* Icon.png in Resources */,
 				BF9A7CD817CF976700220EFD /* icon_ipad.png in Resources */,
 				BF17DF7B17FACF7000026F62 /* settings.plist in Resources */,
+				BF35D074184B68D500D4A391 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1547,6 +1621,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BF35D06A184B66FE00D4A391 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlayerSDK;
+			targetProxy = BF35D069184B66FE00D4A391 /* PBXContainerItemProxy */;
+		};
+		BF35D06C184B670200D4A391 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlayerSDK;
+			targetProxy = BF35D06B184B670200D4A391 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1599,8 +1686,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Eliza Sapir (2FQZ6B8TJ4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eliza Sapir (2FQZ6B8TJ4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1614,7 +1701,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Kaltura widevine";
-				PROVISIONING_PROFILE = "8C132BAB-9994-4F61-BA44-E151106CD9D4";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C132BAB-9994-4F61-BA44-E151106CD9D4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1625,8 +1712,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Eliza Sapir (2FQZ6B8TJ4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eliza Sapir (2FQZ6B8TJ4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Kaltura_Prefix.pch;
@@ -1638,7 +1725,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Kaltura widevine";
-				PROVISIONING_PROFILE = "8C132BAB-9994-4F61-BA44-E151106CD9D4";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C132BAB-9994-4F61-BA44-E151106CD9D4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

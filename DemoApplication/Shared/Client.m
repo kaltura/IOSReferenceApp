@@ -472,6 +472,10 @@ NSInteger bitratesSort(id media1, id media2, void *reverse)
     return urlString;
 }
 
+- (NSString *)getIframeURL:(KalturaMediaEntry *)mediaEntry{
+    return [NSString stringWithFormat:@"http://kgit.html5video.org/tags/v2.0.0.rc12/mwEmbedFrame.php?wid=_%d&uiconf_id=%@&entry_id=%@", partnerId, [self getConfig: @"uiconfID"], mediaEntry.id];
+}
+
 #pragma widevine support methods
 
 #ifdef widevine

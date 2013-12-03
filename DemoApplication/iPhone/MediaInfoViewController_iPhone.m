@@ -15,6 +15,8 @@
 @synthesize mediaEntry;
 @synthesize categoryName;
 
+const CGRect PlayerCGRect = { { 0.0f, 0.0f }, { 320.0f, 180.0f } };
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -110,9 +112,9 @@
     
     if (!isLandscape) {
         
-        viewIntro.frame = CGRectMake(0, 0, 320, 180);
+        viewIntro.frame = PlayerCGRect;
         
-        viewDescription.frame = CGRectMake(0, 180, 320, descriptionHeight);
+        viewDescription.frame = CGRectMake(PlayerCGRect.origin.x, PlayerCGRect.size.height, PlayerCGRect.size.width, descriptionHeight);
         
         
     } else {
@@ -136,13 +138,11 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [self stopAndRemovePlayer];
 	[super viewWillDisappear:animated];
-    
-    
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -165,6 +165,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self drawPlayer];
     
     labelTitle.font = [UIFont fontWithName:@"Maven Pro" size:19];
     
@@ -192,6 +194,45 @@
     
 }
 
+- (void)drawPlayer{
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector( orientationDidChange: )
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector( toggleFullscreen: )
+                                                 name:@"toggleFullscreenNotification"
+                                               object:nil];
+    
+    [self.navigationController setDelegate:self];
+    
+    if ( !playerViewController ) {
+        playerViewController = [[ PlayerViewController alloc] init];
+        
+        playerViewController.view.frame = PlayerCGRect;
+    }
+    
+    [scrollMain addSubview:playerViewController.view];
+    [playerViewController viewWillAppear:NO];
+    [self reDrawPlayer: PlayerCGRect.origin.x right: PlayerCGRect.origin.y width: PlayerCGRect.size.width height: PlayerCGRect.size.height];
+    
+    NSString *iframeUrl = [[Client instance] getIframeURL:mediaEntry];
+    [playerViewController setWebViewURL: iframeUrl];
+}
+
+- (void)reDrawPlayer: (CGFloat )top right: (CGFloat )right width: (CGFloat )width height: (CGFloat )height
+{
+    NSLog(@"reDrawPlayer Enter");
+    
+    [playerViewController resizePlayerView:top right: right width: width height: height];
+    
+    NSLog(@"reDrawPlayer Exit");
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -205,4 +246,45 @@
     return YES;
 }
 
+- (void)stopAndRemovePlayer{
+    NSLog(@"stopAndRemovePlayer Enter");
+    
+    [playerViewController stopAndRemovePlayer];
+    [playerViewController.view removeFromSuperview];
+    [playerViewController removeFromParentViewController];
+    playerViewController = nil;
+    
+    NSLog(@"stopAndRemovePlayer Exit");
+}
+
+-(void) orientationDidChange:(NSNotification *)notification {
+    NSLog(@"orientationDidChange Enter");
+    
+    [ playerViewController checkOrientationStatus ];
+    
+    NSLog(@"orientationDidChange Exit");
+}
+
+- (void)toggleFullscreen:(NSNotification *)note {
+    NSLog(@"toggleFullscreen Enter");
+    
+    NSDictionary *theData = [note userInfo];
+    if (theData != nil) {
+        NSNumber *n = [theData objectForKey:@"isFullScreen"];
+        BOOL isFullScreen = [n boolValue];
+        
+        if ( isFullScreen ) {
+            [[[UIApplication sharedApplication] delegate].window addSubview:playerViewController.view];
+        }
+        else if( !isFullScreen ){
+            [scrollMain addSubview:playerViewController.view];
+        }
+    }
+    
+    NSLog(@"toggleFullscreen Exit");
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
 @end
