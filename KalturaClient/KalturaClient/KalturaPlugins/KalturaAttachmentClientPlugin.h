@@ -44,14 +44,14 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaAttachmentAssetOrderBy : NSObject
-+ (NSString*)SIZE_ASC;
-+ (NSString*)SIZE_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
-+ (NSString*)UPDATED_AT_ASC;
-+ (NSString*)UPDATED_AT_DESC;
 + (NSString*)DELETED_AT_ASC;
++ (NSString*)SIZE_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)DELETED_AT_DESC;
++ (NSString*)SIZE_DESC;
++ (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External

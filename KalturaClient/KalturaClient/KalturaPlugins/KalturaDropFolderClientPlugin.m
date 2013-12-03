@@ -103,6 +103,18 @@
 {
     return 12;
 }
++ (int)PROCESSING
+{
+    return 13;
+}
++ (int)PARSED
+{
+    return 14;
+}
++ (int)DETECTED
+{
+    return 15;
+}
 @end
 
 @implementation KalturaDropFolderStatus
@@ -118,9 +130,72 @@
 {
     return 2;
 }
++ (int)ERROR
+{
+    return 3;
+}
+@end
+
+@implementation KalturaDropFolderErrorCode
++ (NSString*)ERROR_CONNECT
+{
+    return @"1";
+}
++ (NSString*)ERROR_AUTENTICATE
+{
+    return @"2";
+}
++ (NSString*)ERROR_GET_PHISICAL_FILE_LIST
+{
+    return @"3";
+}
++ (NSString*)ERROR_GET_DB_FILE_LIST
+{
+    return @"4";
+}
++ (NSString*)DROP_FOLDER_APP_ERROR
+{
+    return @"5";
+}
++ (NSString*)CONTENT_MATCH_POLICY_UNDEFINED
+{
+    return @"6";
+}
 @end
 
 @implementation KalturaDropFolderFileErrorCode
++ (NSString*)ERROR_ADDING_BULK_UPLOAD
+{
+    return @"dropFolderXmlBulkUpload.ERROR_ADDING_BULK_UPLOAD";
+}
++ (NSString*)ERROR_ADD_CONTENT_RESOURCE
+{
+    return @"dropFolderXmlBulkUpload.ERROR_ADD_CONTENT_RESOURCE";
+}
++ (NSString*)ERROR_IN_BULK_UPLOAD
+{
+    return @"dropFolderXmlBulkUpload.ERROR_IN_BULK_UPLOAD";
+}
++ (NSString*)ERROR_WRITING_TEMP_FILE
+{
+    return @"dropFolderXmlBulkUpload.ERROR_WRITING_TEMP_FILE";
+}
++ (NSString*)LOCAL_FILE_WRONG_CHECKSUM
+{
+    return @"dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_CHECKSUM";
+}
++ (NSString*)LOCAL_FILE_WRONG_SIZE
+{
+    return @"dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_SIZE";
+}
++ (NSString*)MALFORMED_XML_FILE
+{
+    return @"dropFolderXmlBulkUpload.MALFORMED_XML_FILE";
+}
++ (NSString*)XML_FILE_SIZE_EXCEED_LIMIT
+{
+    return @"dropFolderXmlBulkUpload.XML_FILE_SIZE_EXCEED_LIMIT";
+}
 + (NSString*)ERROR_UPDATE_ENTRY
 {
     return @"1";
@@ -149,95 +224,99 @@
 {
     return @"7";
 }
-+ (NSString*)LOCAL_FILE_WRONG_SIZE
++ (NSString*)ERROR_UPDATE_FILE
 {
-    return @"dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_SIZE";
+    return @"8";
 }
-+ (NSString*)LOCAL_FILE_WRONG_CHECKSUM
++ (NSString*)ERROR_ADDING_CONTENT_PROCESSOR
 {
-    return @"dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_CHECKSUM";
+    return @"10";
 }
-+ (NSString*)ERROR_WRITING_TEMP_FILE
++ (NSString*)ERROR_IN_CONTENT_PROCESSOR
 {
-    return @"dropFolderXmlBulkUpload.ERROR_WRITING_TEMP_FILE";
+    return @"11";
 }
-+ (NSString*)ERROR_ADDING_BULK_UPLOAD
++ (NSString*)ERROR_DELETING_FILE
 {
-    return @"dropFolderXmlBulkUpload.ERROR_ADDING_BULK_UPLOAD";
+    return @"12";
+}
++ (NSString*)FILE_NO_MATCH
+{
+    return @"13";
 }
 @end
 
 @implementation KalturaDropFolderFileHandlerType
-+ (NSString*)CONTENT
-{
-    return @"1";
-}
 + (NSString*)XML
 {
     return @"dropFolderXmlBulkUpload.XML";
 }
++ (NSString*)CONTENT
+{
+    return @"1";
+}
 @end
 
 @implementation KalturaDropFolderFileOrderBy
-+ (NSString*)ID_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
+    return @"+createdAt";
 }
 + (NSString*)FILE_NAME_ASC
 {
     return @"+fileName";
 }
-+ (NSString*)FILE_NAME_DESC
-{
-    return @"-fileName";
-}
 + (NSString*)FILE_SIZE_ASC
 {
     return @"+fileSize";
-}
-+ (NSString*)FILE_SIZE_DESC
-{
-    return @"-fileSize";
 }
 + (NSString*)FILE_SIZE_LAST_SET_AT_ASC
 {
     return @"+fileSizeLastSetAt";
 }
-+ (NSString*)FILE_SIZE_LAST_SET_AT_DESC
++ (NSString*)ID_ASC
 {
-    return @"-fileSizeLastSetAt";
-}
-+ (NSString*)PARSED_SLUG_ASC
-{
-    return @"+parsedSlug";
-}
-+ (NSString*)PARSED_SLUG_DESC
-{
-    return @"-parsedSlug";
+    return @"+id";
 }
 + (NSString*)PARSED_FLAVOR_ASC
 {
     return @"+parsedFlavor";
 }
-+ (NSString*)PARSED_FLAVOR_DESC
++ (NSString*)PARSED_SLUG_ASC
 {
-    return @"-parsedFlavor";
+    return @"+parsedSlug";
 }
-+ (NSString*)CREATED_AT_ASC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)FILE_NAME_DESC
 {
-    return @"+updatedAt";
+    return @"-fileName";
+}
++ (NSString*)FILE_SIZE_DESC
+{
+    return @"-fileSize";
+}
++ (NSString*)FILE_SIZE_LAST_SET_AT_DESC
+{
+    return @"-fileSizeLastSetAt";
+}
++ (NSString*)ID_DESC
+{
+    return @"-id";
+}
++ (NSString*)PARSED_FLAVOR_DESC
+{
+    return @"-parsedFlavor";
+}
++ (NSString*)PARSED_SLUG_DESC
+{
+    return @"-parsedSlug";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -246,33 +325,33 @@
 @end
 
 @implementation KalturaDropFolderOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -297,36 +376,40 @@
 {
     return @"4";
 }
++ (NSString*)S3
+{
+    return @"6";
+}
 @end
 
 @implementation KalturaFtpDropFolderOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -335,33 +418,33 @@
 @end
 
 @implementation KalturaRemoteDropFolderOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -370,33 +453,33 @@
 @end
 
 @implementation KalturaScpDropFolderOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -405,33 +488,33 @@
 @end
 
 @implementation KalturaSftpDropFolderOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -440,33 +523,33 @@
 @end
 
 @implementation KalturaSshDropFolderOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
 + (NSString*)ID_ASC
 {
     return @"+id";
-}
-+ (NSString*)ID_DESC
-{
-    return @"-id";
 }
 + (NSString*)NAME_ASC
 {
     return @"+name";
 }
-+ (NSString*)NAME_DESC
++ (NSString*)UPDATED_AT_ASC
 {
-    return @"-name";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
+    return @"+updatedAt";
 }
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
 }
-+ (NSString*)UPDATED_AT_ASC
++ (NSString*)ID_DESC
 {
-    return @"+updatedAt";
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -525,9 +608,12 @@
 @synthesize fileNamePatterns = _fileNamePatterns;
 @synthesize fileHandlerConfig = _fileHandlerConfig;
 @synthesize tags = _tags;
+@synthesize errorCode = _errorCode;
+@synthesize errorDescription = _errorDescription;
 @synthesize ignoreFileNamePatterns = _ignoreFileNamePatterns;
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
+@synthesize lastAccessedAt = _lastAccessedAt;
 
 - (id)init
 {
@@ -544,6 +630,7 @@
     self->_autoFileDeleteDays = KALTURA_UNDEF_INT;
     self->_createdAt = KALTURA_UNDEF_INT;
     self->_updatedAt = KALTURA_UNDEF_INT;
+    self->_lastAccessedAt = KALTURA_UNDEF_INT;
     return self;
 }
 
@@ -632,6 +719,16 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfErrorCode
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfErrorDescription
+{
+    return KFT_String;
+}
+
 - (KalturaFieldType)getTypeOfIgnoreFileNamePatterns
 {
     return KFT_String;
@@ -643,6 +740,11 @@
 }
 
 - (KalturaFieldType)getTypeOfUpdatedAt
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfLastAccessedAt
 {
     return KFT_Int;
 }
@@ -697,6 +799,11 @@
     self.updatedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setLastAccessedAtFromString:(NSString*)aPropVal
+{
+    self.lastAccessedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -717,7 +824,10 @@
     [aParams addIfDefinedKey:@"fileNamePatterns" withString:self.fileNamePatterns];
     [aParams addIfDefinedKey:@"fileHandlerConfig" withObject:self.fileHandlerConfig];
     [aParams addIfDefinedKey:@"tags" withString:self.tags];
+    [aParams addIfDefinedKey:@"errorCode" withString:self.errorCode];
+    [aParams addIfDefinedKey:@"errorDescription" withString:self.errorDescription];
     [aParams addIfDefinedKey:@"ignoreFileNamePatterns" withString:self.ignoreFileNamePatterns];
+    [aParams addIfDefinedKey:@"lastAccessedAt" withInt:self.lastAccessedAt];
 }
 
 - (void)dealloc
@@ -730,6 +840,8 @@
     [self->_fileNamePatterns release];
     [self->_fileHandlerConfig release];
     [self->_tags release];
+    [self->_errorCode release];
+    [self->_errorDescription release];
     [self->_ignoreFileNamePatterns release];
     [super dealloc];
 }
@@ -743,6 +855,7 @@
 @property (nonatomic,assign) int status;
 @property (nonatomic,assign) int createdAt;
 @property (nonatomic,assign) int updatedAt;
+@property (nonatomic,assign) int batchJobId;
 @end
 
 @implementation KalturaDropFolderFile
@@ -755,11 +868,19 @@
 @synthesize status = _status;
 @synthesize parsedSlug = _parsedSlug;
 @synthesize parsedFlavor = _parsedFlavor;
+@synthesize leadDropFolderFileId = _leadDropFolderFileId;
+@synthesize deletedDropFolderFileId = _deletedDropFolderFileId;
+@synthesize entryId = _entryId;
 @synthesize errorCode = _errorCode;
 @synthesize errorDescription = _errorDescription;
 @synthesize lastModificationTime = _lastModificationTime;
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
+@synthesize uploadStartDetectedAt = _uploadStartDetectedAt;
+@synthesize uploadEndDetectedAt = _uploadEndDetectedAt;
+@synthesize importStartedAt = _importStartedAt;
+@synthesize importEndedAt = _importEndedAt;
+@synthesize batchJobId = _batchJobId;
 
 - (id)init
 {
@@ -772,8 +893,15 @@
     self->_fileSize = KALTURA_UNDEF_FLOAT;
     self->_fileSizeLastSetAt = KALTURA_UNDEF_INT;
     self->_status = KALTURA_UNDEF_INT;
+    self->_leadDropFolderFileId = KALTURA_UNDEF_INT;
+    self->_deletedDropFolderFileId = KALTURA_UNDEF_INT;
     self->_createdAt = KALTURA_UNDEF_INT;
     self->_updatedAt = KALTURA_UNDEF_INT;
+    self->_uploadStartDetectedAt = KALTURA_UNDEF_INT;
+    self->_uploadEndDetectedAt = KALTURA_UNDEF_INT;
+    self->_importStartedAt = KALTURA_UNDEF_INT;
+    self->_importEndedAt = KALTURA_UNDEF_INT;
+    self->_batchJobId = KALTURA_UNDEF_INT;
     return self;
 }
 
@@ -822,6 +950,21 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfLeadDropFolderFileId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDeletedDropFolderFileId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfEntryId
+{
+    return KFT_String;
+}
+
 - (KalturaFieldType)getTypeOfErrorCode
 {
     return KFT_String;
@@ -843,6 +986,31 @@
 }
 
 - (KalturaFieldType)getTypeOfUpdatedAt
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfUploadStartDetectedAt
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfUploadEndDetectedAt
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfImportStartedAt
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfImportEndedAt
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfBatchJobId
 {
     return KFT_Int;
 }
@@ -877,6 +1045,16 @@
     self.status = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setLeadDropFolderFileIdFromString:(NSString*)aPropVal
+{
+    self.leadDropFolderFileId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDeletedDropFolderFileIdFromString:(NSString*)aPropVal
+{
+    self.deletedDropFolderFileId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)setCreatedAtFromString:(NSString*)aPropVal
 {
     self.createdAt = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -885,6 +1063,31 @@
 - (void)setUpdatedAtFromString:(NSString*)aPropVal
 {
     self.updatedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setUploadStartDetectedAtFromString:(NSString*)aPropVal
+{
+    self.uploadStartDetectedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setUploadEndDetectedAtFromString:(NSString*)aPropVal
+{
+    self.uploadEndDetectedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setImportStartedAtFromString:(NSString*)aPropVal
+{
+    self.importStartedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setImportEndedAtFromString:(NSString*)aPropVal
+{
+    self.importEndedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setBatchJobIdFromString:(NSString*)aPropVal
+{
+    self.batchJobId = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
@@ -897,9 +1100,16 @@
     [aParams addIfDefinedKey:@"fileSize" withFloat:self.fileSize];
     [aParams addIfDefinedKey:@"parsedSlug" withString:self.parsedSlug];
     [aParams addIfDefinedKey:@"parsedFlavor" withString:self.parsedFlavor];
+    [aParams addIfDefinedKey:@"leadDropFolderFileId" withInt:self.leadDropFolderFileId];
+    [aParams addIfDefinedKey:@"deletedDropFolderFileId" withInt:self.deletedDropFolderFileId];
+    [aParams addIfDefinedKey:@"entryId" withString:self.entryId];
     [aParams addIfDefinedKey:@"errorCode" withString:self.errorCode];
     [aParams addIfDefinedKey:@"errorDescription" withString:self.errorDescription];
     [aParams addIfDefinedKey:@"lastModificationTime" withString:self.lastModificationTime];
+    [aParams addIfDefinedKey:@"uploadStartDetectedAt" withInt:self.uploadStartDetectedAt];
+    [aParams addIfDefinedKey:@"uploadEndDetectedAt" withInt:self.uploadEndDetectedAt];
+    [aParams addIfDefinedKey:@"importStartedAt" withInt:self.importStartedAt];
+    [aParams addIfDefinedKey:@"importEndedAt" withInt:self.importEndedAt];
 }
 
 - (void)dealloc
@@ -907,6 +1117,7 @@
     [self->_fileName release];
     [self->_parsedSlug release];
     [self->_parsedFlavor release];
+    [self->_entryId release];
     [self->_errorCode release];
     [self->_errorDescription release];
     [self->_lastModificationTime release];
@@ -1035,6 +1246,7 @@
 @synthesize conversionProfileIdIn = _conversionProfileIdIn;
 @synthesize dcEqual = _dcEqual;
 @synthesize dcIn = _dcIn;
+@synthesize pathEqual = _pathEqual;
 @synthesize pathLike = _pathLike;
 @synthesize fileHandlerTypeEqual = _fileHandlerTypeEqual;
 @synthesize fileHandlerTypeIn = _fileHandlerTypeIn;
@@ -1044,6 +1256,8 @@
 @synthesize tagsLike = _tagsLike;
 @synthesize tagsMultiLikeOr = _tagsMultiLikeOr;
 @synthesize tagsMultiLikeAnd = _tagsMultiLikeAnd;
+@synthesize errorCodeEqual = _errorCodeEqual;
+@synthesize errorCodeIn = _errorCodeIn;
 @synthesize createdAtGreaterThanOrEqual = _createdAtGreaterThanOrEqual;
 @synthesize createdAtLessThanOrEqual = _createdAtLessThanOrEqual;
 @synthesize updatedAtGreaterThanOrEqual = _updatedAtGreaterThanOrEqual;
@@ -1131,6 +1345,11 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfPathEqual
+{
+    return KFT_String;
+}
+
 - (KalturaFieldType)getTypeOfPathLike
 {
     return KFT_String;
@@ -1172,6 +1391,16 @@
 }
 
 - (KalturaFieldType)getTypeOfTagsMultiLikeAnd
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfErrorCodeEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfErrorCodeIn
 {
     return KFT_String;
 }
@@ -1259,6 +1488,7 @@
     [aParams addIfDefinedKey:@"conversionProfileIdIn" withString:self.conversionProfileIdIn];
     [aParams addIfDefinedKey:@"dcEqual" withInt:self.dcEqual];
     [aParams addIfDefinedKey:@"dcIn" withString:self.dcIn];
+    [aParams addIfDefinedKey:@"pathEqual" withString:self.pathEqual];
     [aParams addIfDefinedKey:@"pathLike" withString:self.pathLike];
     [aParams addIfDefinedKey:@"fileHandlerTypeEqual" withString:self.fileHandlerTypeEqual];
     [aParams addIfDefinedKey:@"fileHandlerTypeIn" withString:self.fileHandlerTypeIn];
@@ -1268,6 +1498,8 @@
     [aParams addIfDefinedKey:@"tagsLike" withString:self.tagsLike];
     [aParams addIfDefinedKey:@"tagsMultiLikeOr" withString:self.tagsMultiLikeOr];
     [aParams addIfDefinedKey:@"tagsMultiLikeAnd" withString:self.tagsMultiLikeAnd];
+    [aParams addIfDefinedKey:@"errorCodeEqual" withString:self.errorCodeEqual];
+    [aParams addIfDefinedKey:@"errorCodeIn" withString:self.errorCodeIn];
     [aParams addIfDefinedKey:@"createdAtGreaterThanOrEqual" withInt:self.createdAtGreaterThanOrEqual];
     [aParams addIfDefinedKey:@"createdAtLessThanOrEqual" withInt:self.createdAtLessThanOrEqual];
     [aParams addIfDefinedKey:@"updatedAtGreaterThanOrEqual" withInt:self.updatedAtGreaterThanOrEqual];
@@ -1284,6 +1516,7 @@
     [self->_statusIn release];
     [self->_conversionProfileIdIn release];
     [self->_dcIn release];
+    [self->_pathEqual release];
     [self->_pathLike release];
     [self->_fileHandlerTypeEqual release];
     [self->_fileHandlerTypeIn release];
@@ -1293,6 +1526,8 @@
     [self->_tagsLike release];
     [self->_tagsMultiLikeOr release];
     [self->_tagsMultiLikeAnd release];
+    [self->_errorCodeEqual release];
+    [self->_errorCodeIn release];
     [super dealloc];
 }
 
@@ -1343,6 +1578,72 @@
 
 @end
 
+@implementation KalturaDropFolderContentProcessorJobData
+@synthesize dropFolderFileIds = _dropFolderFileIds;
+@synthesize parsedSlug = _parsedSlug;
+@synthesize contentMatchPolicy = _contentMatchPolicy;
+@synthesize conversionProfileId = _conversionProfileId;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_contentMatchPolicy = KALTURA_UNDEF_INT;
+    self->_conversionProfileId = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfDropFolderFileIds
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfParsedSlug
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfContentMatchPolicy
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfConversionProfileId
+{
+    return KFT_Int;
+}
+
+- (void)setContentMatchPolicyFromString:(NSString*)aPropVal
+{
+    self.contentMatchPolicy = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setConversionProfileIdFromString:(NSString*)aPropVal
+{
+    self.conversionProfileId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaDropFolderContentProcessorJobData"];
+    [aParams addIfDefinedKey:@"dropFolderFileIds" withString:self.dropFolderFileIds];
+    [aParams addIfDefinedKey:@"parsedSlug" withString:self.parsedSlug];
+    [aParams addIfDefinedKey:@"contentMatchPolicy" withInt:self.contentMatchPolicy];
+    [aParams addIfDefinedKey:@"conversionProfileId" withInt:self.conversionProfileId];
+}
+
+- (void)dealloc
+{
+    [self->_dropFolderFileIds release];
+    [self->_parsedSlug release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaDropFolderFileBaseFilter
 @synthesize idEqual = _idEqual;
 @synthesize idIn = _idIn;
@@ -1361,6 +1662,9 @@
 @synthesize parsedFlavorEqual = _parsedFlavorEqual;
 @synthesize parsedFlavorIn = _parsedFlavorIn;
 @synthesize parsedFlavorLike = _parsedFlavorLike;
+@synthesize leadDropFolderFileIdEqual = _leadDropFolderFileIdEqual;
+@synthesize deletedDropFolderFileIdEqual = _deletedDropFolderFileIdEqual;
+@synthesize entryIdEqual = _entryIdEqual;
 @synthesize errorCodeEqual = _errorCodeEqual;
 @synthesize errorCodeIn = _errorCodeIn;
 @synthesize createdAtGreaterThanOrEqual = _createdAtGreaterThanOrEqual;
@@ -1377,6 +1681,8 @@
     self->_partnerIdEqual = KALTURA_UNDEF_INT;
     self->_dropFolderIdEqual = KALTURA_UNDEF_INT;
     self->_statusEqual = KALTURA_UNDEF_INT;
+    self->_leadDropFolderFileIdEqual = KALTURA_UNDEF_INT;
+    self->_deletedDropFolderFileIdEqual = KALTURA_UNDEF_INT;
     self->_createdAtGreaterThanOrEqual = KALTURA_UNDEF_INT;
     self->_createdAtLessThanOrEqual = KALTURA_UNDEF_INT;
     self->_updatedAtGreaterThanOrEqual = KALTURA_UNDEF_INT;
@@ -1469,6 +1775,21 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfLeadDropFolderFileIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDeletedDropFolderFileIdEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfEntryIdEqual
+{
+    return KFT_String;
+}
+
 - (KalturaFieldType)getTypeOfErrorCodeEqual
 {
     return KFT_String;
@@ -1519,6 +1840,16 @@
     self.statusEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setLeadDropFolderFileIdEqualFromString:(NSString*)aPropVal
+{
+    self.leadDropFolderFileIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setDeletedDropFolderFileIdEqualFromString:(NSString*)aPropVal
+{
+    self.deletedDropFolderFileIdEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)setCreatedAtGreaterThanOrEqualFromString:(NSString*)aPropVal
 {
     self.createdAtGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -1561,6 +1892,9 @@
     [aParams addIfDefinedKey:@"parsedFlavorEqual" withString:self.parsedFlavorEqual];
     [aParams addIfDefinedKey:@"parsedFlavorIn" withString:self.parsedFlavorIn];
     [aParams addIfDefinedKey:@"parsedFlavorLike" withString:self.parsedFlavorLike];
+    [aParams addIfDefinedKey:@"leadDropFolderFileIdEqual" withInt:self.leadDropFolderFileIdEqual];
+    [aParams addIfDefinedKey:@"deletedDropFolderFileIdEqual" withInt:self.deletedDropFolderFileIdEqual];
+    [aParams addIfDefinedKey:@"entryIdEqual" withString:self.entryIdEqual];
     [aParams addIfDefinedKey:@"errorCodeEqual" withString:self.errorCodeEqual];
     [aParams addIfDefinedKey:@"errorCodeIn" withString:self.errorCodeIn];
     [aParams addIfDefinedKey:@"createdAtGreaterThanOrEqual" withInt:self.createdAtGreaterThanOrEqual];
@@ -1584,6 +1918,7 @@
     [self->_parsedFlavorEqual release];
     [self->_parsedFlavorIn release];
     [self->_parsedFlavorLike release];
+    [self->_entryIdEqual release];
     [self->_errorCodeEqual release];
     [self->_errorCodeIn release];
     [super dealloc];
@@ -1612,11 +1947,33 @@
 @end
 
 @implementation KalturaDropFolderFilter
+@synthesize currentDc = _currentDc;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_currentDc = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfCurrentDc
+{
+    return KFT_Int;
+}
+
+- (void)setCurrentDcFromString:(NSString*)aPropVal
+{
+    self.currentDc = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaDropFolderFilter"];
+    [aParams addIfDefinedKey:@"currentDc" withInt:self.currentDc];
 }
 
 @end

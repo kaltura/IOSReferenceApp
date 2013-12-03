@@ -41,27 +41,27 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaDocumentEntryOrderBy : NSObject
-+ (NSString*)NAME_ASC;
-+ (NSString*)NAME_DESC;
-+ (NSString*)MODERATION_COUNT_ASC;
-+ (NSString*)MODERATION_COUNT_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
-+ (NSString*)UPDATED_AT_ASC;
-+ (NSString*)UPDATED_AT_DESC;
-+ (NSString*)RANK_ASC;
-+ (NSString*)RANK_DESC;
-+ (NSString*)TOTAL_RANK_ASC;
-+ (NSString*)TOTAL_RANK_DESC;
-+ (NSString*)START_DATE_ASC;
-+ (NSString*)START_DATE_DESC;
 + (NSString*)END_DATE_ASC;
-+ (NSString*)END_DATE_DESC;
++ (NSString*)MODERATION_COUNT_ASC;
++ (NSString*)NAME_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
-+ (NSString*)PARTNER_SORT_VALUE_DESC;
++ (NSString*)RANK_ASC;
 + (NSString*)RECENT_ASC;
-+ (NSString*)RECENT_DESC;
++ (NSString*)START_DATE_ASC;
++ (NSString*)TOTAL_RANK_ASC;
++ (NSString*)UPDATED_AT_ASC;
 + (NSString*)WEIGHT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)END_DATE_DESC;
++ (NSString*)MODERATION_COUNT_DESC;
++ (NSString*)NAME_DESC;
++ (NSString*)PARTNER_SORT_VALUE_DESC;
++ (NSString*)RANK_DESC;
++ (NSString*)RECENT_DESC;
++ (NSString*)START_DATE_DESC;
++ (NSString*)TOTAL_RANK_DESC;
++ (NSString*)UPDATED_AT_DESC;
 + (NSString*)WEIGHT_DESC;
 @end
 
@@ -358,6 +358,13 @@
 - (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId withFlavorParamsId:(NSString*)aFlavorParamsId withForceProxy:(BOOL)aForceProxy;
 - (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId withFlavorParamsId:(NSString*)aFlavorParamsId;
 - (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId;
+// Replace content associated with the given document entry.
+- (KalturaDocumentEntry*)updateContentWithEntryId:(NSString*)aEntryId withResource:(KalturaResource*)aResource withConversionProfileId:(int)aConversionProfileId;
+- (KalturaDocumentEntry*)updateContentWithEntryId:(NSString*)aEntryId withResource:(KalturaResource*)aResource;
+// Approves document replacement
+- (KalturaDocumentEntry*)approveReplaceWithEntryId:(NSString*)aEntryId;
+// Cancels document replacement
+- (KalturaDocumentEntry*)cancelReplaceWithEntryId:(NSString*)aEntryId;
 @end
 
 @interface KalturaDocumentClientPlugin : KalturaClientPlugin

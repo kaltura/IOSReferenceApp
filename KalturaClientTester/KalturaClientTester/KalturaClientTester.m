@@ -33,9 +33,9 @@
 
 // Account specific constants
 // TODO: update this
-#define ADMIN_SECRET (@"1234abcd")
-#define PARTNER_ID (1234)
-#define USER_ID (@"user")
+#define ADMIN_SECRET (@"YOUR_ADMIN_SECRET")
+#define PARTNER_ID (54321)
+#define USER_ID (@"testUser")
 
 // Fixed constants
 #define UPLOAD_FILENAME (@"DemoVideo.flv")
@@ -456,9 +456,16 @@
         NULL, 
         (CFStringRef)@"!*'();:@&=+$,/?%#[] \"\\<>{}|^~`", 
         kCFStringEncodingUTF8);
+    NSString *encodedClientTag = (NSString*)CFURLCreateStringByAddingPercentEscapes(
+        NULL, 
+        (CFStringRef)self->_client.config.clientTag, 
+        NULL, 
+        (CFStringRef)@"!*'();:@&=+$,/?%#[] \"\\<>{}|^~`", 
+        kCFStringEncodingUTF8);
     NSString* expectedPrefix = [NSString stringWithFormat:@"%@/api_v3/index.php?kalsig=", self->_client.config.serviceUrl];
-    NSString* expectedPostfix = [NSString stringWithFormat:@"&version=5&service=data&partnerId=%d&ks=%@&ignoreNull=1&format=2&forceProxy=1&entryId=12345&clientTag=%@&apiVersion=%@&action=serve&", PARTNER_ID, encodedKs, self->_client.config.clientTag, self->_client.apiVersion];
+    NSString* expectedPostfix = [NSString stringWithFormat:@"&version=5&service=data&partnerId=%d&ks=%@&ignoreNull=1&format=2&forceProxy=1&entryId=12345&clientTag=%@&apiVersion=%@&action=serve&", PARTNER_ID, encodedKs, encodedClientTag, self->_client.apiVersion];
     [encodedKs release];
+    [encodedClientTag release];
     assert([serveUrl hasPrefix:expectedPrefix]);
     assert([serveUrl hasSuffix:expectedPostfix]);
 }

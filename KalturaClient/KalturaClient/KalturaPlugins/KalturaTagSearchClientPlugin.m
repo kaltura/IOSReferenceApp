@@ -265,6 +265,11 @@
     return [self searchWithTagFilter:aTagFilter withPager:nil];
 }
 
+- (int)deletePending
+{
+    return [self.client queueIntService:@"tagsearch_tag" withAction:@"deletePending"];
+}
+
 @end
 
 @implementation KalturaTagSearchClientPlugin

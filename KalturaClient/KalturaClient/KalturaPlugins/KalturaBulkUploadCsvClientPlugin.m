@@ -50,6 +50,7 @@
 
 @implementation KalturaBulkUploadCsvJobData
 @synthesize csvVersion = _csvVersion;
+@synthesize columns = _columns;
 
 - (id)init
 {
@@ -65,6 +66,16 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfColumns
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfColumns
+{
+    return @"KalturaString";
+}
+
 - (void)setCsvVersionFromString:(NSString*)aPropVal
 {
     self.csvVersion = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -75,6 +86,13 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaBulkUploadCsvJobData"];
+    [aParams addIfDefinedKey:@"columns" withArray:self.columns];
+}
+
+- (void)dealloc
+{
+    [self->_columns release];
+    [super dealloc];
 }
 
 @end

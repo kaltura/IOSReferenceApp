@@ -29,53 +29,53 @@
 
 ///////////////////////// enums /////////////////////////
 @implementation KalturaAdCuePointOrderBy
-+ (NSString*)END_TIME_ASC
++ (NSString*)CREATED_AT_ASC
 {
-    return @"+endTime";
-}
-+ (NSString*)END_TIME_DESC
-{
-    return @"-endTime";
+    return @"+createdAt";
 }
 + (NSString*)DURATION_ASC
 {
     return @"+duration";
 }
-+ (NSString*)DURATION_DESC
++ (NSString*)END_TIME_ASC
 {
-    return @"-duration";
-}
-+ (NSString*)CREATED_AT_ASC
-{
-    return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)START_TIME_ASC
-{
-    return @"+startTime";
-}
-+ (NSString*)START_TIME_DESC
-{
-    return @"-startTime";
+    return @"+endTime";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
++ (NSString*)START_TIME_ASC
+{
+    return @"+startTime";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DURATION_DESC
+{
+    return @"-duration";
+}
++ (NSString*)END_TIME_DESC
+{
+    return @"-endTime";
+}
 + (NSString*)PARTNER_SORT_VALUE_DESC
 {
     return @"-partnerSortValue";
+}
++ (NSString*)START_TIME_DESC
+{
+    return @"-startTime";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 

@@ -64,6 +64,10 @@
 {
     return 4;
 }
++ (int)MISSING_ASSET
+{
+    return 5;
+}
 @end
 
 @implementation KalturaDistributionFieldRequiredStatus
@@ -131,6 +135,10 @@
 + (int)HTTPS
 {
     return 5;
+}
++ (int)ASPERA
+{
+    return 10;
 }
 @end
 
@@ -285,13 +293,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -304,13 +312,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -322,57 +330,9 @@
 @end
 
 @implementation KalturaDistributionProviderType
-+ (NSString*)GENERIC
++ (NSString*)ATT_UVERSE
 {
-    return @"1";
-}
-+ (NSString*)SYNDICATION
-{
-    return @"2";
-}
-+ (NSString*)MSN
-{
-    return @"msnDistribution.MSN";
-}
-+ (NSString*)YOUTUBE
-{
-    return @"youTubeDistribution.YOUTUBE";
-}
-+ (NSString*)YOUTUBE_API
-{
-    return @"youtubeApiDistribution.YOUTUBE_API";
-}
-+ (NSString*)DAILYMOTION
-{
-    return @"dailymotionDistribution.DAILYMOTION";
-}
-+ (NSString*)PODCAST
-{
-    return @"podcastDistribution.PODCAST";
-}
-+ (NSString*)TVCOM
-{
-    return @"tvComDistribution.TVCOM";
-}
-+ (NSString*)FREEWHEEL
-{
-    return @"freewheelDistribution.FREEWHEEL";
-}
-+ (NSString*)FREEWHEEL_GENERIC
-{
-    return @"freewheelGenericDistribution.FREEWHEEL_GENERIC";
-}
-+ (NSString*)HULU
-{
-    return @"huluDistribution.HULU";
-}
-+ (NSString*)DOUBLECLICK
-{
-    return @"doubleClickDistribution.DOUBLECLICK";
-}
-+ (NSString*)SYNACOR_HBO
-{
-    return @"synacorHboDistribution.SYNACOR_HBO";
+    return @"attUverseDistribution.ATT_UVERSE";
 }
 + (NSString*)AVN
 {
@@ -382,33 +342,25 @@
 {
     return @"comcastMrssDistribution.COMCAST_MRSS";
 }
-+ (NSString*)IDETIC
++ (NSString*)CROSS_KALTURA
 {
-    return @"ideticDistribution.IDETIC";
+    return @"crossKalturaDistribution.CROSS_KALTURA";
 }
-+ (NSString*)TIME_WARNER
++ (NSString*)DAILYMOTION
 {
-    return @"timeWarnerDistribution.TIME_WARNER";
+    return @"dailymotionDistribution.DAILYMOTION";
 }
-+ (NSString*)YAHOO
++ (NSString*)DOUBLECLICK
 {
-    return @"yahooDistribution.YAHOO";
+    return @"doubleClickDistribution.DOUBLECLICK";
 }
-+ (NSString*)NDN
++ (NSString*)FREEWHEEL
 {
-    return @"ndnDistribution.NDN";
+    return @"freewheelDistribution.FREEWHEEL";
 }
-+ (NSString*)UVERSE
++ (NSString*)FREEWHEEL_GENERIC
 {
-    return @"uverseDistribution.UVERSE";
-}
-+ (NSString*)VERIZON_VCAST
-{
-    return @"verizonVcastDistribution.VERIZON_VCAST";
-}
-+ (NSString*)QUICKPLAY
-{
-    return @"quickPlayDistribution.QUICKPLAY";
+    return @"freewheelGenericDistribution.FREEWHEEL_GENERIC";
 }
 + (NSString*)FTP
 {
@@ -418,21 +370,77 @@
 {
     return @"ftpDistribution.FTP_SCHEDULED";
 }
-+ (NSString*)ATT_UVERSE
++ (NSString*)HULU
 {
-    return @"attUverseDistribution.ATT_UVERSE";
+    return @"huluDistribution.HULU";
 }
-+ (NSString*)UVERSE_CLICK_TO_ORDER
++ (NSString*)IDETIC
 {
-    return @"uverseClickToOrderDistribution.UVERSE_CLICK_TO_ORDER";
+    return @"ideticDistribution.IDETIC";
 }
 + (NSString*)METRO_PCS
 {
     return @"metroPcsDistribution.METRO_PCS";
 }
-+ (NSString*)CROSS_KALTURA
++ (NSString*)MSN
 {
-    return @"crossKalturaDistribution.CROSS_KALTURA";
+    return @"msnDistribution.MSN";
+}
++ (NSString*)NDN
+{
+    return @"ndnDistribution.NDN";
+}
++ (NSString*)PODCAST
+{
+    return @"podcastDistribution.PODCAST";
+}
++ (NSString*)QUICKPLAY
+{
+    return @"quickPlayDistribution.QUICKPLAY";
+}
++ (NSString*)SYNACOR_HBO
+{
+    return @"synacorHboDistribution.SYNACOR_HBO";
+}
++ (NSString*)TIME_WARNER
+{
+    return @"timeWarnerDistribution.TIME_WARNER";
+}
++ (NSString*)TVCOM
+{
+    return @"tvComDistribution.TVCOM";
+}
++ (NSString*)UVERSE_CLICK_TO_ORDER
+{
+    return @"uverseClickToOrderDistribution.UVERSE_CLICK_TO_ORDER";
+}
++ (NSString*)UVERSE
+{
+    return @"uverseDistribution.UVERSE";
+}
++ (NSString*)VERIZON_VCAST
+{
+    return @"verizonVcastDistribution.VERIZON_VCAST";
+}
++ (NSString*)YAHOO
+{
+    return @"yahooDistribution.YAHOO";
+}
++ (NSString*)YOUTUBE
+{
+    return @"youTubeDistribution.YOUTUBE";
+}
++ (NSString*)YOUTUBE_API
+{
+    return @"youtubeApiDistribution.YOUTUBE_API";
+}
++ (NSString*)GENERIC
+{
+    return @"1";
+}
++ (NSString*)SYNDICATION
+{
+    return @"2";
 }
 @end
 
@@ -441,41 +449,41 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
 + (NSString*)SUBMITTED_AT_ASC
 {
     return @"+submittedAt";
-}
-+ (NSString*)SUBMITTED_AT_DESC
-{
-    return @"-submittedAt";
 }
 + (NSString*)SUNRISE_ASC
 {
     return @"+sunrise";
 }
-+ (NSString*)SUNRISE_DESC
-{
-    return @"-sunrise";
-}
 + (NSString*)SUNSET_ASC
 {
     return @"+sunset";
 }
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)SUBMITTED_AT_DESC
+{
+    return @"-submittedAt";
+}
++ (NSString*)SUNRISE_DESC
+{
+    return @"-sunrise";
+}
 + (NSString*)SUNSET_DESC
 {
     return @"-sunset";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 
@@ -484,13 +492,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -503,13 +511,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -522,13 +530,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -541,13 +549,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -559,6 +567,53 @@
 @end
 
 ///////////////////////// classes /////////////////////////
+@implementation KalturaAssetDistributionCondition
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAssetDistributionCondition"];
+}
+
+@end
+
+@implementation KalturaAssetDistributionRule
+@synthesize validationError = _validationError;
+@synthesize assetDistributionConditions = _assetDistributionConditions;
+
+- (KalturaFieldType)getTypeOfValidationError
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfAssetDistributionConditions
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfAssetDistributionConditions
+{
+    return @"KalturaAssetDistributionCondition";
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAssetDistributionRule"];
+    [aParams addIfDefinedKey:@"validationError" withString:self.validationError];
+    [aParams addIfDefinedKey:@"assetDistributionConditions" withArray:self.assetDistributionConditions];
+}
+
+- (void)dealloc
+{
+    [self->_validationError release];
+    [self->_assetDistributionConditions release];
+    [super dealloc];
+}
+
+@end
+
 @interface KalturaDistributionFieldConfig()
 @property (nonatomic,assign) BOOL isDefault;
 @end
@@ -742,6 +797,8 @@
 @synthesize requiredFlavorParamsIds = _requiredFlavorParamsIds;
 @synthesize optionalThumbDimensions = _optionalThumbDimensions;
 @synthesize requiredThumbDimensions = _requiredThumbDimensions;
+@synthesize optionalAssetDistributionRules = _optionalAssetDistributionRules;
+@synthesize requiredAssetDistributionRules = _requiredAssetDistributionRules;
 @synthesize sunriseDefaultOffset = _sunriseDefaultOffset;
 @synthesize sunsetDefaultOffset = _sunsetDefaultOffset;
 @synthesize recommendedStorageProfileForDownload = _recommendedStorageProfileForDownload;
@@ -865,6 +922,26 @@
     return @"KalturaDistributionThumbDimensions";
 }
 
+- (KalturaFieldType)getTypeOfOptionalAssetDistributionRules
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfOptionalAssetDistributionRules
+{
+    return @"KalturaAssetDistributionRule";
+}
+
+- (KalturaFieldType)getTypeOfRequiredAssetDistributionRules
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfRequiredAssetDistributionRules
+{
+    return @"KalturaAssetDistributionRule";
+}
+
 - (KalturaFieldType)getTypeOfSunriseDefaultOffset
 {
     return KFT_Int;
@@ -978,6 +1055,8 @@
     [aParams addIfDefinedKey:@"requiredFlavorParamsIds" withString:self.requiredFlavorParamsIds];
     [aParams addIfDefinedKey:@"optionalThumbDimensions" withArray:self.optionalThumbDimensions];
     [aParams addIfDefinedKey:@"requiredThumbDimensions" withArray:self.requiredThumbDimensions];
+    [aParams addIfDefinedKey:@"optionalAssetDistributionRules" withArray:self.optionalAssetDistributionRules];
+    [aParams addIfDefinedKey:@"requiredAssetDistributionRules" withArray:self.requiredAssetDistributionRules];
     [aParams addIfDefinedKey:@"sunriseDefaultOffset" withInt:self.sunriseDefaultOffset];
     [aParams addIfDefinedKey:@"sunsetDefaultOffset" withInt:self.sunsetDefaultOffset];
     [aParams addIfDefinedKey:@"recommendedStorageProfileForDownload" withInt:self.recommendedStorageProfileForDownload];
@@ -995,6 +1074,8 @@
     [self->_requiredFlavorParamsIds release];
     [self->_optionalThumbDimensions release];
     [self->_requiredThumbDimensions release];
+    [self->_optionalAssetDistributionRules release];
+    [self->_requiredAssetDistributionRules release];
     [super dealloc];
 }
 
@@ -1364,6 +1445,7 @@
 @synthesize dirtyStatus = _dirtyStatus;
 @synthesize thumbAssetIds = _thumbAssetIds;
 @synthesize flavorAssetIds = _flavorAssetIds;
+@synthesize assetIds = _assetIds;
 @synthesize sunrise = _sunrise;
 @synthesize sunset = _sunset;
 @synthesize remoteId = _remoteId;
@@ -1465,6 +1547,11 @@
 }
 
 - (KalturaFieldType)getTypeOfFlavorAssetIds
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfAssetIds
 {
     return KFT_String;
 }
@@ -1663,6 +1750,7 @@
     [aParams addIfDefinedKey:@"distributionProfileId" withInt:self.distributionProfileId];
     [aParams addIfDefinedKey:@"thumbAssetIds" withString:self.thumbAssetIds];
     [aParams addIfDefinedKey:@"flavorAssetIds" withString:self.flavorAssetIds];
+    [aParams addIfDefinedKey:@"assetIds" withString:self.assetIds];
     [aParams addIfDefinedKey:@"sunrise" withInt:self.sunrise];
     [aParams addIfDefinedKey:@"sunset" withInt:self.sunset];
     [aParams addIfDefinedKey:@"validationErrors" withArray:self.validationErrors];
@@ -1673,6 +1761,7 @@
     [self->_entryId release];
     [self->_thumbAssetIds release];
     [self->_flavorAssetIds release];
+    [self->_assetIds release];
     [self->_remoteId release];
     [self->_validationErrors release];
     [self->_errorDescription release];
@@ -2304,6 +2393,38 @@
 
 @end
 
+@implementation KalturaAssetDistributionPropertyCondition
+@synthesize propertyName = _propertyName;
+@synthesize propertyValue = _propertyValue;
+
+- (KalturaFieldType)getTypeOfPropertyName
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfPropertyValue
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaAssetDistributionPropertyCondition"];
+    [aParams addIfDefinedKey:@"propertyName" withString:self.propertyName];
+    [aParams addIfDefinedKey:@"propertyValue" withString:self.propertyValue];
+}
+
+- (void)dealloc
+{
+    [self->_propertyName release];
+    [self->_propertyValue release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaConfigurableDistributionJobProviderData
 @synthesize fieldValues = _fieldValues;
 
@@ -2349,7 +2470,7 @@
 
 - (NSString*)getObjectTypeOfItemXpathsToExtend
 {
-    return @"KalturaString";
+    return @"KalturaExtendingItemMrssParameter";
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
@@ -2812,6 +2933,30 @@
 {
     [self->_fieldName release];
     [self->_validationErrorParam release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaDistributionValidationErrorMissingAsset
+@synthesize data = _data;
+
+- (KalturaFieldType)getTypeOfData
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaDistributionValidationErrorMissingAsset"];
+    [aParams addIfDefinedKey:@"data" withString:self.data];
+}
+
+- (void)dealloc
+{
+    [self->_data release];
     [super dealloc];
 }
 

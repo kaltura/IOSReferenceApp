@@ -56,37 +56,37 @@
 @end
 
 @implementation KalturaCaptionAssetOrderBy
-+ (NSString*)SIZE_ASC
-{
-    return @"+size";
-}
-+ (NSString*)SIZE_DESC
-{
-    return @"-size";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
 }
 + (NSString*)DELETED_AT_ASC
 {
     return @"+deletedAt";
 }
++ (NSString*)SIZE_ASC
+{
+    return @"+size";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
 + (NSString*)DELETED_AT_DESC
 {
     return @"-deletedAt";
+}
++ (NSString*)SIZE_DESC
+{
+    return @"-size";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 @end
 
@@ -101,6 +101,10 @@
 + (NSString*)DFXP
 {
     return @"2";
+}
++ (NSString*)WEBVTT
+{
+    return @"3";
 }
 @end
 

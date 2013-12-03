@@ -47,6 +47,7 @@
 + (int)MISSING_THUMBNAIL;
 + (int)MISSING_METADATA;
 + (int)INVALID_DATA;
++ (int)MISSING_ASSET;
 @end
 
 // @package External
@@ -81,6 +82,7 @@
 + (int)SFTP;
 + (int)HTTP;
 + (int)HTTPS;
++ (int)ASPERA;
 @end
 
 // @package External
@@ -149,8 +151,8 @@
 // @subpackage Kaltura
 @interface KalturaConfigurableDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -158,8 +160,8 @@
 // @subpackage Kaltura
 @interface KalturaDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -171,57 +173,57 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaDistributionProviderType : NSObject
-+ (NSString*)GENERIC;
-+ (NSString*)SYNDICATION;
-+ (NSString*)MSN;
-+ (NSString*)YOUTUBE;
-+ (NSString*)YOUTUBE_API;
-+ (NSString*)DAILYMOTION;
-+ (NSString*)PODCAST;
-+ (NSString*)TVCOM;
-+ (NSString*)FREEWHEEL;
-+ (NSString*)FREEWHEEL_GENERIC;
-+ (NSString*)HULU;
-+ (NSString*)DOUBLECLICK;
-+ (NSString*)SYNACOR_HBO;
++ (NSString*)ATT_UVERSE;
 + (NSString*)AVN;
 + (NSString*)COMCAST_MRSS;
-+ (NSString*)IDETIC;
-+ (NSString*)TIME_WARNER;
-+ (NSString*)YAHOO;
-+ (NSString*)NDN;
-+ (NSString*)UVERSE;
-+ (NSString*)VERIZON_VCAST;
-+ (NSString*)QUICKPLAY;
++ (NSString*)CROSS_KALTURA;
++ (NSString*)DAILYMOTION;
++ (NSString*)DOUBLECLICK;
++ (NSString*)FREEWHEEL;
++ (NSString*)FREEWHEEL_GENERIC;
 + (NSString*)FTP;
 + (NSString*)FTP_SCHEDULED;
-+ (NSString*)ATT_UVERSE;
-+ (NSString*)UVERSE_CLICK_TO_ORDER;
++ (NSString*)HULU;
++ (NSString*)IDETIC;
 + (NSString*)METRO_PCS;
-+ (NSString*)CROSS_KALTURA;
++ (NSString*)MSN;
++ (NSString*)NDN;
++ (NSString*)PODCAST;
++ (NSString*)QUICKPLAY;
++ (NSString*)SYNACOR_HBO;
++ (NSString*)TIME_WARNER;
++ (NSString*)TVCOM;
++ (NSString*)UVERSE_CLICK_TO_ORDER;
++ (NSString*)UVERSE;
++ (NSString*)VERIZON_VCAST;
++ (NSString*)YAHOO;
++ (NSString*)YOUTUBE;
++ (NSString*)YOUTUBE_API;
++ (NSString*)GENERIC;
++ (NSString*)SYNDICATION;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaEntryDistributionOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
-+ (NSString*)UPDATED_AT_ASC;
-+ (NSString*)UPDATED_AT_DESC;
 + (NSString*)SUBMITTED_AT_ASC;
-+ (NSString*)SUBMITTED_AT_DESC;
 + (NSString*)SUNRISE_ASC;
-+ (NSString*)SUNRISE_DESC;
 + (NSString*)SUNSET_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)SUBMITTED_AT_DESC;
++ (NSString*)SUNRISE_DESC;
 + (NSString*)SUNSET_DESC;
++ (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaGenericDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -229,8 +231,8 @@
 // @subpackage Kaltura
 @interface KalturaGenericDistributionProviderActionOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -238,8 +240,8 @@
 // @subpackage Kaltura
 @interface KalturaGenericDistributionProviderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -247,8 +249,8 @@
 // @subpackage Kaltura
 @interface KalturaSyndicationDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -258,6 +260,24 @@
 @end
 
 ///////////////////////// classes /////////////////////////
+// @package External
+// @subpackage Kaltura
+// Abstract class for asset distribution condition
+@interface KalturaAssetDistributionCondition : KalturaObjectBase
+@end
+
+// @package External
+// @subpackage Kaltura
+@interface KalturaAssetDistributionRule : KalturaObjectBase
+// The validation error description that will be set on the "data" property on KalturaDistributionValidationErrorMissingAsset if rule was not fulfilled
+@property (nonatomic,copy) NSString* validationError;
+// An array of asset distribution conditions
+@property (nonatomic,retain) NSMutableArray* assetDistributionConditions;	// of KalturaAssetDistributionCondition elements
+- (KalturaFieldType)getTypeOfValidationError;
+- (KalturaFieldType)getTypeOfAssetDistributionConditions;
+- (NSString*)getObjectTypeOfAssetDistributionConditions;
+@end
+
 // @package External
 // @subpackage Kaltura
 @interface KalturaDistributionFieldConfig : KalturaObjectBase
@@ -329,12 +349,16 @@
 @property (nonatomic,copy) NSString* autoCreateThumb;
 // Comma separated flavor params ids that should be submitted if ready
 @property (nonatomic,copy) NSString* optionalFlavorParamsIds;
-// Comma separated flavor params ids that required to be readt before submission
+// Comma separated flavor params ids that required to be ready before submission
 @property (nonatomic,copy) NSString* requiredFlavorParamsIds;
 // Thumbnail dimensions that should be submitted if ready
 @property (nonatomic,retain) NSMutableArray* optionalThumbDimensions;	// of KalturaDistributionThumbDimensions elements
 // Thumbnail dimensions that required to be readt before submission
 @property (nonatomic,retain) NSMutableArray* requiredThumbDimensions;	// of KalturaDistributionThumbDimensions elements
+// Asset Distribution Rules for assets that should be submitted if ready
+@property (nonatomic,retain) NSMutableArray* optionalAssetDistributionRules;	// of KalturaAssetDistributionRule elements
+// Assets Asset Distribution Rules for assets that are required to be ready before submission
+@property (nonatomic,retain) NSMutableArray* requiredAssetDistributionRules;	// of KalturaAssetDistributionRule elements
 // If entry distribution sunrise not specified that will be the default since entry creation time, in seconds
 @property (nonatomic,assign) int sunriseDefaultOffset;
 // If entry distribution sunset not specified that will be the default since entry creation time, in seconds
@@ -364,6 +388,10 @@
 - (NSString*)getObjectTypeOfOptionalThumbDimensions;
 - (KalturaFieldType)getTypeOfRequiredThumbDimensions;
 - (NSString*)getObjectTypeOfRequiredThumbDimensions;
+- (KalturaFieldType)getTypeOfOptionalAssetDistributionRules;
+- (NSString*)getObjectTypeOfOptionalAssetDistributionRules;
+- (KalturaFieldType)getTypeOfRequiredAssetDistributionRules;
+- (NSString*)getObjectTypeOfRequiredAssetDistributionRules;
 - (KalturaFieldType)getTypeOfSunriseDefaultOffset;
 - (KalturaFieldType)getTypeOfSunsetDefaultOffset;
 - (KalturaFieldType)getTypeOfRecommendedStorageProfileForDownload;
@@ -480,6 +508,8 @@
 @property (nonatomic,copy) NSString* thumbAssetIds;
 // Comma separated flavor asset ids
 @property (nonatomic,copy) NSString* flavorAssetIds;
+// Comma separated asset ids
+@property (nonatomic,copy) NSString* assetIds;
 // Entry distribution publish time as Unix timestamp (In seconds)
 @property (nonatomic,assign) int sunrise;
 // Entry distribution un-publish time as Unix timestamp (In seconds)
@@ -512,6 +542,7 @@
 - (KalturaFieldType)getTypeOfDirtyStatus;
 - (KalturaFieldType)getTypeOfThumbAssetIds;
 - (KalturaFieldType)getTypeOfFlavorAssetIds;
+- (KalturaFieldType)getTypeOfAssetIds;
 - (KalturaFieldType)getTypeOfSunrise;
 - (KalturaFieldType)getTypeOfSunset;
 - (KalturaFieldType)getTypeOfRemoteId;
@@ -699,6 +730,19 @@
 
 // @package External
 // @subpackage Kaltura
+// Defines the condition to match a property and value on core asset object (or one if its inherited objects)
+@interface KalturaAssetDistributionPropertyCondition : KalturaAssetDistributionCondition
+// The property name to look for, this will match to a getter on the asset object.
+// 	 Should be camelCase naming convention (defining "myPropertyName" will look for getMyPropertyName())
+@property (nonatomic,copy) NSString* propertyName;
+// The value to compare
+@property (nonatomic,copy) NSString* propertyValue;
+- (KalturaFieldType)getTypeOfPropertyName;
+- (KalturaFieldType)getTypeOfPropertyValue;
+@end
+
+// @package External
+// @subpackage Kaltura
 @interface KalturaConfigurableDistributionJobProviderData : KalturaDistributionJobProviderData
 @property (nonatomic,copy) NSString* fieldValues;
 - (KalturaFieldType)getTypeOfFieldValues;
@@ -708,7 +752,7 @@
 // @subpackage Kaltura
 @interface KalturaConfigurableDistributionProfile : KalturaDistributionProfile
 @property (nonatomic,retain) NSMutableArray* fieldConfigArray;	// of KalturaDistributionFieldConfig elements
-@property (nonatomic,retain) NSMutableArray* itemXpathsToExtend;	// of KalturaString elements
+@property (nonatomic,retain) NSMutableArray* itemXpathsToExtend;	// of KalturaExtendingItemMrssParameter elements
 - (KalturaFieldType)getTypeOfFieldConfigArray;
 - (NSString*)getObjectTypeOfFieldConfigArray;
 - (KalturaFieldType)getTypeOfItemXpathsToExtend;
@@ -826,6 +870,13 @@
 - (KalturaFieldType)getTypeOfValidationErrorType;
 - (KalturaFieldType)getTypeOfValidationErrorParam;
 - (void)setValidationErrorTypeFromString:(NSString*)aPropVal;
+@end
+
+// @package External
+// @subpackage Kaltura
+@interface KalturaDistributionValidationErrorMissingAsset : KalturaDistributionValidationError
+@property (nonatomic,copy) NSString* data;
+- (KalturaFieldType)getTypeOfData;
 @end
 
 // @package External

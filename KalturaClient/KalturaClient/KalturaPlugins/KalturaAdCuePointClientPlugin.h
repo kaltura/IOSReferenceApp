@@ -34,18 +34,18 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaAdCuePointOrderBy : NSObject
-+ (NSString*)END_TIME_ASC;
-+ (NSString*)END_TIME_DESC;
-+ (NSString*)DURATION_ASC;
-+ (NSString*)DURATION_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
-+ (NSString*)UPDATED_AT_ASC;
-+ (NSString*)UPDATED_AT_DESC;
-+ (NSString*)START_TIME_ASC;
-+ (NSString*)START_TIME_DESC;
++ (NSString*)DURATION_ASC;
++ (NSString*)END_TIME_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
++ (NSString*)START_TIME_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)DURATION_DESC;
++ (NSString*)END_TIME_DESC;
 + (NSString*)PARTNER_SORT_VALUE_DESC;
++ (NSString*)START_TIME_DESC;
++ (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External

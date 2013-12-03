@@ -42,9 +42,9 @@
 - (KalturaBulkUploadListResponse*)listWithBulkUploadFilter:(KalturaBulkUploadFilter*)aBulkUploadFilter withPager:(KalturaFilterPager*)aPager;
 - (KalturaBulkUploadListResponse*)listWithBulkUploadFilter:(KalturaBulkUploadFilter*)aBulkUploadFilter;
 - (KalturaBulkUploadListResponse*)list;
-// serve action returan the original file.
+// serve action returns the original file.
 - (NSString*)serveWithId:(int)aId;
-// serveLog action returan the original file.
+// serveLog action returns the log file for the bulk-upload job.
 - (NSString*)serveLogWithId:(int)aId;
 // Aborts the bulk upload and all its child jobs
 - (KalturaBulkUpload*)abortWithId:(int)aId;

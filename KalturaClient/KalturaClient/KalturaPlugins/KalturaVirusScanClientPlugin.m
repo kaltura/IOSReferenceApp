@@ -82,6 +82,14 @@
 @end
 
 @implementation KalturaVirusScanEngineType
++ (NSString*)CLAMAV_SCAN_ENGINE
+{
+    return @"clamAVScanEngine.ClamAV";
+}
++ (NSString*)SYMANTEC_SCAN_DIRECT_ENGINE
+{
+    return @"symantecScanEngine.SymantecScanDirectEngine";
+}
 + (NSString*)SYMANTEC_SCAN_ENGINE
 {
     return @"symantecScanEngine.SymantecScanEngine";
@@ -90,14 +98,6 @@
 {
     return @"symantecScanEngine.SymantecScanJavaEngine";
 }
-+ (NSString*)SYMANTEC_SCAN_DIRECT_ENGINE
-{
-    return @"symantecScanEngine.SymantecScanDirectEngine";
-}
-+ (NSString*)CLAMAV_SCAN_ENGINE
-{
-    return @"clamAVScanEngine.ClamAV";
-}
 @end
 
 @implementation KalturaVirusScanProfileOrderBy
@@ -105,13 +105,13 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {

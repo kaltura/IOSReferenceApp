@@ -71,41 +71,41 @@
 {
     return @"+createdAt";
 }
-+ (NSString*)CREATED_AT_DESC
++ (NSString*)FILE_SIZE_ASC
 {
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
+    return @"+fileSize";
 }
 + (NSString*)READY_AT_ASC
 {
     return @"+readyAt";
 }
-+ (NSString*)READY_AT_DESC
-{
-    return @"-readyAt";
-}
 + (NSString*)SYNC_TIME_ASC
 {
     return @"+syncTime";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)FILE_SIZE_DESC
+{
+    return @"-fileSize";
+}
++ (NSString*)READY_AT_DESC
+{
+    return @"-readyAt";
 }
 + (NSString*)SYNC_TIME_DESC
 {
     return @"-syncTime";
 }
-+ (NSString*)FILE_SIZE_ASC
++ (NSString*)UPDATED_AT_DESC
 {
-    return @"+fileSize";
-}
-+ (NSString*)FILE_SIZE_DESC
-{
-    return @"-fileSize";
+    return @"-updatedAt";
 }
 @end
 

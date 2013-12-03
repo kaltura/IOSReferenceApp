@@ -60,6 +60,9 @@
 + (int)ERROR_DELETING;
 + (int)DOWNLOADING;
 + (int)ERROR_DOWNLOADING;
++ (int)PROCESSING;
++ (int)PARSED;
++ (int)DETECTED;
 @end
 
 // @package External
@@ -68,11 +71,31 @@
 + (int)DISABLED;
 + (int)ENABLED;
 + (int)DELETED;
++ (int)ERROR;
+@end
+
+// @package External
+// @subpackage Kaltura
+@interface KalturaDropFolderErrorCode : NSObject
++ (NSString*)ERROR_CONNECT;
++ (NSString*)ERROR_AUTENTICATE;
++ (NSString*)ERROR_GET_PHISICAL_FILE_LIST;
++ (NSString*)ERROR_GET_DB_FILE_LIST;
++ (NSString*)DROP_FOLDER_APP_ERROR;
++ (NSString*)CONTENT_MATCH_POLICY_UNDEFINED;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaDropFolderFileErrorCode : NSObject
++ (NSString*)ERROR_ADDING_BULK_UPLOAD;
++ (NSString*)ERROR_ADD_CONTENT_RESOURCE;
++ (NSString*)ERROR_IN_BULK_UPLOAD;
++ (NSString*)ERROR_WRITING_TEMP_FILE;
++ (NSString*)LOCAL_FILE_WRONG_CHECKSUM;
++ (NSString*)LOCAL_FILE_WRONG_SIZE;
++ (NSString*)MALFORMED_XML_FILE;
++ (NSString*)XML_FILE_SIZE_EXCEED_LIMIT;
 + (NSString*)ERROR_UPDATE_ENTRY;
 + (NSString*)ERROR_ADD_ENTRY;
 + (NSString*)FLAVOR_NOT_FOUND;
@@ -80,50 +103,51 @@
 + (NSString*)SLUG_REGEX_NO_MATCH;
 + (NSString*)ERROR_READING_FILE;
 + (NSString*)ERROR_DOWNLOADING_FILE;
-+ (NSString*)LOCAL_FILE_WRONG_SIZE;
-+ (NSString*)LOCAL_FILE_WRONG_CHECKSUM;
-+ (NSString*)ERROR_WRITING_TEMP_FILE;
-+ (NSString*)ERROR_ADDING_BULK_UPLOAD;
++ (NSString*)ERROR_UPDATE_FILE;
++ (NSString*)ERROR_ADDING_CONTENT_PROCESSOR;
++ (NSString*)ERROR_IN_CONTENT_PROCESSOR;
++ (NSString*)ERROR_DELETING_FILE;
++ (NSString*)FILE_NO_MATCH;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaDropFolderFileHandlerType : NSObject
-+ (NSString*)CONTENT;
 + (NSString*)XML;
++ (NSString*)CONTENT;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaDropFolderFileOrderBy : NSObject
-+ (NSString*)ID_ASC;
-+ (NSString*)ID_DESC;
-+ (NSString*)FILE_NAME_ASC;
-+ (NSString*)FILE_NAME_DESC;
-+ (NSString*)FILE_SIZE_ASC;
-+ (NSString*)FILE_SIZE_DESC;
-+ (NSString*)FILE_SIZE_LAST_SET_AT_ASC;
-+ (NSString*)FILE_SIZE_LAST_SET_AT_DESC;
-+ (NSString*)PARSED_SLUG_ASC;
-+ (NSString*)PARSED_SLUG_DESC;
-+ (NSString*)PARSED_FLAVOR_ASC;
-+ (NSString*)PARSED_FLAVOR_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)FILE_NAME_ASC;
++ (NSString*)FILE_SIZE_ASC;
++ (NSString*)FILE_SIZE_LAST_SET_AT_ASC;
++ (NSString*)ID_ASC;
++ (NSString*)PARSED_FLAVOR_ASC;
++ (NSString*)PARSED_SLUG_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)FILE_NAME_DESC;
++ (NSString*)FILE_SIZE_DESC;
++ (NSString*)FILE_SIZE_LAST_SET_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)PARSED_FLAVOR_DESC;
++ (NSString*)PARSED_SLUG_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaDropFolderOrderBy : NSObject
-+ (NSString*)ID_ASC;
-+ (NSString*)ID_DESC;
-+ (NSString*)NAME_ASC;
-+ (NSString*)NAME_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_ASC;
++ (NSString*)NAME_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)NAME_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -134,70 +158,71 @@
 + (NSString*)FTP;
 + (NSString*)SCP;
 + (NSString*)SFTP;
++ (NSString*)S3;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaFtpDropFolderOrderBy : NSObject
-+ (NSString*)ID_ASC;
-+ (NSString*)ID_DESC;
-+ (NSString*)NAME_ASC;
-+ (NSString*)NAME_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_ASC;
++ (NSString*)NAME_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)NAME_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaRemoteDropFolderOrderBy : NSObject
-+ (NSString*)ID_ASC;
-+ (NSString*)ID_DESC;
-+ (NSString*)NAME_ASC;
-+ (NSString*)NAME_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_ASC;
++ (NSString*)NAME_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)NAME_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaScpDropFolderOrderBy : NSObject
-+ (NSString*)ID_ASC;
-+ (NSString*)ID_DESC;
-+ (NSString*)NAME_ASC;
-+ (NSString*)NAME_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_ASC;
++ (NSString*)NAME_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)NAME_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaSftpDropFolderOrderBy : NSObject
-+ (NSString*)ID_ASC;
-+ (NSString*)ID_DESC;
-+ (NSString*)NAME_ASC;
-+ (NSString*)NAME_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_ASC;
++ (NSString*)NAME_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)NAME_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
 // @package External
 // @subpackage Kaltura
 @interface KalturaSshDropFolderOrderBy : NSObject
-+ (NSString*)ID_ASC;
-+ (NSString*)ID_DESC;
-+ (NSString*)NAME_ASC;
-+ (NSString*)NAME_DESC;
 + (NSString*)CREATED_AT_ASC;
-+ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_ASC;
++ (NSString*)NAME_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)NAME_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
@@ -229,9 +254,12 @@
 @property (nonatomic,copy) NSString* fileNamePatterns;
 @property (nonatomic,retain) KalturaDropFolderFileHandlerConfig* fileHandlerConfig;
 @property (nonatomic,copy) NSString* tags;
+@property (nonatomic,copy) NSString* errorCode;	// enum KalturaDropFolderErrorCode
+@property (nonatomic,copy) NSString* errorDescription;
 @property (nonatomic,copy) NSString* ignoreFileNamePatterns;
 @property (nonatomic,assign,readonly) int createdAt;
 @property (nonatomic,assign,readonly) int updatedAt;
+@property (nonatomic,assign) int lastAccessedAt;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfName;
@@ -249,9 +277,12 @@
 - (KalturaFieldType)getTypeOfFileHandlerConfig;
 - (NSString*)getObjectTypeOfFileHandlerConfig;
 - (KalturaFieldType)getTypeOfTags;
+- (KalturaFieldType)getTypeOfErrorCode;
+- (KalturaFieldType)getTypeOfErrorDescription;
 - (KalturaFieldType)getTypeOfIgnoreFileNamePatterns;
 - (KalturaFieldType)getTypeOfCreatedAt;
 - (KalturaFieldType)getTypeOfUpdatedAt;
+- (KalturaFieldType)getTypeOfLastAccessedAt;
 - (void)setIdFromString:(NSString*)aPropVal;
 - (void)setPartnerIdFromString:(NSString*)aPropVal;
 - (void)setStatusFromString:(NSString*)aPropVal;
@@ -262,6 +293,7 @@
 - (void)setAutoFileDeleteDaysFromString:(NSString*)aPropVal;
 - (void)setCreatedAtFromString:(NSString*)aPropVal;
 - (void)setUpdatedAtFromString:(NSString*)aPropVal;
+- (void)setLastAccessedAtFromString:(NSString*)aPropVal;
 @end
 
 // @package External
@@ -276,11 +308,19 @@
 @property (nonatomic,assign,readonly) int status;	// enum KalturaDropFolderFileStatus
 @property (nonatomic,copy) NSString* parsedSlug;
 @property (nonatomic,copy) NSString* parsedFlavor;
+@property (nonatomic,assign) int leadDropFolderFileId;
+@property (nonatomic,assign) int deletedDropFolderFileId;
+@property (nonatomic,copy) NSString* entryId;
 @property (nonatomic,copy) NSString* errorCode;	// enum KalturaDropFolderFileErrorCode
 @property (nonatomic,copy) NSString* errorDescription;
 @property (nonatomic,copy) NSString* lastModificationTime;
 @property (nonatomic,assign,readonly) int createdAt;
 @property (nonatomic,assign,readonly) int updatedAt;
+@property (nonatomic,assign) int uploadStartDetectedAt;
+@property (nonatomic,assign) int uploadEndDetectedAt;
+@property (nonatomic,assign) int importStartedAt;
+@property (nonatomic,assign) int importEndedAt;
+@property (nonatomic,assign,readonly) int batchJobId;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfDropFolderId;
@@ -290,19 +330,34 @@
 - (KalturaFieldType)getTypeOfStatus;
 - (KalturaFieldType)getTypeOfParsedSlug;
 - (KalturaFieldType)getTypeOfParsedFlavor;
+- (KalturaFieldType)getTypeOfLeadDropFolderFileId;
+- (KalturaFieldType)getTypeOfDeletedDropFolderFileId;
+- (KalturaFieldType)getTypeOfEntryId;
 - (KalturaFieldType)getTypeOfErrorCode;
 - (KalturaFieldType)getTypeOfErrorDescription;
 - (KalturaFieldType)getTypeOfLastModificationTime;
 - (KalturaFieldType)getTypeOfCreatedAt;
 - (KalturaFieldType)getTypeOfUpdatedAt;
+- (KalturaFieldType)getTypeOfUploadStartDetectedAt;
+- (KalturaFieldType)getTypeOfUploadEndDetectedAt;
+- (KalturaFieldType)getTypeOfImportStartedAt;
+- (KalturaFieldType)getTypeOfImportEndedAt;
+- (KalturaFieldType)getTypeOfBatchJobId;
 - (void)setIdFromString:(NSString*)aPropVal;
 - (void)setPartnerIdFromString:(NSString*)aPropVal;
 - (void)setDropFolderIdFromString:(NSString*)aPropVal;
 - (void)setFileSizeFromString:(NSString*)aPropVal;
 - (void)setFileSizeLastSetAtFromString:(NSString*)aPropVal;
 - (void)setStatusFromString:(NSString*)aPropVal;
+- (void)setLeadDropFolderFileIdFromString:(NSString*)aPropVal;
+- (void)setDeletedDropFolderFileIdFromString:(NSString*)aPropVal;
 - (void)setCreatedAtFromString:(NSString*)aPropVal;
 - (void)setUpdatedAtFromString:(NSString*)aPropVal;
+- (void)setUploadStartDetectedAtFromString:(NSString*)aPropVal;
+- (void)setUploadEndDetectedAtFromString:(NSString*)aPropVal;
+- (void)setImportStartedAtFromString:(NSString*)aPropVal;
+- (void)setImportEndedAtFromString:(NSString*)aPropVal;
+- (void)setBatchJobIdFromString:(NSString*)aPropVal;
 @end
 
 // @package External
@@ -343,6 +398,7 @@
 @property (nonatomic,copy) NSString* conversionProfileIdIn;
 @property (nonatomic,assign) int dcEqual;
 @property (nonatomic,copy) NSString* dcIn;
+@property (nonatomic,copy) NSString* pathEqual;
 @property (nonatomic,copy) NSString* pathLike;
 @property (nonatomic,copy) NSString* fileHandlerTypeEqual;	// enum KalturaDropFolderFileHandlerType
 @property (nonatomic,copy) NSString* fileHandlerTypeIn;
@@ -352,6 +408,8 @@
 @property (nonatomic,copy) NSString* tagsLike;
 @property (nonatomic,copy) NSString* tagsMultiLikeOr;
 @property (nonatomic,copy) NSString* tagsMultiLikeAnd;
+@property (nonatomic,copy) NSString* errorCodeEqual;	// enum KalturaDropFolderErrorCode
+@property (nonatomic,copy) NSString* errorCodeIn;
 @property (nonatomic,assign) int createdAtGreaterThanOrEqual;
 @property (nonatomic,assign) int createdAtLessThanOrEqual;
 @property (nonatomic,assign) int updatedAtGreaterThanOrEqual;
@@ -369,6 +427,7 @@
 - (KalturaFieldType)getTypeOfConversionProfileIdIn;
 - (KalturaFieldType)getTypeOfDcEqual;
 - (KalturaFieldType)getTypeOfDcIn;
+- (KalturaFieldType)getTypeOfPathEqual;
 - (KalturaFieldType)getTypeOfPathLike;
 - (KalturaFieldType)getTypeOfFileHandlerTypeEqual;
 - (KalturaFieldType)getTypeOfFileHandlerTypeIn;
@@ -378,6 +437,8 @@
 - (KalturaFieldType)getTypeOfTagsLike;
 - (KalturaFieldType)getTypeOfTagsMultiLikeOr;
 - (KalturaFieldType)getTypeOfTagsMultiLikeAnd;
+- (KalturaFieldType)getTypeOfErrorCodeEqual;
+- (KalturaFieldType)getTypeOfErrorCodeIn;
 - (KalturaFieldType)getTypeOfCreatedAtGreaterThanOrEqual;
 - (KalturaFieldType)getTypeOfCreatedAtLessThanOrEqual;
 - (KalturaFieldType)getTypeOfUpdatedAtGreaterThanOrEqual;
@@ -409,6 +470,21 @@
 
 // @package External
 // @subpackage Kaltura
+@interface KalturaDropFolderContentProcessorJobData : KalturaJobData
+@property (nonatomic,copy) NSString* dropFolderFileIds;
+@property (nonatomic,copy) NSString* parsedSlug;
+@property (nonatomic,assign) int contentMatchPolicy;	// enum KalturaDropFolderContentFileHandlerMatchPolicy
+@property (nonatomic,assign) int conversionProfileId;
+- (KalturaFieldType)getTypeOfDropFolderFileIds;
+- (KalturaFieldType)getTypeOfParsedSlug;
+- (KalturaFieldType)getTypeOfContentMatchPolicy;
+- (KalturaFieldType)getTypeOfConversionProfileId;
+- (void)setContentMatchPolicyFromString:(NSString*)aPropVal;
+- (void)setConversionProfileIdFromString:(NSString*)aPropVal;
+@end
+
+// @package External
+// @subpackage Kaltura
 @interface KalturaDropFolderFileBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -427,6 +503,9 @@
 @property (nonatomic,copy) NSString* parsedFlavorEqual;
 @property (nonatomic,copy) NSString* parsedFlavorIn;
 @property (nonatomic,copy) NSString* parsedFlavorLike;
+@property (nonatomic,assign) int leadDropFolderFileIdEqual;
+@property (nonatomic,assign) int deletedDropFolderFileIdEqual;
+@property (nonatomic,copy) NSString* entryIdEqual;
 @property (nonatomic,copy) NSString* errorCodeEqual;	// enum KalturaDropFolderFileErrorCode
 @property (nonatomic,copy) NSString* errorCodeIn;
 @property (nonatomic,assign) int createdAtGreaterThanOrEqual;
@@ -450,6 +529,9 @@
 - (KalturaFieldType)getTypeOfParsedFlavorEqual;
 - (KalturaFieldType)getTypeOfParsedFlavorIn;
 - (KalturaFieldType)getTypeOfParsedFlavorLike;
+- (KalturaFieldType)getTypeOfLeadDropFolderFileIdEqual;
+- (KalturaFieldType)getTypeOfDeletedDropFolderFileIdEqual;
+- (KalturaFieldType)getTypeOfEntryIdEqual;
 - (KalturaFieldType)getTypeOfErrorCodeEqual;
 - (KalturaFieldType)getTypeOfErrorCodeIn;
 - (KalturaFieldType)getTypeOfCreatedAtGreaterThanOrEqual;
@@ -460,6 +542,8 @@
 - (void)setPartnerIdEqualFromString:(NSString*)aPropVal;
 - (void)setDropFolderIdEqualFromString:(NSString*)aPropVal;
 - (void)setStatusEqualFromString:(NSString*)aPropVal;
+- (void)setLeadDropFolderFileIdEqualFromString:(NSString*)aPropVal;
+- (void)setDeletedDropFolderFileIdEqualFromString:(NSString*)aPropVal;
 - (void)setCreatedAtGreaterThanOrEqualFromString:(NSString*)aPropVal;
 - (void)setCreatedAtLessThanOrEqualFromString:(NSString*)aPropVal;
 - (void)setUpdatedAtGreaterThanOrEqualFromString:(NSString*)aPropVal;
@@ -479,6 +563,9 @@
 // @package External
 // @subpackage Kaltura
 @interface KalturaDropFolderFilter : KalturaDropFolderBaseFilter
+@property (nonatomic,assign) int currentDc;	// enum KalturaNullableBoolean
+- (KalturaFieldType)getTypeOfCurrentDc;
+- (void)setCurrentDcFromString:(NSString*)aPropVal;
 @end
 
 // @package External

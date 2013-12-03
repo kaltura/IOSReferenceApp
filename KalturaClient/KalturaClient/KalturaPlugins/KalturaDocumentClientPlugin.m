@@ -44,89 +44,89 @@
 @end
 
 @implementation KalturaDocumentEntryOrderBy
-+ (NSString*)NAME_ASC
-{
-    return @"+name";
-}
-+ (NSString*)NAME_DESC
-{
-    return @"-name";
-}
-+ (NSString*)MODERATION_COUNT_ASC
-{
-    return @"+moderationCount";
-}
-+ (NSString*)MODERATION_COUNT_DESC
-{
-    return @"-moderationCount";
-}
 + (NSString*)CREATED_AT_ASC
 {
     return @"+createdAt";
-}
-+ (NSString*)CREATED_AT_DESC
-{
-    return @"-createdAt";
-}
-+ (NSString*)UPDATED_AT_ASC
-{
-    return @"+updatedAt";
-}
-+ (NSString*)UPDATED_AT_DESC
-{
-    return @"-updatedAt";
-}
-+ (NSString*)RANK_ASC
-{
-    return @"+rank";
-}
-+ (NSString*)RANK_DESC
-{
-    return @"-rank";
-}
-+ (NSString*)TOTAL_RANK_ASC
-{
-    return @"+totalRank";
-}
-+ (NSString*)TOTAL_RANK_DESC
-{
-    return @"-totalRank";
-}
-+ (NSString*)START_DATE_ASC
-{
-    return @"+startDate";
-}
-+ (NSString*)START_DATE_DESC
-{
-    return @"-startDate";
 }
 + (NSString*)END_DATE_ASC
 {
     return @"+endDate";
 }
-+ (NSString*)END_DATE_DESC
++ (NSString*)MODERATION_COUNT_ASC
 {
-    return @"-endDate";
+    return @"+moderationCount";
+}
++ (NSString*)NAME_ASC
+{
+    return @"+name";
 }
 + (NSString*)PARTNER_SORT_VALUE_ASC
 {
     return @"+partnerSortValue";
 }
-+ (NSString*)PARTNER_SORT_VALUE_DESC
++ (NSString*)RANK_ASC
 {
-    return @"-partnerSortValue";
+    return @"+rank";
 }
 + (NSString*)RECENT_ASC
 {
     return @"+recent";
 }
-+ (NSString*)RECENT_DESC
++ (NSString*)START_DATE_ASC
 {
-    return @"-recent";
+    return @"+startDate";
+}
++ (NSString*)TOTAL_RANK_ASC
+{
+    return @"+totalRank";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
 }
 + (NSString*)WEIGHT_ASC
 {
     return @"+weight";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)END_DATE_DESC
+{
+    return @"-endDate";
+}
++ (NSString*)MODERATION_COUNT_DESC
+{
+    return @"-moderationCount";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)PARTNER_SORT_VALUE_DESC
+{
+    return @"-partnerSortValue";
+}
++ (NSString*)RANK_DESC
+{
+    return @"-rank";
+}
++ (NSString*)RECENT_DESC
+{
+    return @"-recent";
+}
++ (NSString*)START_DATE_DESC
+{
+    return @"-startDate";
+}
++ (NSString*)TOTAL_RANK_DESC
+{
+    return @"-totalRank";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
 }
 + (NSString*)WEIGHT_DESC
 {
@@ -978,6 +978,31 @@
 - (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId
 {
     return [self serveByFlavorParamsIdWithEntryId:aEntryId withFlavorParamsId:nil];
+}
+
+- (KalturaDocumentEntry*)updateContentWithEntryId:(NSString*)aEntryId withResource:(KalturaResource*)aResource withConversionProfileId:(int)aConversionProfileId
+{
+    [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
+    [self.client.params addIfDefinedKey:@"resource" withObject:aResource];
+    [self.client.params addIfDefinedKey:@"conversionProfileId" withInt:aConversionProfileId];
+    return [self.client queueObjectService:@"document_documents" withAction:@"updateContent" withExpectedType:@"KalturaDocumentEntry"];
+}
+
+- (KalturaDocumentEntry*)updateContentWithEntryId:(NSString*)aEntryId withResource:(KalturaResource*)aResource
+{
+    return [self updateContentWithEntryId:aEntryId withResource:aResource withConversionProfileId:KALTURA_UNDEF_INT];
+}
+
+- (KalturaDocumentEntry*)approveReplaceWithEntryId:(NSString*)aEntryId
+{
+    [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
+    return [self.client queueObjectService:@"document_documents" withAction:@"approveReplace" withExpectedType:@"KalturaDocumentEntry"];
+}
+
+- (KalturaDocumentEntry*)cancelReplaceWithEntryId:(NSString*)aEntryId
+{
+    [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
+    return [self.client queueObjectService:@"document_documents" withAction:@"cancelReplace" withExpectedType:@"KalturaDocumentEntry"];
 }
 
 @end
