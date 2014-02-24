@@ -291,7 +291,6 @@
 		BF9A66A21770A0E300028D7D /* KalturaThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EDFBB152900C2005A0112 /* KalturaThumbView.m */; };
 		BF9A66A31770A0E300028D7D /* WVSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7C4E58175DD1D300B48522 /* WVSettings.m */; };
 		BF9A66A51770A0E300028D7D /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8D9BFF17520D350096AA03 /* libstdc++.dylib */; };
-		BF9A66A61770A0E300028D7D /* libKalturaClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 843B4E9D15480F17003AF28D /* libKalturaClient.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		BF9A66A71770A0E300028D7D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B7DB911520E0E20087CB74 /* CoreMedia.framework */; };
 		BF9A66A81770A0E300028D7D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B7DB8F1520E0DD0087CB74 /* AVFoundation.framework */; };
 		BF9A66A91770A0E300028D7D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B7DB8D1520DD800087CB74 /* MessageUI.framework */; };
@@ -309,6 +308,7 @@
 		BF9A7CD417CF973000220EFD /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF9A7CD317CF973000220EFD /* Icon@2x.png */; };
 		BF9A7CD617CF973F00220EFD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BF9A7CD517CF973F00220EFD /* Icon.png */; };
 		BF9A7CD817CF976700220EFD /* icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BF9A7CD717CF976700220EFD /* icon_ipad.png */; };
+		BFA6F0CD18BB732500F7C78F /* libKalturaClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF0194417DFC33F00C32F72 /* libKalturaClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -333,14 +333,14 @@
 			remoteGlobalIDString = BFFFA738182F9E31005B3B24;
 			remoteInfo = PlayerSDKTests;
 		};
-		BF35D069184B66FE00D4A391 /* PBXContainerItemProxy */ = {
+		BFA6F0C918BB72FF00F7C78F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = BFFFA726182F9E31005B3B24;
 			remoteInfo = PlayerSDK;
 		};
-		BF35D06B184B670200D4A391 /* PBXContainerItemProxy */ = {
+		BFA6F0CB18BB731000F7C78F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BF35D04B184B49B300D4A391 /* PlayerSDK.xcodeproj */;
 			proxyType = 1;
@@ -659,9 +659,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA6F0CD18BB732500F7C78F /* libKalturaClient.a in Frameworks */,
 				BF35D065184B66BF00D4A391 /* libPlayerSDK.a in Frameworks */,
 				BF9A66A51770A0E300028D7D /* libstdc++.dylib in Frameworks */,
-				BF9A66A61770A0E300028D7D /* libKalturaClient.a in Frameworks */,
 				BF9A66A71770A0E300028D7D /* CoreMedia.framework in Frameworks */,
 				BF9A66A81770A0E300028D7D /* AVFoundation.framework in Frameworks */,
 				BF9A66A91770A0E300028D7D /* MessageUI.framework in Frameworks */,
@@ -1217,7 +1217,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				BF35D06C184B670200D4A391 /* PBXTargetDependency */,
+				BFA6F0CA18BB72FF00F7C78F /* PBXTargetDependency */,
 			);
 			name = Kaltura;
 			productName = Kaltura;
@@ -1235,7 +1235,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				BF35D06A184B66FE00D4A391 /* PBXTargetDependency */,
+				BFA6F0CC18BB731000F7C78F /* PBXTargetDependency */,
 			);
 			name = "Kaltura widevine";
 			productName = Kaltura;
@@ -1622,15 +1622,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BF35D06A184B66FE00D4A391 /* PBXTargetDependency */ = {
+		BFA6F0CA18BB72FF00F7C78F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PlayerSDK;
-			targetProxy = BF35D069184B66FE00D4A391 /* PBXContainerItemProxy */;
+			targetProxy = BFA6F0C918BB72FF00F7C78F /* PBXContainerItemProxy */;
 		};
-		BF35D06C184B670200D4A391 /* PBXTargetDependency */ = {
+		BFA6F0CC18BB731000F7C78F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PlayerSDK;
-			targetProxy = BF35D06B184B670200D4A391 /* PBXContainerItemProxy */;
+			targetProxy = BFA6F0CB18BB731000F7C78F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1686,8 +1686,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eliza Sapir (JNZ3J44F89)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Eliza Sapir (JNZ3J44F89)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1700,9 +1700,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Kaltura widevine";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C132BAB-9994-4F61-BA44-E151106CD9D4";
+				PROVISIONING_PROFILE = "882617D6-D07A-4934-869A-3DC41E8712B5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "882617D6-D07A-4934-869A-3DC41E8712B5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1712,7 +1713,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eliza Sapir (JNZ3J44F89)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1724,9 +1725,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "Kaltura widevine";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C132BAB-9994-4F61-BA44-E151106CD9D4";
+				PROVISIONING_PROFILE = "882617D6-D07A-4934-869A-3DC41E8712B5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "882617D6-D07A-4934-869A-3DC41E8712B5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1748,9 +1750,10 @@
 					../KalturaClient/KalturaClient/KalturaPlugins,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "79D3106C-A589-4017-80B4-6D35E78C652A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "79D3106C-A589-4017-80B4-6D35E78C652A";
+				PROVISIONING_PROFILE = "882617D6-D07A-4934-869A-3DC41E8712B5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "882617D6-D07A-4934-869A-3DC41E8712B5";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
@@ -1772,10 +1775,11 @@
 					../KalturaClient/KalturaClient/KalturaPlugins,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "EEE1B339-9CA9-44E9-BB2E-50609C3CBBA4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EEE1B339-9CA9-44E9-BB2E-50609C3CBBA4";
+				PROVISIONING_PROFILE = "882617D6-D07A-4934-869A-3DC41E8712B5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "882617D6-D07A-4934-869A-3DC41E8712B5";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;

@@ -9,8 +9,8 @@
 #import "Client.h"
 
 #ifdef widevine
-#import "WViPhoneAPI.h"
-#import "WVSettings.h"
+#import <PlayerSDK/WViPhoneAPI.h>
+#import <PlayerSDK/WVSettings.h>
 
 static NSArray *sBitRates;
 #endif
