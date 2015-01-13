@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaTag : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,copy,readonly) NSString* tag;
@@ -40,20 +40,23 @@
 @property (nonatomic,assign,readonly) int partnerId;
 @property (nonatomic,assign,readonly) int instanceCount;
 @property (nonatomic,assign,readonly) int createdAt;
+@property (nonatomic,assign,readonly) int updatedAt;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfTag;
 - (KalturaFieldType)getTypeOfTaggedObjectType;
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfInstanceCount;
 - (KalturaFieldType)getTypeOfCreatedAt;
+- (KalturaFieldType)getTypeOfUpdatedAt;
 - (void)setIdFromString:(NSString*)aPropVal;
 - (void)setPartnerIdFromString:(NSString*)aPropVal;
 - (void)setInstanceCountFromString:(NSString*)aPropVal;
 - (void)setCreatedAtFromString:(NSString*)aPropVal;
+- (void)setUpdatedAtFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaTagListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaTag elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -63,8 +66,20 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaIndexTagsByPrivacyContextJobData : KalturaJobData
+@property (nonatomic,assign) int changedCategoryId;
+@property (nonatomic,copy) NSString* deletedPrivacyContexts;
+@property (nonatomic,copy) NSString* addedPrivacyContexts;
+- (KalturaFieldType)getTypeOfChangedCategoryId;
+- (KalturaFieldType)getTypeOfDeletedPrivacyContexts;
+- (KalturaFieldType)getTypeOfAddedPrivacyContexts;
+- (void)setChangedCategoryIdFromString:(NSString*)aPropVal;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaTagFilter : KalturaFilter
 @property (nonatomic,copy) NSString* objectTypeEqual;	// enum KalturaTaggedObjectType
 @property (nonatomic,copy) NSString* tagEqual;
@@ -81,14 +96,15 @@
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Search object tags
 @interface KalturaTagService : KalturaServiceBase
 - (KalturaTagListResponse*)searchWithTagFilter:(KalturaTagFilter*)aTagFilter withPager:(KalturaFilterPager*)aPager;
 - (KalturaTagListResponse*)searchWithTagFilter:(KalturaTagFilter*)aTagFilter;
 // Action goes over all tags with instanceCount==0 and checks whether they need to be removed from the DB. Returns number of removed tags.
 - (int)deletePending;
+- (void)indexCategoryEntryTagsWithCategoryId:(int)aCategoryId withPcToDecrement:(NSString*)aPcToDecrement withPcToIncrement:(NSString*)aPcToIncrement;
 @end
 
 @interface KalturaTagSearchClientPlugin : KalturaClientPlugin

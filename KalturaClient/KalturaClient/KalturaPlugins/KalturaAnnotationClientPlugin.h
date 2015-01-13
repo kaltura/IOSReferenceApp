@@ -25,32 +25,34 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 #import "KalturaCuePointClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAnnotationOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)DURATION_ASC;
 + (NSString*)END_TIME_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
 + (NSString*)START_TIME_ASC;
++ (NSString*)TRIGGERED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
 + (NSString*)CREATED_AT_DESC;
 + (NSString*)DURATION_DESC;
 + (NSString*)END_TIME_DESC;
 + (NSString*)PARTNER_SORT_VALUE_DESC;
 + (NSString*)START_TIME_DESC;
++ (NSString*)TRIGGERED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAnnotation : KalturaCuePoint
 @property (nonatomic,copy) NSString* parentId;	// insertonly
 @property (nonatomic,copy) NSString* text;
@@ -78,8 +80,8 @@
 - (void)setDirectChildrenCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAnnotationListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaAnnotation elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -89,8 +91,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAnnotationBaseFilter : KalturaCuePointFilter
 @property (nonatomic,copy) NSString* parentIdEqual;
 @property (nonatomic,copy) NSString* parentIdIn;
@@ -116,14 +118,14 @@
 - (void)setDurationLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAnnotationFilter : KalturaAnnotationBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Annotation service - Video Annotation
 @interface KalturaAnnotationService : KalturaServiceBase
 // Allows you to add an annotation object associated with an entry

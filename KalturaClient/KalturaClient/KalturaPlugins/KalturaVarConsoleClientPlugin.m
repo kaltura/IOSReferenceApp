@@ -50,6 +50,7 @@
 @synthesize peakStorage = _peakStorage;
 @synthesize avgStorage = _avgStorage;
 @synthesize combinedStorageBandwidth = _combinedStorageBandwidth;
+@synthesize transcodingUsage = _transcodingUsage;
 @synthesize dateId = _dateId;
 
 - (id)init
@@ -76,6 +77,7 @@
     self->_peakStorage = KALTURA_UNDEF_FLOAT;
     self->_avgStorage = KALTURA_UNDEF_FLOAT;
     self->_combinedStorageBandwidth = KALTURA_UNDEF_FLOAT;
+    self->_transcodingUsage = KALTURA_UNDEF_FLOAT;
     return self;
 }
 
@@ -175,6 +177,11 @@
 }
 
 - (KalturaFieldType)getTypeOfCombinedStorageBandwidth
+{
+    return KFT_Float;
+}
+
+- (KalturaFieldType)getTypeOfTranscodingUsage
 {
     return KFT_Float;
 }
@@ -279,6 +286,11 @@
     self.combinedStorageBandwidth = [KalturaSimpleTypeParser parseFloat:aPropVal];
 }
 
+- (void)setTranscodingUsageFromString:(NSString*)aPropVal
+{
+    self.transcodingUsage = [KalturaSimpleTypeParser parseFloat:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -304,6 +316,7 @@
     [aParams addIfDefinedKey:@"peakStorage" withFloat:self.peakStorage];
     [aParams addIfDefinedKey:@"avgStorage" withFloat:self.avgStorage];
     [aParams addIfDefinedKey:@"combinedStorageBandwidth" withFloat:self.combinedStorageBandwidth];
+    [aParams addIfDefinedKey:@"transcodingUsage" withFloat:self.transcodingUsage];
     [aParams addIfDefinedKey:@"dateId" withString:self.dateId];
 }
 

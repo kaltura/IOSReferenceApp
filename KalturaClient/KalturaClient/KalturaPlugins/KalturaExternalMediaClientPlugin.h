@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaExternalMediaEntryOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)DURATION_ASC;
 + (NSString*)END_DATE_ASC;
++ (NSString*)LAST_PLAYED_AT_ASC;
 + (NSString*)MEDIA_TYPE_ASC;
 + (NSString*)MODERATION_COUNT_ASC;
-+ (NSString*)MS_DURATION_ASC;
 + (NSString*)NAME_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
 + (NSString*)PLAYS_ASC;
@@ -52,9 +52,9 @@
 + (NSString*)CREATED_AT_DESC;
 + (NSString*)DURATION_DESC;
 + (NSString*)END_DATE_DESC;
++ (NSString*)LAST_PLAYED_AT_DESC;
 + (NSString*)MEDIA_TYPE_DESC;
 + (NSString*)MODERATION_COUNT_DESC;
-+ (NSString*)MS_DURATION_DESC;
 + (NSString*)NAME_DESC;
 + (NSString*)PARTNER_SORT_VALUE_DESC;
 + (NSString*)PLAYS_DESC;
@@ -67,16 +67,16 @@
 + (NSString*)WEIGHT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaExternalMediaSourceType : NSObject
 + (NSString*)INTERCALL;
 + (NSString*)YOUTUBE;
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaExternalMediaEntry : KalturaMediaEntry
 // The source type of the external media
 @property (nonatomic,copy) NSString* externalSourceType;	// enum KalturaExternalMediaSourceType, insertonly
@@ -86,8 +86,8 @@
 - (KalturaFieldType)getTypeOfAssetParamsIds;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaExternalMediaEntryListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaExternalMediaEntry elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -97,8 +97,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaExternalMediaEntryBaseFilter : KalturaMediaEntryFilter
 @property (nonatomic,copy) NSString* externalSourceTypeEqual;	// enum KalturaExternalMediaSourceType
 @property (nonatomic,copy) NSString* externalSourceTypeIn;
@@ -110,14 +110,14 @@
 - (KalturaFieldType)getTypeOfAssetParamsIdsMatchAnd;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaExternalMediaEntryFilter : KalturaExternalMediaEntryBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // External media service lets you upload and manage embed codes and external playable content
 @interface KalturaExternalMediaService : KalturaServiceBase
 // Add external media entry

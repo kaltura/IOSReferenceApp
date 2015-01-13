@@ -397,6 +397,16 @@
 
 @end
 
+@implementation KalturaEmailNotificationParameter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaEmailNotificationParameter"];
+}
+
+@end
+
 @implementation KalturaEmailNotificationStaticRecipientJobData
 @synthesize emailRecipients = _emailRecipients;
 
@@ -470,7 +480,6 @@
 @synthesize hostname = _hostname;
 @synthesize messageID = _messageID;
 @synthesize customHeaders = _customHeaders;
-@synthesize contentParameters = _contentParameters;
 
 - (id)init
 {
@@ -576,16 +585,6 @@
     return @"KalturaKeyValue";
 }
 
-- (KalturaFieldType)getTypeOfContentParameters
-{
-    return KFT_Array;
-}
-
-- (NSString*)getObjectTypeOfContentParameters
-{
-    return @"KalturaEventNotificationParameter";
-}
-
 - (void)setPriorityFromString:(NSString*)aPropVal
 {
     self.priority = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -610,7 +609,6 @@
     [aParams addIfDefinedKey:@"hostname" withString:self.hostname];
     [aParams addIfDefinedKey:@"messageID" withString:self.messageID];
     [aParams addIfDefinedKey:@"customHeaders" withArray:self.customHeaders];
-    [aParams addIfDefinedKey:@"contentParameters" withArray:self.contentParameters];
 }
 
 - (void)dealloc
@@ -628,7 +626,6 @@
     [self->_hostname release];
     [self->_messageID release];
     [self->_customHeaders release];
-    [self->_contentParameters release];
     [super dealloc];
 }
 
@@ -704,7 +701,6 @@
 @synthesize hostname = _hostname;
 @synthesize messageID = _messageID;
 @synthesize customHeaders = _customHeaders;
-@synthesize contentParameters = _contentParameters;
 
 - (id)init
 {
@@ -795,16 +791,6 @@
     return @"KalturaKeyValue";
 }
 
-- (KalturaFieldType)getTypeOfContentParameters
-{
-    return KFT_Array;
-}
-
-- (NSString*)getObjectTypeOfContentParameters
-{
-    return @"KalturaKeyValue";
-}
-
 - (void)setPriorityFromString:(NSString*)aPropVal
 {
     self.priority = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -826,7 +812,6 @@
     [aParams addIfDefinedKey:@"hostname" withString:self.hostname];
     [aParams addIfDefinedKey:@"messageID" withString:self.messageID];
     [aParams addIfDefinedKey:@"customHeaders" withArray:self.customHeaders];
-    [aParams addIfDefinedKey:@"contentParameters" withArray:self.contentParameters];
 }
 
 - (void)dealloc
@@ -841,7 +826,6 @@
     [self->_hostname release];
     [self->_messageID release];
     [self->_customHeaders release];
-    [self->_contentParameters release];
     [super dealloc];
 }
 

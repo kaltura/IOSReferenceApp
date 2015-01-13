@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 #import "KalturaMetadataClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionAction : NSObject
 + (int)SUBMIT;
 + (int)UPDATE;
@@ -40,42 +40,44 @@
 + (int)FETCH_REPORT;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionErrorType : NSObject
 + (int)MISSING_FLAVOR;
 + (int)MISSING_THUMBNAIL;
 + (int)MISSING_METADATA;
 + (int)INVALID_DATA;
 + (int)MISSING_ASSET;
++ (int)CONDITION_NOT_MET;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionFieldRequiredStatus : NSObject
 + (int)NOT_REQUIRED;
 + (int)REQUIRED_BY_PROVIDER;
 + (int)REQUIRED_BY_PARTNER;
++ (int)REQUIRED_FOR_AUTOMATIC_DISTRIBUTION;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProfileActionStatus : NSObject
 + (int)DISABLED;
 + (int)AUTOMATIC;
 + (int)MANUAL;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProfileStatus : NSObject
 + (int)DISABLED;
 + (int)ENABLED;
 + (int)DELETED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProtocol : NSObject
 + (int)FTP;
 + (int)SCP;
@@ -85,8 +87,8 @@
 + (int)ASPERA;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationErrorType : NSObject
 + (int)CUSTOM_ERROR;
 + (int)STRING_EMPTY;
@@ -95,8 +97,8 @@
 + (int)INVALID_FORMAT;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistributionFlag : NSObject
 + (int)NONE;
 + (int)SUBMIT_REQUIRED;
@@ -106,8 +108,8 @@
 + (int)DISABLE_REQUIRED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistributionStatus : NSObject
 + (int)PENDING;
 + (int)QUEUED;
@@ -124,31 +126,31 @@
 + (int)IMPORT_UPDATING;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistributionSunStatus : NSObject
 + (int)BEFORE_SUNRISE;
 + (int)AFTER_SUNRISE;
 + (int)AFTER_SUNSET;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderParser : NSObject
 + (int)XSL;
 + (int)XPATH;
 + (int)REGEX;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderStatus : NSObject
 + (int)ACTIVE;
 + (int)DELETED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaConfigurableDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -156,8 +158,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -165,13 +167,13 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProviderOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProviderType : NSObject
 + (NSString*)ATT_UVERSE;
 + (NSString*)AVN;
@@ -193,6 +195,7 @@
 + (NSString*)SYNACOR_HBO;
 + (NSString*)TIME_WARNER;
 + (NSString*)TVCOM;
++ (NSString*)TVINCI;
 + (NSString*)UVERSE_CLICK_TO_ORDER;
 + (NSString*)UVERSE;
 + (NSString*)VERIZON_VCAST;
@@ -203,8 +206,8 @@
 + (NSString*)SYNDICATION;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistributionOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)SUBMITTED_AT_ASC;
@@ -218,8 +221,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -227,8 +230,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderActionOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -236,8 +239,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -245,8 +248,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -254,20 +257,20 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProviderOrderBy : NSObject
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Abstract class for asset distribution condition
 @interface KalturaAssetDistributionCondition : KalturaObjectBase
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAssetDistributionRule : KalturaObjectBase
 // The validation error description that will be set on the "data" property on KalturaDistributionValidationErrorMissingAsset if rule was not fulfilled
 @property (nonatomic,copy) NSString* validationError;
@@ -278,8 +281,8 @@
 - (NSString*)getObjectTypeOfAssetDistributionConditions;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionFieldConfig : KalturaObjectBase
 // A value taken from a connector field enum which associates the current configuration to that connector field
 //      Field enum class should be returned by the provider's getFieldEnumClass function.
@@ -310,13 +313,13 @@
 - (void)setIsDefaultFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionJobProviderData : KalturaObjectBase
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionThumbDimensions : KalturaObjectBase
 @property (nonatomic,assign) int width;
 @property (nonatomic,assign) int height;
@@ -326,8 +329,8 @@
 - (void)setHeightFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProfile : KalturaObjectBase
 // Auto generated unique id
 @property (nonatomic,assign,readonly) int id;
@@ -413,8 +416,8 @@
 - (void)setRecommendedDcForExecuteFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProfileListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaDistributionProfile elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -424,8 +427,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProvider : KalturaObjectBase
 @property (nonatomic,copy,readonly) NSString* type;	// enum KalturaDistributionProviderType
 @property (nonatomic,copy) NSString* name;
@@ -452,8 +455,8 @@
 - (void)setIntervalBeforeSunsetFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProviderListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaDistributionProvider elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -463,8 +466,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionRemoteMediaFile : KalturaObjectBase
 @property (nonatomic,copy) NSString* version;
 @property (nonatomic,copy) NSString* assetId;
@@ -474,8 +477,8 @@
 - (KalturaFieldType)getTypeOfRemoteId;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationError : KalturaObjectBase
 @property (nonatomic,assign) int action;	// enum KalturaDistributionAction
 @property (nonatomic,assign) int errorType;	// enum KalturaDistributionErrorType
@@ -487,8 +490,8 @@
 - (void)setErrorTypeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistribution : KalturaObjectBase
 // Auto generated unique id
 @property (nonatomic,assign,readonly) int id;
@@ -582,8 +585,8 @@
 - (void)setHasDeleteSentDataLogFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistributionListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaEntryDistribution elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -593,8 +596,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProfileAction : KalturaObjectBase
 @property (nonatomic,assign) int protocol;	// enum KalturaDistributionProtocol
 @property (nonatomic,copy) NSString* serverUrl;
@@ -616,8 +619,8 @@
 - (void)setFtpPassiveModeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderAction : KalturaObjectBase
 // Auto generated
 @property (nonatomic,assign,readonly) int id;
@@ -666,8 +669,8 @@
 - (void)setProtocolFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderActionListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaGenericDistributionProviderAction elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -677,8 +680,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProvider : KalturaDistributionProvider
 // Auto generated
 @property (nonatomic,assign,readonly) int id;
@@ -717,8 +720,8 @@
 - (void)setStatusFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaGenericDistributionProvider elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -728,8 +731,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Defines the condition to match a property and value on core asset object (or one if its inherited objects)
 @interface KalturaAssetDistributionPropertyCondition : KalturaAssetDistributionCondition
 // The property name to look for, this will match to a getter on the asset object.
@@ -741,15 +744,15 @@
 - (KalturaFieldType)getTypeOfPropertyValue;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaConfigurableDistributionJobProviderData : KalturaDistributionJobProviderData
 @property (nonatomic,copy) NSString* fieldValues;
 - (KalturaFieldType)getTypeOfFieldValues;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaConfigurableDistributionProfile : KalturaDistributionProfile
 @property (nonatomic,retain) NSMutableArray* fieldConfigArray;	// of KalturaDistributionFieldConfig elements
 @property (nonatomic,retain) NSMutableArray* itemXpathsToExtend;	// of KalturaExtendingItemMrssParameter elements
@@ -759,8 +762,8 @@
 - (NSString*)getObjectTypeOfItemXpathsToExtend;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaContentDistributionSearchItem : KalturaSearchItem
 @property (nonatomic,assign) BOOL noDistributionProfiles;
 @property (nonatomic,assign) int distributionProfileId;
@@ -785,8 +788,8 @@
 - (void)setHasEntryDistributionValidationErrorsFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionJobData : KalturaJobData
 @property (nonatomic,assign) int distributionProfileId;
 @property (nonatomic,retain) KalturaDistributionProfile* distributionProfile;
@@ -822,8 +825,8 @@
 - (void)setEntryDistributionIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProfileBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -849,8 +852,8 @@
 - (void)setStatusEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProviderBaseFilter : KalturaFilter
 @property (nonatomic,copy) NSString* typeEqual;	// enum KalturaDistributionProviderType
 @property (nonatomic,copy) NSString* typeIn;
@@ -858,8 +861,15 @@
 - (KalturaFieldType)getTypeOfTypeIn;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaDistributionValidationErrorConditionNotMet : KalturaDistributionValidationError
+@property (nonatomic,copy) NSString* conditionName;
+- (KalturaFieldType)getTypeOfConditionName;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationErrorInvalidData : KalturaDistributionValidationError
 @property (nonatomic,copy) NSString* fieldName;
 @property (nonatomic,assign) int validationErrorType;	// enum KalturaDistributionValidationErrorType
@@ -872,37 +882,37 @@
 - (void)setValidationErrorTypeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationErrorMissingAsset : KalturaDistributionValidationError
 @property (nonatomic,copy) NSString* data;
 - (KalturaFieldType)getTypeOfData;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationErrorMissingFlavor : KalturaDistributionValidationError
 @property (nonatomic,copy) NSString* flavorParamsId;
 - (KalturaFieldType)getTypeOfFlavorParamsId;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationErrorMissingMetadata : KalturaDistributionValidationError
 @property (nonatomic,copy) NSString* fieldName;
 - (KalturaFieldType)getTypeOfFieldName;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationErrorMissingThumbnail : KalturaDistributionValidationError
 @property (nonatomic,retain) KalturaDistributionThumbDimensions* dimensions;
 - (KalturaFieldType)getTypeOfDimensions;
 - (NSString*)getObjectTypeOfDimensions;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistributionBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -960,8 +970,8 @@
 - (void)setSunsetLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionJobProviderData : KalturaDistributionJobProviderData
 @property (nonatomic,copy) NSString* xml;
 @property (nonatomic,copy) NSString* resultParseData;
@@ -972,8 +982,8 @@
 - (void)setResultParserTypeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProfile : KalturaDistributionProfile
 @property (nonatomic,assign) int genericProviderId;	// insertonly
 @property (nonatomic,retain) KalturaGenericDistributionProfileAction* submitAction;
@@ -996,8 +1006,8 @@
 - (void)setGenericProviderIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderActionBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -1028,8 +1038,8 @@
 - (void)setActionEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProfile : KalturaDistributionProfile
 @property (nonatomic,copy) NSString* xsl;
 @property (nonatomic,copy,readonly) NSString* feedId;
@@ -1037,18 +1047,18 @@
 - (KalturaFieldType)getTypeOfFeedId;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProvider : KalturaDistributionProvider
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionDeleteJobData : KalturaDistributionJobData
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionFetchReportJobData : KalturaDistributionJobData
 @property (nonatomic,assign) int plays;
 @property (nonatomic,assign) int views;
@@ -1058,66 +1068,66 @@
 - (void)setViewsFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProfileFilter : KalturaDistributionProfileBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionProviderFilter : KalturaDistributionProviderBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionSubmitJobData : KalturaDistributionJobData
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionUpdateJobData : KalturaDistributionJobData
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionValidationErrorInvalidMetadata : KalturaDistributionValidationErrorInvalidData
 @property (nonatomic,assign) int metadataProfileId;
 - (KalturaFieldType)getTypeOfMetadataProfileId;
 - (void)setMetadataProfileIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEntryDistributionFilter : KalturaEntryDistributionBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderActionFilter : KalturaGenericDistributionProviderActionBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaConfigurableDistributionProfileBaseFilter : KalturaDistributionProfileFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionDisableJobData : KalturaDistributionUpdateJobData
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDistributionEnableJobData : KalturaDistributionUpdateJobData
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProfileBaseFilter : KalturaDistributionProfileFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderBaseFilter : KalturaDistributionProviderFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -1153,44 +1163,44 @@
 - (void)setStatusEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProfileBaseFilter : KalturaDistributionProfileFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProviderBaseFilter : KalturaDistributionProviderFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaConfigurableDistributionProfileFilter : KalturaConfigurableDistributionProfileBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProfileFilter : KalturaGenericDistributionProfileBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaGenericDistributionProviderFilter : KalturaGenericDistributionProviderBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProfileFilter : KalturaSyndicationDistributionProfileBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSyndicationDistributionProviderFilter : KalturaSyndicationDistributionProviderBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Distribution Profile service
 @interface KalturaDistributionProfileService : KalturaServiceBase
 // Add new Distribution Profile
@@ -1212,8 +1222,8 @@
 - (KalturaDistributionProfileListResponse*)listByPartner;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Entry Distribution service
 @interface KalturaEntryDistributionService : KalturaServiceBase
 // Add new Entry Distribution
@@ -1247,8 +1257,8 @@
 - (NSString*)serveReturnedDataWithId:(int)aId withActionType:(int)aActionType;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Distribution Provider service
 @interface KalturaDistributionProviderService : KalturaServiceBase
 // List all distribution providers
@@ -1257,8 +1267,8 @@
 - (KalturaDistributionProviderListResponse*)list;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Generic Distribution Provider service
 @interface KalturaGenericDistributionProviderService : KalturaServiceBase
 // Add new Generic Distribution Provider
@@ -1275,8 +1285,8 @@
 - (KalturaGenericDistributionProviderListResponse*)list;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Generic Distribution Provider Actions service
 @interface KalturaGenericDistributionProviderActionService : KalturaServiceBase
 // Add new Generic Distribution Provider Action

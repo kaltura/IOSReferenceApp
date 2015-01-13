@@ -25,22 +25,30 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationTemplateStatus : NSObject
 + (int)DISABLED;
 + (int)ACTIVE;
 + (int)DELETED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationEventObjectType : NSObject
++ (NSString*)AD_CUE_POINT;
++ (NSString*)ANNOTATION;
++ (NSString*)CAPTION_ASSET;
++ (NSString*)CODE_CUE_POINT;
++ (NSString*)DISTRIBUTION_PROFILE;
++ (NSString*)ENTRY_DISTRIBUTION;
++ (NSString*)CUE_POINT;
++ (NSString*)METADATA;
 + (NSString*)ENTRY;
 + (NSString*)CATEGORY;
 + (NSString*)ASSET;
@@ -76,8 +84,8 @@
 + (NSString*)CATEGORYENTRY;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationEventType : NSObject
 + (NSString*)BATCH_JOB_STATUS;
 + (NSString*)OBJECT_ADDED;
@@ -90,10 +98,12 @@
 + (NSString*)OBJECT_READY_FOR_REPLACMENT;
 + (NSString*)OBJECT_SAVED;
 + (NSString*)OBJECT_UPDATED;
++ (NSString*)OBJECT_REPLACED;
++ (NSString*)OBJECT_READY_FOR_INDEX;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationTemplateOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -103,32 +113,30 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationTemplateType : NSObject
 + (NSString*)EMAIL;
++ (NSString*)HTTP;
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
-@interface KalturaEventCondition : KalturaObjectBase
-@end
-
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationParameter : KalturaObjectBase
 // The key in the subject and body to be replaced with the dynamic value
 @property (nonatomic,copy) NSString* key;
+@property (nonatomic,copy) NSString* description;
 // The dynamic value to be placed in the final output
 @property (nonatomic,retain) KalturaStringValue* value;
 - (KalturaFieldType)getTypeOfKey;
+- (KalturaFieldType)getTypeOfDescription;
 - (KalturaFieldType)getTypeOfValue;
 - (NSString*)getObjectTypeOfValue;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationTemplate : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,assign,readonly) int partnerId;
@@ -148,7 +156,11 @@
 // Define the object that raied the event that should trigger this notification
 @property (nonatomic,copy) NSString* eventObjectType;	// enum KalturaEventNotificationEventObjectType
 // Define the conditions that cause this notification to be triggered
-@property (nonatomic,retain) NSMutableArray* eventConditions;	// of KalturaEventCondition elements
+@property (nonatomic,retain) NSMutableArray* eventConditions;	// of KalturaCondition elements
+// Define the content dynamic parameters
+@property (nonatomic,retain) NSMutableArray* contentParameters;	// of KalturaEventNotificationParameter elements
+// Define the content dynamic parameters
+@property (nonatomic,retain) NSMutableArray* userParameters;	// of KalturaEventNotificationParameter elements
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfName;
@@ -164,6 +176,10 @@
 - (KalturaFieldType)getTypeOfEventObjectType;
 - (KalturaFieldType)getTypeOfEventConditions;
 - (NSString*)getObjectTypeOfEventConditions;
+- (KalturaFieldType)getTypeOfContentParameters;
+- (NSString*)getObjectTypeOfContentParameters;
+- (KalturaFieldType)getTypeOfUserParameters;
+- (NSString*)getObjectTypeOfUserParameters;
 - (void)setIdFromString:(NSString*)aPropVal;
 - (void)setPartnerIdFromString:(NSString*)aPropVal;
 - (void)setStatusFromString:(NSString*)aPropVal;
@@ -173,8 +189,8 @@
 - (void)setAutomaticDispatchEnabledFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationTemplateListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaEventNotificationTemplate elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -184,30 +200,57 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
-@interface KalturaEventFieldCondition : KalturaEventCondition
+// @package Kaltura
+// @subpackage Client
+@interface KalturaEventFieldCondition : KalturaCondition
 // The field to be evaluated at runtime
 @property (nonatomic,retain) KalturaBooleanField* field;
 - (KalturaFieldType)getTypeOfField;
 - (NSString*)getObjectTypeOfField;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaEventNotificationArrayParameter : KalturaEventNotificationParameter
+@property (nonatomic,retain) NSMutableArray* values;	// of KalturaString elements
+// Used to restrict the values to close list
+@property (nonatomic,retain) NSMutableArray* allowedValues;	// of KalturaStringValue elements
+- (KalturaFieldType)getTypeOfValues;
+- (NSString*)getObjectTypeOfValues;
+- (KalturaFieldType)getTypeOfAllowedValues;
+- (NSString*)getObjectTypeOfAllowedValues;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationDispatchJobData : KalturaJobData
 @property (nonatomic,assign) int templateId;
+// Define the content dynamic parameters
+@property (nonatomic,retain) NSMutableArray* contentParameters;	// of KalturaKeyValue elements
 - (KalturaFieldType)getTypeOfTemplateId;
+- (KalturaFieldType)getTypeOfContentParameters;
+- (NSString*)getObjectTypeOfContentParameters;
 - (void)setTemplateIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaEventNotificationScope : KalturaScope
+@property (nonatomic,copy) NSString* objectId;
+@property (nonatomic,copy) NSString* scopeObjectType;	// enum KalturaEventNotificationEventObjectType
+- (KalturaFieldType)getTypeOfObjectId;
+- (KalturaFieldType)getTypeOfScopeObjectType;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationTemplateBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
 @property (nonatomic,assign) int partnerIdEqual;
 @property (nonatomic,copy) NSString* partnerIdIn;
+@property (nonatomic,copy) NSString* systemNameEqual;
+@property (nonatomic,copy) NSString* systemNameIn;
 @property (nonatomic,copy) NSString* typeEqual;	// enum KalturaEventNotificationTemplateType
 @property (nonatomic,copy) NSString* typeIn;
 @property (nonatomic,assign) int statusEqual;	// enum KalturaEventNotificationTemplateStatus
@@ -220,6 +263,8 @@
 - (KalturaFieldType)getTypeOfIdIn;
 - (KalturaFieldType)getTypeOfPartnerIdEqual;
 - (KalturaFieldType)getTypeOfPartnerIdIn;
+- (KalturaFieldType)getTypeOfSystemNameEqual;
+- (KalturaFieldType)getTypeOfSystemNameIn;
 - (KalturaFieldType)getTypeOfTypeEqual;
 - (KalturaFieldType)getTypeOfTypeIn;
 - (KalturaFieldType)getTypeOfStatusEqual;
@@ -237,14 +282,22 @@
 - (void)setUpdatedAtLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaEventObjectChangedCondition : KalturaCondition
+// Comma seperated column names to be tested
+@property (nonatomic,copy) NSString* modifiedColumns;
+- (KalturaFieldType)getTypeOfModifiedColumns;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEventNotificationTemplateFilter : KalturaEventNotificationTemplateBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Event notification template service lets you create and manage event notification templates
 @interface KalturaEventNotificationTemplateService : KalturaServiceBase
 // Allows you to add a new event notification template object
@@ -268,7 +321,7 @@
 - (KalturaEventNotificationTemplateListResponse*)listByPartnerWithFilter:(KalturaPartnerFilter*)aFilter;
 - (KalturaEventNotificationTemplateListResponse*)listByPartner;
 // Dispatch event notification object by id
-- (int)dispatchWithId:(int)aId withData:(KalturaEventNotificationDispatchJobData*)aData;
+- (int)dispatchWithId:(int)aId withScope:(KalturaEventNotificationScope*)aScope;
 // Action lists the template partner event notification templates.
 - (KalturaEventNotificationTemplateListResponse*)listTemplatesWithFilter:(KalturaEventNotificationTemplateFilter*)aFilter withPager:(KalturaFilterPager*)aPager;
 - (KalturaEventNotificationTemplateListResponse*)listTemplatesWithFilter:(KalturaEventNotificationTemplateFilter*)aFilter;

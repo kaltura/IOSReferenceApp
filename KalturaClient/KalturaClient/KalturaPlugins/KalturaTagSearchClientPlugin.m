@@ -36,6 +36,7 @@
 @property (nonatomic,assign) int partnerId;
 @property (nonatomic,assign) int instanceCount;
 @property (nonatomic,assign) int createdAt;
+@property (nonatomic,assign) int updatedAt;
 @end
 
 @implementation KalturaTag
@@ -45,6 +46,7 @@
 @synthesize partnerId = _partnerId;
 @synthesize instanceCount = _instanceCount;
 @synthesize createdAt = _createdAt;
+@synthesize updatedAt = _updatedAt;
 
 - (id)init
 {
@@ -55,6 +57,7 @@
     self->_partnerId = KALTURA_UNDEF_INT;
     self->_instanceCount = KALTURA_UNDEF_INT;
     self->_createdAt = KALTURA_UNDEF_INT;
+    self->_updatedAt = KALTURA_UNDEF_INT;
     return self;
 }
 
@@ -88,6 +91,11 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfUpdatedAt
+{
+    return KFT_Int;
+}
+
 - (void)setIdFromString:(NSString*)aPropVal
 {
     self.id = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -106,6 +114,11 @@
 - (void)setCreatedAtFromString:(NSString*)aPropVal
 {
     self.createdAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setUpdatedAtFromString:(NSString*)aPropVal
+{
+    self.updatedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
@@ -172,6 +185,59 @@
 - (void)dealloc
 {
     [self->_objects release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaIndexTagsByPrivacyContextJobData
+@synthesize changedCategoryId = _changedCategoryId;
+@synthesize deletedPrivacyContexts = _deletedPrivacyContexts;
+@synthesize addedPrivacyContexts = _addedPrivacyContexts;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_changedCategoryId = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfChangedCategoryId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfDeletedPrivacyContexts
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfAddedPrivacyContexts
+{
+    return KFT_String;
+}
+
+- (void)setChangedCategoryIdFromString:(NSString*)aPropVal
+{
+    self.changedCategoryId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaIndexTagsByPrivacyContextJobData"];
+    [aParams addIfDefinedKey:@"changedCategoryId" withInt:self.changedCategoryId];
+    [aParams addIfDefinedKey:@"deletedPrivacyContexts" withString:self.deletedPrivacyContexts];
+    [aParams addIfDefinedKey:@"addedPrivacyContexts" withString:self.addedPrivacyContexts];
+}
+
+- (void)dealloc
+{
+    [self->_deletedPrivacyContexts release];
+    [self->_addedPrivacyContexts release];
     [super dealloc];
 }
 
@@ -268,6 +334,14 @@
 - (int)deletePending
 {
     return [self.client queueIntService:@"tagsearch_tag" withAction:@"deletePending"];
+}
+
+- (void)indexCategoryEntryTagsWithCategoryId:(int)aCategoryId withPcToDecrement:(NSString*)aPcToDecrement withPcToIncrement:(NSString*)aPcToIncrement
+{
+    [self.client.params addIfDefinedKey:@"categoryId" withInt:aCategoryId];
+    [self.client.params addIfDefinedKey:@"pcToDecrement" withString:aPcToDecrement];
+    [self.client.params addIfDefinedKey:@"pcToIncrement" withString:aPcToIncrement];
+    [self.client queueVoidService:@"tagsearch_tag" withAction:@"indexCategoryEntryTags"];
 }
 
 @end

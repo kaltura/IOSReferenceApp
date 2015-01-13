@@ -76,15 +76,19 @@
 @implementation KalturaMetadataObjectType
 + (NSString*)AD_CUE_POINT
 {
-    return @"adCuePoint.AdCuePoint";
+    return @"adCuePointMetadata.AdCuePoint";
 }
 + (NSString*)ANNOTATION
 {
-    return @"annotation.Annotation";
+    return @"annotationMetadata.Annotation";
 }
 + (NSString*)CODE_CUE_POINT
 {
-    return @"codeCuePoint.CodeCuePoint";
+    return @"codeCuePointMetadata.CodeCuePoint";
+}
++ (NSString*)THUMB_CUE_POINT
+{
+    return @"thumbCuePointMetadata.thumbCuePoint";
 }
 + (NSString*)ENTRY
 {
@@ -1289,6 +1293,7 @@
 @implementation KalturaCompareMetadataCondition
 @synthesize xPath = _xPath;
 @synthesize profileId = _profileId;
+@synthesize profileSystemName = _profileSystemName;
 
 - (id)init
 {
@@ -1307,6 +1312,11 @@
 - (KalturaFieldType)getTypeOfProfileId
 {
     return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfProfileSystemName
+{
+    return KFT_String;
 }
 
 - (void)setProfileIdFromString:(NSString*)aPropVal
@@ -1321,11 +1331,13 @@
         [aParams putKey:@"objectType" withString:@"KalturaCompareMetadataCondition"];
     [aParams addIfDefinedKey:@"xPath" withString:self.xPath];
     [aParams addIfDefinedKey:@"profileId" withInt:self.profileId];
+    [aParams addIfDefinedKey:@"profileSystemName" withString:self.profileSystemName];
 }
 
 - (void)dealloc
 {
     [self->_xPath release];
+    [self->_profileSystemName release];
     [super dealloc];
 }
 
@@ -1334,6 +1346,7 @@
 @implementation KalturaMatchMetadataCondition
 @synthesize xPath = _xPath;
 @synthesize profileId = _profileId;
+@synthesize profileSystemName = _profileSystemName;
 
 - (id)init
 {
@@ -1354,6 +1367,11 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfProfileSystemName
+{
+    return KFT_String;
+}
+
 - (void)setProfileIdFromString:(NSString*)aPropVal
 {
     self.profileId = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -1366,11 +1384,82 @@
         [aParams putKey:@"objectType" withString:@"KalturaMatchMetadataCondition"];
     [aParams addIfDefinedKey:@"xPath" withString:self.xPath];
     [aParams addIfDefinedKey:@"profileId" withInt:self.profileId];
+    [aParams addIfDefinedKey:@"profileSystemName" withString:self.profileSystemName];
 }
 
 - (void)dealloc
 {
     [self->_xPath release];
+    [self->_profileSystemName release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaMetadataFieldChangedCondition
+@synthesize xPath = _xPath;
+@synthesize profileId = _profileId;
+@synthesize profileSystemName = _profileSystemName;
+@synthesize versionA = _versionA;
+@synthesize versionB = _versionB;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_profileId = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfXPath
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfProfileId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfProfileSystemName
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfVersionA
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfVersionB
+{
+    return KFT_String;
+}
+
+- (void)setProfileIdFromString:(NSString*)aPropVal
+{
+    self.profileId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaMetadataFieldChangedCondition"];
+    [aParams addIfDefinedKey:@"xPath" withString:self.xPath];
+    [aParams addIfDefinedKey:@"profileId" withInt:self.profileId];
+    [aParams addIfDefinedKey:@"profileSystemName" withString:self.profileSystemName];
+    [aParams addIfDefinedKey:@"versionA" withString:self.versionA];
+    [aParams addIfDefinedKey:@"versionB" withString:self.versionB];
+}
+
+- (void)dealloc
+{
+    [self->_xPath release];
+    [self->_profileSystemName release];
+    [self->_versionA release];
+    [self->_versionB release];
     [super dealloc];
 }
 

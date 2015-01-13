@@ -25,31 +25,33 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 #import "KalturaCuePointClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAdCuePointOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)DURATION_ASC;
 + (NSString*)END_TIME_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
 + (NSString*)START_TIME_ASC;
++ (NSString*)TRIGGERED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
 + (NSString*)CREATED_AT_DESC;
 + (NSString*)DURATION_DESC;
 + (NSString*)END_TIME_DESC;
 + (NSString*)PARTNER_SORT_VALUE_DESC;
 + (NSString*)START_TIME_DESC;
++ (NSString*)TRIGGERED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAdProtocolType : NSObject
 + (NSString*)CUSTOM;
 + (NSString*)VAST;
@@ -57,16 +59,16 @@
 + (NSString*)VPAID;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAdType : NSObject
 + (NSString*)VIDEO;
 + (NSString*)OVERLAY;
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAdCuePoint : KalturaCuePoint
 @property (nonatomic,copy) NSString* protocolType;	// enum KalturaAdProtocolType, insertonly
 @property (nonatomic,copy) NSString* sourceUrl;
@@ -74,7 +76,7 @@
 @property (nonatomic,copy) NSString* title;
 @property (nonatomic,assign) int endTime;
 // Duration in milliseconds
-@property (nonatomic,assign,readonly) int duration;
+@property (nonatomic,assign) int duration;
 - (KalturaFieldType)getTypeOfProtocolType;
 - (KalturaFieldType)getTypeOfSourceUrl;
 - (KalturaFieldType)getTypeOfAdType;
@@ -85,8 +87,8 @@
 - (void)setDurationFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAdCuePointBaseFilter : KalturaCuePointFilter
 @property (nonatomic,copy) NSString* protocolTypeEqual;	// enum KalturaAdProtocolType
 @property (nonatomic,copy) NSString* protocolTypeIn;
@@ -112,8 +114,8 @@
 - (void)setDurationLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAdCuePointFilter : KalturaAdCuePointBaseFilter
 @end
 

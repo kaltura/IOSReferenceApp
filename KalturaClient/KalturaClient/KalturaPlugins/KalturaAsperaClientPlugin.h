@@ -25,15 +25,15 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Aspera service
 @interface KalturaAsperaService : KalturaServiceBase
 - (NSString*)getFaspUrlWithFlavorAssetId:(NSString*)aFlavorAssetId;

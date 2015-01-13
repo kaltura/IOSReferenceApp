@@ -588,6 +588,30 @@
     return [self.client queueServeService:@"caption_captionasset" withAction:@"serve"];
 }
 
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId withSegmentDuration:(int)aSegmentDuration withSegmentIndex:(int)aSegmentIndex withLocalTimestamp:(int)aLocalTimestamp
+{
+    [self.client.params addIfDefinedKey:@"captionAssetId" withString:aCaptionAssetId];
+    [self.client.params addIfDefinedKey:@"segmentDuration" withInt:aSegmentDuration];
+    [self.client.params addIfDefinedKey:@"segmentIndex" withInt:aSegmentIndex];
+    [self.client.params addIfDefinedKey:@"localTimestamp" withInt:aLocalTimestamp];
+    return [self.client queueServeService:@"caption_captionasset" withAction:@"serveWebVTT"];
+}
+
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId withSegmentDuration:(int)aSegmentDuration withSegmentIndex:(int)aSegmentIndex
+{
+    return [self serveWebVTTWithCaptionAssetId:aCaptionAssetId withSegmentDuration:aSegmentDuration withSegmentIndex:aSegmentIndex withLocalTimestamp:KALTURA_UNDEF_INT];
+}
+
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId withSegmentDuration:(int)aSegmentDuration
+{
+    return [self serveWebVTTWithCaptionAssetId:aCaptionAssetId withSegmentDuration:aSegmentDuration withSegmentIndex:KALTURA_UNDEF_INT];
+}
+
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId
+{
+    return [self serveWebVTTWithCaptionAssetId:aCaptionAssetId withSegmentDuration:KALTURA_UNDEF_INT];
+}
+
 - (void)setAsDefaultWithCaptionAssetId:(NSString*)aCaptionAssetId
 {
     [self.client.params addIfDefinedKey:@"captionAssetId" withString:aCaptionAssetId];

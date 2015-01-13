@@ -25,28 +25,30 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
+#import "KalturaMetadataClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderContentFileHandlerMatchPolicy : NSObject
 + (int)ADD_AS_NEW;
 + (int)MATCH_EXISTING_OR_ADD_AS_NEW;
 + (int)MATCH_EXISTING_OR_KEEP_IN_FOLDER;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileDeletePolicy : NSObject
 + (int)MANUAL_DELETE;
 + (int)AUTO_DELETE;
++ (int)AUTO_DELETE_WHEN_ENTRY_IS_READY;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileStatus : NSObject
 + (int)UPLOADING;
 + (int)PENDING;
@@ -65,8 +67,8 @@
 + (int)DETECTED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderStatus : NSObject
 + (int)DISABLED;
 + (int)ENABLED;
@@ -74,8 +76,8 @@
 + (int)ERROR;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderErrorCode : NSObject
 + (NSString*)ERROR_CONNECT;
 + (NSString*)ERROR_AUTENTICATE;
@@ -85,8 +87,8 @@
 + (NSString*)CONTENT_MATCH_POLICY_UNDEFINED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileErrorCode : NSObject
 + (NSString*)ERROR_ADDING_BULK_UPLOAD;
 + (NSString*)ERROR_ADD_CONTENT_RESOURCE;
@@ -110,15 +112,15 @@
 + (NSString*)FILE_NO_MATCH;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileHandlerType : NSObject
 + (NSString*)XML;
 + (NSString*)CONTENT;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)FILE_NAME_ASC;
@@ -138,8 +140,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -151,9 +153,10 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderType : NSObject
++ (NSString*)WEBEX;
 + (NSString*)LOCAL;
 + (NSString*)FTP;
 + (NSString*)SCP;
@@ -161,8 +164,8 @@
 + (NSString*)S3;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFtpDropFolderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -174,8 +177,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaRemoteDropFolderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -187,8 +190,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaScpDropFolderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -200,8 +203,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSftpDropFolderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -213,8 +216,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSshDropFolderOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -227,15 +230,15 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileHandlerConfig : KalturaObjectBase
 @property (nonatomic,copy,readonly) NSString* handlerType;	// enum KalturaDropFolderFileHandlerType
 - (KalturaFieldType)getTypeOfHandlerType;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolder : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,assign) int partnerId;	// insertonly
@@ -260,6 +263,12 @@
 @property (nonatomic,assign,readonly) int createdAt;
 @property (nonatomic,assign,readonly) int updatedAt;
 @property (nonatomic,assign) int lastAccessedAt;
+@property (nonatomic,assign) BOOL incremental;
+@property (nonatomic,assign) int lastFileTimestamp;
+@property (nonatomic,assign) int metadataProfileId;
+@property (nonatomic,copy) NSString* categoriesMetadataFieldName;
+@property (nonatomic,assign) BOOL enforceEntitlement;
+@property (nonatomic,assign) BOOL shouldValidateKS;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfName;
@@ -283,6 +292,12 @@
 - (KalturaFieldType)getTypeOfCreatedAt;
 - (KalturaFieldType)getTypeOfUpdatedAt;
 - (KalturaFieldType)getTypeOfLastAccessedAt;
+- (KalturaFieldType)getTypeOfIncremental;
+- (KalturaFieldType)getTypeOfLastFileTimestamp;
+- (KalturaFieldType)getTypeOfMetadataProfileId;
+- (KalturaFieldType)getTypeOfCategoriesMetadataFieldName;
+- (KalturaFieldType)getTypeOfEnforceEntitlement;
+- (KalturaFieldType)getTypeOfShouldValidateKS;
 - (void)setIdFromString:(NSString*)aPropVal;
 - (void)setPartnerIdFromString:(NSString*)aPropVal;
 - (void)setStatusFromString:(NSString*)aPropVal;
@@ -294,10 +309,15 @@
 - (void)setCreatedAtFromString:(NSString*)aPropVal;
 - (void)setUpdatedAtFromString:(NSString*)aPropVal;
 - (void)setLastAccessedAtFromString:(NSString*)aPropVal;
+- (void)setIncrementalFromString:(NSString*)aPropVal;
+- (void)setLastFileTimestampFromString:(NSString*)aPropVal;
+- (void)setMetadataProfileIdFromString:(NSString*)aPropVal;
+- (void)setEnforceEntitlementFromString:(NSString*)aPropVal;
+- (void)setShouldValidateKSFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFile : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,assign,readonly) int partnerId;
@@ -306,8 +326,10 @@
 @property (nonatomic,assign) double fileSize;
 @property (nonatomic,assign,readonly) int fileSizeLastSetAt;
 @property (nonatomic,assign,readonly) int status;	// enum KalturaDropFolderFileStatus
+@property (nonatomic,copy,readonly) NSString* type;	// enum KalturaDropFolderType
 @property (nonatomic,copy) NSString* parsedSlug;
 @property (nonatomic,copy) NSString* parsedFlavor;
+@property (nonatomic,copy) NSString* parsedUserId;
 @property (nonatomic,assign) int leadDropFolderFileId;
 @property (nonatomic,assign) int deletedDropFolderFileId;
 @property (nonatomic,copy) NSString* entryId;
@@ -328,8 +350,10 @@
 - (KalturaFieldType)getTypeOfFileSize;
 - (KalturaFieldType)getTypeOfFileSizeLastSetAt;
 - (KalturaFieldType)getTypeOfStatus;
+- (KalturaFieldType)getTypeOfType;
 - (KalturaFieldType)getTypeOfParsedSlug;
 - (KalturaFieldType)getTypeOfParsedFlavor;
+- (KalturaFieldType)getTypeOfParsedUserId;
 - (KalturaFieldType)getTypeOfLeadDropFolderFileId;
 - (KalturaFieldType)getTypeOfDeletedDropFolderFileId;
 - (KalturaFieldType)getTypeOfEntryId;
@@ -360,8 +384,8 @@
 - (void)setBatchJobIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaDropFolderFile elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -371,8 +395,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaDropFolder elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -382,8 +406,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -454,8 +478,8 @@
 - (void)setUpdatedAtLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderContentFileHandlerConfig : KalturaDropFolderFileHandlerConfig
 @property (nonatomic,assign) int contentMatchPolicy;	// enum KalturaDropFolderContentFileHandlerMatchPolicy
 // Regular expression that defines valid file names to be handled.
@@ -468,23 +492,28 @@
 - (void)setContentMatchPolicyFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderContentProcessorJobData : KalturaJobData
+@property (nonatomic,assign) int dropFolderId;
 @property (nonatomic,copy) NSString* dropFolderFileIds;
 @property (nonatomic,copy) NSString* parsedSlug;
 @property (nonatomic,assign) int contentMatchPolicy;	// enum KalturaDropFolderContentFileHandlerMatchPolicy
 @property (nonatomic,assign) int conversionProfileId;
+@property (nonatomic,copy) NSString* parsedUserId;
+- (KalturaFieldType)getTypeOfDropFolderId;
 - (KalturaFieldType)getTypeOfDropFolderFileIds;
 - (KalturaFieldType)getTypeOfParsedSlug;
 - (KalturaFieldType)getTypeOfContentMatchPolicy;
 - (KalturaFieldType)getTypeOfConversionProfileId;
+- (KalturaFieldType)getTypeOfParsedUserId;
+- (void)setDropFolderIdFromString:(NSString*)aPropVal;
 - (void)setContentMatchPolicyFromString:(NSString*)aPropVal;
 - (void)setConversionProfileIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -497,6 +526,7 @@
 @property (nonatomic,copy) NSString* fileNameLike;
 @property (nonatomic,assign) int statusEqual;	// enum KalturaDropFolderFileStatus
 @property (nonatomic,copy) NSString* statusIn;
+@property (nonatomic,copy) NSString* statusNotIn;
 @property (nonatomic,copy) NSString* parsedSlugEqual;
 @property (nonatomic,copy) NSString* parsedSlugIn;
 @property (nonatomic,copy) NSString* parsedSlugLike;
@@ -523,6 +553,7 @@
 - (KalturaFieldType)getTypeOfFileNameLike;
 - (KalturaFieldType)getTypeOfStatusEqual;
 - (KalturaFieldType)getTypeOfStatusIn;
+- (KalturaFieldType)getTypeOfStatusNotIn;
 - (KalturaFieldType)getTypeOfParsedSlugEqual;
 - (KalturaFieldType)getTypeOfParsedSlugIn;
 - (KalturaFieldType)getTypeOfParsedSlugLike;
@@ -550,26 +581,26 @@
 - (void)setUpdatedAtLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaRemoteDropFolder : KalturaDropFolder
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFileFilter : KalturaDropFolderFileBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderFilter : KalturaDropFolderBaseFilter
 @property (nonatomic,assign) int currentDc;	// enum KalturaNullableBoolean
 - (KalturaFieldType)getTypeOfCurrentDc;
 - (void)setCurrentDcFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFtpDropFolder : KalturaRemoteDropFolder
 @property (nonatomic,copy) NSString* host;
 @property (nonatomic,assign) int port;
@@ -582,8 +613,8 @@
 - (void)setPortFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSshDropFolder : KalturaRemoteDropFolder
 @property (nonatomic,copy) NSString* host;
 @property (nonatomic,assign) int port;
@@ -602,8 +633,8 @@
 - (void)setPortFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Used to ingest media that dropped through drop folder
 @interface KalturaDropFolderFileResource : KalturaDataCenterContentResource
 // Id of the drop folder file object
@@ -612,77 +643,77 @@
 - (void)setDropFolderFileIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderImportJobData : KalturaSshImportJobData
 @property (nonatomic,assign) int dropFolderFileId;
 - (KalturaFieldType)getTypeOfDropFolderFileId;
 - (void)setDropFolderFileIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaRemoteDropFolderBaseFilter : KalturaDropFolderFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaScpDropFolder : KalturaSshDropFolder
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSftpDropFolder : KalturaSshDropFolder
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaRemoteDropFolderFilter : KalturaRemoteDropFolderBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFtpDropFolderBaseFilter : KalturaRemoteDropFolderFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSshDropFolderBaseFilter : KalturaRemoteDropFolderFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFtpDropFolderFilter : KalturaFtpDropFolderBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSshDropFolderFilter : KalturaSshDropFolderBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaScpDropFolderBaseFilter : KalturaSshDropFolderFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSftpDropFolderBaseFilter : KalturaSshDropFolderFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaScpDropFolderFilter : KalturaScpDropFolderBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSftpDropFolderFilter : KalturaSftpDropFolderBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // DropFolder service lets you create and manage drop folders
 @interface KalturaDropFolderService : KalturaServiceBase
 // Allows you to add a new KalturaDropFolder object
@@ -699,8 +730,8 @@
 - (KalturaDropFolderListResponse*)list;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // DropFolderFile service lets you create and manage drop folder files
 @interface KalturaDropFolderFileService : KalturaServiceBase
 // Allows you to add a new KalturaDropFolderFile object

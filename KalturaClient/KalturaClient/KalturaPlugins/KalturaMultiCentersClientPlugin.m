@@ -34,6 +34,16 @@
 @synthesize filesyncId = _filesyncId;
 @synthesize tmpFilePath = _tmpFilePath;
 @synthesize destFilePath = _destFilePath;
+@synthesize fileSize = _fileSize;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_fileSize = KALTURA_UNDEF_INT;
+    return self;
+}
 
 - (KalturaFieldType)getTypeOfSourceUrl
 {
@@ -55,6 +65,16 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfFileSize
+{
+    return KFT_Int;
+}
+
+- (void)setFileSizeFromString:(NSString*)aPropVal
+{
+    self.fileSize = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -64,6 +84,7 @@
     [aParams addIfDefinedKey:@"filesyncId" withString:self.filesyncId];
     [aParams addIfDefinedKey:@"tmpFilePath" withString:self.tmpFilePath];
     [aParams addIfDefinedKey:@"destFilePath" withString:self.destFilePath];
+    [aParams addIfDefinedKey:@"fileSize" withInt:self.fileSize];
 }
 
 - (void)dealloc

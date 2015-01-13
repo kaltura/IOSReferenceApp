@@ -25,13 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusFoundAction : NSObject
 + (int)NONE;
 + (int)DELETE;
@@ -39,8 +39,8 @@
 + (int)CLEAN_DELETE;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanJobResult : NSObject
 + (int)SCAN_ERROR;
 + (int)FILE_IS_CLEAN;
@@ -48,16 +48,16 @@
 + (int)FILE_INFECTED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanProfileStatus : NSObject
 + (int)DISABLED;
 + (int)ENABLED;
 + (int)DELETED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanEngineType : NSObject
 + (NSString*)CLAMAV_SCAN_ENGINE;
 + (NSString*)SYMANTEC_SCAN_DIRECT_ENGINE;
@@ -65,8 +65,8 @@
 + (NSString*)SYMANTEC_SCAN_JAVA_ENGINE;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -75,8 +75,8 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanProfile : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,assign,readonly) int createdAt;
@@ -105,8 +105,8 @@
 - (void)setActionIfInfectedFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanProfileListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaVirusScanProfile elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -116,15 +116,15 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaParseCaptionAssetJobData : KalturaJobData
 @property (nonatomic,copy) NSString* captionAssetId;
 - (KalturaFieldType)getTypeOfCaptionAssetId;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanJobData : KalturaJobData
 @property (nonatomic,copy) NSString* srcFilePath;
 @property (nonatomic,copy) NSString* flavorAssetId;
@@ -138,8 +138,8 @@
 - (void)setVirusFoundActionFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanProfileBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -178,14 +178,14 @@
 - (void)setStatusEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVirusScanProfileFilter : KalturaVirusScanProfileBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Virus scan profile service
 @interface KalturaVirusScanProfileService : KalturaServiceBase
 // List virus scan profile objects by filter and pager

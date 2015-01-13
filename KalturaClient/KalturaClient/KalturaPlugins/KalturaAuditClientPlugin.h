@@ -25,21 +25,21 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailChangeXmlNodeType : NSObject
 + (int)CHANGED;
 + (int)ADDED;
 + (int)REMOVED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailContext : NSObject
 + (int)CLIENT;
 + (int)SCRIPT;
@@ -47,24 +47,24 @@
 + (int)API_V3;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailFileSyncType : NSObject
 + (int)FILE;
 + (int)LINK;
 + (int)URL;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailStatus : NSObject
 + (int)PENDING;
 + (int)READY;
 + (int)FAILED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailAction : NSObject
 + (NSString*)CHANGED;
 + (NSString*)CONTENT_VIEWED;
@@ -77,8 +77,8 @@
 + (NSString*)VIEWED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailObjectType : NSObject
 + (NSString*)BATCH_JOB;
 + (NSString*)EMAIL_INGESTION_PROFILE;
@@ -112,8 +112,8 @@
 + (NSString*)WIDGET;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)PARSED_AT_ASC;
@@ -122,13 +122,13 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailInfo : KalturaObjectBase
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrail : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,assign,readonly) int createdAt;
@@ -190,8 +190,8 @@
 - (void)setContextFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailChangeItem : KalturaObjectBase
 @property (nonatomic,copy) NSString* descriptor;
 @property (nonatomic,copy) NSString* oldValue;
@@ -201,8 +201,8 @@
 - (KalturaFieldType)getTypeOfNewValue;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaAuditTrail elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -212,8 +212,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,assign) int createdAtGreaterThanOrEqual;
@@ -300,24 +300,24 @@
 - (void)setContextEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailChangeInfo : KalturaAuditTrailInfo
 @property (nonatomic,retain) NSMutableArray* changedItems;	// of KalturaAuditTrailChangeItem elements
 - (KalturaFieldType)getTypeOfChangedItems;
 - (NSString*)getObjectTypeOfChangedItems;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailChangeXmlNode : KalturaAuditTrailChangeItem
 @property (nonatomic,assign) int type;	// enum KalturaAuditTrailChangeXmlNodeType
 - (KalturaFieldType)getTypeOfType;
 - (void)setTypeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailFileSyncCreateInfo : KalturaAuditTrailInfo
 @property (nonatomic,copy) NSString* version;
 @property (nonatomic,assign) int objectSubType;
@@ -335,21 +335,21 @@
 - (void)setFileTypeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailTextInfo : KalturaAuditTrailInfo
 @property (nonatomic,copy) NSString* info;
 - (KalturaFieldType)getTypeOfInfo;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAuditTrailFilter : KalturaAuditTrailBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Audit Trail service
 @interface KalturaAuditTrailService : KalturaServiceBase
 // Allows you to add an audit trail object and audit trail content associated with Kaltura object

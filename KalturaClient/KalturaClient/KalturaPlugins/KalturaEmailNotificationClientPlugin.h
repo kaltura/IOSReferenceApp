@@ -25,37 +25,37 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 #import "KalturaEventNotificationClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationTemplatePriority : NSObject
 + (int)HIGH;
 + (int)NORMAL;
 + (int)LOW;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationFormat : NSObject
 + (NSString*)HTML;
 + (NSString*)TEXT;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationRecipientProviderType : NSObject
 + (NSString*)STATIC_LIST;
 + (NSString*)CATEGORY;
 + (NSString*)USER;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationTemplateOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)ID_ASC;
@@ -66,8 +66,8 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationRecipient : KalturaObjectBase
 // Recipient e-mail address
 @property (nonatomic,retain) KalturaStringValue* email;
@@ -79,8 +79,8 @@
 - (NSString*)getObjectTypeOfName;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Abstract class representing the final output recipients going into the batch mechanism
 @interface KalturaEmailNotificationRecipientJobData : KalturaObjectBase
 // Provider type of the job data.
@@ -88,14 +88,14 @@
 - (KalturaFieldType)getTypeOfProviderType;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Abstract core class  which provides the recipients (to, CC, BCC) for an email notification
 @interface KalturaEmailNotificationRecipientProvider : KalturaObjectBase
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCategoryUserProviderFilter : KalturaFilter
 @property (nonatomic,copy) NSString* userIdEqual;
 @property (nonatomic,copy) NSString* userIdIn;
@@ -129,8 +129,8 @@
 - (void)setUpdateMethodEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Job Data representing the provider of recipients for a single categoryId
 @interface KalturaEmailNotificationCategoryRecipientJobData : KalturaEmailNotificationRecipientJobData
 @property (nonatomic,retain) KalturaCategoryUserFilter* categoryUserFilter;
@@ -138,8 +138,8 @@
 - (NSString*)getObjectTypeOfCategoryUserFilter;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // API object which provides the recipients of category related notifications.
 @interface KalturaEmailNotificationCategoryRecipientProvider : KalturaEmailNotificationRecipientProvider
 // The ID of the category whose subscribers should receive the email notification.
@@ -151,8 +151,13 @@
 - (NSString*)getObjectTypeOfCategoryUserFilter;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaEmailNotificationParameter : KalturaEventNotificationParameter
+@end
+
+// @package Kaltura
+// @subpackage Client
 // JobData representing the static receipient array
 @interface KalturaEmailNotificationStaticRecipientJobData : KalturaEmailNotificationRecipientJobData
 // Email to emails and names
@@ -161,8 +166,8 @@
 - (NSString*)getObjectTypeOfEmailRecipients;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // API class for recipient provider containing a static list of email recipients.
 @interface KalturaEmailNotificationStaticRecipientProvider : KalturaEmailNotificationRecipientProvider
 // Email to emails and names
@@ -171,8 +176,8 @@
 - (NSString*)getObjectTypeOfEmailRecipients;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationTemplate : KalturaEventNotificationTemplate
 // Define the email body format
 @property (nonatomic,copy) NSString* format;	// enum KalturaEmailNotificationFormat
@@ -204,8 +209,6 @@
 @property (nonatomic,copy) NSString* messageID;
 // Adds a e-mail custom header
 @property (nonatomic,retain) NSMutableArray* customHeaders;	// of KalturaKeyValue elements
-// Define the content dynamic parameters
-@property (nonatomic,retain) NSMutableArray* contentParameters;	// of KalturaEventNotificationParameter elements
 - (KalturaFieldType)getTypeOfFormat;
 - (KalturaFieldType)getTypeOfSubject;
 - (KalturaFieldType)getTypeOfBody;
@@ -225,13 +228,11 @@
 - (KalturaFieldType)getTypeOfMessageID;
 - (KalturaFieldType)getTypeOfCustomHeaders;
 - (NSString*)getObjectTypeOfCustomHeaders;
-- (KalturaFieldType)getTypeOfContentParameters;
-- (NSString*)getObjectTypeOfContentParameters;
 - (void)setPriorityFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // JobData representing the dynamic user receipient array
 @interface KalturaEmailNotificationUserRecipientJobData : KalturaEmailNotificationRecipientJobData
 @property (nonatomic,retain) KalturaUserFilter* filter;
@@ -239,8 +240,8 @@
 - (NSString*)getObjectTypeOfFilter;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // API class for recipient provider which constructs a dynamic list of recipients according to a user filter
 @interface KalturaEmailNotificationUserRecipientProvider : KalturaEmailNotificationRecipientProvider
 @property (nonatomic,retain) KalturaUserFilter* filter;
@@ -248,8 +249,8 @@
 - (NSString*)getObjectTypeOfFilter;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationDispatchJobData : KalturaEventNotificationDispatchJobData
 // Define the email sender email
 @property (nonatomic,copy) NSString* fromEmail;
@@ -275,8 +276,6 @@
 @property (nonatomic,copy) NSString* messageID;
 // Adds a e-mail custom header
 @property (nonatomic,retain) NSMutableArray* customHeaders;	// of KalturaKeyValue elements
-// Define the content dynamic parameters
-@property (nonatomic,retain) NSMutableArray* contentParameters;	// of KalturaKeyValue elements
 - (KalturaFieldType)getTypeOfFromEmail;
 - (KalturaFieldType)getTypeOfFromName;
 - (KalturaFieldType)getTypeOfTo;
@@ -293,18 +292,16 @@
 - (KalturaFieldType)getTypeOfMessageID;
 - (KalturaFieldType)getTypeOfCustomHeaders;
 - (NSString*)getObjectTypeOfCustomHeaders;
-- (KalturaFieldType)getTypeOfContentParameters;
-- (NSString*)getObjectTypeOfContentParameters;
 - (void)setPriorityFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationTemplateBaseFilter : KalturaEventNotificationTemplateFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaEmailNotificationTemplateFilter : KalturaEmailNotificationTemplateBaseFilter
 @end
 

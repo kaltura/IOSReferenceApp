@@ -25,13 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetStatus : NSObject
 + (int)ERROR;
 + (int)QUEUED;
@@ -41,8 +41,8 @@
 + (int)EXPORTING;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)DELETED_AT_ASC;
@@ -54,13 +54,13 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionParamsOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionType : NSObject
 + (NSString*)SRT;
 + (NSString*)DFXP;
@@ -68,8 +68,8 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAsset : KalturaAsset
 // The Caption Params used to create this Caption Asset
 @property (nonatomic,assign) int captionParamsId;	// insertonly
@@ -97,8 +97,8 @@
 - (void)setStatusFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaCaptionAsset elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -108,8 +108,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionParams : KalturaAssetParams
 // The language of the caption content
 @property (nonatomic,copy) NSString* language;	// enum KalturaLanguage, insertonly
@@ -130,8 +130,8 @@
 - (void)setSourceParamsIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionParamsListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaCaptionParams elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -141,8 +141,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetBaseFilter : KalturaAssetFilter
 @property (nonatomic,assign) int captionParamsIdEqual;
 @property (nonatomic,copy) NSString* captionParamsIdIn;
@@ -162,8 +162,8 @@
 - (void)setStatusEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionParamsBaseFilter : KalturaAssetParamsFilter
 @property (nonatomic,copy) NSString* formatEqual;	// enum KalturaCaptionType
 @property (nonatomic,copy) NSString* formatIn;
@@ -171,19 +171,19 @@
 - (KalturaFieldType)getTypeOfFormatIn;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetFilter : KalturaCaptionAssetBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionParamsFilter : KalturaCaptionParamsBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Retrieve information and invoke actions on caption Asset
 @interface KalturaCaptionAssetService : KalturaServiceBase
 // Add caption asset
@@ -202,6 +202,11 @@
 - (KalturaRemotePathListResponse*)getRemotePathsWithId:(NSString*)aId;
 // Serves caption by its id
 - (NSString*)serveWithCaptionAssetId:(NSString*)aCaptionAssetId;
+// Serves caption by its id converting it to segmented WebVTT
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId withSegmentDuration:(int)aSegmentDuration withSegmentIndex:(int)aSegmentIndex withLocalTimestamp:(int)aLocalTimestamp;
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId withSegmentDuration:(int)aSegmentDuration withSegmentIndex:(int)aSegmentIndex;
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId withSegmentDuration:(int)aSegmentDuration;
+- (NSString*)serveWebVTTWithCaptionAssetId:(NSString*)aCaptionAssetId;
 // Markss the caption as default and removes that mark from all other caption assets of the entry.
 - (void)setAsDefaultWithCaptionAssetId:(NSString*)aCaptionAssetId;
 - (KalturaCaptionAsset*)getWithCaptionAssetId:(NSString*)aCaptionAssetId;
@@ -212,8 +217,8 @@
 - (void)deleteWithCaptionAssetId:(NSString*)aCaptionAssetId;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Add & Manage Caption Params
 @interface KalturaCaptionParamsService : KalturaServiceBase
 // Add new Caption Params

@@ -25,15 +25,15 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 #import "KalturaCaptionClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetItem : KalturaObjectBase
 // The Caption Asset object
 @property (nonatomic,retain) KalturaCaptionAsset* asset;
@@ -53,8 +53,8 @@
 - (void)setEndTimeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetItemListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaCaptionAssetItem elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -64,8 +64,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCaptionAssetItemFilter : KalturaCaptionAssetFilter
 @property (nonatomic,copy) NSString* contentLike;
 @property (nonatomic,copy) NSString* contentMultiLikeOr;
@@ -102,8 +102,8 @@
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Search caption asset items
 @interface KalturaCaptionAssetItemService : KalturaServiceBase
 // Search caption asset items by filter, pager and free text
@@ -111,6 +111,11 @@
 - (KalturaCaptionAssetItemListResponse*)searchWithEntryFilter:(KalturaBaseEntryFilter*)aEntryFilter withCaptionAssetItemFilter:(KalturaCaptionAssetItemFilter*)aCaptionAssetItemFilter;
 - (KalturaCaptionAssetItemListResponse*)searchWithEntryFilter:(KalturaBaseEntryFilter*)aEntryFilter;
 - (KalturaCaptionAssetItemListResponse*)search;
+// Search caption asset items by filter, pager and free text
+- (KalturaBaseEntryListResponse*)searchEntriesWithEntryFilter:(KalturaBaseEntryFilter*)aEntryFilter withCaptionAssetItemFilter:(KalturaCaptionAssetItemFilter*)aCaptionAssetItemFilter withCaptionAssetItemPager:(KalturaFilterPager*)aCaptionAssetItemPager;
+- (KalturaBaseEntryListResponse*)searchEntriesWithEntryFilter:(KalturaBaseEntryFilter*)aEntryFilter withCaptionAssetItemFilter:(KalturaCaptionAssetItemFilter*)aCaptionAssetItemFilter;
+- (KalturaBaseEntryListResponse*)searchEntriesWithEntryFilter:(KalturaBaseEntryFilter*)aEntryFilter;
+- (KalturaBaseEntryListResponse*)searchEntries;
 @end
 
 @interface KalturaCaptionSearchClientPlugin : KalturaClientPlugin

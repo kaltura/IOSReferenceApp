@@ -25,13 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFileSyncStatus : NSObject
 + (int)ERROR;
 + (int)PENDING;
@@ -40,32 +40,34 @@
 + (int)PURGED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFileSyncType : NSObject
 + (int)FILE;
 + (int)LINK;
 + (int)URL;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFileSyncOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)FILE_SIZE_ASC;
 + (NSString*)READY_AT_ASC;
 + (NSString*)SYNC_TIME_ASC;
 + (NSString*)UPDATED_AT_ASC;
++ (NSString*)VERSION_ASC;
 + (NSString*)CREATED_AT_DESC;
 + (NSString*)FILE_SIZE_DESC;
 + (NSString*)READY_AT_DESC;
 + (NSString*)SYNC_TIME_DESC;
 + (NSString*)UPDATED_AT_DESC;
++ (NSString*)VERSION_DESC;
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFileSyncBaseFilter : KalturaFilter
 @property (nonatomic,assign) int partnerIdEqual;
 @property (nonatomic,copy) NSString* fileObjectTypeEqual;	// enum KalturaFileSyncObjectType
@@ -145,9 +147,12 @@
 - (void)setFileSizeLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFileSyncFilter : KalturaFileSyncBaseFilter
+@property (nonatomic,assign) int currentDc;	// enum KalturaNullableBoolean
+- (KalturaFieldType)getTypeOfCurrentDc;
+- (void)setCurrentDcFromString:(NSString*)aPropVal;
 @end
 
 ///////////////////////// services /////////////////////////

@@ -68,6 +68,10 @@
 {
     return 5;
 }
++ (int)CONDITION_NOT_MET
+{
+    return 6;
+}
 @end
 
 @implementation KalturaDistributionFieldRequiredStatus
@@ -82,6 +86,10 @@
 + (int)REQUIRED_BY_PARTNER
 {
     return 2;
+}
++ (int)REQUIRED_FOR_AUTOMATIC_DISTRIBUTION
+{
+    return 3;
 }
 @end
 
@@ -409,6 +417,10 @@
 + (NSString*)TVCOM
 {
     return @"tvComDistribution.TVCOM";
+}
++ (NSString*)TVINCI
+{
+    return @"tvinciDistribution.TVINCI";
 }
 + (NSString*)UVERSE_CLICK_TO_ORDER
 {
@@ -2880,6 +2892,30 @@
 {
     [self->_typeEqual release];
     [self->_typeIn release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaDistributionValidationErrorConditionNotMet
+@synthesize conditionName = _conditionName;
+
+- (KalturaFieldType)getTypeOfConditionName
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaDistributionValidationErrorConditionNotMet"];
+    [aParams addIfDefinedKey:@"conditionName" withString:self.conditionName];
+}
+
+- (void)dealloc
+{
+    [self->_conditionName release];
     [super dealloc];
 }
 

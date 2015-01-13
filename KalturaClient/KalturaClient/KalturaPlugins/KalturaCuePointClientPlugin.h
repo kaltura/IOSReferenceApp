@@ -25,42 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCuePointStatus : NSObject
 + (int)READY;
 + (int)DELETED;
++ (int)HANDLED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaThumbCuePointSubType : NSObject
++ (int)SLIDE;
++ (int)CHAPTER;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCuePointOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
 + (NSString*)START_TIME_ASC;
++ (NSString*)TRIGGERED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
 + (NSString*)CREATED_AT_DESC;
 + (NSString*)PARTNER_SORT_VALUE_DESC;
 + (NSString*)START_TIME_DESC;
++ (NSString*)TRIGGERED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCuePointType : NSObject
 + (NSString*)AD;
 + (NSString*)ANNOTATION;
 + (NSString*)CODE;
++ (NSString*)EVENT;
++ (NSString*)THUMB;
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCuePoint : KalturaObjectBase
 @property (nonatomic,copy,readonly) NSString* id;
 @property (nonatomic,copy,readonly) NSString* cuePointType;	// enum KalturaCuePointType
@@ -69,6 +81,7 @@
 @property (nonatomic,assign,readonly) int partnerId;
 @property (nonatomic,assign,readonly) int createdAt;
 @property (nonatomic,assign,readonly) int updatedAt;
+@property (nonatomic,assign) int triggeredAt;
 @property (nonatomic,copy) NSString* tags;
 // Start time in milliseconds
 @property (nonatomic,assign) int startTime;
@@ -85,6 +98,7 @@
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfCreatedAt;
 - (KalturaFieldType)getTypeOfUpdatedAt;
+- (KalturaFieldType)getTypeOfTriggeredAt;
 - (KalturaFieldType)getTypeOfTags;
 - (KalturaFieldType)getTypeOfStartTime;
 - (KalturaFieldType)getTypeOfUserId;
@@ -97,14 +111,15 @@
 - (void)setPartnerIdFromString:(NSString*)aPropVal;
 - (void)setCreatedAtFromString:(NSString*)aPropVal;
 - (void)setUpdatedAtFromString:(NSString*)aPropVal;
+- (void)setTriggeredAtFromString:(NSString*)aPropVal;
 - (void)setStartTimeFromString:(NSString*)aPropVal;
 - (void)setPartnerSortValueFromString:(NSString*)aPropVal;
 - (void)setForceStopFromString:(NSString*)aPropVal;
 - (void)setThumbOffsetFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCuePointListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaCuePoint elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -114,8 +129,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCuePointBaseFilter : KalturaFilter
 @property (nonatomic,copy) NSString* idEqual;
 @property (nonatomic,copy) NSString* idIn;
@@ -129,6 +144,8 @@
 @property (nonatomic,assign) int createdAtLessThanOrEqual;
 @property (nonatomic,assign) int updatedAtGreaterThanOrEqual;
 @property (nonatomic,assign) int updatedAtLessThanOrEqual;
+@property (nonatomic,assign) int triggeredAtGreaterThanOrEqual;
+@property (nonatomic,assign) int triggeredAtLessThanOrEqual;
 @property (nonatomic,copy) NSString* tagsLike;
 @property (nonatomic,copy) NSString* tagsMultiLikeOr;
 @property (nonatomic,copy) NSString* tagsMultiLikeAnd;
@@ -155,6 +172,8 @@
 - (KalturaFieldType)getTypeOfCreatedAtLessThanOrEqual;
 - (KalturaFieldType)getTypeOfUpdatedAtGreaterThanOrEqual;
 - (KalturaFieldType)getTypeOfUpdatedAtLessThanOrEqual;
+- (KalturaFieldType)getTypeOfTriggeredAtGreaterThanOrEqual;
+- (KalturaFieldType)getTypeOfTriggeredAtLessThanOrEqual;
 - (KalturaFieldType)getTypeOfTagsLike;
 - (KalturaFieldType)getTypeOfTagsMultiLikeOr;
 - (KalturaFieldType)getTypeOfTagsMultiLikeAnd;
@@ -174,6 +193,8 @@
 - (void)setCreatedAtLessThanOrEqualFromString:(NSString*)aPropVal;
 - (void)setUpdatedAtGreaterThanOrEqualFromString:(NSString*)aPropVal;
 - (void)setUpdatedAtLessThanOrEqualFromString:(NSString*)aPropVal;
+- (void)setTriggeredAtGreaterThanOrEqualFromString:(NSString*)aPropVal;
+- (void)setTriggeredAtLessThanOrEqualFromString:(NSString*)aPropVal;
 - (void)setStartTimeGreaterThanOrEqualFromString:(NSString*)aPropVal;
 - (void)setStartTimeLessThanOrEqualFromString:(NSString*)aPropVal;
 - (void)setPartnerSortValueEqualFromString:(NSString*)aPropVal;
@@ -182,14 +203,14 @@
 - (void)setForceStopEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCuePointFilter : KalturaCuePointBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Cue Point service
 @interface KalturaCuePointService : KalturaServiceBase
 // Allows you to add an cue point object associated with an entry

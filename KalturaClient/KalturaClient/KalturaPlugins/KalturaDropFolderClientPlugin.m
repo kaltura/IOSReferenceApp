@@ -52,6 +52,10 @@
 {
     return 2;
 }
++ (int)AUTO_DELETE_WHEN_ENTRY_IS_READY
+{
+    return 3;
+}
 @end
 
 @implementation KalturaDropFolderFileStatus
@@ -360,6 +364,10 @@
 @end
 
 @implementation KalturaDropFolderType
++ (NSString*)WEBEX
+{
+    return @"WebexDropFolder.WEBEX";
+}
 + (NSString*)LOCAL
 {
     return @"1";
@@ -614,6 +622,12 @@
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
 @synthesize lastAccessedAt = _lastAccessedAt;
+@synthesize incremental = _incremental;
+@synthesize lastFileTimestamp = _lastFileTimestamp;
+@synthesize metadataProfileId = _metadataProfileId;
+@synthesize categoriesMetadataFieldName = _categoriesMetadataFieldName;
+@synthesize enforceEntitlement = _enforceEntitlement;
+@synthesize shouldValidateKS = _shouldValidateKS;
 
 - (id)init
 {
@@ -631,6 +645,11 @@
     self->_createdAt = KALTURA_UNDEF_INT;
     self->_updatedAt = KALTURA_UNDEF_INT;
     self->_lastAccessedAt = KALTURA_UNDEF_INT;
+    self->_incremental = KALTURA_UNDEF_BOOL;
+    self->_lastFileTimestamp = KALTURA_UNDEF_INT;
+    self->_metadataProfileId = KALTURA_UNDEF_INT;
+    self->_enforceEntitlement = KALTURA_UNDEF_BOOL;
+    self->_shouldValidateKS = KALTURA_UNDEF_BOOL;
     return self;
 }
 
@@ -749,6 +768,36 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfIncremental
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfLastFileTimestamp
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfMetadataProfileId
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfCategoriesMetadataFieldName
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfEnforceEntitlement
+{
+    return KFT_Bool;
+}
+
+- (KalturaFieldType)getTypeOfShouldValidateKS
+{
+    return KFT_Bool;
+}
+
 - (void)setIdFromString:(NSString*)aPropVal
 {
     self.id = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -804,6 +853,31 @@
     self.lastAccessedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setIncrementalFromString:(NSString*)aPropVal
+{
+    self.incremental = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)setLastFileTimestampFromString:(NSString*)aPropVal
+{
+    self.lastFileTimestamp = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setMetadataProfileIdFromString:(NSString*)aPropVal
+{
+    self.metadataProfileId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setEnforceEntitlementFromString:(NSString*)aPropVal
+{
+    self.enforceEntitlement = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
+- (void)setShouldValidateKSFromString:(NSString*)aPropVal
+{
+    self.shouldValidateKS = [KalturaSimpleTypeParser parseBool:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -828,6 +902,12 @@
     [aParams addIfDefinedKey:@"errorDescription" withString:self.errorDescription];
     [aParams addIfDefinedKey:@"ignoreFileNamePatterns" withString:self.ignoreFileNamePatterns];
     [aParams addIfDefinedKey:@"lastAccessedAt" withInt:self.lastAccessedAt];
+    [aParams addIfDefinedKey:@"incremental" withBool:self.incremental];
+    [aParams addIfDefinedKey:@"lastFileTimestamp" withInt:self.lastFileTimestamp];
+    [aParams addIfDefinedKey:@"metadataProfileId" withInt:self.metadataProfileId];
+    [aParams addIfDefinedKey:@"categoriesMetadataFieldName" withString:self.categoriesMetadataFieldName];
+    [aParams addIfDefinedKey:@"enforceEntitlement" withBool:self.enforceEntitlement];
+    [aParams addIfDefinedKey:@"shouldValidateKS" withBool:self.shouldValidateKS];
 }
 
 - (void)dealloc
@@ -843,6 +923,7 @@
     [self->_errorCode release];
     [self->_errorDescription release];
     [self->_ignoreFileNamePatterns release];
+    [self->_categoriesMetadataFieldName release];
     [super dealloc];
 }
 
@@ -853,6 +934,7 @@
 @property (nonatomic,assign) int partnerId;
 @property (nonatomic,assign) int fileSizeLastSetAt;
 @property (nonatomic,assign) int status;
+@property (nonatomic,copy) NSString* type;
 @property (nonatomic,assign) int createdAt;
 @property (nonatomic,assign) int updatedAt;
 @property (nonatomic,assign) int batchJobId;
@@ -866,8 +948,10 @@
 @synthesize fileSize = _fileSize;
 @synthesize fileSizeLastSetAt = _fileSizeLastSetAt;
 @synthesize status = _status;
+@synthesize type = _type;
 @synthesize parsedSlug = _parsedSlug;
 @synthesize parsedFlavor = _parsedFlavor;
+@synthesize parsedUserId = _parsedUserId;
 @synthesize leadDropFolderFileId = _leadDropFolderFileId;
 @synthesize deletedDropFolderFileId = _deletedDropFolderFileId;
 @synthesize entryId = _entryId;
@@ -940,12 +1024,22 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfType
+{
+    return KFT_String;
+}
+
 - (KalturaFieldType)getTypeOfParsedSlug
 {
     return KFT_String;
 }
 
 - (KalturaFieldType)getTypeOfParsedFlavor
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfParsedUserId
 {
     return KFT_String;
 }
@@ -1100,6 +1194,7 @@
     [aParams addIfDefinedKey:@"fileSize" withFloat:self.fileSize];
     [aParams addIfDefinedKey:@"parsedSlug" withString:self.parsedSlug];
     [aParams addIfDefinedKey:@"parsedFlavor" withString:self.parsedFlavor];
+    [aParams addIfDefinedKey:@"parsedUserId" withString:self.parsedUserId];
     [aParams addIfDefinedKey:@"leadDropFolderFileId" withInt:self.leadDropFolderFileId];
     [aParams addIfDefinedKey:@"deletedDropFolderFileId" withInt:self.deletedDropFolderFileId];
     [aParams addIfDefinedKey:@"entryId" withString:self.entryId];
@@ -1115,8 +1210,10 @@
 - (void)dealloc
 {
     [self->_fileName release];
+    [self->_type release];
     [self->_parsedSlug release];
     [self->_parsedFlavor release];
+    [self->_parsedUserId release];
     [self->_entryId release];
     [self->_errorCode release];
     [self->_errorDescription release];
@@ -1579,19 +1676,27 @@
 @end
 
 @implementation KalturaDropFolderContentProcessorJobData
+@synthesize dropFolderId = _dropFolderId;
 @synthesize dropFolderFileIds = _dropFolderFileIds;
 @synthesize parsedSlug = _parsedSlug;
 @synthesize contentMatchPolicy = _contentMatchPolicy;
 @synthesize conversionProfileId = _conversionProfileId;
+@synthesize parsedUserId = _parsedUserId;
 
 - (id)init
 {
     self = [super init];
     if (self == nil)
         return nil;
+    self->_dropFolderId = KALTURA_UNDEF_INT;
     self->_contentMatchPolicy = KALTURA_UNDEF_INT;
     self->_conversionProfileId = KALTURA_UNDEF_INT;
     return self;
+}
+
+- (KalturaFieldType)getTypeOfDropFolderId
+{
+    return KFT_Int;
 }
 
 - (KalturaFieldType)getTypeOfDropFolderFileIds
@@ -1614,6 +1719,16 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfParsedUserId
+{
+    return KFT_String;
+}
+
+- (void)setDropFolderIdFromString:(NSString*)aPropVal
+{
+    self.dropFolderId = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)setContentMatchPolicyFromString:(NSString*)aPropVal
 {
     self.contentMatchPolicy = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -1629,16 +1744,19 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaDropFolderContentProcessorJobData"];
+    [aParams addIfDefinedKey:@"dropFolderId" withInt:self.dropFolderId];
     [aParams addIfDefinedKey:@"dropFolderFileIds" withString:self.dropFolderFileIds];
     [aParams addIfDefinedKey:@"parsedSlug" withString:self.parsedSlug];
     [aParams addIfDefinedKey:@"contentMatchPolicy" withInt:self.contentMatchPolicy];
     [aParams addIfDefinedKey:@"conversionProfileId" withInt:self.conversionProfileId];
+    [aParams addIfDefinedKey:@"parsedUserId" withString:self.parsedUserId];
 }
 
 - (void)dealloc
 {
     [self->_dropFolderFileIds release];
     [self->_parsedSlug release];
+    [self->_parsedUserId release];
     [super dealloc];
 }
 
@@ -1656,6 +1774,7 @@
 @synthesize fileNameLike = _fileNameLike;
 @synthesize statusEqual = _statusEqual;
 @synthesize statusIn = _statusIn;
+@synthesize statusNotIn = _statusNotIn;
 @synthesize parsedSlugEqual = _parsedSlugEqual;
 @synthesize parsedSlugIn = _parsedSlugIn;
 @synthesize parsedSlugLike = _parsedSlugLike;
@@ -1741,6 +1860,11 @@
 }
 
 - (KalturaFieldType)getTypeOfStatusIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfStatusNotIn
 {
     return KFT_String;
 }
@@ -1886,6 +2010,7 @@
     [aParams addIfDefinedKey:@"fileNameLike" withString:self.fileNameLike];
     [aParams addIfDefinedKey:@"statusEqual" withInt:self.statusEqual];
     [aParams addIfDefinedKey:@"statusIn" withString:self.statusIn];
+    [aParams addIfDefinedKey:@"statusNotIn" withString:self.statusNotIn];
     [aParams addIfDefinedKey:@"parsedSlugEqual" withString:self.parsedSlugEqual];
     [aParams addIfDefinedKey:@"parsedSlugIn" withString:self.parsedSlugIn];
     [aParams addIfDefinedKey:@"parsedSlugLike" withString:self.parsedSlugLike];
@@ -1912,6 +2037,7 @@
     [self->_fileNameIn release];
     [self->_fileNameLike release];
     [self->_statusIn release];
+    [self->_statusNotIn release];
     [self->_parsedSlugEqual release];
     [self->_parsedSlugIn release];
     [self->_parsedSlugLike release];

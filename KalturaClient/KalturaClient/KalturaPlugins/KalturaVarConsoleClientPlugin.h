@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVarPartnerUsageItem : KalturaObjectBase
 // Partner ID
 @property (nonatomic,assign) int partnerId;
@@ -74,6 +74,8 @@
 @property (nonatomic,assign) double avgStorage;
 // The combined amount of bandwidth and storage consumed during the given date range for the specific publisher
 @property (nonatomic,assign) double combinedStorageBandwidth;
+// Amount of transcoding usage in MB
+@property (nonatomic,assign) double transcodingUsage;
 // TGhe date at which the report was taken - Unix Timestamp
 @property (nonatomic,copy) NSString* dateId;
 - (KalturaFieldType)getTypeOfPartnerId;
@@ -96,6 +98,7 @@
 - (KalturaFieldType)getTypeOfPeakStorage;
 - (KalturaFieldType)getTypeOfAvgStorage;
 - (KalturaFieldType)getTypeOfCombinedStorageBandwidth;
+- (KalturaFieldType)getTypeOfTranscodingUsage;
 - (KalturaFieldType)getTypeOfDateId;
 - (void)setPartnerIdFromString:(NSString*)aPropVal;
 - (void)setPartnerStatusFromString:(NSString*)aPropVal;
@@ -116,10 +119,11 @@
 - (void)setPeakStorageFromString:(NSString*)aPropVal;
 - (void)setAvgStorageFromString:(NSString*)aPropVal;
 - (void)setCombinedStorageBandwidthFromString:(NSString*)aPropVal;
+- (void)setTranscodingUsageFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPartnerUsageListResponse : KalturaObjectBase
 @property (nonatomic,retain) KalturaVarPartnerUsageItem* total;
 @property (nonatomic,retain) NSMutableArray* objects;	// of KalturaVarPartnerUsageItem elements
@@ -132,13 +136,13 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVarPartnerUsageTotalItem : KalturaVarPartnerUsageItem
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaVarConsolePartnerFilter : KalturaPartnerFilter
 // Eq filter for the partner's group type
 @property (nonatomic,assign) int groupTypeEq;	// enum KalturaPartnerGroupType
@@ -153,8 +157,8 @@
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Utility service for the Multi-publishers console
 @interface KalturaVarConsoleService : KalturaServiceBase
 // Function which calulates partner usage of a group of a VAR's sub-publishers

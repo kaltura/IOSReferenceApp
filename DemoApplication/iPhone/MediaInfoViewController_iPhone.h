@@ -10,7 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import <PlayerSDK/PlayerViewController.h>
+#import <KALTURAPlayerSDK/KPViewController.h>
 
 @class AppDelegate_iPhone;
 
@@ -42,7 +42,7 @@ extern const CGRect PlayerCGRect;
     
     NSString *categoryName;
 
-    PlayerViewController* playerViewController;
+    KPViewController* playerViewController;
         
 }
 

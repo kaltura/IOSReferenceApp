@@ -37,6 +37,21 @@
 {
     return 2;
 }
++ (int)HANDLED
+{
+    return 3;
+}
+@end
+
+@implementation KalturaThumbCuePointSubType
++ (int)SLIDE
+{
+    return 1;
+}
++ (int)CHAPTER
+{
+    return 2;
+}
 @end
 
 @implementation KalturaCuePointOrderBy
@@ -51,6 +66,10 @@
 + (NSString*)START_TIME_ASC
 {
     return @"+startTime";
+}
++ (NSString*)TRIGGERED_AT_ASC
+{
+    return @"+triggeredAt";
 }
 + (NSString*)UPDATED_AT_ASC
 {
@@ -67,6 +86,10 @@
 + (NSString*)START_TIME_DESC
 {
     return @"-startTime";
+}
++ (NSString*)TRIGGERED_AT_DESC
+{
+    return @"-triggeredAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -86,6 +109,14 @@
 + (NSString*)CODE
 {
     return @"codeCuePoint.Code";
+}
++ (NSString*)EVENT
+{
+    return @"eventCuePoint.Event";
+}
++ (NSString*)THUMB
+{
+    return @"thumbCuePoint.Thumb";
 }
 @end
 
@@ -108,6 +139,7 @@
 @synthesize partnerId = _partnerId;
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
+@synthesize triggeredAt = _triggeredAt;
 @synthesize tags = _tags;
 @synthesize startTime = _startTime;
 @synthesize userId = _userId;
@@ -126,6 +158,7 @@
     self->_partnerId = KALTURA_UNDEF_INT;
     self->_createdAt = KALTURA_UNDEF_INT;
     self->_updatedAt = KALTURA_UNDEF_INT;
+    self->_triggeredAt = KALTURA_UNDEF_INT;
     self->_startTime = KALTURA_UNDEF_INT;
     self->_partnerSortValue = KALTURA_UNDEF_INT;
     self->_forceStop = KALTURA_UNDEF_INT;
@@ -164,6 +197,11 @@
 }
 
 - (KalturaFieldType)getTypeOfUpdatedAt
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfTriggeredAt
 {
     return KFT_Int;
 }
@@ -228,6 +266,11 @@
     self.updatedAt = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setTriggeredAtFromString:(NSString*)aPropVal
+{
+    self.triggeredAt = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)setStartTimeFromString:(NSString*)aPropVal
 {
     self.startTime = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -254,6 +297,7 @@
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaCuePoint"];
     [aParams addIfDefinedKey:@"entryId" withString:self.entryId];
+    [aParams addIfDefinedKey:@"triggeredAt" withInt:self.triggeredAt];
     [aParams addIfDefinedKey:@"tags" withString:self.tags];
     [aParams addIfDefinedKey:@"startTime" withInt:self.startTime];
     [aParams addIfDefinedKey:@"partnerData" withString:self.partnerData];
@@ -343,6 +387,8 @@
 @synthesize createdAtLessThanOrEqual = _createdAtLessThanOrEqual;
 @synthesize updatedAtGreaterThanOrEqual = _updatedAtGreaterThanOrEqual;
 @synthesize updatedAtLessThanOrEqual = _updatedAtLessThanOrEqual;
+@synthesize triggeredAtGreaterThanOrEqual = _triggeredAtGreaterThanOrEqual;
+@synthesize triggeredAtLessThanOrEqual = _triggeredAtLessThanOrEqual;
 @synthesize tagsLike = _tagsLike;
 @synthesize tagsMultiLikeOr = _tagsMultiLikeOr;
 @synthesize tagsMultiLikeAnd = _tagsMultiLikeAnd;
@@ -368,6 +414,8 @@
     self->_createdAtLessThanOrEqual = KALTURA_UNDEF_INT;
     self->_updatedAtGreaterThanOrEqual = KALTURA_UNDEF_INT;
     self->_updatedAtLessThanOrEqual = KALTURA_UNDEF_INT;
+    self->_triggeredAtGreaterThanOrEqual = KALTURA_UNDEF_INT;
+    self->_triggeredAtLessThanOrEqual = KALTURA_UNDEF_INT;
     self->_startTimeGreaterThanOrEqual = KALTURA_UNDEF_INT;
     self->_startTimeLessThanOrEqual = KALTURA_UNDEF_INT;
     self->_partnerSortValueEqual = KALTURA_UNDEF_INT;
@@ -433,6 +481,16 @@
 }
 
 - (KalturaFieldType)getTypeOfUpdatedAtLessThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfTriggeredAtGreaterThanOrEqual
+{
+    return KFT_Int;
+}
+
+- (KalturaFieldType)getTypeOfTriggeredAtLessThanOrEqual
 {
     return KFT_Int;
 }
@@ -532,6 +590,16 @@
     self.updatedAtLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
+- (void)setTriggeredAtGreaterThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.triggeredAtGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)setTriggeredAtLessThanOrEqualFromString:(NSString*)aPropVal
+{
+    self.triggeredAtLessThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)setStartTimeGreaterThanOrEqualFromString:(NSString*)aPropVal
 {
     self.startTimeGreaterThanOrEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -579,6 +647,8 @@
     [aParams addIfDefinedKey:@"createdAtLessThanOrEqual" withInt:self.createdAtLessThanOrEqual];
     [aParams addIfDefinedKey:@"updatedAtGreaterThanOrEqual" withInt:self.updatedAtGreaterThanOrEqual];
     [aParams addIfDefinedKey:@"updatedAtLessThanOrEqual" withInt:self.updatedAtLessThanOrEqual];
+    [aParams addIfDefinedKey:@"triggeredAtGreaterThanOrEqual" withInt:self.triggeredAtGreaterThanOrEqual];
+    [aParams addIfDefinedKey:@"triggeredAtLessThanOrEqual" withInt:self.triggeredAtLessThanOrEqual];
     [aParams addIfDefinedKey:@"tagsLike" withString:self.tagsLike];
     [aParams addIfDefinedKey:@"tagsMultiLikeOr" withString:self.tagsMultiLikeOr];
     [aParams addIfDefinedKey:@"tagsMultiLikeAnd" withString:self.tagsMultiLikeAnd];

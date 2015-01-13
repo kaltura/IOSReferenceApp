@@ -44,6 +44,38 @@
 @end
 
 @implementation KalturaEventNotificationEventObjectType
++ (NSString*)AD_CUE_POINT
+{
+    return @"adCuePointEventNotifications.AdCuePoint";
+}
++ (NSString*)ANNOTATION
+{
+    return @"annotationEventNotifications.Annotation";
+}
++ (NSString*)CAPTION_ASSET
+{
+    return @"captionAssetEventNotifications.CaptionAsset";
+}
++ (NSString*)CODE_CUE_POINT
+{
+    return @"codeCuePointEventNotifications.CodeCuePoint";
+}
++ (NSString*)DISTRIBUTION_PROFILE
+{
+    return @"contentDistributionEventNotifications.DistributionProfile";
+}
++ (NSString*)ENTRY_DISTRIBUTION
+{
+    return @"contentDistributionEventNotifications.EntryDistribution";
+}
++ (NSString*)CUE_POINT
+{
+    return @"cuePointEventNotifications.CuePoint";
+}
++ (NSString*)METADATA
+{
+    return @"metadataEventNotifications.Metadata";
+}
 + (NSString*)ENTRY
 {
     return @"1";
@@ -223,6 +255,14 @@
 {
     return @"11";
 }
++ (NSString*)OBJECT_REPLACED
+{
+    return @"12";
+}
++ (NSString*)OBJECT_READY_FOR_INDEX
+{
+    return @"13";
+}
 @end
 
 @implementation KalturaEventNotificationTemplateOrderBy
@@ -257,24 +297,24 @@
 {
     return @"emailNotification.Email";
 }
++ (NSString*)HTTP
+{
+    return @"httpNotification.Http";
+}
 @end
 
 ///////////////////////// classes /////////////////////////
-@implementation KalturaEventCondition
-- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
-{
-    [super toParams:aParams isSuper:YES];
-    if (!aIsSuper)
-        [aParams putKey:@"objectType" withString:@"KalturaEventCondition"];
-}
-
-@end
-
 @implementation KalturaEventNotificationParameter
 @synthesize key = _key;
+@synthesize description = _description;
 @synthesize value = _value;
 
 - (KalturaFieldType)getTypeOfKey
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfDescription
 {
     return KFT_String;
 }
@@ -295,12 +335,14 @@
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaEventNotificationParameter"];
     [aParams addIfDefinedKey:@"key" withString:self.key];
+    [aParams addIfDefinedKey:@"description" withString:self.description];
     [aParams addIfDefinedKey:@"value" withObject:self.value];
 }
 
 - (void)dealloc
 {
     [self->_key release];
+    [self->_description release];
     [self->_value release];
     [super dealloc];
 }
@@ -330,6 +372,8 @@
 @synthesize eventType = _eventType;
 @synthesize eventObjectType = _eventObjectType;
 @synthesize eventConditions = _eventConditions;
+@synthesize contentParameters = _contentParameters;
+@synthesize userParameters = _userParameters;
 
 - (id)init
 {
@@ -418,7 +462,27 @@
 
 - (NSString*)getObjectTypeOfEventConditions
 {
-    return @"KalturaEventCondition";
+    return @"KalturaCondition";
+}
+
+- (KalturaFieldType)getTypeOfContentParameters
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfContentParameters
+{
+    return @"KalturaEventNotificationParameter";
+}
+
+- (KalturaFieldType)getTypeOfUserParameters
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfUserParameters
+{
+    return @"KalturaEventNotificationParameter";
 }
 
 - (void)setIdFromString:(NSString*)aPropVal
@@ -470,6 +534,8 @@
     [aParams addIfDefinedKey:@"eventType" withString:self.eventType];
     [aParams addIfDefinedKey:@"eventObjectType" withString:self.eventObjectType];
     [aParams addIfDefinedKey:@"eventConditions" withArray:self.eventConditions];
+    [aParams addIfDefinedKey:@"contentParameters" withArray:self.contentParameters];
+    [aParams addIfDefinedKey:@"userParameters" withArray:self.userParameters];
 }
 
 - (void)dealloc
@@ -481,6 +547,8 @@
     [self->_eventType release];
     [self->_eventObjectType release];
     [self->_eventConditions release];
+    [self->_contentParameters release];
+    [self->_userParameters release];
     [super dealloc];
 }
 
@@ -568,8 +636,51 @@
 
 @end
 
+@implementation KalturaEventNotificationArrayParameter
+@synthesize values = _values;
+@synthesize allowedValues = _allowedValues;
+
+- (KalturaFieldType)getTypeOfValues
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfValues
+{
+    return @"KalturaString";
+}
+
+- (KalturaFieldType)getTypeOfAllowedValues
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfAllowedValues
+{
+    return @"KalturaStringValue";
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaEventNotificationArrayParameter"];
+    [aParams addIfDefinedKey:@"values" withArray:self.values];
+    [aParams addIfDefinedKey:@"allowedValues" withArray:self.allowedValues];
+}
+
+- (void)dealloc
+{
+    [self->_values release];
+    [self->_allowedValues release];
+    [super dealloc];
+}
+
+@end
+
 @implementation KalturaEventNotificationDispatchJobData
 @synthesize templateId = _templateId;
+@synthesize contentParameters = _contentParameters;
 
 - (id)init
 {
@@ -585,6 +696,16 @@
     return KFT_Int;
 }
 
+- (KalturaFieldType)getTypeOfContentParameters
+{
+    return KFT_Array;
+}
+
+- (NSString*)getObjectTypeOfContentParameters
+{
+    return @"KalturaKeyValue";
+}
+
 - (void)setTemplateIdFromString:(NSString*)aPropVal
 {
     self.templateId = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -596,6 +717,45 @@
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaEventNotificationDispatchJobData"];
     [aParams addIfDefinedKey:@"templateId" withInt:self.templateId];
+    [aParams addIfDefinedKey:@"contentParameters" withArray:self.contentParameters];
+}
+
+- (void)dealloc
+{
+    [self->_contentParameters release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaEventNotificationScope
+@synthesize objectId = _objectId;
+@synthesize scopeObjectType = _scopeObjectType;
+
+- (KalturaFieldType)getTypeOfObjectId
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfScopeObjectType
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaEventNotificationScope"];
+    [aParams addIfDefinedKey:@"objectId" withString:self.objectId];
+    [aParams addIfDefinedKey:@"scopeObjectType" withString:self.scopeObjectType];
+}
+
+- (void)dealloc
+{
+    [self->_objectId release];
+    [self->_scopeObjectType release];
+    [super dealloc];
 }
 
 @end
@@ -605,6 +765,8 @@
 @synthesize idIn = _idIn;
 @synthesize partnerIdEqual = _partnerIdEqual;
 @synthesize partnerIdIn = _partnerIdIn;
+@synthesize systemNameEqual = _systemNameEqual;
+@synthesize systemNameIn = _systemNameIn;
 @synthesize typeEqual = _typeEqual;
 @synthesize typeIn = _typeIn;
 @synthesize statusEqual = _statusEqual;
@@ -645,6 +807,16 @@
 }
 
 - (KalturaFieldType)getTypeOfPartnerIdIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSystemNameEqual
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfSystemNameIn
 {
     return KFT_String;
 }
@@ -733,6 +905,8 @@
     [aParams addIfDefinedKey:@"idIn" withString:self.idIn];
     [aParams addIfDefinedKey:@"partnerIdEqual" withInt:self.partnerIdEqual];
     [aParams addIfDefinedKey:@"partnerIdIn" withString:self.partnerIdIn];
+    [aParams addIfDefinedKey:@"systemNameEqual" withString:self.systemNameEqual];
+    [aParams addIfDefinedKey:@"systemNameIn" withString:self.systemNameIn];
     [aParams addIfDefinedKey:@"typeEqual" withString:self.typeEqual];
     [aParams addIfDefinedKey:@"typeIn" withString:self.typeIn];
     [aParams addIfDefinedKey:@"statusEqual" withInt:self.statusEqual];
@@ -747,9 +921,35 @@
 {
     [self->_idIn release];
     [self->_partnerIdIn release];
+    [self->_systemNameEqual release];
+    [self->_systemNameIn release];
     [self->_typeEqual release];
     [self->_typeIn release];
     [self->_statusIn release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaEventObjectChangedCondition
+@synthesize modifiedColumns = _modifiedColumns;
+
+- (KalturaFieldType)getTypeOfModifiedColumns
+{
+    return KFT_String;
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaEventObjectChangedCondition"];
+    [aParams addIfDefinedKey:@"modifiedColumns" withString:self.modifiedColumns];
+}
+
+- (void)dealloc
+{
+    [self->_modifiedColumns release];
     [super dealloc];
 }
 
@@ -845,10 +1045,10 @@
     return [self listByPartnerWithFilter:nil];
 }
 
-- (int)dispatchWithId:(int)aId withData:(KalturaEventNotificationDispatchJobData*)aData
+- (int)dispatchWithId:(int)aId withScope:(KalturaEventNotificationScope*)aScope
 {
     [self.client.params addIfDefinedKey:@"id" withInt:aId];
-    [self.client.params addIfDefinedKey:@"data" withObject:aData];
+    [self.client.params addIfDefinedKey:@"scope" withObject:aScope];
     return [self.client queueIntService:@"eventnotification_eventnotificationtemplate" withAction:@"dispatch"];
 }
 

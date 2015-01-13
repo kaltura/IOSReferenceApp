@@ -25,16 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 #import "KalturaBulkUploadXmlClientPlugin.h"
 #import "KalturaDropFolderClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDropFolderXmlBulkUploadFileHandlerConfig : KalturaDropFolderFileHandlerConfig
 @end
 

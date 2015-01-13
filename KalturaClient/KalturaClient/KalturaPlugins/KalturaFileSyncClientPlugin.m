@@ -87,6 +87,10 @@
 {
     return @"+updatedAt";
 }
++ (NSString*)VERSION_ASC
+{
+    return @"+version";
+}
 + (NSString*)CREATED_AT_DESC
 {
     return @"-createdAt";
@@ -106,6 +110,10 @@
 + (NSString*)UPDATED_AT_DESC
 {
     return @"-updatedAt";
+}
++ (NSString*)VERSION_DESC
+{
+    return @"-version";
 }
 @end
 
@@ -457,11 +465,33 @@
 @end
 
 @implementation KalturaFileSyncFilter
+@synthesize currentDc = _currentDc;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_currentDc = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfCurrentDc
+{
+    return KFT_Int;
+}
+
+- (void)setCurrentDcFromString:(NSString*)aPropVal
+{
+    self.currentDc = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaFileSyncFilter"];
+    [aParams addIfDefinedKey:@"currentDc" withInt:self.currentDc];
 }
 
 @end

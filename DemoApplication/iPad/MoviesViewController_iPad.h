@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import <PlayerSDK/PlayerViewController.h>
+#import <KALTURAPlayerSDK/KPViewController.h>
 
 extern const CGRect PlayeriPadCGRect;
 
@@ -48,7 +48,7 @@ extern const CGRect PlayeriPadCGRect;
     IBOutlet UILabel *labelInfoDuration;
     
     IBOutlet UITextView *textInfoDescription;
-    PlayerViewController* playerViewController;
+    KPViewController* playerViewController;
     
 }
 

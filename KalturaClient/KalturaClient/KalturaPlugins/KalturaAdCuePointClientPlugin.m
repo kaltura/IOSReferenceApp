@@ -49,6 +49,10 @@
 {
     return @"+startTime";
 }
++ (NSString*)TRIGGERED_AT_ASC
+{
+    return @"+triggeredAt";
+}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
@@ -72,6 +76,10 @@
 + (NSString*)START_TIME_DESC
 {
     return @"-startTime";
+}
++ (NSString*)TRIGGERED_AT_DESC
+{
+    return @"-triggeredAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {
@@ -110,10 +118,6 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-@interface KalturaAdCuePoint()
-@property (nonatomic,assign) int duration;
-@end
-
 @implementation KalturaAdCuePoint
 @synthesize protocolType = _protocolType;
 @synthesize sourceUrl = _sourceUrl;
@@ -182,6 +186,7 @@
     [aParams addIfDefinedKey:@"adType" withString:self.adType];
     [aParams addIfDefinedKey:@"title" withString:self.title];
     [aParams addIfDefinedKey:@"endTime" withInt:self.endTime];
+    [aParams addIfDefinedKey:@"duration" withInt:self.duration];
 }
 
 - (void)dealloc

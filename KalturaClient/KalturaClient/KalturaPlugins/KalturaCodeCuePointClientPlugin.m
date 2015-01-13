@@ -49,6 +49,10 @@
 {
     return @"+startTime";
 }
++ (NSString*)TRIGGERED_AT_ASC
+{
+    return @"+triggeredAt";
+}
 + (NSString*)UPDATED_AT_ASC
 {
     return @"+updatedAt";
@@ -72,6 +76,10 @@
 + (NSString*)START_TIME_DESC
 {
     return @"-startTime";
+}
++ (NSString*)TRIGGERED_AT_DESC
+{
+    return @"-triggeredAt";
 }
 + (NSString*)UPDATED_AT_DESC
 {

@@ -25,21 +25,21 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentType : NSObject
 + (int)DOCUMENT;
 + (int)SWF;
 + (int)PDF;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentEntryOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)END_DATE_ASC;
@@ -65,49 +65,49 @@
 + (NSString*)WEIGHT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParamsOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParamsOutputOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParamsOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParamsOutputOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParamsOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParamsOutputOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParamsOrderBy : NSObject
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParamsOutputOrderBy : NSObject
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentEntry : KalturaBaseEntry
 // The type of the document
 @property (nonatomic,assign) int documentType;	// enum KalturaDocumentType, insertonly
@@ -118,8 +118,8 @@
 - (void)setDocumentTypeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaDocumentEntry elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -129,13 +129,13 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParams : KalturaFlavorParams
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParams : KalturaFlavorParams
 @property (nonatomic,assign) int densityWidth;
 @property (nonatomic,assign) int densityHeight;
@@ -154,16 +154,16 @@
 - (void)setDepthFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParams : KalturaFlavorParams
 @property (nonatomic,assign) BOOL readonly;
 - (KalturaFieldType)getTypeOfReadonly;
 - (void)setReadonlyFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParams : KalturaFlavorParams
 @property (nonatomic,assign) int flashVersion;
 @property (nonatomic,assign) BOOL poly2Bitmap;
@@ -173,8 +173,8 @@
 - (void)setPoly2BitmapFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentEntryBaseFilter : KalturaBaseEntryFilter
 @property (nonatomic,assign) int documentTypeEqual;	// enum KalturaDocumentType
 @property (nonatomic,copy) NSString* documentTypeIn;
@@ -187,13 +187,13 @@
 - (void)setDocumentTypeEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParamsOutput : KalturaFlavorParamsOutput
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParamsOutput : KalturaFlavorParamsOutput
 @property (nonatomic,assign) int densityWidth;
 @property (nonatomic,assign) int densityHeight;
@@ -212,16 +212,16 @@
 - (void)setDepthFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParamsOutput : KalturaFlavorParamsOutput
 @property (nonatomic,assign) BOOL readonly;
 - (KalturaFieldType)getTypeOfReadonly;
 - (void)setReadonlyFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParamsOutput : KalturaFlavorParamsOutput
 @property (nonatomic,assign) int flashVersion;
 @property (nonatomic,assign) BOOL poly2Bitmap;
@@ -231,94 +231,94 @@
 - (void)setPoly2BitmapFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentEntryFilter : KalturaDocumentEntryBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParamsBaseFilter : KalturaFlavorParamsFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParamsBaseFilter : KalturaFlavorParamsFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParamsBaseFilter : KalturaFlavorParamsFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParamsBaseFilter : KalturaFlavorParamsFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParamsFilter : KalturaDocumentFlavorParamsBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParamsFilter : KalturaImageFlavorParamsBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParamsFilter : KalturaPdfFlavorParamsBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParamsFilter : KalturaSwfFlavorParamsBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParamsOutputBaseFilter : KalturaFlavorParamsOutputFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParamsOutputBaseFilter : KalturaFlavorParamsOutputFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParamsOutputBaseFilter : KalturaFlavorParamsOutputFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParamsOutputBaseFilter : KalturaFlavorParamsOutputFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaDocumentFlavorParamsOutputFilter : KalturaDocumentFlavorParamsOutputBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImageFlavorParamsOutputFilter : KalturaImageFlavorParamsOutputBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaPdfFlavorParamsOutputFilter : KalturaPdfFlavorParamsOutputBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaSwfFlavorParamsOutputFilter : KalturaSwfFlavorParamsOutputBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Document service lets you upload and manage document files
 @interface KalturaDocumentsService : KalturaServiceBase
 // Add new document entry after the specific document file was uploaded and the upload token id exists

@@ -695,7 +695,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
     [self.navigationController setDelegate:self];
     
     if ( !playerViewController ) {
-        playerViewController = [[ PlayerViewController alloc] init];
+        playerViewController = [[ KPViewController alloc] init];
         
         playerViewController.view.frame = PlayeriPadCGRect;
     }

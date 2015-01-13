@@ -41,6 +41,10 @@
 {
     return @"+endDate";
 }
++ (NSString*)LAST_PLAYED_AT_ASC
+{
+    return @"+lastPlayedAt";
+}
 + (NSString*)MEDIA_TYPE_ASC
 {
     return @"+mediaType";
@@ -48,10 +52,6 @@
 + (NSString*)MODERATION_COUNT_ASC
 {
     return @"+moderationCount";
-}
-+ (NSString*)MS_DURATION_ASC
-{
-    return @"+msDuration";
 }
 + (NSString*)NAME_ASC
 {
@@ -105,6 +105,10 @@
 {
     return @"-endDate";
 }
++ (NSString*)LAST_PLAYED_AT_DESC
+{
+    return @"-lastPlayedAt";
+}
 + (NSString*)MEDIA_TYPE_DESC
 {
     return @"-mediaType";
@@ -112,10 +116,6 @@
 + (NSString*)MODERATION_COUNT_DESC
 {
     return @"-moderationCount";
-}
-+ (NSString*)MS_DURATION_DESC
-{
-    return @"-msDuration";
 }
 + (NSString*)NAME_DESC
 {

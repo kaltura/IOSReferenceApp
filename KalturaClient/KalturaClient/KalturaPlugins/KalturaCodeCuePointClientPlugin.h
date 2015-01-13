@@ -25,32 +25,34 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 #import "KalturaCuePointClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCodeCuePointOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)DURATION_ASC;
 + (NSString*)END_TIME_ASC;
 + (NSString*)PARTNER_SORT_VALUE_ASC;
 + (NSString*)START_TIME_ASC;
++ (NSString*)TRIGGERED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
 + (NSString*)CREATED_AT_DESC;
 + (NSString*)DURATION_DESC;
 + (NSString*)END_TIME_DESC;
 + (NSString*)PARTNER_SORT_VALUE_DESC;
 + (NSString*)START_TIME_DESC;
++ (NSString*)TRIGGERED_AT_DESC;
 + (NSString*)UPDATED_AT_DESC;
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCodeCuePoint : KalturaCuePoint
 @property (nonatomic,copy) NSString* code;
 @property (nonatomic,copy) NSString* description;
@@ -65,8 +67,8 @@
 - (void)setDurationFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCodeCuePointBaseFilter : KalturaCuePointFilter
 @property (nonatomic,copy) NSString* codeLike;
 @property (nonatomic,copy) NSString* codeMultiLikeOr;
@@ -98,8 +100,8 @@
 - (void)setDurationLessThanOrEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCodeCuePointFilter : KalturaCodeCuePointBaseFilter
 @end
 

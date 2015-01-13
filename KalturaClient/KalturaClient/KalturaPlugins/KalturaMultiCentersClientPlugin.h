@@ -25,23 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaFileSyncImportJobData : KalturaJobData
 @property (nonatomic,copy) NSString* sourceUrl;
 @property (nonatomic,copy) NSString* filesyncId;
 @property (nonatomic,copy) NSString* tmpFilePath;
 @property (nonatomic,copy) NSString* destFilePath;
+@property (nonatomic,assign) int fileSize;
 - (KalturaFieldType)getTypeOfSourceUrl;
 - (KalturaFieldType)getTypeOfFilesyncId;
 - (KalturaFieldType)getTypeOfTmpFilePath;
 - (KalturaFieldType)getTypeOfDestFilePath;
+- (KalturaFieldType)getTypeOfFileSize;
+- (void)setFileSizeFromString:(NSString*)aPropVal;
 @end
 
 ///////////////////////// services /////////////////////////

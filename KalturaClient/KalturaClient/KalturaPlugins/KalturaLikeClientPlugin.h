@@ -25,15 +25,15 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Allows user to 'like' or 'unlike' and entry
 @interface KalturaLikeService : KalturaServiceBase
 - (BOOL)likeWithEntryId:(NSString*)aEntryId;

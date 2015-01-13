@@ -25,49 +25,50 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileCreateMode : NSObject
 + (int)API;
 + (int)KMC;
 + (int)APP;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileStatus : NSObject
 + (int)ACTIVE;
 + (int)DEPRECATED;
 + (int)TRANSFORMING;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataStatus : NSObject
 + (int)VALID;
 + (int)INVALID;
 + (int)DELETED;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataObjectType : NSObject
 + (NSString*)AD_CUE_POINT;
 + (NSString*)ANNOTATION;
 + (NSString*)CODE_CUE_POINT;
++ (NSString*)THUMB_CUE_POINT;
 + (NSString*)ENTRY;
 + (NSString*)CATEGORY;
 + (NSString*)USER;
 + (NSString*)PARTNER;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)METADATA_PROFILE_VERSION_ASC;
@@ -79,8 +80,8 @@
 + (NSString*)VERSION_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)UPDATED_AT_ASC;
@@ -89,8 +90,8 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadata : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,assign,readonly) int partnerId;
@@ -124,8 +125,8 @@
 - (void)setStatusFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaMetadata elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -135,8 +136,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfile : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,assign,readonly) int partnerId;
@@ -175,8 +176,8 @@
 - (void)setCreateModeFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileField : KalturaObjectBase
 @property (nonatomic,assign,readonly) int id;
 @property (nonatomic,copy,readonly) NSString* xPath;
@@ -189,8 +190,8 @@
 - (void)setIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileFieldListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaMetadataProfileField elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -200,8 +201,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaMetadataProfile elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -211,8 +212,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaImportMetadataJobData : KalturaJobData
 @property (nonatomic,copy) NSString* srcFileUrl;
 @property (nonatomic,copy) NSString* destFileLocalPath;
@@ -223,8 +224,8 @@
 - (void)setMetadataIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataBaseFilter : KalturaFilter
 @property (nonatomic,assign) int partnerIdEqual;
 @property (nonatomic,assign) int metadataProfileIdEqual;
@@ -275,8 +276,8 @@
 - (void)setStatusEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileBaseFilter : KalturaFilter
 @property (nonatomic,assign) int idEqual;
 @property (nonatomic,assign) int partnerIdEqual;
@@ -326,8 +327,8 @@
 - (void)setCreateModeNotEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaTransformMetadataJobData : KalturaJobData
 @property (nonatomic,copy) NSString* srcXslPath;
 @property (nonatomic,assign) int srcVersion;
@@ -344,8 +345,8 @@
 - (void)setMetadataProfileIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaCompareMetadataCondition : KalturaCompareCondition
 // May contain the full xpath to the field in three formats
 // 	 1. Slashed xPath, e.g. /metadata/myElementName
@@ -354,13 +355,16 @@
 @property (nonatomic,copy) NSString* xPath;
 // Metadata profile id
 @property (nonatomic,assign) int profileId;
+// Metadata profile system name
+@property (nonatomic,copy) NSString* profileSystemName;
 - (KalturaFieldType)getTypeOfXPath;
 - (KalturaFieldType)getTypeOfProfileId;
+- (KalturaFieldType)getTypeOfProfileSystemName;
 - (void)setProfileIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMatchMetadataCondition : KalturaMatchCondition
 // May contain the full xpath to the field in three formats
 // 	 1. Slashed xPath, e.g. /metadata/myElementName
@@ -369,23 +373,48 @@
 @property (nonatomic,copy) NSString* xPath;
 // Metadata profile id
 @property (nonatomic,assign) int profileId;
+// Metadata profile system name
+@property (nonatomic,copy) NSString* profileSystemName;
 - (KalturaFieldType)getTypeOfXPath;
 - (KalturaFieldType)getTypeOfProfileId;
+- (KalturaFieldType)getTypeOfProfileSystemName;
 - (void)setProfileIdFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
+@interface KalturaMetadataFieldChangedCondition : KalturaMatchCondition
+// May contain the full xpath to the field in three formats
+// 	 1. Slashed xPath, e.g. /metadata/myElementName
+// 	 2. Using local-name function, e.g. /[local-name()='metadata']/[local-name()='myElementName']
+// 	 3. Using only the field name, e.g. myElementName, it will be searched as //myElementName
+@property (nonatomic,copy) NSString* xPath;
+// Metadata profile id
+@property (nonatomic,assign) int profileId;
+// Metadata profile system name
+@property (nonatomic,copy) NSString* profileSystemName;
+@property (nonatomic,copy) NSString* versionA;
+@property (nonatomic,copy) NSString* versionB;
+- (KalturaFieldType)getTypeOfXPath;
+- (KalturaFieldType)getTypeOfProfileId;
+- (KalturaFieldType)getTypeOfProfileSystemName;
+- (KalturaFieldType)getTypeOfVersionA;
+- (KalturaFieldType)getTypeOfVersionB;
+- (void)setProfileIdFromString:(NSString*)aPropVal;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataFilter : KalturaMetadataBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataProfileFilter : KalturaMetadataProfileBaseFilter
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaMetadataSearchItem : KalturaSearchOperator
 @property (nonatomic,assign) int metadataProfileId;
 @property (nonatomic,copy) NSString* orderBy;
@@ -395,8 +424,8 @@
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Metadata service
 @interface KalturaMetadataService : KalturaServiceBase
 // Allows you to add a metadata object and metadata content associated with Kaltura object
@@ -433,8 +462,8 @@
 - (KalturaMetadata*)updateFromXSLWithId:(int)aId withXslFile:(NSString*)aXslFile;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Metadata Profile service
 @interface KalturaMetadataProfileService : KalturaServiceBase
 // Allows you to add a metadata profile object and metadata profile content associated with Kaltura object type

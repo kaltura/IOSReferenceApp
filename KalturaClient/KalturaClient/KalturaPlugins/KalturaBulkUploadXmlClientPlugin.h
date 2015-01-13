@@ -25,14 +25,15 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
+#import "KalturaBulkUploadClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Represents the Bulk upload job data for xml bulk upload
 @interface KalturaBulkUploadXmlJobData : KalturaBulkUploadJobData
 @end

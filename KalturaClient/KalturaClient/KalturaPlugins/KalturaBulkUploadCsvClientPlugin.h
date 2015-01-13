@@ -25,13 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
+#import "KalturaBulkUploadClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaBulkUploadCsvVersion : NSObject
 + (int)V1;
 + (int)V2;
@@ -39,8 +40,8 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Represents the Bulk upload job data for xml bulk upload
 @interface KalturaBulkUploadCsvJobData : KalturaBulkUploadJobData
 // The version of the csv file

@@ -211,7 +211,7 @@ const CGRect PlayerCGRect = { { 0.0f, 0.0f }, { 320.0f, 180.0f } };
     [self.navigationController setDelegate:self];
     
     if ( !playerViewController ) {
-        playerViewController = [[ PlayerViewController alloc] init];
+        playerViewController = [[ KPViewController alloc] init];
         
         playerViewController.view.frame = PlayerCGRect;
     }
@@ -228,7 +228,7 @@ const CGRect PlayerCGRect = { { 0.0f, 0.0f }, { 320.0f, 180.0f } };
 {
     NSLog(@"reDrawPlayer Enter");
     
-    [playerViewController resizePlayerView:top right: right width: width height: height];
+    [playerViewController resizePlayerView:(CGRect){right, top, width,height}];
     
     NSLog(@"reDrawPlayer Exit");
 }

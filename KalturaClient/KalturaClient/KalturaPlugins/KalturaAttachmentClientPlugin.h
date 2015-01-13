@@ -25,13 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAttachmentAssetStatus : NSObject
 + (int)ERROR;
 + (int)QUEUED;
@@ -41,8 +41,8 @@
 + (int)EXPORTING;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAttachmentAssetOrderBy : NSObject
 + (NSString*)CREATED_AT_ASC;
 + (NSString*)DELETED_AT_ASC;
@@ -54,8 +54,8 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAttachmentType : NSObject
 + (NSString*)TEXT;
 + (NSString*)MEDIA;
@@ -63,8 +63,8 @@
 @end
 
 ///////////////////////// classes /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAttachmentAsset : KalturaAsset
 // The filename of the attachment asset content
 @property (nonatomic,copy) NSString* filename;
@@ -81,8 +81,8 @@
 - (void)setStatusFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAttachmentAssetListResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaAttachmentAsset elements
 @property (nonatomic,assign,readonly) int totalCount;
@@ -92,8 +92,8 @@
 - (void)setTotalCountFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAttachmentAssetBaseFilter : KalturaAssetFilter
 @property (nonatomic,copy) NSString* formatEqual;	// enum KalturaAttachmentType
 @property (nonatomic,copy) NSString* formatIn;
@@ -108,14 +108,14 @@
 - (void)setStatusEqualFromString:(NSString*)aPropVal;
 @end
 
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 @interface KalturaAttachmentAssetFilter : KalturaAttachmentAssetBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 // Retrieve information and invoke actions on attachment Asset
 @interface KalturaAttachmentAssetService : KalturaServiceBase
 // Add attachment asset

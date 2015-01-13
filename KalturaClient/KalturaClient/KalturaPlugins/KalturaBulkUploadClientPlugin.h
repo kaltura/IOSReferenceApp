@@ -25,16 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-// @package External
-// @subpackage Kaltura
+// @package Kaltura
+// @subpackage Client
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
 ///////////////////////// classes /////////////////////////
 ///////////////////////// services /////////////////////////
-// @package External
-// @subpackage Kaltura
-// Bulk upload service is used to upload & manage bulk uploads using CSV files
+// @package Kaltura
+// @subpackage Client
+// Bulk upload service is used to upload & manage bulk uploads
 @interface KalturaBulkService : KalturaServiceBase
 // Get bulk upload batch job by id
 - (KalturaBulkUpload*)getWithId:(int)aId;
