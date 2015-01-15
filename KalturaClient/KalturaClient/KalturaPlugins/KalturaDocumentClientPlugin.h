@@ -157,7 +157,7 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaPdfFlavorParams : KalturaFlavorParams
-@property (nonatomic,assign) BOOL readonly;
+@property (nonatomic,assign) KALTURA_BOOL readonly;
 - (KalturaFieldType)getTypeOfReadonly;
 - (void)setReadonlyFromString:(NSString*)aPropVal;
 @end
@@ -166,7 +166,7 @@
 // @subpackage Client
 @interface KalturaSwfFlavorParams : KalturaFlavorParams
 @property (nonatomic,assign) int flashVersion;
-@property (nonatomic,assign) BOOL poly2Bitmap;
+@property (nonatomic,assign) KALTURA_BOOL poly2Bitmap;
 - (KalturaFieldType)getTypeOfFlashVersion;
 - (KalturaFieldType)getTypeOfPoly2Bitmap;
 - (void)setFlashVersionFromString:(NSString*)aPropVal;
@@ -215,7 +215,7 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaPdfFlavorParamsOutput : KalturaFlavorParamsOutput
-@property (nonatomic,assign) BOOL readonly;
+@property (nonatomic,assign) KALTURA_BOOL readonly;
 - (KalturaFieldType)getTypeOfReadonly;
 - (void)setReadonlyFromString:(NSString*)aPropVal;
 @end
@@ -224,7 +224,7 @@
 // @subpackage Client
 @interface KalturaSwfFlavorParamsOutput : KalturaFlavorParamsOutput
 @property (nonatomic,assign) int flashVersion;
-@property (nonatomic,assign) BOOL poly2Bitmap;
+@property (nonatomic,assign) KALTURA_BOOL poly2Bitmap;
 - (KalturaFieldType)getTypeOfFlashVersion;
 - (KalturaFieldType)getTypeOfPoly2Bitmap;
 - (void)setFlashVersionFromString:(NSString*)aPropVal;
@@ -351,11 +351,11 @@
 // 	 Returns the URL where the new swf will be available
 - (NSString*)convertPptToSwfWithEntryId:(NSString*)aEntryId;
 // Serves the file content
-- (NSString*)serveWithEntryId:(NSString*)aEntryId withFlavorAssetId:(NSString*)aFlavorAssetId withForceProxy:(BOOL)aForceProxy;
+- (NSString*)serveWithEntryId:(NSString*)aEntryId withFlavorAssetId:(NSString*)aFlavorAssetId withForceProxy:(KALTURA_BOOL)aForceProxy;
 - (NSString*)serveWithEntryId:(NSString*)aEntryId withFlavorAssetId:(NSString*)aFlavorAssetId;
 - (NSString*)serveWithEntryId:(NSString*)aEntryId;
 // Serves the file content
-- (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId withFlavorParamsId:(NSString*)aFlavorParamsId withForceProxy:(BOOL)aForceProxy;
+- (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId withFlavorParamsId:(NSString*)aFlavorParamsId withForceProxy:(KALTURA_BOOL)aForceProxy;
 - (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId withFlavorParamsId:(NSString*)aFlavorParamsId;
 - (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId;
 // Replace content associated with the given document entry.

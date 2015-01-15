@@ -36,6 +36,7 @@
 + (int)READY;
 + (int)DELETED;
 + (int)HANDLED;
++ (int)PENDING;
 @end
 
 // @package Kaltura
@@ -206,6 +207,8 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaCuePointFilter : KalturaCuePointBaseFilter
+@property (nonatomic,copy) NSString* freeText;
+- (KalturaFieldType)getTypeOfFreeText;
 @end
 
 ///////////////////////// services /////////////////////////

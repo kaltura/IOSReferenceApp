@@ -263,12 +263,12 @@
 @property (nonatomic,assign,readonly) int createdAt;
 @property (nonatomic,assign,readonly) int updatedAt;
 @property (nonatomic,assign) int lastAccessedAt;
-@property (nonatomic,assign) BOOL incremental;
+@property (nonatomic,assign) KALTURA_BOOL incremental;
 @property (nonatomic,assign) int lastFileTimestamp;
 @property (nonatomic,assign) int metadataProfileId;
 @property (nonatomic,copy) NSString* categoriesMetadataFieldName;
-@property (nonatomic,assign) BOOL enforceEntitlement;
-@property (nonatomic,assign) BOOL shouldValidateKS;
+@property (nonatomic,assign) KALTURA_BOOL enforceEntitlement;
+@property (nonatomic,assign) KALTURA_BOOL shouldValidateKS;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfName;

@@ -944,7 +944,7 @@
     return [self.client queueStringService:@"document_documents" withAction:@"convertPptToSwf"];
 }
 
-- (NSString*)serveWithEntryId:(NSString*)aEntryId withFlavorAssetId:(NSString*)aFlavorAssetId withForceProxy:(BOOL)aForceProxy
+- (NSString*)serveWithEntryId:(NSString*)aEntryId withFlavorAssetId:(NSString*)aFlavorAssetId withForceProxy:(KALTURA_BOOL)aForceProxy
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"flavorAssetId" withString:aFlavorAssetId];
@@ -962,7 +962,7 @@
     return [self serveWithEntryId:aEntryId withFlavorAssetId:nil];
 }
 
-- (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId withFlavorParamsId:(NSString*)aFlavorParamsId withForceProxy:(BOOL)aForceProxy
+- (NSString*)serveByFlavorParamsIdWithEntryId:(NSString*)aEntryId withFlavorParamsId:(NSString*)aFlavorParamsId withForceProxy:(KALTURA_BOOL)aForceProxy
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"flavorParamsId" withString:aFlavorParamsId];

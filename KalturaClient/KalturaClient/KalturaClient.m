@@ -1930,6 +1930,10 @@
 {
     return 20;
 }
++ (int)WEBCASTING
+{
+    return 21;
+}
 @end
 
 @implementation KalturaUpdateMethodType
@@ -8017,7 +8021,7 @@
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) int partnerId;
 @property (nonatomic,assign) int createdAt;
-@property (nonatomic,assign) BOOL containsUnsuportedRestrictions;
+@property (nonatomic,assign) KALTURA_BOOL containsUnsuportedRestrictions;
 @end
 
 @implementation KalturaAccessControl
@@ -11538,7 +11542,7 @@
 @property (nonatomic,assign) int id;
 @property (nonatomic,assign) int partnerId;
 @property (nonatomic,assign) int createdAt;
-@property (nonatomic,assign) BOOL isPartnerDefault;
+@property (nonatomic,assign) KALTURA_BOOL isPartnerDefault;
 @end
 
 @implementation KalturaConversionProfile
@@ -13622,8 +13626,8 @@
 @property (nonatomic,assign) int height;
 @property (nonatomic,assign) int bitrate;
 @property (nonatomic,assign) double frameRate;
-@property (nonatomic,assign) BOOL isOriginal;
-@property (nonatomic,assign) BOOL isWeb;
+@property (nonatomic,assign) KALTURA_BOOL isOriginal;
+@property (nonatomic,assign) KALTURA_BOOL isWeb;
 @property (nonatomic,copy) NSString* containerFormat;
 @property (nonatomic,copy) NSString* videoCodecId;
 @property (nonatomic,assign) int status;
@@ -14616,6 +14620,38 @@
 
 @end
 
+@implementation KalturaLiveEntryRecordingOptions
+@synthesize shouldCopyEntitlement = _shouldCopyEntitlement;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_shouldCopyEntitlement = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfShouldCopyEntitlement
+{
+    return KFT_Int;
+}
+
+- (void)setShouldCopyEntitlementFromString:(NSString*)aPropVal
+{
+    self.shouldCopyEntitlement = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaLiveEntryRecordingOptions"];
+    [aParams addIfDefinedKey:@"shouldCopyEntitlement" withInt:self.shouldCopyEntitlement];
+}
+
+@end
+
 @interface KalturaLiveEntry()
 @property (nonatomic,assign) int firstBroadcast;
 @property (nonatomic,assign) int lastBroadcast;
@@ -14634,6 +14670,7 @@
 @synthesize firstBroadcast = _firstBroadcast;
 @synthesize lastBroadcast = _lastBroadcast;
 @synthesize currentBroadcastStartTime = _currentBroadcastStartTime;
+@synthesize recordingOptions = _recordingOptions;
 
 - (id)init
 {
@@ -14721,6 +14758,16 @@
     return KFT_Float;
 }
 
+- (KalturaFieldType)getTypeOfRecordingOptions
+{
+    return KFT_Object;
+}
+
+- (NSString*)getObjectTypeOfRecordingOptions
+{
+    return @"KalturaLiveEntryRecordingOptions";
+}
+
 - (void)setRecordStatusFromString:(NSString*)aPropVal
 {
     self.recordStatus = [KalturaSimpleTypeParser parseInt:aPropVal];
@@ -14776,6 +14823,7 @@
     [aParams addIfDefinedKey:@"pushPublishEnabled" withInt:self.pushPublishEnabled];
     [aParams addIfDefinedKey:@"publishConfigurations" withArray:self.publishConfigurations];
     [aParams addIfDefinedKey:@"currentBroadcastStartTime" withFloat:self.currentBroadcastStartTime];
+    [aParams addIfDefinedKey:@"recordingOptions" withObject:self.recordingOptions];
 }
 
 - (void)dealloc
@@ -14784,6 +14832,7 @@
     [self->_liveStreamConfigurations release];
     [self->_recordedEntryId release];
     [self->_publishConfigurations release];
+    [self->_recordingOptions release];
     [super dealloc];
 }
 
@@ -17372,7 +17421,7 @@
 @end
 
 @interface KalturaMixEntry()
-@property (nonatomic,assign) BOOL hasRealThumbnail;
+@property (nonatomic,assign) KALTURA_BOOL hasRealThumbnail;
 @end
 
 @implementation KalturaMixEntry
@@ -17877,16 +17926,16 @@
 @property (nonatomic,assign) int adminLoginUsersQuota;
 @property (nonatomic,assign) int publishersQuota;
 @property (nonatomic,assign) int partnerGroupType;
-@property (nonatomic,assign) BOOL defaultEntitlementEnforcement;
+@property (nonatomic,assign) KALTURA_BOOL defaultEntitlementEnforcement;
 @property (nonatomic,copy) NSString* defaultDeliveryType;
 @property (nonatomic,copy) NSString* defaultEmbedCodeType;
 @property (nonatomic,retain) NSMutableArray* deliveryTypes;
 @property (nonatomic,retain) NSMutableArray* embedCodeTypes;
 @property (nonatomic,assign) int templatePartnerId;
-@property (nonatomic,assign) BOOL ignoreSeoLinks;
+@property (nonatomic,assign) KALTURA_BOOL ignoreSeoLinks;
 @property (nonatomic,copy) NSString* host;
 @property (nonatomic,copy) NSString* cdnHost;
-@property (nonatomic,assign) BOOL isFirstLogin;
+@property (nonatomic,assign) KALTURA_BOOL isFirstLogin;
 @property (nonatomic,copy) NSString* logoutUrl;
 @property (nonatomic,assign) int partnerParentId;
 @property (nonatomic,copy) NSString* crmId;
@@ -19894,7 +19943,7 @@
 
 @interface KalturaSearchResultResponse()
 @property (nonatomic,retain) NSMutableArray* objects;
-@property (nonatomic,assign) BOOL needMediaInfo;
+@property (nonatomic,assign) KALTURA_BOOL needMediaInfo;
 @end
 
 @implementation KalturaSearchResultResponse
@@ -22207,9 +22256,9 @@
 @property (nonatomic,assign) int lastLoginTime;
 @property (nonatomic,assign) int statusUpdatedAt;
 @property (nonatomic,assign) int deletedAt;
-@property (nonatomic,assign) BOOL loginEnabled;
+@property (nonatomic,assign) KALTURA_BOOL loginEnabled;
 @property (nonatomic,copy) NSString* roleNames;
-@property (nonatomic,assign) BOOL isAccountOwner;
+@property (nonatomic,assign) KALTURA_BOOL isAccountOwner;
 @end
 
 @implementation KalturaUser
@@ -28661,6 +28710,59 @@
     [self->_accessControlMessages release];
     [self->_accessControlActions release];
     [self->_flavorAssets release];
+    [super dealloc];
+}
+
+@end
+
+@implementation KalturaEntryCuePointSearchFilter
+@synthesize cuePointsFreeText = _cuePointsFreeText;
+@synthesize cuePointTypeIn = _cuePointTypeIn;
+@synthesize cuePointSubTypeEqual = _cuePointSubTypeEqual;
+
+- (id)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+    self->_cuePointSubTypeEqual = KALTURA_UNDEF_INT;
+    return self;
+}
+
+- (KalturaFieldType)getTypeOfCuePointsFreeText
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfCuePointTypeIn
+{
+    return KFT_String;
+}
+
+- (KalturaFieldType)getTypeOfCuePointSubTypeEqual
+{
+    return KFT_Int;
+}
+
+- (void)setCuePointSubTypeEqualFromString:(NSString*)aPropVal
+{
+    self.cuePointSubTypeEqual = [KalturaSimpleTypeParser parseInt:aPropVal];
+}
+
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaEntryCuePointSearchFilter"];
+    [aParams addIfDefinedKey:@"cuePointsFreeText" withString:self.cuePointsFreeText];
+    [aParams addIfDefinedKey:@"cuePointTypeIn" withString:self.cuePointTypeIn];
+    [aParams addIfDefinedKey:@"cuePointSubTypeEqual" withInt:self.cuePointSubTypeEqual];
+}
+
+- (void)dealloc
+{
+    [self->_cuePointsFreeText release];
+    [self->_cuePointTypeIn release];
     [super dealloc];
 }
 
@@ -36084,7 +36186,7 @@
     return [self.client queueObjectService:@"baseentry" withAction:@"export" withExpectedType:@"KalturaBaseEntry"];
 }
 
-- (int)indexWithId:(NSString*)aId withShouldUpdate:(BOOL)aShouldUpdate
+- (int)indexWithId:(NSString*)aId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"shouldUpdate" withBool:aShouldUpdate];
@@ -36198,7 +36300,7 @@
     return [self listWithFilter:nil];
 }
 
-- (int)indexWithEntryId:(NSString*)aEntryId withCategoryId:(int)aCategoryId withShouldUpdate:(BOOL)aShouldUpdate
+- (int)indexWithEntryId:(NSString*)aEntryId withCategoryId:(int)aCategoryId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"categoryId" withInt:aCategoryId];
@@ -36283,7 +36385,7 @@
     return [self listWithFilter:nil];
 }
 
-- (int)indexWithId:(int)aId withShouldUpdate:(BOOL)aShouldUpdate
+- (int)indexWithId:(int)aId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate
 {
     [self.client.params addIfDefinedKey:@"id" withInt:aId];
     [self.client.params addIfDefinedKey:@"shouldUpdate" withBool:aShouldUpdate];
@@ -36341,7 +36443,7 @@
     return [self.client queueObjectService:@"categoryuser" withAction:@"get" withExpectedType:@"KalturaCategoryUser"];
 }
 
-- (KalturaCategoryUser*)updateWithCategoryId:(int)aCategoryId withUserId:(NSString*)aUserId withCategoryUser:(KalturaCategoryUser*)aCategoryUser withOverride:(BOOL)aOverride
+- (KalturaCategoryUser*)updateWithCategoryId:(int)aCategoryId withUserId:(NSString*)aUserId withCategoryUser:(KalturaCategoryUser*)aCategoryUser withOverride:(KALTURA_BOOL)aOverride
 {
     [self.client.params addIfDefinedKey:@"categoryId" withInt:aCategoryId];
     [self.client.params addIfDefinedKey:@"userId" withString:aUserId];
@@ -36399,7 +36501,7 @@
     [self.client queueVoidService:@"categoryuser" withAction:@"copyFromCategory"];
 }
 
-- (int)indexWithUserId:(NSString*)aUserId withCategoryId:(int)aCategoryId withShouldUpdate:(BOOL)aShouldUpdate
+- (int)indexWithUserId:(NSString*)aUserId withCategoryId:(int)aCategoryId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate
 {
     [self.client.params addIfDefinedKey:@"userId" withString:aUserId];
     [self.client.params addIfDefinedKey:@"categoryId" withInt:aCategoryId];
@@ -36571,7 +36673,7 @@
     return [self listWithFilter:nil];
 }
 
-- (NSString*)serveWithEntryId:(NSString*)aEntryId withVersion:(int)aVersion withForceProxy:(BOOL)aForceProxy
+- (NSString*)serveWithEntryId:(NSString*)aEntryId withVersion:(int)aVersion withForceProxy:(KALTURA_BOOL)aForceProxy
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"version" withInt:aVersion];
@@ -36815,7 +36917,7 @@
     [self.client queueVoidService:@"flavorasset" withAction:@"delete"];
 }
 
-- (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId withForceProxy:(BOOL)aForceProxy
+- (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId withForceProxy:(KALTURA_BOOL)aForceProxy
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"storageId" withInt:aStorageId];
@@ -36839,7 +36941,7 @@
     return [self.client queueObjectService:@"flavorasset" withAction:@"getRemotePaths" withExpectedType:@"KalturaRemotePathListResponse"];
 }
 
-- (NSString*)getDownloadUrlWithId:(NSString*)aId withUseCdn:(BOOL)aUseCdn
+- (NSString*)getDownloadUrlWithId:(NSString*)aId withUseCdn:(KALTURA_BOOL)aUseCdn
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"useCdn" withBool:aUseCdn];
@@ -37043,13 +37145,13 @@
     return [self listWithFilter:nil];
 }
 
-- (BOOL)isLiveWithId:(NSString*)aId
+- (KALTURA_BOOL)isLiveWithId:(NSString*)aId
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     return [self.client queueBoolService:@"livechannel" withAction:@"isLive"];
 }
 
-- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(BOOL)aIsLastChunk
+- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(KALTURA_BOOL)aIsLastChunk
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"assetId" withString:aAssetId];
@@ -37148,7 +37250,7 @@
 @end
 
 @implementation KalturaStatsService
-- (BOOL)collectWithEvent:(KalturaStatsEvent*)aEvent
+- (KALTURA_BOOL)collectWithEvent:(KalturaStatsEvent*)aEvent
 {
     [self.client.params addIfDefinedKey:@"event" withObject:aEvent];
     return [self.client queueBoolService:@"stats" withAction:@"collect"];
@@ -37251,7 +37353,7 @@
     return [self.client queueObjectService:@"livestream" withAction:@"updateOfflineThumbnailFromUrl" withExpectedType:@"KalturaLiveStreamEntry"];
 }
 
-- (BOOL)isLiveWithId:(NSString*)aId withProtocol:(NSString*)aProtocol
+- (KALTURA_BOOL)isLiveWithId:(NSString*)aId withProtocol:(NSString*)aProtocol
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"protocol" withString:aProtocol];
@@ -37284,7 +37386,7 @@
     return [self.client queueObjectService:@"livestream" withAction:@"removeLiveStreamPushPublishConfiguration" withExpectedType:@"KalturaLiveStreamEntry"];
 }
 
-- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(BOOL)aIsLastChunk
+- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(KALTURA_BOOL)aIsLastChunk
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"assetId" withString:aAssetId];
@@ -37797,7 +37899,7 @@
 @end
 
 @implementation KalturaPartnerService
-- (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId withSilent:(BOOL)aSilent
+- (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId withSilent:(KALTURA_BOOL)aSilent
 {
     [self.client.params addIfDefinedKey:@"partner" withObject:aPartner];
     [self.client.params addIfDefinedKey:@"cmsPassword" withString:aCmsPassword];
@@ -37821,7 +37923,7 @@
     return [self registerWithPartner:aPartner withCmsPassword:nil];
 }
 
-- (KalturaPartner*)updateWithPartner:(KalturaPartner*)aPartner withAllowEmpty:(BOOL)aAllowEmpty
+- (KalturaPartner*)updateWithPartner:(KalturaPartner*)aPartner withAllowEmpty:(KALTURA_BOOL)aAllowEmpty
 {
     [self.client.params addIfDefinedKey:@"partner" withObject:aPartner];
     [self.client.params addIfDefinedKey:@"allowEmpty" withBool:aAllowEmpty];
@@ -38033,7 +38135,7 @@
 @end
 
 @implementation KalturaPlaylistService
-- (KalturaPlaylist*)addWithPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(BOOL)aUpdateStats
+- (KalturaPlaylist*)addWithPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(KALTURA_BOOL)aUpdateStats
 {
     [self.client.params addIfDefinedKey:@"playlist" withObject:aPlaylist];
     [self.client.params addIfDefinedKey:@"updateStats" withBool:aUpdateStats];
@@ -38057,7 +38159,7 @@
     return [self getWithId:aId withVersion:KALTURA_UNDEF_INT];
 }
 
-- (KalturaPlaylist*)updateWithId:(NSString*)aId withPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(BOOL)aUpdateStats
+- (KalturaPlaylist*)updateWithId:(NSString*)aId withPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(KALTURA_BOOL)aUpdateStats
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"playlist" withObject:aPlaylist];
@@ -38585,12 +38687,12 @@
 @end
 
 @implementation KalturaSystemService
-- (BOOL)ping
+- (KALTURA_BOOL)ping
 {
     return [self.client queueBoolService:@"system" withAction:@"ping"];
 }
 
-- (BOOL)pingDatabase
+- (KALTURA_BOOL)pingDatabase
 {
     return [self.client queueBoolService:@"system" withAction:@"pingDatabase"];
 }
@@ -38955,7 +39057,7 @@
     return [self.client queueObjectService:@"uploadtoken" withAction:@"get" withExpectedType:@"KalturaUploadToken"];
 }
 
-- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(BOOL)aResume withFinalChunk:(BOOL)aFinalChunk withResumeAt:(double)aResumeAt
+- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(KALTURA_BOOL)aResume withFinalChunk:(KALTURA_BOOL)aFinalChunk withResumeAt:(double)aResumeAt
 {
     [self.client.params addIfDefinedKey:@"uploadTokenId" withString:aUploadTokenId];
     [self.client.params addIfDefinedKey:@"fileData" withFileName:aFileData];
@@ -38965,12 +39067,12 @@
     return [self.client queueObjectService:@"uploadtoken" withAction:@"upload" withExpectedType:@"KalturaUploadToken"];
 }
 
-- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(BOOL)aResume withFinalChunk:(BOOL)aFinalChunk
+- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(KALTURA_BOOL)aResume withFinalChunk:(KALTURA_BOOL)aFinalChunk
 {
     return [self uploadWithUploadTokenId:aUploadTokenId withFileData:aFileData withResume:aResume withFinalChunk:aFinalChunk withResumeAt:KALTURA_UNDEF_FLOAT];
 }
 
-- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(BOOL)aResume
+- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(KALTURA_BOOL)aResume
 {
     return [self uploadWithUploadTokenId:aUploadTokenId withFileData:aFileData withResume:aResume withFinalChunk:KALTURA_UNDEF_BOOL];
 }
@@ -39235,7 +39337,7 @@
     return [self disableLoginWithUserId:nil];
 }
 
-- (NSString*)indexWithId:(NSString*)aId withShouldUpdate:(BOOL)aShouldUpdate
+- (NSString*)indexWithId:(NSString*)aId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"shouldUpdate" withBool:aShouldUpdate];
@@ -39265,7 +39367,7 @@
     return [self addFromBulkUploadWithFileData:aFileData withBulkUploadData:nil];
 }
 
-- (BOOL)checkLoginDataExistsWithFilter:(KalturaUserLoginDataFilter*)aFilter
+- (KALTURA_BOOL)checkLoginDataExistsWithFilter:(KalturaUserLoginDataFilter*)aFilter
 {
     [self.client.params addIfDefinedKey:@"filter" withObject:aFilter];
     return [self.client queueBoolService:@"user" withAction:@"checkLoginDataExists"];

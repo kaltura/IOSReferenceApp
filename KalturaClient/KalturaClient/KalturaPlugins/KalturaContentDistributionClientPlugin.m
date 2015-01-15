@@ -422,6 +422,10 @@
 {
     return @"tvinciDistribution.TVINCI";
 }
++ (NSString*)UNICORN
+{
+    return @"unicornDistribution.UNICORN";
+}
 + (NSString*)UVERSE_CLICK_TO_ORDER
 {
     return @"uverseClickToOrderDistribution.UVERSE_CLICK_TO_ORDER";
@@ -627,7 +631,7 @@
 @end
 
 @interface KalturaDistributionFieldConfig()
-@property (nonatomic,assign) BOOL isDefault;
+@property (nonatomic,assign) KALTURA_BOOL isDefault;
 @end
 
 @implementation KalturaDistributionFieldConfig
@@ -4207,7 +4211,7 @@
     return [self listWithFilter:nil];
 }
 
-- (KalturaEntryDistribution*)submitAddWithId:(int)aId withSubmitWhenReady:(BOOL)aSubmitWhenReady
+- (KalturaEntryDistribution*)submitAddWithId:(int)aId withSubmitWhenReady:(KALTURA_BOOL)aSubmitWhenReady
 {
     [self.client.params addIfDefinedKey:@"id" withInt:aId];
     [self.client.params addIfDefinedKey:@"submitWhenReady" withBool:aSubmitWhenReady];

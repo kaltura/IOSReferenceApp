@@ -196,6 +196,7 @@
 + (NSString*)TIME_WARNER;
 + (NSString*)TVCOM;
 + (NSString*)TVINCI;
++ (NSString*)UNICORN;
 + (NSString*)UVERSE_CLICK_TO_ORDER;
 + (NSString*)UVERSE;
 + (NSString*)VERIZON_VCAST;
@@ -295,11 +296,11 @@
 // Is the field required to have a value for submission ?
 @property (nonatomic,assign) int isRequired;	// enum KalturaDistributionFieldRequiredStatus
 // Trigger distribution update when this field changes or not ?
-@property (nonatomic,assign) BOOL updateOnChange;
+@property (nonatomic,assign) KALTURA_BOOL updateOnChange;
 // Entry column or metadata xpath that should trigger an update
 @property (nonatomic,retain) NSMutableArray* updateParams;	// of KalturaString elements
 // Is this field config is the default for the distribution provider?
-@property (nonatomic,assign,readonly) BOOL isDefault;
+@property (nonatomic,assign,readonly) KALTURA_BOOL isDefault;
 - (KalturaFieldType)getTypeOfFieldName;
 - (KalturaFieldType)getTypeOfUserFriendlyFieldName;
 - (KalturaFieldType)getTypeOfEntryMrssXslt;
@@ -432,9 +433,9 @@
 @interface KalturaDistributionProvider : KalturaObjectBase
 @property (nonatomic,copy,readonly) NSString* type;	// enum KalturaDistributionProviderType
 @property (nonatomic,copy) NSString* name;
-@property (nonatomic,assign) BOOL scheduleUpdateEnabled;
-@property (nonatomic,assign) BOOL availabilityUpdateEnabled;
-@property (nonatomic,assign) BOOL deleteInsteadUpdate;
+@property (nonatomic,assign) KALTURA_BOOL scheduleUpdateEnabled;
+@property (nonatomic,assign) KALTURA_BOOL availabilityUpdateEnabled;
+@property (nonatomic,assign) KALTURA_BOOL deleteInsteadUpdate;
 @property (nonatomic,assign) int intervalBeforeSunrise;
 @property (nonatomic,assign) int intervalBeforeSunset;
 @property (nonatomic,copy) NSString* updateRequiredEntryFields;
@@ -604,7 +605,7 @@
 @property (nonatomic,copy) NSString* serverPath;
 @property (nonatomic,copy) NSString* username;
 @property (nonatomic,copy) NSString* password;
-@property (nonatomic,assign) BOOL ftpPassiveMode;
+@property (nonatomic,assign) KALTURA_BOOL ftpPassiveMode;
 @property (nonatomic,copy) NSString* httpFieldName;
 @property (nonatomic,copy) NSString* httpFileName;
 - (KalturaFieldType)getTypeOfProtocol;
@@ -690,7 +691,7 @@
 // Generic distribution provider last update date as Unix timestamp (In seconds)
 @property (nonatomic,assign,readonly) int updatedAt;
 @property (nonatomic,assign,readonly) int partnerId;
-@property (nonatomic,assign) BOOL isDefault;
+@property (nonatomic,assign) KALTURA_BOOL isDefault;
 @property (nonatomic,assign,readonly) int status;	// enum KalturaGenericDistributionProviderStatus
 @property (nonatomic,copy) NSString* optionalFlavorParamsIds;
 @property (nonatomic,copy) NSString* requiredFlavorParamsIds;
@@ -765,12 +766,12 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaContentDistributionSearchItem : KalturaSearchItem
-@property (nonatomic,assign) BOOL noDistributionProfiles;
+@property (nonatomic,assign) KALTURA_BOOL noDistributionProfiles;
 @property (nonatomic,assign) int distributionProfileId;
 @property (nonatomic,assign) int distributionSunStatus;	// enum KalturaEntryDistributionSunStatus
 @property (nonatomic,assign) int entryDistributionFlag;	// enum KalturaEntryDistributionFlag
 @property (nonatomic,assign) int entryDistributionStatus;	// enum KalturaEntryDistributionStatus
-@property (nonatomic,assign) BOOL hasEntryDistributionValidationErrors;
+@property (nonatomic,assign) KALTURA_BOOL hasEntryDistributionValidationErrors;
 // Comma seperated validation error types
 @property (nonatomic,copy) NSString* entryDistributionValidationErrors;
 - (KalturaFieldType)getTypeOfNoDistributionProfiles;
@@ -1241,7 +1242,7 @@
 - (KalturaEntryDistributionListResponse*)listWithFilter:(KalturaEntryDistributionFilter*)aFilter;
 - (KalturaEntryDistributionListResponse*)list;
 // Submits Entry Distribution to the remote destination
-- (KalturaEntryDistribution*)submitAddWithId:(int)aId withSubmitWhenReady:(BOOL)aSubmitWhenReady;
+- (KalturaEntryDistribution*)submitAddWithId:(int)aId withSubmitWhenReady:(KALTURA_BOOL)aSubmitWhenReady;
 - (KalturaEntryDistribution*)submitAddWithId:(int)aId;
 // Submits Entry Distribution changes to the remote destination
 - (KalturaEntryDistribution*)submitUpdateWithId:(int)aId;

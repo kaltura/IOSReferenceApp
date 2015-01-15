@@ -322,7 +322,7 @@
 @property (nonatomic,copy) NSString* version;
 @property (nonatomic,assign) int objectSubType;
 @property (nonatomic,assign) int dc;
-@property (nonatomic,assign) BOOL original;
+@property (nonatomic,assign) KALTURA_BOOL original;
 @property (nonatomic,assign) int fileType;	// enum KalturaAuditTrailFileSyncType
 - (KalturaFieldType)getTypeOfVersion;
 - (KalturaFieldType)getTypeOfObjectSubType;

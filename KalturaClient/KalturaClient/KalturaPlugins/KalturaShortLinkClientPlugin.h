@@ -161,7 +161,7 @@
 // Mark the short link as deleted
 - (KalturaShortLink*)deleteWithId:(NSString*)aId;
 // Serves short link
-- (NSString*)gotoWithId:(NSString*)aId withProxy:(BOOL)aProxy;
+- (NSString*)gotoWithId:(NSString*)aId withProxy:(KALTURA_BOOL)aProxy;
 - (NSString*)gotoWithId:(NSString*)aId;
 @end
 

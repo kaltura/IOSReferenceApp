@@ -31,26 +31,26 @@
 ///////////////////////// classes /////////////////////////
 ///////////////////////// services /////////////////////////
 @implementation KalturaLikeService
-- (BOOL)likeWithEntryId:(NSString*)aEntryId
+- (KALTURA_BOOL)likeWithEntryId:(NSString*)aEntryId
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     return [self.client queueBoolService:@"like_like" withAction:@"like"];
 }
 
-- (BOOL)unlikeWithEntryId:(NSString*)aEntryId
+- (KALTURA_BOOL)unlikeWithEntryId:(NSString*)aEntryId
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     return [self.client queueBoolService:@"like_like" withAction:@"unlike"];
 }
 
-- (BOOL)checkLikeExistsWithEntryId:(NSString*)aEntryId withUserId:(NSString*)aUserId
+- (KALTURA_BOOL)checkLikeExistsWithEntryId:(NSString*)aEntryId withUserId:(NSString*)aUserId
 {
     [self.client.params addIfDefinedKey:@"entryId" withString:aEntryId];
     [self.client.params addIfDefinedKey:@"userId" withString:aUserId];
     return [self.client queueBoolService:@"like_like" withAction:@"checkLikeExists"];
 }
 
-- (BOOL)checkLikeExistsWithEntryId:(NSString*)aEntryId
+- (KALTURA_BOOL)checkLikeExistsWithEntryId:(NSString*)aEntryId
 {
     return [self checkLikeExistsWithEntryId:aEntryId withUserId:nil];
 }

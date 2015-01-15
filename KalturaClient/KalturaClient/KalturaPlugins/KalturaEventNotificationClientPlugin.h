@@ -148,9 +148,9 @@
 @property (nonatomic,assign,readonly) int createdAt;
 @property (nonatomic,assign,readonly) int updatedAt;
 // Define that the template could be dispatched manually from the API
-@property (nonatomic,assign) BOOL manualDispatchEnabled;
+@property (nonatomic,assign) KALTURA_BOOL manualDispatchEnabled;
 // Define that the template could be dispatched automatically by the system
-@property (nonatomic,assign) BOOL automaticDispatchEnabled;
+@property (nonatomic,assign) KALTURA_BOOL automaticDispatchEnabled;
 // Define the event that should trigger this notification
 @property (nonatomic,copy) NSString* eventType;	// enum KalturaEventNotificationEventType
 // Define the object that raied the event that should trigger this notification

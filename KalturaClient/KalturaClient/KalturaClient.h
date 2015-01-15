@@ -795,6 +795,7 @@
 + (int)CLIPPER;
 + (int)KSR;
 + (int)KUPLOAD;
++ (int)WEBCASTING;
 @end
 
 // @package Kaltura
@@ -2909,7 +2910,7 @@
 // Array of Access Control Restrictions
 @property (nonatomic,retain) NSMutableArray* restrictions;	// of KalturaBaseRestriction elements
 // Indicates that the access control profile is new and should be handled using KalturaAccessControlProfile object and accessControlProfile service
-@property (nonatomic,assign,readonly) BOOL containsUnsuportedRestrictions;
+@property (nonatomic,assign,readonly) KALTURA_BOOL containsUnsuportedRestrictions;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfPartnerId;
 - (KalturaFieldType)getTypeOfName;
@@ -2965,7 +2966,7 @@
 // The type of the access control condition
 @property (nonatomic,copy,readonly) NSString* type;	// enum KalturaConditionType
 @property (nonatomic,copy) NSString* description;
-@property (nonatomic,assign) BOOL not;
+@property (nonatomic,assign) KALTURA_BOOL not;
 - (KalturaFieldType)getTypeOfType;
 - (KalturaFieldType)getTypeOfDescription;
 - (KalturaFieldType)getTypeOfNot;
@@ -2984,7 +2985,7 @@
 // Indicates what contexts should be tested by this rule
 @property (nonatomic,retain) NSMutableArray* contexts;	// of KalturaContextTypeHolder elements
 // Indicates that this rule is enough and no need to continue checking the rest of the rules
-@property (nonatomic,assign) BOOL stopProcessing;
+@property (nonatomic,assign) KALTURA_BOOL stopProcessing;
 - (KalturaFieldType)getTypeOfMessage;
 - (KalturaFieldType)getTypeOfActions;
 - (NSString*)getObjectTypeOfActions;
@@ -3398,17 +3399,17 @@
 // 	 or just to provide a link to the landing page.
 // 	 it is applied on the video-player_loc property in the XML (google)
 // 	 and addes media-player tag (yahoo)
-@property (nonatomic,assign) BOOL allowEmbed;
+@property (nonatomic,assign) KALTURA_BOOL allowEmbed;
 // Select a uiconf ID as player skin to include in the kwidget url
 @property (nonatomic,assign) int playerUiconfId;
 @property (nonatomic,assign) int flavorParamId;
-@property (nonatomic,assign) BOOL transcodeExistingContent;
-@property (nonatomic,assign) BOOL addToDefaultConversionProfile;
+@property (nonatomic,assign) KALTURA_BOOL transcodeExistingContent;
+@property (nonatomic,assign) KALTURA_BOOL addToDefaultConversionProfile;
 @property (nonatomic,copy) NSString* categories;
 @property (nonatomic,assign) int storageId;
 @property (nonatomic,copy) NSString* entriesOrderBy;	// enum KalturaSyndicationFeedEntriesOrderBy
 // Should enforce entitlement on feed entries
-@property (nonatomic,assign) BOOL enforceEntitlement;
+@property (nonatomic,assign) KALTURA_BOOL enforceEntitlement;
 // Set privacy context for search entries that assiged to private and public categories within a category privacy context.
 @property (nonatomic,copy) NSString* privacyContext;
 // Update date as Unix timestamp (In seconds)
@@ -3919,7 +3920,7 @@
 // Indicates that this conversion profile is system default
 @property (nonatomic,assign) int isDefault;	// enum KalturaNullableBoolean
 // Indicates that this conversion profile is partner default
-@property (nonatomic,assign,readonly) BOOL isPartnerDefault;
+@property (nonatomic,assign,readonly) KALTURA_BOOL isPartnerDefault;
 // Cropping dimensions
 @property (nonatomic,retain) KalturaCropDimensions* cropDimensions;
 // Clipping start position (in miliseconds)
@@ -4058,7 +4059,7 @@
 // The data of the entry
 @property (nonatomic,copy) NSString* dataContent;
 // indicator whether to return the object for get action with the dataContent field.
-@property (nonatomic,assign) BOOL retrieveDataContentByGet;	// insertonly
+@property (nonatomic,assign) KALTURA_BOOL retrieveDataContentByGet;	// insertonly
 - (KalturaFieldType)getTypeOfDataContent;
 - (KalturaFieldType)getTypeOfRetrieveDataContentByGet;
 - (void)setRetrieveDataContentByGetFromString:(NSString*)aPropVal;
@@ -4463,9 +4464,9 @@
 // The frame rate (in FPS) of the Flavor Asset
 @property (nonatomic,assign,readonly) double frameRate;
 // True if this Flavor Asset is the original source
-@property (nonatomic,assign,readonly) BOOL isOriginal;
+@property (nonatomic,assign,readonly) KALTURA_BOOL isOriginal;
 // True if this Flavor Asset is playable in KDP
-@property (nonatomic,assign,readonly) BOOL isWeb;
+@property (nonatomic,assign,readonly) KALTURA_BOOL isWeb;
 // The container format
 @property (nonatomic,copy,readonly) NSString* containerFormat;
 // The video codec
@@ -4530,7 +4531,7 @@
 @property (nonatomic,copy) NSString* conversionEngines;
 // The list of conversion engines extra params (separated with "|")
 @property (nonatomic,copy) NSString* conversionEnginesExtraParams;
-@property (nonatomic,assign) BOOL twoPass;
+@property (nonatomic,assign) KALTURA_BOOL twoPass;
 @property (nonatomic,assign) int deinterlice;
 @property (nonatomic,assign) int rotate;
 @property (nonatomic,copy) NSString* operators;
@@ -4718,6 +4719,15 @@
 
 // @package Kaltura
 // @subpackage Client
+// A representation of a live stream recording entry configuration
+@interface KalturaLiveEntryRecordingOptions : KalturaObjectBase
+@property (nonatomic,assign) int shouldCopyEntitlement;	// enum KalturaNullableBoolean
+- (KalturaFieldType)getTypeOfShouldCopyEntitlement;
+- (void)setShouldCopyEntitlementFromString:(NSString*)aPropVal;
+@end
+
+// @package Kaltura
+// @subpackage Client
 @interface KalturaLiveEntry : KalturaMediaEntry
 // The message to be presented when the stream is offline
 @property (nonatomic,copy) NSString* offlineMessage;
@@ -4743,6 +4753,7 @@
 @property (nonatomic,assign,readonly) int lastBroadcast;
 // The time (unix timestamp in milliseconds) in which the entry broadcast started or 0 when the entry is off the air
 @property (nonatomic,assign) double currentBroadcastStartTime;
+@property (nonatomic,retain) KalturaLiveEntryRecordingOptions* recordingOptions;	// insertonly
 - (KalturaFieldType)getTypeOfOfflineMessage;
 - (KalturaFieldType)getTypeOfRecordStatus;
 - (KalturaFieldType)getTypeOfDvrStatus;
@@ -4757,6 +4768,8 @@
 - (KalturaFieldType)getTypeOfFirstBroadcast;
 - (KalturaFieldType)getTypeOfLastBroadcast;
 - (KalturaFieldType)getTypeOfCurrentBroadcastStartTime;
+- (KalturaFieldType)getTypeOfRecordingOptions;
+- (NSString*)getObjectTypeOfRecordingOptions;
 - (void)setRecordStatusFromString:(NSString*)aPropVal;
 - (void)setDvrStatusFromString:(NSString*)aPropVal;
 - (void)setDvrWindowFromString:(NSString*)aPropVal;
@@ -5465,7 +5478,7 @@
 // @subpackage Client
 @interface KalturaMixEntry : KalturaPlayableEntry
 // Indicates whether the user has submited a real thumbnail to the mix (Not the one that was generated automaticaly)
-@property (nonatomic,assign,readonly) BOOL hasRealThumbnail;
+@property (nonatomic,assign,readonly) KALTURA_BOOL hasRealThumbnail;
 // The editor type used to edit the metadata
 @property (nonatomic,assign) int editorType;	// enum KalturaEditorType
 // The xml data of the mix
@@ -5556,7 +5569,7 @@
 @property (nonatomic,copy) NSString* label;
 @property (nonatomic,retain) NSMutableArray* flashvars;	// of KalturaKeyValue elements
 @property (nonatomic,copy) NSString* minVersion;
-@property (nonatomic,assign) BOOL enabledByDefault;
+@property (nonatomic,assign) KALTURA_BOOL enabledByDefault;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfLabel;
 - (KalturaFieldType)getTypeOfFlashvars;
@@ -5571,7 +5584,7 @@
 @interface KalturaPlayerEmbedCodeType : KalturaObjectBase
 @property (nonatomic,copy) NSString* id;
 @property (nonatomic,copy) NSString* label;
-@property (nonatomic,assign) BOOL entryOnly;
+@property (nonatomic,assign) KALTURA_BOOL entryOnly;
 @property (nonatomic,copy) NSString* minVersion;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfLabel;
@@ -5600,7 +5613,7 @@
 @property (nonatomic,assign) int type;	// enum KalturaPartnerType
 @property (nonatomic,copy) NSString* phone;
 @property (nonatomic,copy) NSString* describeYourself;
-@property (nonatomic,assign) BOOL adultContent;
+@property (nonatomic,assign) KALTURA_BOOL adultContent;
 @property (nonatomic,copy) NSString* defConversionProfileType;
 @property (nonatomic,assign) int notify;
 @property (nonatomic,assign,readonly) int status;	// enum KalturaPartnerStatus
@@ -5626,16 +5639,16 @@
 @property (nonatomic,retain) NSMutableArray* additionalParams;	// of KalturaKeyValue elements, insertonly
 @property (nonatomic,assign,readonly) int publishersQuota;
 @property (nonatomic,assign,readonly) int partnerGroupType;	// enum KalturaPartnerGroupType
-@property (nonatomic,assign,readonly) BOOL defaultEntitlementEnforcement;
+@property (nonatomic,assign,readonly) KALTURA_BOOL defaultEntitlementEnforcement;
 @property (nonatomic,copy,readonly) NSString* defaultDeliveryType;
 @property (nonatomic,copy,readonly) NSString* defaultEmbedCodeType;
 @property (nonatomic,retain,readonly) NSMutableArray* deliveryTypes;	// of KalturaPlayerDeliveryType elements
 @property (nonatomic,retain,readonly) NSMutableArray* embedCodeTypes;	// of KalturaPlayerEmbedCodeType elements
 @property (nonatomic,assign,readonly) int templatePartnerId;
-@property (nonatomic,assign,readonly) BOOL ignoreSeoLinks;
+@property (nonatomic,assign,readonly) KALTURA_BOOL ignoreSeoLinks;
 @property (nonatomic,copy,readonly) NSString* host;
 @property (nonatomic,copy,readonly) NSString* cdnHost;
-@property (nonatomic,assign,readonly) BOOL isFirstLogin;
+@property (nonatomic,assign,readonly) KALTURA_BOOL isFirstLogin;
 @property (nonatomic,copy,readonly) NSString* logoutUrl;
 @property (nonatomic,assign,readonly) int partnerParentId;
 @property (nonatomic,copy,readonly) NSString* crmId;
@@ -5944,7 +5957,7 @@
 // Remote URL, FTP, HTTP or HTTPS
 @property (nonatomic,copy) NSString* url;
 // Force Import Job
-@property (nonatomic,assign) BOOL forceAsyncDownload;
+@property (nonatomic,assign) KALTURA_BOOL forceAsyncDownload;
 - (KalturaFieldType)getTypeOfUrl;
 - (KalturaFieldType)getTypeOfForceAsyncDownload;
 - (void)setForceAsyncDownloadFromString:(NSString*)aPropVal;
@@ -6099,7 +6112,7 @@
 // @subpackage Client
 @interface KalturaSearchResultResponse : KalturaObjectBase
 @property (nonatomic,retain,readonly) NSMutableArray* objects;	// of KalturaSearchResult elements
-@property (nonatomic,assign,readonly) BOOL needMediaInfo;
+@property (nonatomic,assign,readonly) KALTURA_BOOL needMediaInfo;
 - (KalturaFieldType)getTypeOfObjects;
 - (NSString*)getObjectTypeOfObjects;
 - (KalturaFieldType)getTypeOfNeedMediaInfo;
@@ -6180,13 +6193,13 @@
 // the id of the GUI control - will be used in the future to better understand what the user clicked
 @property (nonatomic,copy) NSString* controlId;
 // true if the user ever used seek in this session
-@property (nonatomic,assign) BOOL seek;
+@property (nonatomic,assign) KALTURA_BOOL seek;
 // timestamp of the new point on the timeline of the video after the user seeks
 @property (nonatomic,assign) int newPoint;
 // the referrer of the client
 @property (nonatomic,copy) NSString* referrer;
 // will indicate if the event is thrown for the first video in the session
-@property (nonatomic,assign) BOOL isFirstInSession;
+@property (nonatomic,assign) KALTURA_BOOL isFirstInSession;
 // kaltura application name
 @property (nonatomic,copy) NSString* applicationId;
 @property (nonatomic,assign) int contextId;
@@ -6279,7 +6292,7 @@
 @property (nonatomic,copy) NSString* storageBaseDir;
 @property (nonatomic,copy) NSString* storageUsername;
 @property (nonatomic,copy) NSString* storagePassword;
-@property (nonatomic,assign) BOOL storageFtpPassiveMode;
+@property (nonatomic,assign) KALTURA_BOOL storageFtpPassiveMode;
 @property (nonatomic,assign) int minFileSize;
 @property (nonatomic,assign) int maxFileSize;
 @property (nonatomic,copy) NSString* flavorParamsIds;
@@ -6295,7 +6308,7 @@
 // Flag sugnifying that the storage exported content should be deleted when soure entry is deleted
 @property (nonatomic,assign) int allowAutoDelete;
 // Indicates to the local file transfer manager to create a link to the file instead of copying it
-@property (nonatomic,assign) BOOL createFileLink;
+@property (nonatomic,assign) KALTURA_BOOL createFileLink;
 // Holds storage profile export rules
 @property (nonatomic,retain) NSMutableArray* rules;	// of KalturaRule elements
 // Delivery profile ids
@@ -6431,7 +6444,7 @@
 // The image density (dpi) for example: 72 or 96
 @property (nonatomic,assign) int density;
 // Strip profiles and comments
-@property (nonatomic,assign) BOOL stripProfiles;
+@property (nonatomic,assign) KALTURA_BOOL stripProfiles;
 // Create thumbnail from the videoLengthpercentage second
 @property (nonatomic,assign) int videoOffsetInPercentage;
 - (KalturaFieldType)getTypeOfCropType;
@@ -6510,7 +6523,7 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaThumbnailServeOptions : KalturaObjectBase
-@property (nonatomic,assign) BOOL download;
+@property (nonatomic,assign) KALTURA_BOOL download;
 - (KalturaFieldType)getTypeOfDownload;
 - (void)setDownloadFromString:(NSString*)aPropVal;
 @end
@@ -6534,7 +6547,7 @@
 @property (nonatomic,copy) NSString* confFileFeatures;
 @property (nonatomic,copy) NSString* config;
 @property (nonatomic,copy) NSString* confVars;
-@property (nonatomic,assign) BOOL useCdn;
+@property (nonatomic,assign) KALTURA_BOOL useCdn;
 @property (nonatomic,copy) NSString* tags;
 @property (nonatomic,copy) NSString* swfUrlVersion;
 // Entry creation date as Unix timestamp (In seconds)
@@ -6708,15 +6721,15 @@
 @property (nonatomic,copy) NSString* password;	// insertonly
 @property (nonatomic,copy) NSString* firstName;
 @property (nonatomic,copy) NSString* lastName;
-@property (nonatomic,assign) BOOL isAdmin;
+@property (nonatomic,assign) KALTURA_BOOL isAdmin;
 @property (nonatomic,copy) NSString* language;	// enum KalturaLanguageCode
 @property (nonatomic,assign,readonly) int lastLoginTime;
 @property (nonatomic,assign,readonly) int statusUpdatedAt;
 @property (nonatomic,assign,readonly) int deletedAt;
-@property (nonatomic,assign,readonly) BOOL loginEnabled;
+@property (nonatomic,assign,readonly) KALTURA_BOOL loginEnabled;
 @property (nonatomic,copy) NSString* roleIds;
 @property (nonatomic,copy,readonly) NSString* roleNames;
-@property (nonatomic,assign,readonly) BOOL isAccountOwner;
+@property (nonatomic,assign,readonly) KALTURA_BOOL isAccountOwner;
 @property (nonatomic,copy) NSString* allowedPartnerIds;
 @property (nonatomic,copy) NSString* allowedPartnerPackages;
 - (KalturaFieldType)getTypeOfId;
@@ -6840,11 +6853,11 @@
 @property (nonatomic,copy) NSString* partnerData;
 @property (nonatomic,copy,readonly) NSString* widgetHTML;
 // Should enforce entitlement on feed entries
-@property (nonatomic,assign) BOOL enforceEntitlement;
+@property (nonatomic,assign) KALTURA_BOOL enforceEntitlement;
 // Set privacy context for search entries that assiged to private and public categories within a category privacy context.
 @property (nonatomic,copy) NSString* privacyContext;
 // Addes the HTML5 script line to the widget's embed code
-@property (nonatomic,assign) BOOL addEmbedHtml5Support;
+@property (nonatomic,assign) KALTURA_BOOL addEmbedHtml5Support;
 - (KalturaFieldType)getTypeOfId;
 - (KalturaFieldType)getTypeOfSourceWidgetId;
 - (KalturaFieldType)getTypeOfRootWidgetId;
@@ -6911,7 +6924,7 @@
 @interface KalturaAccessControlLimitFlavorsAction : KalturaRuleAction
 // Comma separated list of flavor ids
 @property (nonatomic,copy) NSString* flavorParamsIds;
-@property (nonatomic,assign) BOOL isBlockedList;
+@property (nonatomic,assign) KALTURA_BOOL isBlockedList;
 - (KalturaFieldType)getTypeOfFlavorParamsIds;
 - (KalturaFieldType)getTypeOfIsBlockedList;
 - (void)setIsBlockedListFromString:(NSString*)aPropVal;
@@ -7225,7 +7238,7 @@
 // @subpackage Client
 // A boolean representation to return an array of booleans
 @interface KalturaBooleanValue : KalturaValue
-@property (nonatomic,assign) BOOL value;
+@property (nonatomic,assign) KALTURA_BOOL value;
 - (KalturaFieldType)getTypeOfValue;
 - (void)setValueFromString:(NSString*)aPropVal;
 @end
@@ -7367,7 +7380,7 @@
 @property (nonatomic,copy) NSString* owner;
 @property (nonatomic,assign) int contributionPolicy;
 @property (nonatomic,assign) int partnerSortValue;
-@property (nonatomic,assign) BOOL moderation;
+@property (nonatomic,assign) KALTURA_BOOL moderation;
 - (KalturaFieldType)getTypeOfRelativePath;
 - (KalturaFieldType)getTypeOfName;
 - (KalturaFieldType)getTypeOfReferenceId;
@@ -7439,7 +7452,7 @@
 @property (nonatomic,assign) int scheduleEndDate;
 @property (nonatomic,assign) int entryStatus;
 @property (nonatomic,copy) NSString* thumbnailUrl;
-@property (nonatomic,assign) BOOL thumbnailSaved;
+@property (nonatomic,assign) KALTURA_BOOL thumbnailSaved;
 @property (nonatomic,copy) NSString* sshPrivateKey;
 @property (nonatomic,copy) NSString* sshPublicKey;
 @property (nonatomic,copy) NSString* sshKeyPassphrase;
@@ -8034,7 +8047,7 @@
 // @subpackage Client
 @interface KalturaDeliveryProfileAkamaiAppleHttpManifest : KalturaDeliveryProfile
 // Should we use timing parameters - clipTo / seekFrom
-@property (nonatomic,assign) BOOL supportClipping;
+@property (nonatomic,assign) KALTURA_BOOL supportClipping;
 - (KalturaFieldType)getTypeOfSupportClipping;
 - (void)setSupportClippingFromString:(NSString*)aPropVal;
 @end
@@ -8043,7 +8056,7 @@
 // @subpackage Client
 @interface KalturaDeliveryProfileAkamaiHds : KalturaDeliveryProfile
 // Should we use timing parameters - clipTo / seekFrom
-@property (nonatomic,assign) BOOL supportClipping;
+@property (nonatomic,assign) KALTURA_BOOL supportClipping;
 - (KalturaFieldType)getTypeOfSupportClipping;
 - (void)setSupportClippingFromString:(NSString*)aPropVal;
 @end
@@ -8052,7 +8065,7 @@
 // @subpackage Client
 @interface KalturaDeliveryProfileAkamaiHttp : KalturaDeliveryProfile
 // Should we use intelliseek
-@property (nonatomic,assign) BOOL useIntelliseek;
+@property (nonatomic,assign) KALTURA_BOOL useIntelliseek;
 - (KalturaFieldType)getTypeOfUseIntelliseek;
 - (void)setUseIntelliseekFromString:(NSString*)aPropVal;
 @end
@@ -8136,8 +8149,8 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaDeliveryProfileLiveAppleHttp : KalturaDeliveryProfile
-@property (nonatomic,assign) BOOL disableExtraAttributes;
-@property (nonatomic,assign) BOOL forceProxy;
+@property (nonatomic,assign) KALTURA_BOOL disableExtraAttributes;
+@property (nonatomic,assign) KALTURA_BOOL forceProxy;
 - (KalturaFieldType)getTypeOfDisableExtraAttributes;
 - (KalturaFieldType)getTypeOfForceProxy;
 - (void)setDisableExtraAttributesFromString:(NSString*)aPropVal;
@@ -8148,7 +8161,7 @@
 // @subpackage Client
 @interface KalturaDeliveryProfileRtmp : KalturaDeliveryProfile
 // enforceRtmpe
-@property (nonatomic,assign) BOOL enforceRtmpe;
+@property (nonatomic,assign) KALTURA_BOOL enforceRtmpe;
 // a prefix that is added to all stream urls (replaces storageProfile::rtmpPrefix)
 @property (nonatomic,copy) NSString* prefix;
 - (KalturaFieldType)getTypeOfEnforceRtmpe;
@@ -8169,7 +8182,7 @@
 // @subpackage Client
 @interface KalturaCategoryUserFilter : KalturaCategoryUserBaseFilter
 // Return the list of categoryUser that are not inherited from parent category - only the direct categoryUsers.
-@property (nonatomic,assign) BOOL categoryDirectMembers;
+@property (nonatomic,assign) KALTURA_BOOL categoryDirectMembers;
 // Free text search on user id or screen name
 @property (nonatomic,copy) NSString* freeText;
 - (KalturaFieldType)getTypeOfCategoryDirectMembers;
@@ -8276,14 +8289,14 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaEntryContextDataResult : KalturaContextDataResult
-@property (nonatomic,assign) BOOL isSiteRestricted;
-@property (nonatomic,assign) BOOL isCountryRestricted;
-@property (nonatomic,assign) BOOL isSessionRestricted;
-@property (nonatomic,assign) BOOL isIpAddressRestricted;
-@property (nonatomic,assign) BOOL isUserAgentRestricted;
+@property (nonatomic,assign) KALTURA_BOOL isSiteRestricted;
+@property (nonatomic,assign) KALTURA_BOOL isCountryRestricted;
+@property (nonatomic,assign) KALTURA_BOOL isSessionRestricted;
+@property (nonatomic,assign) KALTURA_BOOL isIpAddressRestricted;
+@property (nonatomic,assign) KALTURA_BOOL isUserAgentRestricted;
 @property (nonatomic,assign) int previewLength;
-@property (nonatomic,assign) BOOL isScheduledNow;
-@property (nonatomic,assign) BOOL isAdmin;
+@property (nonatomic,assign) KALTURA_BOOL isScheduledNow;
+@property (nonatomic,assign) KALTURA_BOOL isAdmin;
 // http/rtmp/hdnetwork
 @property (nonatomic,copy) NSString* streamerType;
 // http/https, rtmp/rtmpe
@@ -8320,6 +8333,18 @@
 - (void)setPreviewLengthFromString:(NSString*)aPropVal;
 - (void)setIsScheduledNowFromString:(NSString*)aPropVal;
 - (void)setIsAdminFromString:(NSString*)aPropVal;
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaEntryCuePointSearchFilter : KalturaSearchItem
+@property (nonatomic,copy) NSString* cuePointsFreeText;
+@property (nonatomic,copy) NSString* cuePointTypeIn;
+@property (nonatomic,assign) int cuePointSubTypeEqual;
+- (KalturaFieldType)getTypeOfCuePointsFreeText;
+- (KalturaFieldType)getTypeOfCuePointTypeIn;
+- (KalturaFieldType)getTypeOfCuePointSubTypeEqual;
+- (void)setCuePointSubTypeEqualFromString:(NSString*)aPropVal;
 @end
 
 // @package Kaltura
@@ -8467,7 +8492,7 @@
 // Indicates the last id that reindexed, used when the batch crached, to re-run from the last crash point.
 @property (nonatomic,assign) int lastIndexId;
 // Indicates that the object columns and attributes values should be recalculated before reindexed.
-@property (nonatomic,assign) BOOL shouldUpdate;
+@property (nonatomic,assign) KALTURA_BOOL shouldUpdate;
 - (KalturaFieldType)getTypeOfFilter;
 - (NSString*)getObjectTypeOfFilter;
 - (KalturaFieldType)getTypeOfLastIndexId;
@@ -8580,7 +8605,7 @@
 @property (nonatomic,copy) NSString* language;	// enum KalturaLanguageCode
 @property (nonatomic,assign) int campaignId;
 @property (nonatomic,assign) int minSendDate;
-@property (nonatomic,assign) BOOL isHtml;
+@property (nonatomic,assign) KALTURA_BOOL isHtml;
 @property (nonatomic,copy) NSString* separator;
 - (KalturaFieldType)getTypeOfMailType;
 - (KalturaFieldType)getTypeOfMailPriority;
@@ -8655,9 +8680,9 @@
 //      In case of crash the batch will restart from that point
 @property (nonatomic,assign) int lastMovedCategoryEntryPageIndex;
 // All entries from all child categories will be moved as well
-@property (nonatomic,assign) BOOL moveFromChildren;
+@property (nonatomic,assign) KALTURA_BOOL moveFromChildren;
 // Entries won't be deleted from the source entry
-@property (nonatomic,assign) BOOL copyOnly;
+@property (nonatomic,assign) KALTURA_BOOL copyOnly;
 // Destination categories fallback ids
 @property (nonatomic,copy) NSString* destCategoryFullIds;
 - (KalturaFieldType)getTypeOfSrcCategoryId;
@@ -8889,9 +8914,9 @@
 // Search keywords to filter objects
 @property (nonatomic,copy) NSString* keywords;
 // Search keywords in onjects tags
-@property (nonatomic,assign) BOOL searchInTags;
+@property (nonatomic,assign) KALTURA_BOOL searchInTags;
 // Search keywords in onjects admin tags
-@property (nonatomic,assign) BOOL searchInAdminTags;
+@property (nonatomic,assign) KALTURA_BOOL searchInAdminTags;
 // Search onjects in specified categories
 @property (nonatomic,copy) NSString* categories;
 // Time zone offset in minutes
@@ -8957,7 +8982,7 @@
 @property (nonatomic,copy) NSString* serverUrl;
 @property (nonatomic,copy) NSString* serverUsername;
 @property (nonatomic,copy) NSString* serverPassword;
-@property (nonatomic,assign) BOOL ftpPassiveMode;
+@property (nonatomic,assign) KALTURA_BOOL ftpPassiveMode;
 @property (nonatomic,copy) NSString* srcFileSyncLocalPath;
 @property (nonatomic,copy) NSString* srcFileSyncId;
 @property (nonatomic,copy) NSString* destFileSyncStoredPath;
@@ -9147,7 +9172,7 @@
 // Type
 @property (nonatomic,copy) NSString* type;
 @property (nonatomic,copy) NSString* aifp;
-@property (nonatomic,assign) BOOL usePrefix;
+@property (nonatomic,assign) KALTURA_BOOL usePrefix;
 - (KalturaFieldType)getTypeOfProfile;
 - (KalturaFieldType)getTypeOfType;
 - (KalturaFieldType)getTypeOfAifp;
@@ -9760,7 +9785,7 @@
 @interface KalturaPostConvertJobData : KalturaConvartableJobData
 @property (nonatomic,copy) NSString* flavorAssetId;
 // Indicates if a thumbnail should be created
-@property (nonatomic,assign) BOOL createThumb;
+@property (nonatomic,assign) KALTURA_BOOL createThumb;
 // The path of the created thumbnail
 @property (nonatomic,copy) NSString* thumbPath;
 // The position of the thumbnail in the media file
@@ -9843,8 +9868,8 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaStorageExportJobData : KalturaStorageJobData
-@property (nonatomic,assign) BOOL force;
-@property (nonatomic,assign) BOOL createLink;
+@property (nonatomic,assign) KALTURA_BOOL force;
+@property (nonatomic,assign) KALTURA_BOOL createLink;
 - (KalturaFieldType)getTypeOfForce;
 - (KalturaFieldType)getTypeOfCreateLink;
 - (void)setForceFromString:(NSString*)aPropVal;
@@ -10579,7 +10604,7 @@
 - (KalturaEntryContextDataResult*)getContextDataWithEntryId:(NSString*)aEntryId withContextDataParams:(KalturaEntryContextDataParams*)aContextDataParams;
 - (KalturaBaseEntry*)exportWithEntryId:(NSString*)aEntryId withStorageProfileId:(int)aStorageProfileId;
 // Index an entry by id.
-- (int)indexWithId:(NSString*)aId withShouldUpdate:(BOOL)aShouldUpdate;
+- (int)indexWithId:(NSString*)aId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate;
 - (int)indexWithId:(NSString*)aId;
 // Clone an entry with optional attributes to apply to the clone
 - (KalturaBaseEntry*)cloneWithEntryId:(NSString*)aEntryId;
@@ -10623,7 +10648,7 @@
 - (KalturaCategoryEntryListResponse*)listWithFilter:(KalturaCategoryEntryFilter*)aFilter;
 - (KalturaCategoryEntryListResponse*)list;
 // Index CategoryEntry by Id
-- (int)indexWithEntryId:(NSString*)aEntryId withCategoryId:(int)aCategoryId withShouldUpdate:(BOOL)aShouldUpdate;
+- (int)indexWithEntryId:(NSString*)aEntryId withCategoryId:(int)aCategoryId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate;
 - (int)indexWithEntryId:(NSString*)aEntryId withCategoryId:(int)aCategoryId;
 // activate CategoryEntry when it is pending moderation
 - (void)activateWithEntryId:(NSString*)aEntryId withCategoryId:(int)aCategoryId;
@@ -10651,7 +10676,7 @@
 - (KalturaCategoryListResponse*)listWithFilter:(KalturaCategoryFilter*)aFilter;
 - (KalturaCategoryListResponse*)list;
 // Index Category by id
-- (int)indexWithId:(int)aId withShouldUpdate:(BOOL)aShouldUpdate;
+- (int)indexWithId:(int)aId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate;
 - (int)indexWithId:(int)aId;
 // Move categories that belong to the same parent category to a target categroy - enabled only for ks with disable entitlement
 - (KalturaCategoryListResponse*)moveWithCategoryIds:(NSString*)aCategoryIds withTargetCategoryParentId:(int)aTargetCategoryParentId;
@@ -10671,7 +10696,7 @@
 // Get CategoryUser by id
 - (KalturaCategoryUser*)getWithCategoryId:(int)aCategoryId withUserId:(NSString*)aUserId;
 // Update CategoryUser by id
-- (KalturaCategoryUser*)updateWithCategoryId:(int)aCategoryId withUserId:(NSString*)aUserId withCategoryUser:(KalturaCategoryUser*)aCategoryUser withOverride:(BOOL)aOverride;
+- (KalturaCategoryUser*)updateWithCategoryId:(int)aCategoryId withUserId:(NSString*)aUserId withCategoryUser:(KalturaCategoryUser*)aCategoryUser withOverride:(KALTURA_BOOL)aOverride;
 - (KalturaCategoryUser*)updateWithCategoryId:(int)aCategoryId withUserId:(NSString*)aUserId withCategoryUser:(KalturaCategoryUser*)aCategoryUser;
 // Delete a CategoryUser
 - (void)deleteWithCategoryId:(int)aCategoryId withUserId:(NSString*)aUserId;
@@ -10686,7 +10711,7 @@
 // Copy all memeber from parent category
 - (void)copyFromCategoryWithCategoryId:(int)aCategoryId;
 // Index CategoryUser by userid and category id
-- (int)indexWithUserId:(NSString*)aUserId withCategoryId:(int)aCategoryId withShouldUpdate:(BOOL)aShouldUpdate;
+- (int)indexWithUserId:(NSString*)aUserId withCategoryId:(int)aCategoryId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate;
 - (int)indexWithUserId:(NSString*)aUserId withCategoryId:(int)aCategoryId;
 - (KalturaBulkUpload*)addFromBulkUploadWithFileData:(NSString*)aFileData withBulkUploadData:(KalturaBulkUploadJobData*)aBulkUploadData withBulkUploadCategoryUserData:(KalturaBulkUploadCategoryUserData*)aBulkUploadCategoryUserData;
 - (KalturaBulkUpload*)addFromBulkUploadWithFileData:(NSString*)aFileData withBulkUploadData:(KalturaBulkUploadJobData*)aBulkUploadData;
@@ -10746,7 +10771,7 @@
 - (KalturaDataListResponse*)listWithFilter:(KalturaDataEntryFilter*)aFilter;
 - (KalturaDataListResponse*)list;
 // serve action returan the file from dataContent field.
-- (NSString*)serveWithEntryId:(NSString*)aEntryId withVersion:(int)aVersion withForceProxy:(BOOL)aForceProxy;
+- (NSString*)serveWithEntryId:(NSString*)aEntryId withVersion:(int)aVersion withForceProxy:(KALTURA_BOOL)aForceProxy;
 - (NSString*)serveWithEntryId:(NSString*)aEntryId withVersion:(int)aVersion;
 - (NSString*)serveWithEntryId:(NSString*)aEntryId;
 @end
@@ -10837,13 +10862,13 @@
 // Delete Flavor Asset by ID
 - (void)deleteWithId:(NSString*)aId;
 // Get download URL for the asset
-- (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId withForceProxy:(BOOL)aForceProxy;
+- (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId withForceProxy:(KALTURA_BOOL)aForceProxy;
 - (NSString*)getUrlWithId:(NSString*)aId withStorageId:(int)aStorageId;
 - (NSString*)getUrlWithId:(NSString*)aId;
 // Get remote storage existing paths for the asset
 - (KalturaRemotePathListResponse*)getRemotePathsWithId:(NSString*)aId;
 // Get download URL for the Flavor Asset
-- (NSString*)getDownloadUrlWithId:(NSString*)aId withUseCdn:(BOOL)aUseCdn;
+- (NSString*)getDownloadUrlWithId:(NSString*)aId withUseCdn:(KALTURA_BOOL)aUseCdn;
 - (NSString*)getDownloadUrlWithId:(NSString*)aId;
 // Get Flavor Asset with the relevant Flavor Params (Flavor Params can exist without Flavor Asset & vice versa)
 - (NSMutableArray*)getFlavorAssetsWithParamsWithEntryId:(NSString*)aEntryId;
@@ -10922,9 +10947,9 @@
 - (KalturaLiveChannelListResponse*)listWithFilter:(KalturaLiveChannelFilter*)aFilter;
 - (KalturaLiveChannelListResponse*)list;
 // Delivering the status of a live channel (on-air/offline)
-- (BOOL)isLiveWithId:(NSString*)aId;
+- (KALTURA_BOOL)isLiveWithId:(NSString*)aId;
 // Append recorded video to live entry
-- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(BOOL)aIsLastChunk;
+- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(KALTURA_BOOL)aIsLastChunk;
 - (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration;
 // Register media server to live entry
 - (KalturaLiveEntry*)registerMediaServerWithEntryId:(NSString*)aEntryId withHostname:(NSString*)aHostname withMediaServerIndex:(int)aMediaServerIndex withApplicationName:(NSString*)aApplicationName;
@@ -10975,7 +11000,7 @@
 // 	
 // 	
 // 	 KalturaStatsEvent $event
-- (BOOL)collectWithEvent:(KalturaStatsEvent*)aEvent;
+- (KALTURA_BOOL)collectWithEvent:(KalturaStatsEvent*)aEvent;
 // Will collect the kmcEvent sent form the KMC client
 // 	 // this will actually be an empty function because all events will be sent using GET and will anyway be logged in the apache log
 - (void)kmcCollectWithKmcEvent:(KalturaStatsKmcEvent*)aKmcEvent;
@@ -11010,7 +11035,7 @@
 // Update entry thumbnail using url
 - (KalturaLiveStreamEntry*)updateOfflineThumbnailFromUrlWithEntryId:(NSString*)aEntryId withUrl:(NSString*)aUrl;
 // Delivering the status of a live stream (on-air/offline) if it is possible
-- (BOOL)isLiveWithId:(NSString*)aId withProtocol:(NSString*)aProtocol;
+- (KALTURA_BOOL)isLiveWithId:(NSString*)aId withProtocol:(NSString*)aProtocol;
 // Add new pushPublish configuration to entry
 - (KalturaLiveStreamEntry*)addLiveStreamPushPublishConfigurationWithEntryId:(NSString*)aEntryId withProtocol:(NSString*)aProtocol withUrl:(NSString*)aUrl withLiveStreamConfiguration:(KalturaLiveStreamConfiguration*)aLiveStreamConfiguration;
 - (KalturaLiveStreamEntry*)addLiveStreamPushPublishConfigurationWithEntryId:(NSString*)aEntryId withProtocol:(NSString*)aProtocol withUrl:(NSString*)aUrl;
@@ -11018,7 +11043,7 @@
 // Remove push publish configuration from entry
 - (KalturaLiveStreamEntry*)removeLiveStreamPushPublishConfigurationWithEntryId:(NSString*)aEntryId withProtocol:(NSString*)aProtocol;
 // Append recorded video to live entry
-- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(BOOL)aIsLastChunk;
+- (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration withIsLastChunk:(KALTURA_BOOL)aIsLastChunk;
 - (KalturaLiveEntry*)appendRecordingWithEntryId:(NSString*)aEntryId withAssetId:(NSString*)aAssetId withMediaServerIndex:(int)aMediaServerIndex withResource:(KalturaDataCenterContentResource*)aResource withDuration:(double)aDuration;
 // Register media server to live entry
 - (KalturaLiveEntry*)registerMediaServerWithEntryId:(NSString*)aEntryId withHostname:(NSString*)aHostname withMediaServerIndex:(int)aMediaServerIndex withApplicationName:(NSString*)aApplicationName;
@@ -11194,12 +11219,12 @@
 // partner service allows you to change/manage your partner personal details and settings as well
 @interface KalturaPartnerService : KalturaServiceBase
 // Create a new Partner object
-- (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId withSilent:(BOOL)aSilent;
+- (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId withSilent:(KALTURA_BOOL)aSilent;
 - (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword withTemplatePartnerId:(int)aTemplatePartnerId;
 - (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner withCmsPassword:(NSString*)aCmsPassword;
 - (KalturaPartner*)registerWithPartner:(KalturaPartner*)aPartner;
 // Update details and settings of an existing partner
-- (KalturaPartner*)updateWithPartner:(KalturaPartner*)aPartner withAllowEmpty:(BOOL)aAllowEmpty;
+- (KalturaPartner*)updateWithPartner:(KalturaPartner*)aPartner withAllowEmpty:(KALTURA_BOOL)aAllowEmpty;
 - (KalturaPartner*)updateWithPartner:(KalturaPartner*)aPartner;
 // Retrieve partner object by Id
 - (KalturaPartner*)getWithId:(int)aId;
@@ -11287,14 +11312,14 @@
 @interface KalturaPlaylistService : KalturaServiceBase
 // Add new playlist
 // 	 Note that all entries used in a playlist will become public and may appear in KalturaNetwork
-- (KalturaPlaylist*)addWithPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(BOOL)aUpdateStats;
+- (KalturaPlaylist*)addWithPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(KALTURA_BOOL)aUpdateStats;
 - (KalturaPlaylist*)addWithPlaylist:(KalturaPlaylist*)aPlaylist;
 // Retrieve a playlist
 - (KalturaPlaylist*)getWithId:(NSString*)aId withVersion:(int)aVersion;
 - (KalturaPlaylist*)getWithId:(NSString*)aId;
 // Update existing playlist
 // 	 Note - you cannot change playlist type. updated playlist must be of the same type.
-- (KalturaPlaylist*)updateWithId:(NSString*)aId withPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(BOOL)aUpdateStats;
+- (KalturaPlaylist*)updateWithId:(NSString*)aId withPlaylist:(KalturaPlaylist*)aPlaylist withUpdateStats:(KALTURA_BOOL)aUpdateStats;
 - (KalturaPlaylist*)updateWithId:(NSString*)aId withPlaylist:(KalturaPlaylist*)aPlaylist;
 // Delete existing playlist
 - (void)deleteWithId:(NSString*)aId;
@@ -11461,8 +11486,8 @@
 // @subpackage Client
 // System service is used for internal system helpers & to retrieve system level information
 @interface KalturaSystemService : KalturaServiceBase
-- (BOOL)ping;
-- (BOOL)pingDatabase;
+- (KALTURA_BOOL)ping;
+- (KALTURA_BOOL)pingDatabase;
 - (int)getTime;
 - (NSString*)getVersion;
 @end
@@ -11584,9 +11609,9 @@
 // Get upload token by id
 - (KalturaUploadToken*)getWithUploadTokenId:(NSString*)aUploadTokenId;
 // Upload a file using the upload token id, returns an error on failure (an exception will be thrown when using one of the Kaltura clients)
-- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(BOOL)aResume withFinalChunk:(BOOL)aFinalChunk withResumeAt:(double)aResumeAt;
-- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(BOOL)aResume withFinalChunk:(BOOL)aFinalChunk;
-- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(BOOL)aResume;
+- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(KALTURA_BOOL)aResume withFinalChunk:(KALTURA_BOOL)aFinalChunk withResumeAt:(double)aResumeAt;
+- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(KALTURA_BOOL)aResume withFinalChunk:(KALTURA_BOOL)aFinalChunk;
+- (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData withResume:(KALTURA_BOOL)aResume;
 - (KalturaUploadToken*)uploadWithUploadTokenId:(NSString*)aUploadTokenId withFileData:(NSString*)aFileData;
 // Deletes the upload token by upload token id
 - (void)deleteWithUploadTokenId:(NSString*)aUploadTokenId;
@@ -11674,13 +11699,13 @@
 - (KalturaUser*)disableLoginWithUserId:(NSString*)aUserId;
 - (KalturaUser*)disableLogin;
 // Index an entry by id.
-- (NSString*)indexWithId:(NSString*)aId withShouldUpdate:(BOOL)aShouldUpdate;
+- (NSString*)indexWithId:(NSString*)aId withShouldUpdate:(KALTURA_BOOL)aShouldUpdate;
 - (NSString*)indexWithId:(NSString*)aId;
 - (KalturaBulkUpload*)addFromBulkUploadWithFileData:(NSString*)aFileData withBulkUploadData:(KalturaBulkUploadJobData*)aBulkUploadData withBulkUploadUserData:(KalturaBulkUploadUserData*)aBulkUploadUserData;
 - (KalturaBulkUpload*)addFromBulkUploadWithFileData:(NSString*)aFileData withBulkUploadData:(KalturaBulkUploadJobData*)aBulkUploadData;
 - (KalturaBulkUpload*)addFromBulkUploadWithFileData:(NSString*)aFileData;
 // Action which checks whther user login
-- (BOOL)checkLoginDataExistsWithFilter:(KalturaUserLoginDataFilter*)aFilter;
+- (KALTURA_BOOL)checkLoginDataExistsWithFilter:(KalturaUserLoginDataFilter*)aFilter;
 @end
 
 // @package Kaltura

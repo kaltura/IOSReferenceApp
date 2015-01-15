@@ -41,6 +41,10 @@
 {
     return 3;
 }
++ (int)PENDING
+{
+    return 4;
+}
 @end
 
 @implementation KalturaThumbCuePointSubType
@@ -688,11 +692,25 @@
 @end
 
 @implementation KalturaCuePointFilter
+@synthesize freeText = _freeText;
+
+- (KalturaFieldType)getTypeOfFreeText
+{
+    return KFT_String;
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaCuePointFilter"];
+    [aParams addIfDefinedKey:@"freeText" withString:self.freeText];
+}
+
+- (void)dealloc
+{
+    [self->_freeText release];
+    [super dealloc];
 }
 
 @end

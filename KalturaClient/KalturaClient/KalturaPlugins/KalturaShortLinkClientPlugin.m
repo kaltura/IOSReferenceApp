@@ -512,7 +512,7 @@
     return [self.client queueObjectService:@"shortlink_shortlink" withAction:@"delete" withExpectedType:@"KalturaShortLink"];
 }
 
-- (NSString*)gotoWithId:(NSString*)aId withProxy:(BOOL)aProxy
+- (NSString*)gotoWithId:(NSString*)aId withProxy:(KALTURA_BOOL)aProxy
 {
     [self.client.params addIfDefinedKey:@"id" withString:aId];
     [self.client.params addIfDefinedKey:@"proxy" withBool:aProxy];
