@@ -45,7 +45,7 @@ const CGRect PlayerCGRect = { { 0.0f, 0.0f }, { 320.0f, 180.0f } };
 
 - (void)mailComposeController:(MFMailComposeViewController*)_controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
 	
-    [self dismissModalViewControllerAnimated:YES];    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -73,7 +73,7 @@ const CGRect PlayerCGRect = { { 0.0f, 0.0f }, { 320.0f, 180.0f } };
             NSString *str = [NSString stringWithFormat:@"I just saw this great video on Kaltura mobile app, check it out:\n%@", [[Client instance] getShareURL:self.mediaEntry]];
             [_controller setMessageBody:str isHTML:NO];
             
-            [self presentModalViewController:_controller animated:YES];
+            [self presentViewController:_controller animated:YES completion:nil];
             [_controller release];
             
         } else {

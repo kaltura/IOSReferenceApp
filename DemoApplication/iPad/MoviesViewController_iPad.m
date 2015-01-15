@@ -247,7 +247,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
 
 - (void)mailComposeController:(MFMailComposeViewController*)_controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
 	
-    [self dismissModalViewControllerAnimated:YES];    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -275,7 +275,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
             NSString *str = [NSString stringWithFormat:@"I just saw this great video on Kaltura mobile app, check it out:\n%@", [[Client instance] getShareURL:mediaEntry]];
             [_controller setMessageBody:str isHTML:NO];
             
-            [self presentModalViewController:_controller animated:YES];
+            [self presentViewController:_controller animated:YES completion:nil];
             [_controller release];
             
         } else {
@@ -353,7 +353,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
             
             if ([self.media count] > 3) {
                 
-                int _count = [self.media count] - 3;
+                int _count = (int)[self.media count] - 3;
                 
                 count += _count / 4 + (_count % 4 > 0 ? 1 : 0);
                 
@@ -367,7 +367,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
         
         NSArray *array = [[Client instance] getCategories];
         
-        count = [array count];
+        count = (int)[array count];
         
         if (mostPopular) count++;
     }
@@ -396,7 +396,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            int index = indexPath.row;
+            int index = (int)indexPath.row;
             
             cell.index = index;
             cell.parentController = self;
@@ -456,7 +456,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            int index = (indexPath.row - 1) * 4 + 3;
+            int index = (int)(indexPath.row - 1) * 4 + 3;
             
             cell.index = index;
             cell.parentController = self;
@@ -550,7 +550,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
 
     if (tableView.tag == 1) {
         
-        currentCategoryInd = indexPath.row;
+        currentCategoryInd = (int)indexPath.row;
         
         if (mostPopular && indexPath.row == 0) {
         
@@ -711,7 +711,7 @@ NSInteger playsPadSort(id media1, id media2, void *reverse)
 {
     NSLog(@"reDrawPlayer Enter");
     
-    [playerViewController resizePlayerView:top right: right width: width height: height];
+    [playerViewController resizePlayerView:(CGRect){right, top, width, height}];
     
     NSLog(@"reDrawPlayer Exit");
 }
