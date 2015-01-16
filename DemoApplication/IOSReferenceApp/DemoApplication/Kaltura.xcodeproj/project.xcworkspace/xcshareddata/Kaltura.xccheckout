@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4AF4C330-5785-4BB7-8302-80B47ED42D36</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Kaltura</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>71100B88B48658B8C8E549C7F137E7101626E469</key>
+		<string>https://github.com/kaltura/IOSReferenceApp</string>
+		<key>C8599C6442C2751A61AE351C616FCB28200CC541</key>
+		<string>https://github.com/kaltura/player-sdk-native-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>DemoApplication/Kaltura.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>71100B88B48658B8C8E549C7F137E7101626E469</key>
+		<string>../../..</string>
+		<key>C8599C6442C2751A61AE351C616FCB28200CC541</key>
+		<string>../../../../player-sdk-native-ios</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kaltura/IOSReferenceApp</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>71100B88B48658B8C8E549C7F137E7101626E469</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>71100B88B48658B8C8E549C7F137E7101626E469</string>
+			<key>IDESourceControlWCCName</key>
+			<string>IOSReferenceApp</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C8599C6442C2751A61AE351C616FCB28200CC541</string>
+			<key>IDESourceControlWCCName</key>
+			<string>player-sdk-native-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
