@@ -1469,7 +1469,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/nissopa/Desktop/KalturaIOSProjects/player-sdk-native-ios/PlayerSDK",
+					"$(SRCROOT)/player-sdk-native-ios/PlayerSDK",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1479,7 +1479,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/nissopa/Desktop/KalturaIOSProjects/player-sdk-native-ios/PlayerSDK",
+					"$(SRCROOT)/player-sdk-native-ios/PlayerSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1502,7 +1502,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/nissopa/Desktop/KalturaIOSProjects/player-sdk-native-ios/PlayerSDK",
+					"$(SRCROOT)/player-sdk-native-ios/PlayerSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Kaltura_Prefix.pch;
@@ -1510,7 +1510,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/nissopa/Desktop/KalturaIOSProjects/player-sdk-native-ios/PlayerSDK",
+					"$(SRCROOT)/player-sdk-native-ios/PlayerSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
