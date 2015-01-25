@@ -195,7 +195,7 @@
 @interface KalturaAuditTrailChangeItem : KalturaObjectBase
 @property (nonatomic,copy) NSString* descriptor;
 @property (nonatomic,copy) NSString* oldValue;
-@property (nonatomic,copy) NSString* newValue;
+@property (nonatomic,copy) NSString* anewValue;
 - (KalturaFieldType)getTypeOfDescriptor;
 - (KalturaFieldType)getTypeOfOldValue;
 - (KalturaFieldType)getTypeOfNewValue;

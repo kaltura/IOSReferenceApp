@@ -31,6 +31,40 @@
 #import "KalturaDropFolderClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
+// @package Kaltura
+// @subpackage Client
+@interface KalturaWebexDropFolderFileOrderBy : NSObject
++ (NSString*)CREATED_AT_ASC;
++ (NSString*)FILE_NAME_ASC;
++ (NSString*)FILE_SIZE_ASC;
++ (NSString*)FILE_SIZE_LAST_SET_AT_ASC;
++ (NSString*)ID_ASC;
++ (NSString*)PARSED_FLAVOR_ASC;
++ (NSString*)PARSED_SLUG_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)FILE_NAME_DESC;
++ (NSString*)FILE_SIZE_DESC;
++ (NSString*)FILE_SIZE_LAST_SET_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)PARSED_FLAVOR_DESC;
++ (NSString*)PARSED_SLUG_DESC;
++ (NSString*)UPDATED_AT_DESC;
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaWebexDropFolderOrderBy : NSObject
++ (NSString*)CREATED_AT_ASC;
++ (NSString*)ID_ASC;
++ (NSString*)NAME_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)ID_DESC;
++ (NSString*)NAME_DESC;
++ (NSString*)UPDATED_AT_DESC;
+@end
+
 ///////////////////////// classes /////////////////////////
 // @package Kaltura
 // @subpackage Client
@@ -73,6 +107,26 @@
 @property (nonatomic,copy) NSString* webexHostId;
 - (KalturaFieldType)getTypeOfDescription;
 - (KalturaFieldType)getTypeOfWebexHostId;
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaWebexDropFolderBaseFilter : KalturaDropFolderFilter
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaWebexDropFolderFileBaseFilter : KalturaDropFolderFileFilter
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaWebexDropFolderFileFilter : KalturaWebexDropFolderFileBaseFilter
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaWebexDropFolderFilter : KalturaWebexDropFolderBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////

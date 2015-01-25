@@ -28,6 +28,25 @@
 #import "KalturaKontikiClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
+@implementation KalturaKontikiStorageProfileOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
+@end
+
 ///////////////////////// classes /////////////////////////
 @implementation KalturaKontikiStorageProfile
 @synthesize serviceToken = _serviceToken;
@@ -121,6 +140,26 @@
     [self->_contentMoid release];
     [self->_serviceToken release];
     [super dealloc];
+}
+
+@end
+
+@implementation KalturaKontikiStorageProfileBaseFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaKontikiStorageProfileBaseFilter"];
+}
+
+@end
+
+@implementation KalturaKontikiStorageProfileFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaKontikiStorageProfileFilter"];
 }
 
 @end

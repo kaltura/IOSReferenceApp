@@ -71,6 +71,41 @@
 }
 @end
 
+@implementation KalturaTimedThumbAssetOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
++ (NSString*)DELETED_AT_ASC
+{
+    return @"+deletedAt";
+}
++ (NSString*)SIZE_ASC
+{
+    return @"+size";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)DELETED_AT_DESC
+{
+    return @"-deletedAt";
+}
++ (NSString*)SIZE_DESC
+{
+    return @"-size";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
+@end
+
 ///////////////////////// classes /////////////////////////
 @implementation KalturaThumbCuePoint
 @synthesize assetId = _assetId;
@@ -256,6 +291,26 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaThumbCuePointFilter"];
+}
+
+@end
+
+@implementation KalturaTimedThumbAssetBaseFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaTimedThumbAssetBaseFilter"];
+}
+
+@end
+
+@implementation KalturaTimedThumbAssetFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaTimedThumbAssetFilter"];
 }
 
 @end

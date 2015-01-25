@@ -241,8 +241,8 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaPlayReadyCopyRight : KalturaPlayReadyRight
-@property (nonatomic,assign) int copyCount;
-@property (nonatomic,retain) NSMutableArray* copyEnablers;	// of KalturaPlayReadyCopyEnablerHolder elements
+@property (nonatomic,assign) int acopyCount;
+@property (nonatomic,retain) NSMutableArray* acopyEnablers;	// of KalturaPlayReadyCopyEnablerHolder elements
 - (KalturaFieldType)getTypeOfCopyCount;
 - (KalturaFieldType)getTypeOfCopyEnablers;
 - (NSString*)getObjectTypeOfCopyEnablers;

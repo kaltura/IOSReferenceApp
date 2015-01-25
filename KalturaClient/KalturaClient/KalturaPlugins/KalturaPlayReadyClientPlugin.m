@@ -593,15 +593,15 @@
 @end
 
 @implementation KalturaPlayReadyCopyRight
-@synthesize copyCount = _copyCount;
-@synthesize copyEnablers = _copyEnablers;
+@synthesize acopyCount = _acopyCount;
+@synthesize acopyEnablers = _acopyEnablers;
 
 - (id)init
 {
     self = [super init];
     if (self == nil)
         return nil;
-    self->_copyCount = KALTURA_UNDEF_INT;
+    self->_acopyCount = KALTURA_UNDEF_INT;
     return self;
 }
 
@@ -622,7 +622,7 @@
 
 - (void)setCopyCountFromString:(NSString*)aPropVal
 {
-    self.copyCount = [KalturaSimpleTypeParser parseInt:aPropVal];
+    self.acopyCount = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
@@ -630,13 +630,13 @@
     [super toParams:aParams isSuper:YES];
     if (!aIsSuper)
         [aParams putKey:@"objectType" withString:@"KalturaPlayReadyCopyRight"];
-    [aParams addIfDefinedKey:@"copyCount" withInt:self.copyCount];
-    [aParams addIfDefinedKey:@"copyEnablers" withArray:self.copyEnablers];
+    [aParams addIfDefinedKey:@"acopyCount" withInt:self.acopyCount];
+    [aParams addIfDefinedKey:@"acopyEnablers" withArray:self.acopyEnablers];
 }
 
 - (void)dealloc
 {
-    [self->_copyEnablers release];
+    [self->_acopyEnablers release];
     [super dealloc];
 }
 

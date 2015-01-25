@@ -1139,6 +1139,10 @@
 {
     return 24;
 }
++ (int)TOP_PLAYBACK_CONTEXT
+{
+    return 25;
+}
 + (int)PARTNER_USAGE
 {
     return 201;
@@ -20214,7 +20218,7 @@
 @synthesize processDuration = _processDuration;
 @synthesize controlId = _controlId;
 @synthesize seek = _seek;
-@synthesize newPoint = _newPoint;
+@synthesize anewPoint = _anewPoint;
 @synthesize referrer = _referrer;
 @synthesize isFirstInSession = _isFirstInSession;
 @synthesize applicationId = _applicationId;
@@ -20234,7 +20238,7 @@
     self->_duration = KALTURA_UNDEF_INT;
     self->_processDuration = KALTURA_UNDEF_INT;
     self->_seek = KALTURA_UNDEF_BOOL;
-    self->_newPoint = KALTURA_UNDEF_INT;
+    self->_anewPoint = KALTURA_UNDEF_INT;
     self->_isFirstInSession = KALTURA_UNDEF_BOOL;
     self->_contextId = KALTURA_UNDEF_INT;
     self->_featureType = KALTURA_UNDEF_INT;
@@ -20393,7 +20397,7 @@
 
 - (void)setNewPointFromString:(NSString*)aPropVal
 {
-    self.newPoint = [KalturaSimpleTypeParser parseInt:aPropVal];
+    self.anewPoint = [KalturaSimpleTypeParser parseInt:aPropVal];
 }
 
 - (void)setIsFirstInSessionFromString:(NSString*)aPropVal
@@ -20431,7 +20435,7 @@
     [aParams addIfDefinedKey:@"processDuration" withInt:self.processDuration];
     [aParams addIfDefinedKey:@"controlId" withString:self.controlId];
     [aParams addIfDefinedKey:@"seek" withBool:self.seek];
-    [aParams addIfDefinedKey:@"newPoint" withInt:self.newPoint];
+    [aParams addIfDefinedKey:@"anewPoint" withInt:self.anewPoint];
     [aParams addIfDefinedKey:@"referrer" withString:self.referrer];
     [aParams addIfDefinedKey:@"isFirstInSession" withBool:self.isFirstInSession];
     [aParams addIfDefinedKey:@"applicationId" withString:self.applicationId];
@@ -29990,7 +29994,7 @@
 @synthesize lastMovedCategoryPageIndex = _lastMovedCategoryPageIndex;
 @synthesize lastMovedCategoryEntryPageIndex = _lastMovedCategoryEntryPageIndex;
 @synthesize moveFromChildren = _moveFromChildren;
-@synthesize copyOnly = _copyOnly;
+@synthesize acopyOnly = _acopyOnly;
 @synthesize destCategoryFullIds = _destCategoryFullIds;
 
 - (id)init
@@ -30004,7 +30008,7 @@
     self->_lastMovedCategoryPageIndex = KALTURA_UNDEF_INT;
     self->_lastMovedCategoryEntryPageIndex = KALTURA_UNDEF_INT;
     self->_moveFromChildren = KALTURA_UNDEF_BOOL;
-    self->_copyOnly = KALTURA_UNDEF_BOOL;
+    self->_acopyOnly = KALTURA_UNDEF_BOOL;
     return self;
 }
 
@@ -30080,7 +30084,7 @@
 
 - (void)setCopyOnlyFromString:(NSString*)aPropVal
 {
-    self.copyOnly = [KalturaSimpleTypeParser parseBool:aPropVal];
+    self.acopyOnly = [KalturaSimpleTypeParser parseBool:aPropVal];
 }
 
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
@@ -30094,7 +30098,7 @@
     [aParams addIfDefinedKey:@"lastMovedCategoryPageIndex" withInt:self.lastMovedCategoryPageIndex];
     [aParams addIfDefinedKey:@"lastMovedCategoryEntryPageIndex" withInt:self.lastMovedCategoryEntryPageIndex];
     [aParams addIfDefinedKey:@"moveFromChildren" withBool:self.moveFromChildren];
-    [aParams addIfDefinedKey:@"copyOnly" withBool:self.copyOnly];
+    [aParams addIfDefinedKey:@"acopyOnly" withBool:self.acopyOnly];
     [aParams addIfDefinedKey:@"destCategoryFullIds" withString:self.destCategoryFullIds];
 }
 
@@ -33422,6 +33426,7 @@
 @synthesize application = _application;
 @synthesize userIds = _userIds;
 @synthesize playbackContext = _playbackContext;
+@synthesize ancestorPlaybackContext = _ancestorPlaybackContext;
 
 - (KalturaFieldType)getTypeOfApplication
 {
@@ -33438,6 +33443,11 @@
     return KFT_String;
 }
 
+- (KalturaFieldType)getTypeOfAncestorPlaybackContext
+{
+    return KFT_String;
+}
+
 - (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
 {
     [super toParams:aParams isSuper:YES];
@@ -33446,6 +33456,7 @@
     [aParams addIfDefinedKey:@"application" withString:self.application];
     [aParams addIfDefinedKey:@"userIds" withString:self.userIds];
     [aParams addIfDefinedKey:@"playbackContext" withString:self.playbackContext];
+    [aParams addIfDefinedKey:@"ancestorPlaybackContext" withString:self.ancestorPlaybackContext];
 }
 
 - (void)dealloc
@@ -33453,6 +33464,7 @@
     [self->_application release];
     [self->_userIds release];
     [self->_playbackContext release];
+    [self->_ancestorPlaybackContext release];
     [super dealloc];
 }
 

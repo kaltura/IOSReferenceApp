@@ -46,6 +46,19 @@
 + (NSString*)UPDATED_AT_DESC;
 @end
 
+// @package Kaltura
+// @subpackage Client
+@interface KalturaTimedThumbAssetOrderBy : NSObject
++ (NSString*)CREATED_AT_ASC;
++ (NSString*)DELETED_AT_ASC;
++ (NSString*)SIZE_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)DELETED_AT_DESC;
++ (NSString*)SIZE_DESC;
++ (NSString*)UPDATED_AT_DESC;
+@end
+
 ///////////////////////// classes /////////////////////////
 // @package Kaltura
 // @subpackage Client
@@ -95,6 +108,16 @@
 // @package Kaltura
 // @subpackage Client
 @interface KalturaThumbCuePointFilter : KalturaThumbCuePointBaseFilter
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaTimedThumbAssetBaseFilter : KalturaThumbAssetFilter
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaTimedThumbAssetFilter : KalturaTimedThumbAssetBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////

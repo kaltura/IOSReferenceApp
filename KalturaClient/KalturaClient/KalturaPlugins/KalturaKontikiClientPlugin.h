@@ -30,6 +30,15 @@
 #import "../KalturaClient.h"
 
 ///////////////////////// enums /////////////////////////
+// @package Kaltura
+// @subpackage Client
+@interface KalturaKontikiStorageProfileOrderBy : NSObject
++ (NSString*)CREATED_AT_ASC;
++ (NSString*)UPDATED_AT_ASC;
++ (NSString*)CREATED_AT_DESC;
++ (NSString*)UPDATED_AT_DESC;
+@end
+
 ///////////////////////// classes /////////////////////////
 // @package Kaltura
 // @subpackage Client
@@ -59,6 +68,16 @@
 - (KalturaFieldType)getTypeOfFlavorAssetId;
 - (KalturaFieldType)getTypeOfContentMoid;
 - (KalturaFieldType)getTypeOfServiceToken;
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaKontikiStorageProfileBaseFilter : KalturaStorageProfileFilter
+@end
+
+// @package Kaltura
+// @subpackage Client
+@interface KalturaKontikiStorageProfileFilter : KalturaKontikiStorageProfileBaseFilter
 @end
 
 ///////////////////////// services /////////////////////////

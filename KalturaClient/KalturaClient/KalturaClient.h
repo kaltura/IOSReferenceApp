@@ -525,6 +525,7 @@
 + (int)OPERATION_SYSTEM;
 + (int)BROWSERS;
 + (int)LIVE;
++ (int)TOP_PLAYBACK_CONTEXT;
 + (int)PARTNER_USAGE;
 @end
 
@@ -6195,7 +6196,7 @@
 // true if the user ever used seek in this session
 @property (nonatomic,assign) KALTURA_BOOL seek;
 // timestamp of the new point on the timeline of the video after the user seeks
-@property (nonatomic,assign) int newPoint;
+@property (nonatomic,assign) int anewPoint;
 // the referrer of the client
 @property (nonatomic,copy) NSString* referrer;
 // will indicate if the event is thrown for the first video in the session
@@ -8682,7 +8683,7 @@
 // All entries from all child categories will be moved as well
 @property (nonatomic,assign) KALTURA_BOOL moveFromChildren;
 // Entries won't be deleted from the source entry
-@property (nonatomic,assign) KALTURA_BOOL copyOnly;
+@property (nonatomic,assign) KALTURA_BOOL acopyOnly;
 // Destination categories fallback ids
 @property (nonatomic,copy) NSString* destCategoryFullIds;
 - (KalturaFieldType)getTypeOfSrcCategoryId;
@@ -9589,9 +9590,11 @@
 @property (nonatomic,copy) NSString* application;
 @property (nonatomic,copy) NSString* userIds;
 @property (nonatomic,copy) NSString* playbackContext;
+@property (nonatomic,copy) NSString* ancestorPlaybackContext;
 - (KalturaFieldType)getTypeOfApplication;
 - (KalturaFieldType)getTypeOfUserIds;
 - (KalturaFieldType)getTypeOfPlaybackContext;
+- (KalturaFieldType)getTypeOfAncestorPlaybackContext;
 @end
 
 // @package Kaltura

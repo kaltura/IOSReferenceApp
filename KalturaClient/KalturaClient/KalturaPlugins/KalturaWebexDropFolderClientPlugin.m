@@ -28,6 +28,108 @@
 #import "KalturaWebexDropFolderClientPlugin.h"
 
 ///////////////////////// enums /////////////////////////
+@implementation KalturaWebexDropFolderFileOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
++ (NSString*)FILE_NAME_ASC
+{
+    return @"+fileName";
+}
++ (NSString*)FILE_SIZE_ASC
+{
+    return @"+fileSize";
+}
++ (NSString*)FILE_SIZE_LAST_SET_AT_ASC
+{
+    return @"+fileSizeLastSetAt";
+}
++ (NSString*)ID_ASC
+{
+    return @"+id";
+}
++ (NSString*)PARSED_FLAVOR_ASC
+{
+    return @"+parsedFlavor";
+}
++ (NSString*)PARSED_SLUG_ASC
+{
+    return @"+parsedSlug";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)FILE_NAME_DESC
+{
+    return @"-fileName";
+}
++ (NSString*)FILE_SIZE_DESC
+{
+    return @"-fileSize";
+}
++ (NSString*)FILE_SIZE_LAST_SET_AT_DESC
+{
+    return @"-fileSizeLastSetAt";
+}
++ (NSString*)ID_DESC
+{
+    return @"-id";
+}
++ (NSString*)PARSED_FLAVOR_DESC
+{
+    return @"-parsedFlavor";
+}
++ (NSString*)PARSED_SLUG_DESC
+{
+    return @"-parsedSlug";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
+@end
+
+@implementation KalturaWebexDropFolderOrderBy
++ (NSString*)CREATED_AT_ASC
+{
+    return @"+createdAt";
+}
++ (NSString*)ID_ASC
+{
+    return @"+id";
+}
++ (NSString*)NAME_ASC
+{
+    return @"+name";
+}
++ (NSString*)UPDATED_AT_ASC
+{
+    return @"+updatedAt";
+}
++ (NSString*)CREATED_AT_DESC
+{
+    return @"-createdAt";
+}
++ (NSString*)ID_DESC
+{
+    return @"-id";
+}
++ (NSString*)NAME_DESC
+{
+    return @"-name";
+}
++ (NSString*)UPDATED_AT_DESC
+{
+    return @"-updatedAt";
+}
+@end
+
 ///////////////////////// classes /////////////////////////
 @implementation KalturaWebexDropFolder
 @synthesize webexUserId = _webexUserId;
@@ -203,6 +305,46 @@
     [self->_description release];
     [self->_webexHostId release];
     [super dealloc];
+}
+
+@end
+
+@implementation KalturaWebexDropFolderBaseFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaWebexDropFolderBaseFilter"];
+}
+
+@end
+
+@implementation KalturaWebexDropFolderFileBaseFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaWebexDropFolderFileBaseFilter"];
+}
+
+@end
+
+@implementation KalturaWebexDropFolderFileFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaWebexDropFolderFileFilter"];
+}
+
+@end
+
+@implementation KalturaWebexDropFolderFilter
+- (void)toParams:(KalturaParams*)aParams isSuper:(BOOL)aIsSuper
+{
+    [super toParams:aParams isSuper:YES];
+    if (!aIsSuper)
+        [aParams putKey:@"objectType" withString:@"KalturaWebexDropFolderFilter"];
 }
 
 @end

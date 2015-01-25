@@ -546,7 +546,7 @@
 @implementation KalturaAuditTrailChangeItem
 @synthesize descriptor = _descriptor;
 @synthesize oldValue = _oldValue;
-@synthesize newValue = _newValue;
+@synthesize anewValue = _anewValue;
 
 - (KalturaFieldType)getTypeOfDescriptor
 {
@@ -570,14 +570,14 @@
         [aParams putKey:@"objectType" withString:@"KalturaAuditTrailChangeItem"];
     [aParams addIfDefinedKey:@"descriptor" withString:self.descriptor];
     [aParams addIfDefinedKey:@"oldValue" withString:self.oldValue];
-    [aParams addIfDefinedKey:@"newValue" withString:self.newValue];
+    [aParams addIfDefinedKey:@"anewValue" withString:self.anewValue];
 }
 
 - (void)dealloc
 {
     [self->_descriptor release];
     [self->_oldValue release];
-    [self->_newValue release];
+    [self->_anewValue release];
     [super dealloc];
 }
 
